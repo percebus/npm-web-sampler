@@ -22,7 +22,7 @@
     "jest:ci": "jest --ci",
     "jest:ci:unit": "npm run jest:ci -- unit.spec.js",
     "jest:ci:rest": "npm run jest:ci -- rest.spec.js",
-    "test": "npm run jest:ci:unit",
+    "test": "npm run jest:ci:unit && npm run testem:ci",
     "validate": "npm run jest:ci:rest"
   },
   "standard": {
