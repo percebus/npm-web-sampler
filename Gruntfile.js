@@ -6,6 +6,9 @@ module.exports = (grunt) => {
   })
 
   grunt.initConfig({
+    yamllint: {
+      testem: ['testem.yaml']
+    },
     shell: {
       options: { stderr: true },
       standard: 'standard --fix __tests__/**/*.js',
@@ -15,7 +18,8 @@ module.exports = (grunt) => {
 
   grunt.registerTask('lint:js:Gruntfile', ['shell:standard_Gruntfile'])
   grunt.registerTask('lint:js', ['shell:standard'])
-  grunt.registerTask('lint', ['lint:js'])
+  grunt.registerTask('lint:yaml', ['yamllint'])
+  grunt.registerTask('lint', ['lint:yaml', 'lint:js'])
 
   grunt.registerTask('default', ['lint'])
   grunt.task.run('lint:js:Gruntfile')
