@@ -13,10 +13,10 @@ launchers:
  - Safari
 
 launch_in_dev:
- - PhantomJS
+ - PhantomJS # XXX use chromium
  - Chrome
  - Chrome Canary
- - Firefox
+#- Firefox # FIXME gets stuck
  - IE
  - Safari
 

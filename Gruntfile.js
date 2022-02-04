@@ -6,8 +6,29 @@ module.exports = (grunt) => {
   })
 
   grunt.initConfig({
+    jsonlint: {
+      options: { prose: true },
+      npm: ['package*.json'],
+      htmllint: ['.htmllintrc']
+    },
     yamllint: {
       testem: ['testem.yaml']
+    },
+    htmllint: {
+      options: { force: true, htmllintrc: true },
+      index: ['src/app/**/*.html']
+    },
+    clean: {
+      dist: 'dist'
+    },
+    copy: {
+      dist: {
+        files: [
+          { cwd: 'src/assets/', expand: true, src: ['**'], dest: 'dist' },
+          { cwd: 'src/app/ui/views/main/', expand: true, src: ['*.htm*'], dest: 'dist' },
+          { cwd: '.', expand: true, src: ['LICENSE*'], dest: 'dist' }
+        ]
+      }
     },
     shell: {
       options: { stderr: true },
@@ -18,8 +39,12 @@ module.exports = (grunt) => {
 
   grunt.registerTask('lint:js:Gruntfile', ['shell:standard_Gruntfile'])
   grunt.registerTask('lint:js', ['shell:standard'])
+  grunt.registerTask('lint:json', ['jsonlint'])
   grunt.registerTask('lint:yaml', ['yamllint'])
-  grunt.registerTask('lint', ['lint:yaml', 'lint:js'])
+  grunt.registerTask('lint:html', ['htmllint'])
+  grunt.registerTask('lint', ['lint:json', 'lint:yaml', 'lint:html', 'lint:js'])
+
+  grunt.registerTask('dist', ['lint', 'clean', 'copy'])
 
   grunt.registerTask('default', ['lint'])
   grunt.task.run('lint:js:Gruntfile')

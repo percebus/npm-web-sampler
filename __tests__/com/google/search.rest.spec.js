@@ -1,11 +1,21 @@
 describe('com.google.*', () => {
+  const _ = require('lodash')
   const frisby = require('frisby')
-  describe('GET', () => {
-    it('returns Google Search page', () => {
-      return frisby
-        .get('https://google.com')
-        .expect('status', 200)
-        .expect('bodyContains', 'Google')
+  const templates = {
+    url: _.template('<%= protocol %>://google.com')
+  }
+
+  _.forEach(['http', 'https'], (protocol) => {
+    const url = templates.url({ protocol: protocol })
+    describe(protocol, () => {
+      describe('GET', () => {
+        it('returns Google Search page', () => {
+          return frisby
+            .get(url)
+            .expect('status', 200)
+            .expect('bodyContains', 'Google')
+        })
+      })
     })
   })
 })
