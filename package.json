@@ -7,8 +7,10 @@
     "pip:install:dev": "python -m pip install -r ./requirements.dev.txt",
     "pip:install:prd": "python -m pip install -r ./requirements.prd.txt",
     "pip:install:all": "python -m pip install -r ./requirements.txt",
-    "npm:install:global": "npm install -g bower standard grunt-cli yarn",
-    "setup": "npm run pip:install:all && npm run npm:install:global",
+    "npm:install:global:ci": "npm install -g bower standard grunt-cli",
+    "npm:install:global:all": "npm install -g bower standard grunt-cli yarn open-cli",
+    "setup": "npm run pip:install:all && npm run npm:install:global:all",
+    "setup:ci": "npm run pip:install:all && npm run npm:install:global:ci",
     "bower:install": "bower update --allow-root && bower install --allow-root",
     "yarn:licenses:list:prod": "yarn licenses list --prod > LICENSES.txt",
     "yarn:licenses:generate-disclaimer:prod": "yarn licenses generate-disclaimer --prod > LICENSES.md",
@@ -28,6 +30,7 @@
     "verify": "npm test && npm run dist",
     "python:http.server": "cd dist && python -m http.server 8000",
     "start": "npm run python:http.server",
+    "browser": "open http://127.0.0.1:8000",
     "validate": "npm run jest:ci:rest"
   },
   "standard": {
