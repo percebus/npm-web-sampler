@@ -1,4 +1,17 @@
+# Docker
 Dockerfile
 .dockerignore
-dist/
+
+# git
+.git
+.gitignore
+
+# IntelliJ
+.idea/
+
+# packages
 node_modules/
+bower_components/
+
+# app
+dist/
