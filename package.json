@@ -24,6 +24,10 @@
     "jest:ci:unit": "npm run jest:ci -- unit.spec.js",
     "jest:ci:rest": "npm run jest:ci -- rest.spec.js",
     "test": "npm run jest:ci:unit",
+    "dist": "npm run grunt:dist",
+    "verify": "npm test && npm run dist",
+    "python:http.server": "cd dist && python -m http.server 8000",
+    "start": "npm run python:http.server",
     "validate": "npm run jest:ci:rest"
   },
   "standard": {
