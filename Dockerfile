@@ -5,4 +5,4 @@ COPY . .
 RUN ls -la
 RUN npm run setup:ci && npm ci
 RUN npm run verify
-CMD npm run start
+CMD ["npm", "run", "start"]

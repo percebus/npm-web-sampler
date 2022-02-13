@@ -33,7 +33,8 @@ module.exports = (grunt) => {
     shell: {
       options: { stderr: true },
       standard: 'standard --fix __tests__/**/*.js',
-      standard_Gruntfile: 'standard --fix Gruntfile.js'
+      standard_Gruntfile: 'standard --fix Gruntfile.js',
+      dockerlint: 'dockerlint Dockerfile'
     }
   })
 
@@ -42,7 +43,8 @@ module.exports = (grunt) => {
   grunt.registerTask('lint:json', ['jsonlint'])
   grunt.registerTask('lint:yaml', ['yamllint'])
   grunt.registerTask('lint:html', ['htmllint'])
-  grunt.registerTask('lint', ['lint:json', 'lint:yaml', 'lint:html', 'lint:js'])
+  grunt.registerTask('lint:docker', ['shell:dockerlint'])
+  grunt.registerTask('lint', ['lint:json', 'lint:yaml', 'lint:html', 'lint:js', 'lint:docker'])
 
   grunt.registerTask('dist', ['lint', 'clean', 'copy'])
 
