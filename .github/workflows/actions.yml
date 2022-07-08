@@ -33,6 +33,7 @@ jobs:
         continue-on-error: true
       - name: npm test
         run: npm test
+      - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
