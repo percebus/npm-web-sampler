@@ -11,7 +11,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node: [16, 18]
     runs-on: ${{ matrix.os }}
-    name: node ${{ matrix.node }}
+    name: node:${{ matrix.node }} @ ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -23,8 +23,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - name: ls
-        run: ls -la
+# Debug only
+#     - name: ls
+#       run: ls -la
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
