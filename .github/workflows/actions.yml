@@ -4,14 +4,14 @@ on:
   schedule:
     - cron: '* 0 * * *'
 jobs:
-  Build:
+  Verify:
     strategy:
       max-parallel: 6
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node: [16, 18]
     runs-on: ${{ matrix.os }}
-    name: node:${{ matrix.node }} @ ${{ matrix.os }}
+    name: node:${{ matrix.node }}@${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -23,23 +23,28 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+
 # Debug only
 #     - name: ls
 #       run: ls -la
+
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
         run: npm ci
-      - name: npm audit
-        run: npm audit
-        continue-on-error: true
+
+# FIXME change to warning, somehow...
+#     - name: npm audit
+#       run: npm audit
+#       continue-on-error: true
+
       - name: npm test
         run: npm test
       - name: junit.xml
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: Unit Tests @ node:${{ matrix.node }}
+          name: Unit Tests @ node:${{ matrix.node }}@${{ matrix.os }}
           path: junit.xml
           reporter: jest-junit
       - name: npm run dist
@@ -51,7 +56,7 @@ jobs:
           path: dist
 
   Validate:
-    needs: Build
+    needs: Verify
     runs-on: ubuntu-latest
     steps:
       - name: checkout
