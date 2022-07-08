@@ -11,7 +11,7 @@ describe('org.HTTPbin', () => {
         describe('GET', () => {
           describe('/200', () => {
             it('returns 200: "OK"', () => {
-              const url = templates.url({ protocol: protocol, status: 200 })
+              const url = templates.url({ protocol, status: 200 })
               return frisby
                 .get(url)
                 .expect('status', 200)
@@ -31,7 +31,7 @@ describe('org.HTTPbin', () => {
                *    \_     _/
                *      `"""`
                */
-              const url = templates.url({ protocol: protocol, status: 418 })
+              const url = templates.url({ protocol, status: 418 })
               return frisby
                 .get(url)
                 .expect('status', 418)

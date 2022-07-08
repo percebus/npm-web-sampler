@@ -6,7 +6,7 @@ describe('com.google.*', () => {
   }
 
   _.forEach(['http', 'https'], (protocol) => {
-    const url = templates.url({ protocol: protocol })
+    const url = templates.url({ protocol })
     describe(protocol, () => {
       describe('GET', () => {
         it('returns Google Search page', () => {
