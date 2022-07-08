@@ -7,8 +7,9 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 3
       matrix:
-        node: [14, 16, 18]
+        node: [16, 18]
     name: node ${{ matrix.node }}
     steps:
       - name: checkout
@@ -44,6 +45,19 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: setup node@16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
       - name: setup node@16
         uses: actions/setup-node@v3
         with:
