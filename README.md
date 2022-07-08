@@ -26,16 +26,44 @@ $> npm install
 
 ## Development
 
+### Build
+
+#### `dist/`
+
+```bash
+$> npm run dist
+```
+
 ### Test
+
+#### Unit
 
 ```bash
 $> npm test
 ```
 
-### Build
-
-#### `dist`
+#### Browsers
 
 ```bash
-$> npm run dist
+$> npm run testem:ci
+```
+
+#### Integration
+
+```bash
+$> npm run validate
+```
+
+### Verify
+
+Build + Test
+
+```bash
+$> npm run verify
+```
+
+#### w/ Docker
+
+```bash
+$> npm run verify:docker
 ```
