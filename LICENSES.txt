@@ -1,2 +1,0 @@
-yarn licenses v1.2.1
-Done in 0.07s.

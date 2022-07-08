@@ -25,8 +25,7 @@ module.exports = (grunt) => {
       dist: {
         files: [
           { cwd: 'src/assets/', expand: true, src: ['**'], dest: 'dist' },
-          { cwd: 'src/app/ui/views/main/', expand: true, src: ['*.htm*'], dest: 'dist' },
-          { cwd: '.', expand: true, src: ['LICENSE*'], dest: 'dist' }
+          { cwd: 'src/app/ui/views/main/', expand: true, src: ['*.htm*'], dest: 'dist' }
         ]
       }
     },
