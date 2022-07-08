@@ -1,5 +1,5 @@
 # Docker
-Dockerfile
+# Dockerfile # TODO
 .dockerignore
 
 # git
@@ -12,6 +12,9 @@ Dockerfile
 # packages
 node_modules/
 bower_components/
+
+# CI/CD
+.github/
 
 # app
 dist/

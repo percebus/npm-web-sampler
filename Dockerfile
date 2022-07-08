@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.7-nodejs14
+FROM nikolaik/python-nodejs:python3.10-nodejs16
 WORKDIR /usr/project
 COPY . .
 # RUN sed -i 's/\r$//' ./scripts/**/*.sh

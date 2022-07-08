@@ -8,7 +8,7 @@
     "pip:install:prd": "python -m pip install -r ./requirements.prd.txt",
     "pip:install:all": "python -m pip install -r ./requirements.txt",
     "npm:install:global:ci": "npm install --location=global bower grunt-cli",
-    "npm:install:global:all": "npm install --location=global bower grunt-cliyarn open-cli",
+    "npm:install:global:all": "npm install --location=global bower grunt-cli yarn open-cli",
     "setup": "npm run pip:install:all && npm run npm:install:global:all",
     "setup:ci": "npm run pip:install:all && npm run npm:install:global:ci",
     "bower:install": "bower update --allow-root && bower install --allow-root",
@@ -44,7 +44,7 @@
     "docker:clean": "npm run docker:containers:stop && npm run docker:containers:exited:rm && npm run docker:images:rm",
     "verify": "npm test && npm run dist",
     "verify:docker": "npm run docker:build && npm run docker:run:default",
-    "browser": "open http://127.0.0.1:8080",
+    "browser": "open-cli http://127.0.0.1:8080",
     "validate": "npm run jest:ci:rest"
   },
   "standard": {

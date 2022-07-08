@@ -3,7 +3,9 @@ on:
   push:
   schedule:
     - cron: '* 0 * * *'
+
 jobs:
+
   Verify:
     strategy:
       max-parallel: 6
@@ -44,7 +46,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: Unit Tests @ node:${{ matrix.node }}@${{ matrix.os }}
+          name: node:${{ matrix.node }}@${{ matrix.os }} unit tests
           path: junit.xml
           reporter: jest-junit
       - name: npm run dist
