@@ -37,7 +37,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: '*.unit.spec.js @ node:${{ matrix.node }}'
+          name: Unit Tests @ node:${{ matrix.node }}
           path: junit.xml
           reporter: jest-junit
       - name: npm run dist
@@ -77,6 +77,6 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: '*.rest.spec.js'
+          name: Integration Tests
           path: junit.xml
           reporter: jest-junit
