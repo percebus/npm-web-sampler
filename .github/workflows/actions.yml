@@ -21,6 +21,7 @@ jobs:
       run: npm ci
     - name: npm audit
       run: npm audit
+      continue-on-error: true
     - name: npm test
       run: npm test
     - name: npm run dist
