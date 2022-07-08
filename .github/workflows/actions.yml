@@ -7,27 +7,44 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v3
-    - name: setup node@16
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    - name: ls
-      run: ls -la
-    - name: setup
-      run: npm run setup:ci --if-present
-    - name: npm install
-      run: npm ci
-    - name: npm audit
-      run: npm audit
-      continue-on-error: true
-    - name: npm test
-      run: npm test
-    - name: npm run dist
-      run: npm run dist
-    - name: dist.zip
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist
-        path: dist
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: setup node@16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: ls
+        run: ls -la
+      - name: setup
+        run: npm run setup:ci --if-present
+      - name: npm install
+        run: npm ci
+      - name: npm audit
+        run: npm audit
+        continue-on-error: true
+      - name: npm test
+        run: npm test
+      - name: npm run dist
+        run: npm run dist
+      - name: dist.zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+  Validate:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup node@16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: ls
+        run: ls -la
+      - name: setup
+        run: |
+          npm run setup:ci --if-present
+          npm ci
+      - name: npm run validate
+        run: npm run validate
