@@ -31,7 +31,7 @@ module.exports = (grunt) => {
     },
     shell: {
       options: { stderr: true },
-      standard: 'standard --fix __tests__/**/*.js',
+      standard: 'standard --fix *.js __tests__/**/*.js',
       standard_Gruntfile: 'standard --fix Gruntfile.js',
       dockerlint: 'dockerlint Dockerfile'
     }
