@@ -1,0 +1,32 @@
+name: Continuous Integration
+on: 
+  push:
+  schedule:
+    - cron: '* 0 * * *'
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: setup node@16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: ls
+      run: ls -la
+    - name: setup
+      run: npm run setup:ci --if-present
+    - name: npm install
+      run: npm ci
+    - name: npm audit
+      run: npm audit
+    - name: npm test
+      run: npm test
+    - name: npm run dist
+      run: npm run dist
+    - name: dist.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist
