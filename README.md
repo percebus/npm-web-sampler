@@ -1,6 +1,6 @@
 # `npm-web-sampler`
 
-[![Continuous Integration](https://github.com/percebus/npm-web-sampler/actions/workflows/actions.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/actions.yml)
+[![verify](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml)
 
 A web sampler of technologies and tools that can be used to quickly scaffold a web-project
 
@@ -24,7 +24,7 @@ $> npm run setup
 $> npm install
 ```
 
-## Development
+## R&D
 
 ### Build
 
