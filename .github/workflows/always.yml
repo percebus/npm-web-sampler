@@ -94,7 +94,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: unit tests @ node:${{ matrix.node }}@${{ matrix.os }} unit tests
+          name: Unit Tests @ node:${{ matrix.node }}@${{ matrix.os }}
           path: junit.xml
           reporter: jest-junit
       - name: npm run dist
