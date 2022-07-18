@@ -105,6 +105,40 @@ jobs:
           name: dist
           path: dist
 
+
+
+  CodeQL:
+#   if: github.ref == 'refs/heads/main' # TODO?
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript']
+
+    name: 'CodeQL: ${{ matrix.language }}'
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: setup CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+    - name: build.zip
+      uses: actions/download-artifact@v3
+      with:
+        name: build
+        path: build
+
+    - name: CodeQL
+      uses: github/codeql-action/analyze@v2
+
+
   validate:
     if: github.ref == 'refs/heads/main'
 #   needs: build # TODO? or XXX?
