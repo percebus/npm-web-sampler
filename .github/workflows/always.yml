@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+#   name: Build # TODO? or XXX?
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -38,7 +39,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: test @ node:${{ matrix.node }}@${{ matrix.os }}
+          name: unit tests
           path: junit.xml
           reporter: jest-junit
 
@@ -93,7 +94,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: test @ node:${{ matrix.node }}@${{ matrix.os }} unit tests
+          name: unit tests @ node:${{ matrix.node }}@${{ matrix.os }} unit tests
           path: junit.xml
           reporter: jest-junit
       - name: npm run dist
