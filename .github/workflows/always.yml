@@ -1,4 +1,4 @@
-name: verify
+name: Verify
 on: 
   push:
   schedule:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-#   name: Build # TODO? or XXX?
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -61,7 +61,7 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         node: [16, 18]
     runs-on: ${{ matrix.os }}
-    name: build @ node:${{ matrix.node }}@${{ matrix.os }}
+    name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -106,11 +106,15 @@ jobs:
           path: dist
 
   validate:
-    needs: build
+    if: github.ref == 'refs/heads/main'
+#   needs: build # TODO? or XXX?
+    name: Validate
     runs-on: ubuntu-latest
     steps:
       - name: checkou
         uses: actions/checkout@v3
+      - name: ls
+        run: ls -la
 
       - name: setup python@3.X
         uses: actions/setup-python@v4
@@ -125,12 +129,6 @@ jobs:
         run: npm run setup:ci --if-present
       - name: npm install
         run: npm ci
-
-      - uses: actions/download-artifact@v2
-        with:
-          name: dist
-      - name: ls
-        run: ls -la
 
       - name: npm run validate
         run: npm run validate
