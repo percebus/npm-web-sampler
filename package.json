@@ -7,7 +7,7 @@
     "pip:install:dev": "python -m pip install -r ./requirements.dev.txt",
     "pip:install:prd": "python -m pip install -r ./requirements.prd.txt",
     "pip:install:all": "python -m pip install -r ./requirements.txt",
-    "npm:install:global:ci": "npm install --location=global bower grunt-cli",
+    "npm:install:global:ci": "npm install --location=global bower",
     "npm:install:global:all": "npm install --location=global bower grunt-cli yarn open-cli",
     "setup": "npm run pip:install:all && npm run npm:install:global:all",
     "setup:ci": "npm run pip:install:all && npm run npm:install:global:ci",

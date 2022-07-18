@@ -1,0 +1,141 @@
+name: Verify
+on: 
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: ls
+        run: ls -la
+
+      - name: setup python@3.X
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: setup node@16
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: setup
+        run: npm run setup:ci --if-present
+      - name: npm install
+        run: npm ci
+      - name: node_modules
+        run: ls -la ./node_modules
+      - name: npm audit
+        run: npm audit
+        continue-on-error: true # XXX?
+
+      - name: npm test
+        run: npm test
+      - name: junit.xml
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: unit tests
+          path: junit.xml
+          reporter: jest-junit
+
+      - name: npm run dist
+        run: npm run dist
+      - name: dist.zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+
+  builds:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    strategy:
+      max-parallel: 6
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        node: [16, 18]
+    runs-on: ${{ matrix.os }}
+    name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup python@3.X
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: setup node@16
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: setup
+        run: npm run setup:ci --if-present
+      - name: npm install
+        run: npm ci
+
+      - name: dist.zip
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+      - name: ls
+        run: ls -la
+
+      - name: npm test
+        run: npm test
+      - name: junit.xml
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: unit tests @ node:${{ matrix.node }}@${{ matrix.os }} unit tests
+          path: junit.xml
+          reporter: jest-junit
+      - name: npm run dist
+        run: npm run dist
+      - name: dist.zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+  validate:
+    if: github.ref == 'refs/heads/main'
+#   needs: build # TODO? or XXX?
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkou
+        uses: actions/checkout@v3
+      - name: ls
+        run: ls -la
+
+      - name: setup python@3.X
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: setup node@16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: setup
+        run: npm run setup:ci --if-present
+      - name: npm install
+        run: npm ci
+
+      - name: npm run validate
+        run: npm run validate
+      - name: junit.xml
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Integration Tests
+          path: junit.xml
+          reporter: jest-junit

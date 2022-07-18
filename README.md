@@ -1,6 +1,6 @@
 # `npm-web-sampler`
 
-[![Continuous Integration](https://github.com/percebus/npm-web-sampler/actions/workflows/actions.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/actions.yml)
+[![verify](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml) [![dependency review](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
 
 A web sampler of technologies and tools that can be used to quickly scaffold a web-project
 
@@ -20,11 +20,15 @@ $> npm run setup
 
 ### Dependencies
 
+[![dependency review](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
+
 ```bash
 $> npm install
 ```
 
 ## Development
+
+[![verify](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml)
 
 ### Build
 
