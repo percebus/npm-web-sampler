@@ -129,11 +129,11 @@ jobs:
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
-    - name: build.zip
+    - name: dist.zip
       uses: actions/download-artifact@v3
       with:
-        name: build
-        path: build
+        name: dist
+        path: dist
 
     - name: CodeQL
       uses: github/codeql-action/analyze@v2
