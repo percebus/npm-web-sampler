@@ -5,8 +5,8 @@ on:
     - cron: '0 0 * * *'
 
 env:
-  'node-version': '16'
-  'python-version': '3.x'
+  node-version: '16'
+  python-version: '3.x'
 
 jobs:
   build:
@@ -18,15 +18,15 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: setup python@${{ python-version }}
+      - name: setup python@${{ PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ python-version }}
+          python-version: ${{ PYTHON_VERSION }}
           architecture: 'x64'
-      - name: setup node@${{ node-version }}
+      - name: setup node@${{ NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ node-version }}
+          node-version: ${{ NODE_VERSION }}
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
@@ -73,7 +73,7 @@ jobs:
       - name: setup python@3.X
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ python-version }}
+          python-version: ${{ PYTHON_VERSION }}
           architecture: 'x64'
       - name: setup node@${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -153,15 +153,15 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: setup python@${{ python-version }}
+      - name: setup python@${{ PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ python-version }}
+          python-version: ${{ PYTHON_VERSION }}
           architecture: 'x64'
-      - name: setup node@${{ node-version }}
+      - name: setup node@${{ NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ node-version }}
+          node-version: ${{ NODE_VERSION }}
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
