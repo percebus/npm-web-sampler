@@ -4,10 +4,6 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
-env:
-  node-version: '16'
-  python-version: '3.x'
-
 jobs:
   build:
     name: Build
@@ -18,15 +14,15 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: setup python@${python-version}
+      - name: setup python@'3.x'
         uses: actions/setup-python@v4
         with:
-          python-version: ${python-version}
+          python-version: '3.x'
           architecture: 'x64'
-      - name: setup node@${node-version}
+      - name: setup node@16
         uses: actions/setup-node@v3
         with:
-          node-version: ${node-version}
+          node-version: 16
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
@@ -73,7 +69,7 @@ jobs:
       - name: setup python@3.X
         uses: actions/setup-python@v4
         with:
-          python-version: ${python-version}
+          python-version: '3.x'
           architecture: 'x64'
       - name: setup node@${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -153,15 +149,15 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: setup python@${python-version}
+      - name: setup python@3.x
         uses: actions/setup-python@v4
         with:
-          python-version: ${python-version}
+          python-version: '3.x'
           architecture: 'x64'
-      - name: setup node@${node-version}
+      - name: setup node@16
         uses: actions/setup-node@v3
         with:
-          node-version: ${node-version}
+          node-version: 16
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
