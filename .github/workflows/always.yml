@@ -1,8 +1,12 @@
 name: Verify
-on: 
+on:
   push:
   schedule:
     - cron: '0 0 * * *'
+
+env:
+  node-version: '16'
+  python-version: '3.x'
 
 jobs:
   build:
@@ -14,20 +18,20 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: setup python@3.X
+      - name: setup python@${{ python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: ${{ python-version }}
           architecture: 'x64'
-      - name: setup node@16
+      - name: setup node@${{ node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ node-version }}
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
         run: npm ci
-      - name: node_modules
+      - name: ls node_modules
         run: ls -la ./node_modules
       - name: npm audit
         run: npm audit
@@ -69,9 +73,9 @@ jobs:
       - name: setup python@3.X
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: ${{ python-version }}
           architecture: 'x64'
-      - name: setup node@16
+      - name: setup node@${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -86,7 +90,7 @@ jobs:
           name: dist
           path: dist
       - name: ls
-        run: ls
+        run: ls # -la fails in windows
 
       - name: npm test
         run: npm test
@@ -106,8 +110,7 @@ jobs:
           path: dist
 
 
-
-  CodeQL:
+  codeQL:
 #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
     runs-on: ubuntu-latest
@@ -150,15 +153,15 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: setup python@3.X
+      - name: setup python@${{ python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: ${{ python-version }}
           architecture: 'x64'
-      - name: setup node@16
+      - name: setup node@${{ node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ node-version }}
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
