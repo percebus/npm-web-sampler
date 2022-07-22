@@ -5,8 +5,8 @@ on:
     - cron: '0 0 * * *'
 
 env:
-  node-version: '16'
-  python-version: '3.x'
+  NODE_VERSION: '16'
+  PYTHON_VERSION: '3.x'
 
 jobs:
   build:
