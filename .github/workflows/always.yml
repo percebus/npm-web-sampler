@@ -18,15 +18,15 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: setup python@${{ PYTHON_VERSION }}
+      - name: setup python@${PYTHON_VERSION}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ PYTHON_VERSION }}
+          python-version: ${PYTHON_VERSION}
           architecture: 'x64'
-      - name: setup node@${{ NODE_VERSION }}
+      - name: setup node@${NODE_VERSION}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ NODE_VERSION }}
+          node-version: ${NODE_VERSION}
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
@@ -73,7 +73,7 @@ jobs:
       - name: setup python@3.X
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ PYTHON_VERSION }}
+          python-version: ${PYTHON_VERSION}
           architecture: 'x64'
       - name: setup node@${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -153,15 +153,15 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: setup python@${{ PYTHON_VERSION }}
+      - name: setup python@${PYTHON_VERSION}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ PYTHON_VERSION }}
+          python-version: ${PYTHON_VERSION}
           architecture: 'x64'
-      - name: setup node@${{ NODE_VERSION }}
+      - name: setup node@${NODE_VERSION}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ NODE_VERSION }}
+          node-version: ${NODE_VERSION}
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
