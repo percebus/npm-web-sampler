@@ -4,11 +4,11 @@
 
 A web sampler of technologies and tools that can be used to quickly scaffold a web-project
 
-* npm
-* pip
-* bower
-* grunt
-* jest
+- npm
+- pip
+- bower
+- grunt
+- jest
 
 ## Setup
 

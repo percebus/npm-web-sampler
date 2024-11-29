@@ -15,8 +15,8 @@ jobs:
       - name: setup python@'3.x'
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-          architecture: 'x64'
+          python-version: "3.x"
+          architecture: "x64"
       - name: setup node@16
         uses: actions/setup-node@v3
         with:
@@ -49,7 +49,6 @@ jobs:
           name: dist
           path: dist
 
-
   builds:
     if: github.ref == 'refs/heads/main'
     needs: build
@@ -67,8 +66,8 @@ jobs:
       - name: setup python@3.X
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-          architecture: 'x64'
+          python-version: "3.x"
+          architecture: "x64"
       - name: setup node@${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
@@ -103,9 +102,8 @@ jobs:
           name: dist
           path: dist
 
-
   codeQL:
-#   if: github.ref == 'refs/heads/main' # TODO?
+    #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -116,29 +114,28 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['javascript']
+        language: ["javascript"]
 
-    name: 'CodeQL: ${{ matrix.language }}'
+    name: "CodeQL: ${{ matrix.language }}"
     steps:
-    - name: checkout
-      uses: actions/checkout@v3
-    - name: setup CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ matrix.language }}
-    - name: dist.zip
-      uses: actions/download-artifact@v3
-      with:
-        name: dist
-        path: dist
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: setup CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+      - name: dist.zip
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
 
-    - name: CodeQL
-      uses: github/codeql-action/analyze@v2
-
+      - name: CodeQL
+        uses: github/codeql-action/analyze@v2
 
   validate:
     if: github.ref == 'refs/heads/main'
-#   needs: build # TODO? or XXX?
+    #   needs: build # TODO? or XXX?
     name: Validate
     runs-on: ubuntu-latest
     steps:
@@ -150,8 +147,8 @@ jobs:
       - name: setup python@3.x
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-          architecture: 'x64'
+          python-version: "3.x"
+          architecture: "x64"
       - name: setup node@16
         uses: actions/setup-node@v3
         with:

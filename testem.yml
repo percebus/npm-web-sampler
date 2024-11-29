@@ -1,26 +1,24 @@
 framework: jasmine2
 parallel: 4
 ignore_missing_launchers: true
-src_files: [
-  '__tests__/**/*.unit.spec.js'
-]
+src_files: ["__tests__/**/*.unit.spec.js"]
 
 launchers:
- - Chrome
- - Chrome Canary
- - Firefox
- - IE
- - Safari
+  - Chrome
+  - Chrome Canary
+  - Firefox
+  - IE
+  - Safari
 
 launch_in_dev:
- - PhantomJS # XXX use chromium
- - Chrome
- - Chrome Canary
-#- Firefox # FIXME gets stuck
- - IE
- - Safari
+  - PhantomJS # XXX use chromium
+  - Chrome
+  - Chrome Canary
+  #- Firefox # FIXME gets stuck
+  - IE
+  - Safari
 
 launch_in_ci:
- - Chrome
- - Chrome Canary
- - Firefox
+  - Chrome
+  - Chrome Canary
+  - Firefox
