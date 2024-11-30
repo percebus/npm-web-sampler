@@ -28,7 +28,7 @@
     "grunt:clean": "npm run grunt -- clean",
     "grunt:copy": "npm run grunt -- copy",
     "grunt:dist": "npm run grunt -- dist",
-    "standard": "standard **/*.js --verbose",
+    "standard": "standard *.js __tests__/**/*.js --verbose",
     "standard:check": "npm run standard",
     "standard:fix": "npm run standard -- --fix",
     "lint:js": "npm run standard:check",
