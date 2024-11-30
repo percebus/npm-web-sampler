@@ -74,7 +74,7 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: 'x64'
-      - name: setup node@${{ matrix.node }}
+      - name: setup node @ ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -155,7 +155,7 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: 'x64'
-      - name: setup node@16
+      - name: setup node @ ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
