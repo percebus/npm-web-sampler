@@ -1,5 +1,5 @@
 {
-  "extends": ["standardx"],
+  "extends": ["standard"],
   "rules": {
     "quotes": ["error", "double", { "avoidEscape": true }],
     "comma-dangle": ["error", "only-multiline"],
