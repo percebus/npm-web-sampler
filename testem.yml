@@ -1,7 +1,7 @@
 framework: jasmine2
 parallel: 4
 ignore_missing_launchers: true
-src_files: ["__tests__/**/*.unit.spec.js"]
+src_files: ['__tests__/**/*.unit.spec.js']
 
 launchers:
   - Chrome

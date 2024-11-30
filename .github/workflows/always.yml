@@ -15,8 +15,8 @@ jobs:
       - name: setup python@'3.x'
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
-          architecture: "x64"
+          python-version: '3.x'
+          architecture: 'x64'
       - name: setup node@16
         uses: actions/setup-node@v3
         with:
@@ -66,8 +66,8 @@ jobs:
       - name: setup python@3.X
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
-          architecture: "x64"
+          python-version: '3.x'
+          architecture: 'x64'
       - name: setup node@${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
@@ -114,9 +114,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ["javascript"]
+        language: ['javascript']
 
-    name: "CodeQL: ${{ matrix.language }}"
+    name: 'CodeQL: ${{ matrix.language }}'
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -147,8 +147,8 @@ jobs:
       - name: setup python@3.x
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
-          architecture: "x64"
+          python-version: '3.x'
+          architecture: 'x64'
       - name: setup node@16
         uses: actions/setup-node@v3
         with:
