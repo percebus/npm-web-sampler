@@ -16,7 +16,12 @@ module.exports = (grunt) => {
     copy: {
       dist: {
         files: [
-          { cwd: 'src/assets/', expand: true, src: ['**'], dest: 'dist' },
+          {
+            cwd: 'src/assets/',
+            expand: true,
+            src: ['**'],
+            dest: 'dist'
+          },
           {
             cwd: 'src/app/ui/views/main/',
             expand: true,

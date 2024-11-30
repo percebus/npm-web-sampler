@@ -4,12 +4,14 @@ COPY . .
 # RUN sed -i 's/\r$//' ./scripts/**/*.sh
 RUN ls -la
 
-FROM builder as test
+FROM base AS builder
+RUN npm run setup:ci && npm ci
+
+FROM builder AS test
 RUN npm test
 
-FROM base as builder
-RUN npm run setup:ci && npm ci
-RUN npm run verify
+FROM test AS dist
+RUN npm run dist
 
-FROM builder as webapp
+FROM builder AS webapp
 CMD ["npm", "run", "start"]

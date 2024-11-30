@@ -1,3 +1,5 @@
 {
+  "maxerr": 1,
+  "indent-width": 2,
   "attr-bans": []
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  tabWidth: 2,
+  // rules consistent w/ standard JS
   semi: false,
   singleQuote: true,
   trailingComma: 'none'
