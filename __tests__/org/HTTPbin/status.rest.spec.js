@@ -12,9 +12,7 @@ describe('org.HTTPbin', () => {
           describe('/200', () => {
             it('returns 200: "OK"', () => {
               const url = templates.url({ protocol, status: 200 })
-              return frisby
-                .get(url)
-                .expect('status', 200)
+              return frisby.get(url).expect('status', 200)
             })
           })
 
