@@ -28,9 +28,9 @@
     "grunt:clean": "npm run grunt -- clean",
     "grunt:copy": "npm run grunt -- copy",
     "grunt:dist": "npm run grunt -- dist",
-    "standardx": "standardx *.js __tests__/**/*.js",
-    "standardx:check": "npm run standardx",
-    "standardx:fix": "npm run standardx -- --fix",
+    "standard": "standard **/*.js --verbose",
+    "standard:check": "npm run standard",
+    "standard:fix": "npm run standard -- --fix",
     "lint:js": "npm run standardx:check",
     "lint:html": "npm run grunt:htmllint",
     "lint:docker": "dockerlint Dockerfile",
@@ -66,13 +66,9 @@
     "browser": "open-cli http://127.0.0.1:8080",
     "validate": "npm run jest:ci:rest"
   },
-  "standardx": {
-    "global": [
-      "describe",
-      "xdescribe",
-      "it",
-      "xit",
-      "expect"
+  "standard": {
+    "env": [
+      "jest"
     ]
   },
   "repository": {
@@ -108,7 +104,7 @@
     "load-grunt-tasks": "^5.1.0",
     "lodash": "^4.17.21",
     "prettier": "^3.4.1",
-    "standardx": "^7.0.0",
+    "standard": "^17.1.2",
     "testem": "latest"
   }
 }
