@@ -150,7 +150,6 @@ jobs:
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: docker build . --target ${{ matrix.DOCKER_TARGET }}
 
-
   codeQL:
     #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
@@ -181,7 +180,6 @@ jobs:
 
       - name: CodeQL
         uses: github/codeql-action/analyze@v2
-
 
   validate:
     if: github.ref == 'refs/heads/main'
