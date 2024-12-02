@@ -12,6 +12,7 @@
     "pip:install:release": "python -m pip install -r ./requirements.release.txt",
     "prepip:install:all": "npm run pip:upgrade:requirements",
     "pip:install:all": "python -m pip install -r ./requirements.txt",
+    "pip:freeze": "python -m pip freeze > requirements.frozen.txt",
     "npm:install:global:ci": "npm install --location=global bower grunt-cli",
     "npm:install:global:all": "npm install --location=global yarn bower grunt-cli open-cli",
     "setup": "npm run pip:install:all && npm run npm:install:global:all",
