@@ -61,7 +61,7 @@
     "docker:containers:running": "docker ps --all --filter status=running | grep -a 'npm-web-sampler'",
     "docker:containers:stop": "docker ps --all --filter status=running | grep -a 'npm-web-sampler' | awk '{print $1}' | xargs docker stop",
     "docker:containers:exited:rm": "docker ps --all --filter status=exited | tail -n +2 | awk '{print $1}' | xargs docker rm",
-    "_docker:containers:rm": "docker rm $(docker ps -a -q)",
+    "_docker:containers:rm:all": "docker rm $(docker ps -a -q)",
     "docker:clean": "npm run docker:containers:stop && npm run docker:containers:exited:rm && npm run docker:images:rm",
     "docker:compose:up": "docker compose up --build",
     "verify": "npm test && npm run dist",

@@ -113,6 +113,44 @@ jobs:
           name: dist
           path: dist
 
+  docker_compose:
+    name: docker compose
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: docker compose build
+        run: docker compose build
+
+  docker_build_matrix:
+    # if: github.ref == 'refs/heads/main' # FIXME
+    name: docker build --target
+    needs: docker_compose
+    continue-on-error: true
+    strategy:
+      max-parallel: 10
+      matrix:
+        DOCKER_TARGET:
+          # - base
+          # - project
+          # - dev
+          - test
+
+          # docker-compose tests this
+          # - release
+          # - webapp
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
+        run: docker build . --target ${{ matrix.DOCKER_TARGET }}
+
+
   codeQL:
     #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
@@ -144,42 +182,6 @@ jobs:
       - name: CodeQL
         uses: github/codeql-action/analyze@v2
 
-  docker_compose:
-    name: docker compose
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
-      - name: docker compose build
-        run: docker compose build
-
-  docker_build_matrix:
-    if: github.ref == 'refs/heads/main'
-    name: docker build --target
-    needs: docker_compose
-    continue-on-error: true
-    strategy:
-      max-parallel: 10
-      matrix:
-        DOCKER_TARGET:
-          # - base
-          # - project
-          # - dev
-          - test
-
-          # docker-compose tests this
-          # - release
-          # - webapp
-
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
-      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
-        run: docker build . --target ${{ matrix.DOCKER_TARGET }}
 
   validate:
     if: github.ref == 'refs/heads/main'
