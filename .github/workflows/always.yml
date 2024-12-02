@@ -3,15 +3,20 @@ on:
   push:
 
 env:
+  OS: ubuntu-latest
+  ARCHITECTURE: x64
+
   NODE_VERSION: 22
 
-  # PYTHON_VERSION: '3.12' # TODO
-  PYTHON_VERSION: '3.x'
+  # PYTHON_VERSION: 3.12 # TODO
+  PYTHON_VERSION: 3.x
+
+  DOCKER_BUILDKIT: 1
 
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ${{ env.OS }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -22,7 +27,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          architecture: 'x64'
+          architecture: ${{ env.ARCHITECTURE }}
       - name: setup node @ ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
@@ -61,8 +66,8 @@ jobs:
     strategy:
       max-parallel: 6
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
         node: [22, 23]
+        os: [ubuntu-latest, macOS-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
     steps:
@@ -73,7 +78,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          architecture: 'x64'
+          architecture: ${{ env.ARCHITECTURE }}
       - name: setup node @ ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
@@ -111,7 +116,7 @@ jobs:
   codeQL:
     #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ env.OS }}
     permissions:
       actions: read
       contents: read
@@ -139,11 +144,48 @@ jobs:
       - name: CodeQL
         uses: github/codeql-action/analyze@v2
 
+  docker_compose:
+    name: docker compose
+    needs: verify
+    runs-on: ${{ env.OS }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: docker compose up
+        run: docker compose up --abort-on-container-exit
+
+  docker_build_matrix:
+    if: github.ref == 'refs/heads/main'
+    name: docker build --target
+    needs: docker_compose
+    continue-on-error: true
+    strategy:
+      max-parallel: 10
+      matrix:
+        DOCKER_TARGET:
+          # - base
+          # - project
+          # - dev
+          - test
+
+          # docker-compose tests this
+          # - release
+          # - webapp
+
+    runs-on: ${{ env.OS }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
+        run: docker build . --target ${{ matrix.DOCKER_TARGET }}
+
   validate:
     if: github.ref == 'refs/heads/main'
     #   needs: build # TODO? or XXX?
     name: Validate
-    runs-on: ubuntu-latest
+    runs-on: ${{ env.OS }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -154,7 +196,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          architecture: 'x64'
+          architecture: ${{ env.ARCHITECTURE }}
       - name: setup node @ ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
