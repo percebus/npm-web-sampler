@@ -2,4 +2,5 @@
 
 ## 'To-Do's
 
-- [ ] TBD
+- [ ] Add `precommit`
+- [ ] Add a `bowerrc` file pointing to another github repo

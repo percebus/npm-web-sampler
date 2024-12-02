@@ -6,12 +6,16 @@
 .git
 .gitignore
 
-# IntelliJ
+# IDEs
 .idea/
+.vscode/
 
 # packages
 node_modules/
 bower_components/
+
+# python
+.venv/
 
 # CI/CD
 .github/

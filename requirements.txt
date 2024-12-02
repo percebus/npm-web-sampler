@@ -1,2 +1,2 @@
 -r requirements.dev.txt
--r requirements.prd.txt
+-r requirements.release.txt
