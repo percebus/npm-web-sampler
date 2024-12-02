@@ -152,8 +152,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: docker compose up
-        run: docker compose up --abort-on-container-exit
+      - name: docker compose build
+        run: docker compose build --abort-on-container-exit
 
   docker_build_matrix:
     if: github.ref == 'refs/heads/main'
