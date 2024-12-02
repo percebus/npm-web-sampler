@@ -3,7 +3,7 @@ on:
   push:
 
 env:
-  OS: ubuntu-latest
+  # OS: ubuntu-latest # TODO
   ARCHITECTURE: x64
 
   NODE_VERSION: 22
@@ -16,7 +16,7 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: ${{ env.OS }}
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -116,7 +116,7 @@ jobs:
   codeQL:
     #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
-    runs-on: ${{ env.OS }}
+    runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
@@ -147,7 +147,7 @@ jobs:
   docker_compose:
     name: docker compose
     needs: verify
-    runs-on: ${{ env.OS }}
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -173,7 +173,7 @@ jobs:
           # - release
           # - webapp
 
-    runs-on: ${{ env.OS }}
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -185,7 +185,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     #   needs: build # TODO? or XXX?
     name: Validate
-    runs-on: ${{ env.OS }}
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v3
