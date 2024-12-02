@@ -8,11 +8,11 @@
 
 A web sampler of technologies and tools that can be used to quickly scaffold a web-project
 
-- npm
-- pip
-- bower
-- grunt
-- jest
+- `npm`
+- `bower`
+- `pip` ( & `pipx`)
+- `grunt`
+- `jasmine`: `jest`, `testem` & `frisby`
 
 ## Motivation
 
