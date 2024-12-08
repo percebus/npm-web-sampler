@@ -7,10 +7,12 @@
     "pip:upgrade:pip": "python -m pip install --upgrade pip",
     "prepip:upgrade:requirements": "npm run pip:upgrade:pip",
     "pip:upgrade:requirements": "python -m pip install --upgrade --requirement ./requirements.upgrade.txt",
+    "prepix:install": "npm run pip:upgrade:requirements",
+    "pipx:install": "bash scripts/pipx/install.ba.sh",
     "pip:install:dev": "python -m pip install -r ./requirements.dev.txt",
-    "prepip:install:release": "npm run pip:upgrade:requirements",
+    "prepip:install:release": "npm run pipx:install",
     "pip:install:release": "python -m pip install -r ./requirements.release.txt",
-    "prepip:install:all": "npm run pip:upgrade:requirements",
+    "prepip:install:all": "npm run pipx:install",
     "pip:install:all": "python -m pip install -r ./requirements.txt",
     "pip:freeze": "python -m pip freeze > requirements.frozen.txt",
     "npm:install:global:ci": "npm install --location=global bower grunt-cli",
@@ -103,6 +105,8 @@
     "grunt": "^1.4.1",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^5.0.0",
+    "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-htmllint": "^0.3.0",
     "grunt-shell": "^3.0.1",
     "jest": "^27.4.7",
@@ -113,5 +117,8 @@
     "prettier": "^3.4.1",
     "standard": "^17.1.2",
     "testem": "latest"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
   }
 }
