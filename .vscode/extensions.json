@@ -1,3 +1,8 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "standard.vscode-standard"]
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "standard.vscode-standard",
+    "trabpukcip.vscode-npm-scripts",
+    "ms-azuretools.vscode-docker"
+  ]
 }

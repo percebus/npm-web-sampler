@@ -1,6 +1,6 @@
-# `npm-web-sampler`
+# npm-web-sampler
 
-[`TODO`s](./TODO.md) | [`LICENSE`](./LICENSE)
+[`TODO`s](./TODO.md) | [`LICENSE`](./LICENSE) | [`CONTRIBUTING`](./CONTRIBUTING.md)
 
 [![verify](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml) [![dependency review](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
 
