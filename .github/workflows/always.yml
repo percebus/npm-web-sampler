@@ -76,7 +76,7 @@ jobs:
       - name: ls
         run: ls # -la fails in windows
 
-      - name: setup python@3.X
+      - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -87,8 +87,6 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: setup
         run: npm run setup:ci --if-present
-
-      # TODO use a cached node_modules
       - name: npm install
         run: npm ci
 
