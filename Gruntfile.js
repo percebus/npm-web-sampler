@@ -18,10 +18,14 @@ module.exports = (grunt) => {
       build: {
         files: [
           {
+            src: ['LICENSE*'],
+            dest: 'build/'
+          },
+          {
             cwd: 'node_modules/bootstrap/dist/css/',
             expand: true,
             src: ['bootstrap.min.*'],
-            dest: 'build/vendor/'
+            dest: 'build/vendor/style'
           },
           {
             cwd: 'src/app/ui/views/main/',
@@ -33,6 +37,10 @@ module.exports = (grunt) => {
       },
       dist: {
         files: [
+          {
+            src: ['LICENSE*'],
+            dest: 'dist/'
+          },
           {
             cwd: 'src/assets/',
             expand: true,
@@ -47,7 +55,7 @@ module.exports = (grunt) => {
       target: {
         files: [
           {
-            'dist/vendor/vendor.min.css': ['build/vendor/**/*.css']
+            'dist/vendor/vendor.min.css': ['build/vendor/style/**/*.css']
           }
         ]
       }
