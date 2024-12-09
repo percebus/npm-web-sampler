@@ -1,4 +1,9 @@
+# Ignore artifacts:
+tmp/
+env/
+
 # webapp
+build/
 dist/
 
 # python

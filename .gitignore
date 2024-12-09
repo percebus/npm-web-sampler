@@ -1,5 +1,16 @@
+# sample
+**/*.sample
+
+# env
+!env/**
+!env/**.sample
+env/*.json
+
+# webapp
 build/
 dist/
+
+# test
 testem.xunit.xml
 junit.xml
 
