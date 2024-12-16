@@ -193,7 +193,7 @@ jobs:
 
   validate:
     if: github.ref == 'refs/heads/main'
-    needs: deploy
+    needs: deploy-pages
     name: Validate
     runs-on: ubuntu-latest
     steps:
