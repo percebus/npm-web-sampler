@@ -99,6 +99,7 @@ jobs:
           name: Unit Tests @ node:${{ matrix.node }}@${{ matrix.os }}
           path: junit.xml
           reporter: jest-junit
+
       - name: npm run dist
         run: npm run dist
 
@@ -178,10 +179,11 @@ jobs:
     #   url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download dist
+        uses: actions/download-artifact@v4
         with:
-          name: Download dist
-          path: ./dist
+          name: dist
+          path: dist
       - name: ls
         run: ls -la ./dist
 
