@@ -1,15 +1,15 @@
-describe('IO.GitHub.percebus', () => {
+describe('IO.GitHub.percebus/npm-web-sampler', () => {
   'use strict'
   const _ = require('lodash')
   const frisby = require('frisby')
 
-  _.forEach(['http', 'https'], (protocol) => {
-    describe('/npm-web-sampler', () => {
-      const templates = {
-        url: _.template('<%= protocol %>://percebus.GitHub.IO/npm-web-sampler')
-      }
+  describe('index.html', () => {
+    const templates = {
+      url: _.template('<%= protocol %>://percebus.GitHub.IO/npm-web-sampler')
+    }
 
-      describe('GET', () => {
+    describe('GET', () => {
+      _.forEach(['http', 'https'], (protocol) => {
         describe(protocol, () => {
           const url = templates.url({ protocol })
 
