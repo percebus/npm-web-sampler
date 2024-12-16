@@ -171,7 +171,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
   deploy:
-    # if: github.ref == 'refs/heads/main' # FIXME main only
+    # if: github.ref == 'refs/heads/main' # TODO
     needs: build
     environment:
       name: github-pages
@@ -189,7 +189,6 @@ jobs:
       - name: https://percebus.GitHub.IO/npm-web-sampler
         id: deployment
         uses: actions/deploy-pages@v4
-
 
   validate:
     if: github.ref == 'refs/heads/main'
