@@ -55,10 +55,10 @@ jobs:
       - name: npm run dist
         run: npm run dist
       - name: dist.zip
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist
+          path: ./dist
 
   builds:
     if: github.ref == 'refs/heads/main'
@@ -99,6 +99,7 @@ jobs:
           name: Unit Tests @ node:${{ matrix.node }}@${{ matrix.os }}
           path: junit.xml
           reporter: jest-junit
+
       - name: npm run dist
         run: npm run dist
 
@@ -162,17 +163,39 @@ jobs:
         with:
           languages: ${{ matrix.language }}
       - name: dist.zip
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
       - name: CodeQL
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
+
+  deploy-pages:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: dist.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - name: ls
+        run: ls -la ./dist
+
+      - name: Configure GitHub.IO Pages
+        uses: actions/configure-pages@v5
+      - name: https://percebus.GitHub.IO/npm-web-sampler
+        id: deployment
+        uses: actions/deploy-pages@v4
 
   validate:
     if: github.ref == 'refs/heads/main'
-    #   needs: build # TODO? or XXX?
+    needs: deploy-pages
     name: Validate
     runs-on: ubuntu-latest
     steps:
