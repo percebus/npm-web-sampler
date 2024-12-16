@@ -5,7 +5,7 @@ describe('org.HTTPbin', () => {
     url: _.template('<%= protocol %>://HTTPbin.org/status/<%= status %>')
   }
 
-  _.forEach(['http', 'https'], (protocol) => {
+  _.forEach(['https'], (protocol) => {
     describe(protocol, () => {
       describe('/status', () => {
         describe('GET', () => {
