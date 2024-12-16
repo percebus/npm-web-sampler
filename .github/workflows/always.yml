@@ -55,10 +55,10 @@ jobs:
       - name: npm run dist
         run: npm run dist
       - name: dist.zip
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist
+          path: ./dist
 
   builds:
     if: github.ref == 'refs/heads/main'
@@ -163,13 +163,13 @@ jobs:
         with:
           languages: ${{ matrix.language }}
       - name: dist.zip
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
       - name: CodeQL
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
 
   deploy-pages:
     # if: github.ref == 'refs/heads/main' # TODO
@@ -179,7 +179,7 @@ jobs:
     #   url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Download dist
+      - name: dist.zip
         uses: actions/download-artifact@v4
         with:
           name: dist
