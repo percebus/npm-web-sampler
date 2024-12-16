@@ -172,11 +172,11 @@ jobs:
         uses: github/codeql-action/analyze@v3
 
   deploy-pages:
-    # if: github.ref == 'refs/heads/main' # TODO
+    if: github.ref == 'refs/heads/main'
     needs: build
-    # environment:
-    #   name: github-pages
-    #   url: ${{ steps.deployment.outputs.page_url }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: dist.zip
