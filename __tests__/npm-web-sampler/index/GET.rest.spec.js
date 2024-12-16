@@ -14,19 +14,21 @@ describe('IO.GitHub.percebus', () => {
           const url = templates.url({ protocol })
 
           it('returns contains expected content', () => {
-            return frisby
-              .get(url)
-              .expect('status', 200)
-              //
-              // text
-              .expect('bodyContains', 'Lorem Ipsum')
-              //
-              // tags
-              .expect('bodyContains', 'src="img/percebus.png"')
-              //
-              // LICENSES
-              .expect('bodyContains', 'LICENSE')
-              .expect('bodyContains', 'LICENSES')
+            return (
+              frisby
+                .get(url)
+                .expect('status', 200)
+                //
+                // text
+                .expect('bodyContains', 'Lorem Ipsum')
+                //
+                // tags
+                .expect('bodyContains', 'src="img/percebus.png"')
+                //
+                // LICENSES
+                .expect('bodyContains', 'LICENSE')
+                .expect('bodyContains', 'LICENSES')
+            )
           })
         })
       })

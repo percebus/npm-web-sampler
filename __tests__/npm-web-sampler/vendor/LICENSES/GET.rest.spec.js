@@ -7,7 +7,9 @@ describe('IO.GitHub.percebus', () => {
     describe('/npm-web-sampler', () => {
       describe('/vendor', () => {
         const templates = {
-          url: _.template('<%= protocol %>://percebus.GitHub.IO/npm-web-sampler/vendor/LICENSES.md')
+          url: _.template(
+            '<%= protocol %>://percebus.GitHub.IO/npm-web-sampler/vendor/LICENSES.md'
+          )
         }
 
         describe('LICENSES.md', () => {
