@@ -179,14 +179,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
-    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
+      name: github-pages
 
     # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
     # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -194,6 +188,10 @@ jobs:
       group: 'pages'
       cancel-in-progress: false
 
+    permissions: # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+      pages: write
+      contents: read
+      id-token: write
     steps:
       - name: dist.zip
         uses: actions/download-artifact@v4
@@ -203,6 +201,10 @@ jobs:
       - name: ls
         run: ls -la ./dist
 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
       - name: Configure GitHub.IO Pages
         uses: actions/configure-pages@v5
       - name: https://percebus.GitHub.IO/npm-web-sampler
