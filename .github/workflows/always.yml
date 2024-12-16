@@ -170,12 +170,12 @@ jobs:
       - name: CodeQL
         uses: github/codeql-action/analyze@v2
 
-  deploy:
+  deploy-pages:
     # if: github.ref == 'refs/heads/main' # TODO
     needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Configure GitHub.IO Pages
