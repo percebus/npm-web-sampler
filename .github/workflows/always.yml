@@ -178,14 +178,15 @@ jobs:
     #   url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Configure GitHub.IO Pages
-        uses: actions/configure-pages@v5
-
       - uses: actions/download-artifact@v4
         with:
           name: Download dist
           path: ./dist
+      - name: ls
+        run: ls -la ./dist
 
+      - name: Configure GitHub.IO Pages
+        uses: actions/configure-pages@v5
       - name: https://percebus.GitHub.IO/npm-web-sampler
         id: deployment
         uses: actions/deploy-pages@v4
