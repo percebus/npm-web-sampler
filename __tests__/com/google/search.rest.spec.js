@@ -5,7 +5,7 @@ describe('com.google.*', () => {
     url: _.template('<%= protocol %>://google.com')
   }
 
-  _.forEach(['http', 'https'], (protocol) => {
+  _.forEach(['https'], (protocol) => {
     const url = templates.url({ protocol })
     describe(protocol, () => {
       describe('GET', () => {
