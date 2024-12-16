@@ -4,7 +4,9 @@ describe('IO.GitHub.percebus/npm-web-sampler', () => {
   const frisby = require('frisby')
 
   describe('/vendor', () => {
-    describe('LICENSES.md', () => {
+    describe('/LICENSES.md', () => {
+      const now = new Date()
+      const year = now.getFullYear() // i.e. 2024
       const templates = {
         url: _.template(
           '<%= protocol %>://percebus.GitHub.IO/npm-web-sampler/vendor/LICENSES.md'
@@ -21,6 +23,7 @@ describe('IO.GitHub.percebus/npm-web-sampler', () => {
                 .expect('status', 200)
                 .expect('bodyContains', 'MIT')
                 .expect('bodyContains', 'The MIT License')
+                .expect('bodyContains', year)
             })
           })
         })

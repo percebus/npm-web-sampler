@@ -3,7 +3,7 @@ describe('IO.GitHub.percebus/npm-web-sampler', () => {
   const _ = require('lodash')
   const frisby = require('frisby')
 
-  describe('index.html', () => {
+  describe('/index.html', () => {
     const templates = {
       url: _.template('<%= protocol %>://percebus.GitHub.IO/npm-web-sampler')
     }
@@ -12,7 +12,6 @@ describe('IO.GitHub.percebus/npm-web-sampler', () => {
       _.forEach(['http', 'https'], (protocol) => {
         describe(protocol, () => {
           const url = templates.url({ protocol })
-
           it('returns contains expected content', () => {
             return (
               frisby

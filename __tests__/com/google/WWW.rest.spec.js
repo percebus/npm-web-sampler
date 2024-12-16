@@ -5,10 +5,10 @@ describe('com.google.*', () => {
     url: _.template('<%= protocol %>://google.com')
   }
 
-  _.forEach(['https'], (protocol) => {
-    const url = templates.url({ protocol })
-    describe(protocol, () => {
-      describe('GET', () => {
+  describe('GET', () => {
+    _.forEach(['https'], (protocol) => {
+      describe(protocol, () => {
+        const url = templates.url({ protocol })
         it('returns Google Search page', () => {
           return frisby
             .get(url)
