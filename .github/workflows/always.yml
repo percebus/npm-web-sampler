@@ -170,9 +170,30 @@ jobs:
       - name: CodeQL
         uses: github/codeql-action/analyze@v2
 
+  deploy:
+    # if: github.ref == 'refs/heads/main' # FIXME main only
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure GitHub.IO Pages
+        uses: actions/configure-pages@v5
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: Download dist
+          path: ./dist
+
+      - name: https://percebus.GitHub.IO/npm-web-sampler
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+
   validate:
     if: github.ref == 'refs/heads/main'
-    #   needs: build # TODO? or XXX?
+    needs: deploy
     name: Validate
     runs-on: ubuntu-latest
     steps:
