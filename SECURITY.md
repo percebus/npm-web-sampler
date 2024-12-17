@@ -2,4 +2,4 @@
 
 ## SECURITY
 
-TBD
+See [Security tab](https://github.com/percebus/npm-web-sampler/security)
