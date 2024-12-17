@@ -124,7 +124,7 @@
     "lodash": "^4.17.21",
     "prettier": "^3.4.1",
     "standard": "^17.1.2",
-    "testem": "latest"
+    "testem": "^3.15.2"
   },
   "dependencies": {
     "bootstrap": "^5.3.3"
