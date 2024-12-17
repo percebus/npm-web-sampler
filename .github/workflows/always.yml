@@ -205,7 +205,6 @@ jobs:
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
-
   codeQL:
     #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
