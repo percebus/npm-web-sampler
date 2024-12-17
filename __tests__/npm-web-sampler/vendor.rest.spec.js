@@ -1,30 +1,32 @@
-describe('IO.GitHub.percebus/npm-web-sampler', () => {
+describe('IO.GitHub.percebus/npm-web-sampler/vendor', () => {
   'use strict'
   const _ = require('lodash')
-  const frisby = require('frisby')
+  const config = require('./config')
+  const host = config.host
+  const frisby = config.frisby
 
-  describe('/vendor', () => {
+  describe('GET', () => {
     describe('/LICENSES.md', () => {
       const now = new Date()
       const year = now.getFullYear() // i.e. 2024
       const templates = {
-        url: _.template(
-          '<%= protocol %>://percebus.GitHub.IO/npm-web-sampler/vendor/LICENSES.md'
-        )
+        url: _.template('<%= protocol %>://<%= uri %>/vendor/LICENSES.md')
       }
 
-      describe('GET', () => {
-        _.forEach(['http', 'https'], (protocol) => {
-          describe(protocol, () => {
-            const url = templates.url({ protocol })
-            it('contains the expected LICENSES', () => {
-              return frisby
+      _.forEach(host.protocols, (protocol) => {
+        describe(protocol, () => {
+          const url = templates.url({ protocol, uri: host.uri })
+          it('contains the expected LICENSES', () => {
+            return (
+              frisby
                 .get(url)
                 .expect('status', 200)
+                //
                 .expect('bodyContains', 'MIT')
                 .expect('bodyContains', 'The MIT License')
+                // i.e. 2024
                 .expect('bodyContains', year)
-            })
+            )
           })
         })
       })
