@@ -143,6 +143,32 @@ jobs:
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: docker build . --target ${{ matrix.DOCKER_TARGET }}
 
+  docker_next_build_matrix:
+    # if: github.ref == 'refs/heads/main' # FIXME TODO
+    name: docker build --target
+    needs: docker_compose
+    continue-on-error: true
+    strategy:
+      max-parallel: 10
+      matrix:
+        DOCKER_TARGET:
+          # - base
+          # - project
+          # - dev
+          - test
+
+          # final release
+          # - release
+          - webapp
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
+        run: docker build . --target ${{ matrix.DOCKER_TARGET }} --file Dockerfile.next
+
   codeQL:
     #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
