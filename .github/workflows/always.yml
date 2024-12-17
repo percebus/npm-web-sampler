@@ -121,7 +121,7 @@ jobs:
         run: docker compose build
 
   docker_build_matrix:
-    # if: github.ref == 'refs/heads/main' # TODO
+    if: github.ref == 'refs/heads/main'
     name: docker build --target
     needs: docker_compose
     continue-on-error: true
@@ -157,15 +157,17 @@ jobs:
           fail-build: false
           output-format: sarif
       - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
   docker_next_build_matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # TODO FIXME
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
+    env:
+      DOCKER_TAG_VERSION: next
     strategy:
       max-parallel: 10
       matrix:
@@ -187,8 +189,22 @@ jobs:
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
           docker build . \
+            --file Dockerfile.next \
             --target ${{ matrix.DOCKER_TARGET }} \
-            --file Dockerfile.next
+            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
+
+      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
+        uses: anchore/scan-action@v3
+        id: scan
+        with:
+          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
+          fail-build: false
+          output-format: sarif
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
 
   codeQL:
     #   if: github.ref == 'refs/heads/main' # TODO?
