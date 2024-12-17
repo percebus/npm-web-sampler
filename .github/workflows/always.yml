@@ -144,8 +144,8 @@ jobs:
         run: docker build . --target ${{ matrix.DOCKER_TARGET }}
 
   docker_next_build_matrix:
-    # if: github.ref == 'refs/heads/main' # FIXME TODO
-    name: docker build --target
+    if: github.ref == 'refs/heads/main'
+    name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
     strategy:
