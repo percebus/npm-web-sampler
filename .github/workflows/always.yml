@@ -147,13 +147,13 @@ jobs:
         run: |
           docker build . \
             --target ${{ matrix.DOCKER_TARGET }} \
-            --tag ${{ env.REPOSITORY_NAME }}:${{ env.DOCKER_TAG_VERSION }}:${{ matrix.DOCKER_TARGET }}
+            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
 
       - name: Scan Docker Image
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.REPOSITORY_NAME }}:${{ env.DOCKER_TAG_VERSION }}:${{ matrix.DOCKER_TARGET }}
+          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
           fail-build: true
           output-format: sarif
       - name: Upload SARIF

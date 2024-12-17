@@ -46,7 +46,7 @@
     "style": "npm run prettier:write && npm run standard:fix",
     "poststyle": "npm run lint",
     "browserslist:update-db": "browserslist --update-db",
-    "prejest:ci": "npm run browserslist:update-db",
+    "FIXME_prejest:ci": "npm run browserslist:update-db",
     "jest:ci": "jest --ci",
     "jest:ci:unit": "npm run jest:ci -- unit.spec.js",
     "jest:ci:rest": "npm run jest:ci -- rest.spec.js",
