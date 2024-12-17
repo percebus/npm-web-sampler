@@ -1,33 +1,37 @@
-describe('IO.GitHub.percebus/npm-web-sampler', () => {
+describe('IO.GitHub.percebus/npm-web-sampler/index.html', () => {
   'use strict'
   const _ = require('lodash')
-  const frisby = require('frisby')
+  const config = require('./config')
+  const host = config.host
+  const frisby = config.frisby
 
-  describe('/index.html', () => {
-    const templates = {
-      url: _.template('<%= protocol %>://percebus.GitHub.IO/npm-web-sampler')
-    }
+  const templates = {
+    url: _.template('<%= protocol %>://<%= uri %><%= path %>')
+  }
 
-    describe('GET', () => {
-      _.forEach(['http', 'https'], (protocol) => {
-        describe(protocol, () => {
-          const url = templates.url({ protocol })
-          it('returns contains expected content', () => {
-            return (
-              frisby
-                .get(url)
-                .expect('status', 200)
-                //
-                // text
-                .expect('bodyContains', 'Lorem Ipsum')
-                //
-                // tags
-                .expect('bodyContains', 'src="img/percebus.png"')
-                //
-                // LICENSES
-                .expect('bodyContains', 'LICENSE')
-                .expect('bodyContains', 'LICENSES')
-            )
+  describe('GET', () => {
+    _.forEach(host.protocols, (protocol) => {
+      describe(protocol, () => {
+        _.forEach(['', '/', '/index.html'], (path) => {
+          describe(path, () => {
+            const url = templates.url({ protocol, uri: host.uri, path })
+            it('returns contains expected content', () => {
+              return (
+                frisby
+                  .get(url)
+                  .expect('status', 200)
+                  //
+                  // text
+                  .expect('bodyContains', 'Lorem Ipsum')
+                  //
+                  // tags
+                  .expect('bodyContains', 'src="img/percebus.png"')
+                  //
+                  // LICENSES
+                  .expect('bodyContains', 'LICENSE')
+                  .expect('bodyContains', 'LICENSES')
+              )
+            })
           })
         })
       })
