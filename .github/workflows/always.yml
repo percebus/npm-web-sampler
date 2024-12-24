@@ -48,7 +48,7 @@ jobs:
       - name: npm setup
         run: npm run setup:ci --if-present
       - name: bower login
-        run: bower login -t ${{ secrets.GITHUB_AUTH_TOKEN }}
+        run: bower login --token ${{ secrets.GITHUB_TOKEN }}
       - name: npm install
         run: npm ci
       - name: ls node_modules
