@@ -71,7 +71,7 @@ jobs:
           path: ./dist
 
   builds:
-    # if: github.ref == 'refs/heads/main' # FIXME
+    if: github.ref == 'refs/heads/main'
     needs: build
     strategy:
       max-parallel: 6
@@ -145,7 +145,7 @@ jobs:
         run: docker compose build
 
   docker_build_matrix:
-    # if: github.ref == 'refs/heads/main' # FIXME
+    if: github.ref == 'refs/heads/main'
     name: docker build --target
     needs: docker_compose
     continue-on-error: true
@@ -197,7 +197,7 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
   docker_next_build_matrix:
-    # if: github.ref == 'refs/heads/main' # FIXME
+    if: github.ref == 'refs/heads/main'
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
