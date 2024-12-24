@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 
 env:
+  GIT_USER_NAME: GitHub
+  GIT_USER_EMAIL: some@email.com
+
   # OS: ubuntu-latest # TODO
   ARCHITECTURE: x64
 
@@ -28,6 +31,11 @@ jobs:
         uses: actions/checkout@v3
       - name: ls
         run: ls -la
+
+      - name: "git config --global user.*: ${{ env.GIT_USER_NAME }}"
+        run: |
+          git config --global user.email ${{ env.GIT_USER_EMAIL }}
+          git config --global user.name ${{ env.GIT_USER_NAME }}
 
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
