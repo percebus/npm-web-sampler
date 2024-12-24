@@ -24,10 +24,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
@@ -35,6 +31,9 @@ jobs:
           architecture: ${{ env.ARCHITECTURE }}
       - name: setup node @ ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - name: checkout
         uses: actions/checkout@v3
@@ -87,10 +86,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
@@ -100,6 +95,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - name: checkout
         uses: actions/checkout@v3
@@ -129,14 +127,22 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      - name: root-config
+        run: bash scripts/root-config.build.ba.sh
+
       - name: checkout
         uses: actions/checkout@v4
+      - name: ls
+        run: ls -la
 
       - name: docker compose build
         run: docker compose build
 
   docker_build_matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # FIXME
     name: docker build --target
     needs: docker_compose
     continue-on-error: true
@@ -155,8 +161,16 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      - name: root-config
+        run: bash scripts/root-config.build.ba.sh
+
       - name: checkout
         uses: actions/checkout@v4
+      - name: ls
+        run: ls -la
 
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
@@ -198,8 +212,16 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      - name: root-config
+        run: bash scripts/root-config.build.ba.sh
+
       - name: checkout
         uses: actions/checkout@v4
+      - name: ls
+        run: ls -la
 
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
