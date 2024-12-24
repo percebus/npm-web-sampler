@@ -26,6 +26,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+       repository-projects: read
     steps:
       - name: checkout
         uses: actions/checkout@v3
