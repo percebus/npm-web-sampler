@@ -127,17 +127,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-      - name: root-config
-        run: bash scripts/root-config.build.ba.sh
-
       - name: checkout
         uses: actions/checkout@v4
       - name: ls
         run: ls -la
 
+      # XXX run inside container
+      - name: bower install
+        run: npm run bower:install
       - name: docker compose build
         run: docker compose build
 
@@ -161,17 +158,14 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-      - name: root-config
-        run: bash scripts/root-config.build.ba.sh
-
       - name: checkout
         uses: actions/checkout@v4
       - name: ls
         run: ls -la
 
+      # XXX run inside container
+      - name: bower install
+        run: npm run bower:install
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
           docker build . \
@@ -212,17 +206,14 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-      - name: root-config
-        run: bash scripts/root-config.build.ba.sh
-
       - name: checkout
         uses: actions/checkout@v4
       - name: ls
         run: ls -la
 
+      # XXX run inside container
+      - name: bower install
+        run: npm run bower:install
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
           docker build . \
