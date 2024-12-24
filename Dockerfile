@@ -1,10 +1,5 @@
 FROM nikolaik/python-nodejs:python3.12-nodejs22 AS base
 
-# HACK SRC: https://github.com/marketplace/actions/webfactory-ssh-agent#using-multiple-deploy-keys-inside-docker-builds
-COPY root-config /root/
-RUN sed 's|/home/runner|/root|g' -i.bak /root/.ssh/config
-
-
 FROM base AS project
 WORKDIR /usr/project
 COPY . .
