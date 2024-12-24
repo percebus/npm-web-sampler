@@ -32,7 +32,7 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: "git config --global user.*: ${{ env.GIT_USER_NAME }}"
+      - name: 'git config --global user.*: ${{ env.GIT_USER_NAME }}'
         run: |
           git config --global user.email ${{ env.GIT_USER_EMAIL }}
           git config --global user.name ${{ env.GIT_USER_NAME }}
@@ -44,14 +44,13 @@ jobs:
           architecture: ${{ env.ARCHITECTURE }}
       - name: setup node @ ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - name: setup
+
+      - name: npm setup
         run: npm run setup:ci --if-present
+      - name: bower login
+        run: bower login -t ${{ secrets.GITHUB_AUTH_TOKEN }}
       - name: npm install
         run: npm ci
-        with:
-          token: ${{ secrets.GITHUB_AUTH_TOKEN }}
       - name: ls node_modules
         run: ls -la ./node_modules
       - name: npm audit
