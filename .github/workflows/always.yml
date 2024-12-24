@@ -139,7 +139,7 @@ jobs:
       # XXX run inside container
       - name: bower install
         run: |
-          npm run setup:ci
+          npm run npm:install:global:ci
           npm run bower:install
       - name: docker compose build
         run: docker compose build
@@ -176,7 +176,7 @@ jobs:
       # XXX run inside container
       - name: bower install
         run: |
-          npm run setup:ci
+          npm run npm:install:global:ci
           npm run bower:install
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
@@ -230,7 +230,7 @@ jobs:
       # XXX run inside container
       - name: bower install
         run: |
-          npm run setup:ci
+          npm run npm:install:global:ci
           npm run bower:install
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
