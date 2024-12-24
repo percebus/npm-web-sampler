@@ -50,6 +50,8 @@ jobs:
         run: npm run setup:ci --if-present
       - name: npm install
         run: npm ci
+        with:
+          token: ${{ secrets.GITHUB_AUTH_TOKEN }}
       - name: ls node_modules
         run: ls -la ./node_modules
       - name: npm audit
