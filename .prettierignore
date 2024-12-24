@@ -1,6 +1,9 @@
 # Ignore artifacts:
 tmp/
 
+# other repos
+bower_components/
+
 # webapp
 build/
 dist/

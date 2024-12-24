@@ -24,11 +24,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: ls
-        run: ls -la
-
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
@@ -36,14 +31,23 @@ jobs:
           architecture: ${{ env.ARCHITECTURE }}
       - name: setup node @ ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
+      - uses: webfactory/ssh-agent@v0.9.0
         with:
-          node-version: ${{ env.NODE_VERSION }}
-      - name: setup
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: ls
+        run: ls -la
+
+      - name: npm setup
         run: npm run setup:ci --if-present
       - name: npm install
         run: npm ci
       - name: ls node_modules
         run: ls -la ./node_modules
+      - name: ls bower_components
+        run: ls -la ./bower_components
       - name: npm audit
         run: npm audit
         continue-on-error: true # XXX?
@@ -72,16 +76,16 @@ jobs:
     strategy:
       max-parallel: 6
       matrix:
-        node: [22, 23]
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        node:
+          - 22
+          - 23
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          # - windows-latest # FIXME SSH not working, and bower install fails!
     runs-on: ${{ matrix.os }}
     name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: ls
-        run: ls # -la fails in windows
-
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
@@ -91,7 +95,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - name: setup
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: ls
+        run: ls # -la fails in windows
+
+      - name: npm setup
         run: npm run setup:ci --if-present
       - name: npm install
         run: npm ci
@@ -114,9 +127,20 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
       - name: checkout
         uses: actions/checkout@v4
+      - name: ls
+        run: ls -la
 
+      # XXX run inside container
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
       - name: docker compose build
         run: docker compose build
 
@@ -140,9 +164,20 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
       - name: checkout
         uses: actions/checkout@v4
+      - name: ls
+        run: ls -la
 
+      # XXX run inside container
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
           docker build . \
@@ -183,9 +218,20 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
       - name: checkout
         uses: actions/checkout@v4
+      - name: ls
+        run: ls -la
 
+      # XXX run inside container
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
           docker build . \
@@ -206,7 +252,6 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
   codeQL:
-    #   if: github.ref == 'refs/heads/main' # TODO?
     needs: build
     runs-on: ubuntu-latest
     permissions:

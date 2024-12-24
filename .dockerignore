@@ -12,7 +12,7 @@
 
 # packages
 node_modules/
-bower_components/
+# bower_components/ # FIXME
 
 # python
 .venv/
