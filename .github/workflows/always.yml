@@ -134,7 +134,9 @@ jobs:
 
       # XXX run inside container
       - name: bower install
-        run: npm run bower:install
+        run: |
+          npm run setup:ci
+          npm run bower:install
       - name: docker compose build
         run: docker compose build
 
@@ -165,7 +167,9 @@ jobs:
 
       # XXX run inside container
       - name: bower install
-        run: npm run bower:install
+        run: |
+          npm run setup:ci
+          npm run bower:install
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
           docker build . \
@@ -185,7 +189,7 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
   docker_next_build_matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # FIXME
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
@@ -213,7 +217,9 @@ jobs:
 
       # XXX run inside container
       - name: bower install
-        run: npm run bower:install
+        run: |
+          npm run setup:ci
+          npm run bower:install
       - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
         run: |
           docker build . \
