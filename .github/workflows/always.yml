@@ -26,8 +26,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    permissions:
-      repository-projects: read
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
@@ -48,12 +46,12 @@ jobs:
 
       - name: npm setup
         run: npm run setup:ci --if-present
-      - name: bower login
-        run: bower login --token ${{ secrets.GITHUB_TOKEN }}
       - name: npm install
         run: npm ci
       - name: ls node_modules
         run: ls -la ./node_modules
+      - name: ls bower_components
+        run: ls -la ./bower_components
       - name: npm audit
         run: npm audit
         continue-on-error: true # XXX?
