@@ -27,17 +27,11 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     permissions:
-       repository-projects: read
+      repository-projects: read
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: ls
-        run: ls -la
-
-      - name: 'git config --global user.*: ${{ env.GIT_USER_NAME }}'
-        run: |
-          git config --global user.email ${{ env.GIT_USER_EMAIL }}
-          git config --global user.name ${{ env.GIT_USER_NAME }}
+      - uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
@@ -46,6 +40,11 @@ jobs:
           architecture: ${{ env.ARCHITECTURE }}
       - name: setup node @ ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
+
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: ls
+        run: ls -la
 
       - name: npm setup
         run: npm run setup:ci --if-present
