@@ -24,7 +24,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.8.0
+      - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
@@ -87,7 +87,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
     steps:
-      - uses: webfactory/ssh-agent@v0.8.0
+      - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
