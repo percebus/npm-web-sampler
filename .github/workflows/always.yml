@@ -9,8 +9,6 @@ env:
   # OS: ubuntu-latest # TODO
   ARCHITECTURE: x64
 
-  NODE_VERSION: 22
-
   # PYTHON_VERSION: 3.12 # TODO
   PYTHON_VERSION: 3.x
 
@@ -24,30 +22,22 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: ${{ env.ARCHITECTURE }}
-      - name: setup node @ ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: ls
-        run: ls -la
+      - uses: percebus/commons/.github/actions/node_setup@main
+      - uses: percebus/commons/.github/actions/checkout@main
+      - uses: percebus/commons/.github/actions/npm_install@main
 
-      - name: npm setup
-        run: npm run setup:ci --if-present
-      - name: npm install
-        run: npm ci
-      - name: ls node_modules
-        run: ls -la ./node_modules
       - name: ls bower_components
         run: ls -la ./bower_components
+
       - name: npm audit
         run: npm audit
         continue-on-error: true # XXX?
@@ -86,28 +76,26 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: ${{ env.ARCHITECTURE }}
-      - name: setup node @ ${{ matrix.node }}
-        uses: actions/setup-node@v3
+
+      - uses: percebus/commons/.github/actions/node_setup@main
         with:
           node-version: ${{ matrix.node }}
-      - uses: webfactory/ssh-agent@v0.9.0
+
+      - uses: percebus/commons/.github/actions/checkout@main
         with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+          ls_opts: ''
 
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: ls
-        run: ls # -la fails in windows
-
-      - name: npm setup
-        run: npm run setup:ci --if-present
-      - name: npm install
-        run: npm ci
+      - uses: percebus/commons/.github/actions/npm_install@main
+        with:
+          ls_opts: ''
 
       - name: npm test
         run: npm test --ignore-scripts
@@ -131,10 +119,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: ls
-        run: ls -la
+      - uses: percebus/commons/.github/actions/checkout@main
 
       # XXX run inside container
       - name: bower install
@@ -168,10 +153,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: ls
-        run: ls -la
+      - uses: percebus/commons/.github/actions/checkout@main
 
       # XXX run inside container
       - name: bower install
@@ -222,10 +204,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: ls
-        run: ls -la
+      - uses: percebus/commons/.github/actions/checkout@main
 
       # XXX run inside container
       - name: bower install
@@ -324,28 +303,18 @@ jobs:
     name: Validate
     runs-on: ubuntu-latest
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: ${{ env.ARCHITECTURE }}
-      - name: setup node @ ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      - uses: percebus/commons/.github/actions/node_setup@main
 
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: ls
-        run: ls -la
-
-      - name: npm setup
-        run: npm run setup:ci --if-present
-      - name: npm install
-        run: npm ci
+      - uses: percebus/commons/.github/actions/checkout@main
+      - uses: percebus/commons/.github/actions/npm_install@main
 
       - name: npm run validate
         run: npm run validate
