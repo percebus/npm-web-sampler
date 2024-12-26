@@ -90,7 +90,7 @@ jobs:
         run: npm test --ignore-scripts
       - name: junit.xml
         uses: dorny/test-reporter@v1
-          success() || failure()
+        if: success() || failure()
         with:
           name: Unit Tests @ node:${{ matrix.node }}@${{ matrix.os }}
           path: junit.xml
