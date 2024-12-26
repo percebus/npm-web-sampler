@@ -174,7 +174,7 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
   docker_next_build_matrix:
-    if: github.ref == 'refs/heads/main' #
+    if: github.ref == 'refs/heads/main'
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
