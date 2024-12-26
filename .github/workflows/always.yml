@@ -56,7 +56,7 @@ jobs:
           path: ./dist
 
   builds:
-    #  github.ref == 'refs/heads/main' # FIXME
+    if: github.ref == 'refs/heads/main'
     needs: build
     strategy:
       max-parallel: 6
@@ -79,12 +79,18 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: ${{ env.ARCHITECTURE }}
+
       - uses: percebus/commons/.github/actions/node_setup@main
         with:
           node-version: ${{ matrix.node }}
 
       - uses: percebus/commons/.github/actions/checkout@main
+        with:
+          ls_opts: ''
+
       - uses: percebus/commons/.github/actions/npm_install@main
+        with:
+          ls_opts: ''
 
       - name: npm test
         run: npm test --ignore-scripts
