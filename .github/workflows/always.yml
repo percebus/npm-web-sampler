@@ -34,6 +34,9 @@ jobs:
       - uses: percebus/commons/.github/actions/node_setup@main
       - uses: percebus/commons/.github/actions/checkout@main
       - uses: percebus/commons/.github/actions/npm_install@main
+        with:
+          run_npm_audit: 'true'
+
       - name: ls bower_components
         run: ls -la ./bower_components
 
