@@ -9,8 +9,6 @@ env:
   # OS: ubuntu-latest # TODO
   ARCHITECTURE: x64
 
-  NODE_VERSION: 22
-
   # PYTHON_VERSION: 3.12 # TODO
   PYTHON_VERSION: 3.x
 
@@ -58,7 +56,7 @@ jobs:
           path: ./dist
 
   builds:
-    if: github.ref == 'refs/heads/main'
+    #  github.ref == 'refs/heads/main' # FIXME
     needs: build
     strategy:
       max-parallel: 6
@@ -92,7 +90,7 @@ jobs:
         run: npm test --ignore-scripts
       - name: junit.xml
         uses: dorny/test-reporter@v1
-        if: success() || failure()
+          success() || failure()
         with:
           name: Unit Tests @ node:${{ matrix.node }}@${{ matrix.os }}
           path: junit.xml
@@ -121,7 +119,7 @@ jobs:
         run: docker compose build
 
   docker_build_matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # TODO
     name: docker build --target
     needs: docker_compose
     continue-on-error: true
@@ -170,7 +168,7 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
   docker_next_build_matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # TODO
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
@@ -289,7 +287,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   validate:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # TODO
     needs: deploy-pages
     name: Validate
     runs-on: ubuntu-latest
