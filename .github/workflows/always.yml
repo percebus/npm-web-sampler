@@ -1,9 +1,7 @@
 name: Verify
 on:
   push:
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 env:
   # OS: ubuntu-latest # TODO
@@ -18,6 +16,24 @@ env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
 
 jobs:
+  # TODO? Move into pull_requests?
+  # Since it has to do with dependency-review?
+  npm_audit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-node/.github/actions/node_setup@main
+      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+
+      - name: npm audit
+        run: npm audit
+        continue-on-error: true
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -25,22 +41,20 @@ jobs:
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: ${{ env.ARCHITECTURE }}
 
-      - uses: percebus/commons/.github/shared/actions/node_setup@main
-      - uses: percebus/commons/.github/shared/actions/checkout@main
-      - uses: percebus/commons/.github/shared/actions/npm_install@main
+      - uses: percebus/github-actions-node/.github/actions/node_setup@main
+      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       - name: ls bower_components
         run: ls -la ./bower_components
-
-      - name: npm audit
-        run: npm audit
-        continue-on-error: true # XXX?
 
       - name: npm test
         run: npm test
@@ -79,23 +93,24 @@ jobs:
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ls_options: ''
+
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: ${{ env.ARCHITECTURE }}
 
-      - uses: percebus/commons/.github/shared/actions/node_setup@main
+      - uses: percebus/github-actions-node/.github/actions/node_setup@main
         with:
           node-version: ${{ matrix.node }}
 
-      - uses: percebus/commons/.github/shared/actions/checkout@main
+      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
         with:
-          ls_opts: ''
-
-      - uses: percebus/commons/.github/shared/actions/npm_install@main
-        with:
-          ls_opts: ''
+          ls_options: ''
 
       - name: npm test
         run: npm test --ignore-scripts
@@ -119,7 +134,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/commons/.github/shared/actions/checkout@main
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
 
       # XXX run inside container
       - name: bower install
@@ -153,7 +168,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/commons/.github/shared/actions/checkout@main
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
 
       # XXX run inside container
       - name: bower install
@@ -204,7 +219,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/commons/.github/shared/actions/checkout@main
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
 
       # XXX run inside container
       - name: bower install
@@ -306,15 +321,17 @@ jobs:
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: ${{ env.ARCHITECTURE }}
-      - uses: percebus/commons/.github/shared/actions/node_setup@main
 
-      - uses: percebus/commons/.github/shared/actions/checkout@main
-      - uses: percebus/commons/.github/shared/actions/npm_install@main
+      - uses: percebus/github-actions-node/.github/actions/node_setup@main
+      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       - name: npm run validate
         run: npm run validate
