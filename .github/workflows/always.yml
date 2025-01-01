@@ -16,28 +16,11 @@ env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
 
 jobs:
-  # TODO? Move into pull_requests?
-  # Since it has to do with dependency-review?
-  npm_audit:
-    name: npm audit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-node/.github/actions/node_setup@main
-      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
-
-      - name: npm audit
-        run: npm audit
-        continue-on-error: true
-
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      # TODO move inside checkout
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
