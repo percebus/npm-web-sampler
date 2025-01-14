@@ -1,3 +1,6 @@
+# helm is YAML-ish
+helm/
+
 # Ignore artifacts:
 tmp/
 
