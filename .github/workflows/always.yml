@@ -1,4 +1,4 @@
-name: Verify
+name: '[C]ontinuous [I]ntegration'
 on:
   push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
@@ -56,8 +56,30 @@ jobs:
       - name: ls bower_components
         run: ls -la ./bower_components
 
+      # prettier
+      - name: npm run lint:misc
+        run: npm run lint:misc
+
+      # standard
+      - name: npm run lint:js
+        run: npm run lint:js
+
+      # htmllint (via grunt)
+      - name: npm run lint:html
+        run: npm run lint:html
+
+      # dockerlint
+      - name: npm run lint:docker
+        run: npm run lint:docker
+
+      # helm lint
+      - name: npm run lint:helm
+        run: npm run lint:helm
+
+      #
+      # test
       - name: npm test
-        run: npm test
+        run: npm test --ignore-scripts
       - name: junit.xml
         uses: dorny/test-reporter@v1
         if: success() || failure()

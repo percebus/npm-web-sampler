@@ -45,6 +45,7 @@
     "dockerlint:Dockerfile.next": "npm run dockerlint -- -f Dockerfile.next",
     "dockerlint:all": "npm run dockerlint:Dockerfile && npm run dockerlint:Dockerfile.next",
     "helm:lint": "helm lint ./helm",
+    "lint:misc": "npm run prettier:check",
     "lint:js": "npm run standard:check",
     "lint:html": "npm run grunt:htmllint",
     "lint:docker": "npm run dockerlint:all",
