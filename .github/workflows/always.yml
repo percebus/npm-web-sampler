@@ -19,7 +19,6 @@ jobs:
   # SRC: https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
   semantic-release:
     name: semantic-release
-    needs: pypyr_lock
     runs-on: ubuntu-latest
     permissions:
       issues: write # to be able to comment on released issues
