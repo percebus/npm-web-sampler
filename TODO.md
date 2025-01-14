@@ -5,6 +5,7 @@
 - [ ] Add ~~`precommit`~~ `husky` and `lint-staged`
 - [ ] Add GitOps 1 click to website
 - [ ] Add `semver` npm package (See `algorithmic-excercises`)
+- [ ] Finish `helm`
 
 ### infra
 
