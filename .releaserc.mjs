@@ -16,7 +16,6 @@ export default {
       '@semantic-release/npm',
       {
         npmPublish: false,
-        pkgRoot: 'dist',
         tarballDir: 'tmp'
       }
     ],
@@ -36,7 +35,7 @@ export default {
     [
       '@semantic-release/github',
       {
-        assets: [{ path: 'tmp/*.tgz' }]
+        assets: [{ path: 'dist' }]
       }
     ]
   ]
