@@ -2,9 +2,16 @@
 
 ## TODOs
 
-- [ ] Add `precommit`
+- [ ] Add ~~`precommit`~~ `husky` and `lint-staged`
 - [ ] Add GitOps 1 click to website
 - [ ] Add `semver` npm package (See `algorithmic-excercises`)
+- [ ] Finish `helm`
+- [ ] Standardize `web`, `webapp` & `web-app`
+
+### infra
+
+- [ ] Add `terraform` for serverless cloud hosting (i.e. AWS s3, Azure Storage, etc)
+- [ ] Add `terraform` for Kubernetes hosted (i.e. EKS, AKS)
 
 ## Done
 

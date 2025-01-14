@@ -1,0 +1,7 @@
+replicaCount: 1
+
+image:
+  repository: localhost:5000/web-app
+  tag: latest
+  pullSecrets: []
+  pullPolicy: IfNotPresent
