@@ -6,6 +6,7 @@
 - [ ] Add GitOps 1 click to website
 - [ ] Add `semver` npm package (See `algorithmic-excercises`)
 - [ ] Finish `helm`
+- [ ] Standardize `web`, `webapp` & `web-app`
 
 ### infra
 

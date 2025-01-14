@@ -1,3 +1,6 @@
+# FIXME kaggle.json is not being prettier-ified
+env/kaggle.json
+
 # helm is YAML-ish
 helm/
 
