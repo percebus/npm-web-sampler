@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-- ****tests**:** Removed year check ([87fd592](https://github.com/percebus/npm-web-sampler/commit/87fd592457e6508740dd597f1bdbbea259f977b6))
+- **tests:** Removed year check ([87fd592](https://github.com/percebus/npm-web-sampler/commit/87fd592457e6508740dd597f1bdbbea259f977b6))
 - **.github/workflows/always.yml:** npm validate ([93e074e](https://github.com/percebus/npm-web-sampler/commit/93e074ee01030935a75ad2b3b143b79b31cbbcdf))
 - **.releaserc.mjs:** Change to reformat only ([54e45b8](https://github.com/percebus/npm-web-sampler/commit/54e45b86ef7156e7c70a48208752e1a6b8329d86))
 - **always.yml:** Added missing bits from static.yml ([9139f6b](https://github.com/percebus/npm-web-sampler/commit/9139f6b840ff135f5a217483460fadd181e19bdd))

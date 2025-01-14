@@ -22,7 +22,7 @@ export default {
     [
       '@semantic-release/exec',
       {
-        prepareCmd: 'npx prettier . --write',
+        prepareCmd: 'npx prettier . --write'
       }
     ],
     [
