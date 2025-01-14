@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.0.1](https://github.com/percebus/npm-web-sampler/compare/v1.0.0...v1.0.1) (2025-01-14)
+
+### Bug Fixes
+
+- **package.json:** Changed task validate ([29bd952](https://github.com/percebus/npm-web-sampler/commit/29bd952a223f494bb5e5a31a37bf02eeea08c96c))
+
 # 1.0.0 (2025-01-14)
 
 ### Bug Fixes
