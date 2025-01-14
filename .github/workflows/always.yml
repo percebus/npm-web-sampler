@@ -16,10 +16,31 @@ env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
 
 jobs:
+  # SRC: https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
+  semantic-release:
+    name: semantic-release
+    needs: pypyr_lock
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write # to be able to comment on released issues
+      contents: write # to be able to publish a GitHub release
+      id-token: write # to enable use of OIDC for npm provenance
+      pull-requests: write # to be able to comment on released pull requests
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-node/.github/actions/node_setup@main
+      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+
+      - name: semantic-release
+        run: npm run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
   # TODO? Move into pull_requests?
   # Since it has to do with dependency-review?
   npm_audit:
     name: npm audit
+    needs: semantic-release
     runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.9.0
@@ -36,6 +57,7 @@ jobs:
 
   build:
     name: Build
+    needs: semantic-release
     runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.9.0
