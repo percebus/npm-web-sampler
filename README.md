@@ -13,6 +13,9 @@ A web sampler of technologies and tools that can be used to quickly scaffold a w
 - `pip` ( & `pipx`)
 - `grunt`
 - `jasmine`: `jest`, `testem` & `frisby`
+- `semantic-release`: To automagically create releases
+- `docker` ( & `docker-compose` )
+- `helm`: To Deploy to Kubernetes
 
 ## Motivation
 
