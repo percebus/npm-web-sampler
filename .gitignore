@@ -6,13 +6,16 @@
 !env/**.sample
 env/*.json
 
+# semantic-release
+tmp/
+
 # webapp
 build/
 dist/
 
 # test
 testem.xunit.xml
-junit.xml
+junit*.xml
 
 
 ######################
