@@ -4,7 +4,7 @@ FROM base AS project
 WORKDIR /usr/project
 COPY . .
 RUN ls -la
-# RUN bash scripts/bash/clean.ba.sh # TODO when more scripts are added
+RUN bash scripts/bash/clean.ba.sh
 
 FROM project AS dev
 RUN npm run setup:ci && npm ci --ignore-scripts

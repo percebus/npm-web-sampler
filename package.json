@@ -63,7 +63,7 @@
     "postdist": "npm run LICENSES",
     "python:http.server": "cd dist && python -m http.server 8080",
     "docker:registry:run": "docker run -d -p 5000:5000 --name registry registry:2.7",
-    "docker:this:build": "docker build --no-cache --pull --tag localhost:5000/npm-web-sampler:latest .",
+    "docker:this:build": "docker build --pull --tag localhost:5000/npm-web-sampler:latest .",
     "docker:this:build:test": "npm run docker:this:build -- --target test",
     "docker:this:images": "docker images --all | grep -a 'npm-web-sampler'",
     "docker:this:images:rm": "docker images --all | grep -a 'npm-web-sampler' | awk '{print $3}' | xargs docker rmi --force",
