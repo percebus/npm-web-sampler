@@ -1,6 +1,14 @@
 # npm-web-sampler
 
+## Docker
+
+### Registry
+
+From: [How to Use Your Own Registry](https://www.docker.com/blog/how-to-use-your-own-registry-2/)
+
 ## helm
+
+From: [Getting Started](https://helm.sh/docs/chart_template_guide/getting_started/)
 
 ### create
 

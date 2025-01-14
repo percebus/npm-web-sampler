@@ -13,7 +13,7 @@ FROM project AS release
 RUN npm run setup:release && npm ci --ignore-scripts --production
 
 FROM dev AS test
-RUN npm test
+RUN npm test --ignore-scripts
 
 FROM dev AS dist
 RUN npm run dist
