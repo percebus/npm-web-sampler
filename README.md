@@ -1,6 +1,6 @@
 # npm-web-sampler
 
-[`TODO`s](./TODO.md) | [`LICENSE`](./LICENSE.md) | [`CONTRIBUTING`](./CONTRIBUTING.md) | [`CODE_OF_CONDUCT`](./CODE_OF_CONDUCT.md) | [`SECURITY`](./SECURITY.md)
+[`CHANGELOG`](./CHANGELOG.md) | [`TODO`s](./TODO.md) | [`LICENSE`](./LICENSE.md) | [`CONTRIBUTING`](./CONTRIBUTING.md) | [`CODE_OF_CONDUCT`](./CODE_OF_CONDUCT.md) | [`SECURITY`](./SECURITY.md)
 
 [![verify](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml) [![dependency review](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
 
@@ -13,6 +13,9 @@ A web sampler of technologies and tools that can be used to quickly scaffold a w
 - `pip` ( & `pipx`)
 - `grunt`
 - `jasmine`: `jest`, `testem` & `frisby`
+- `semantic-release`: To automagically create releases
+- `docker` ( & `docker-compose` )
+- `helm`: To Deploy to Kubernetes
 
 ## Motivation
 
