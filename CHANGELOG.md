@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.0.3](https://github.com/percebus/npm-web-sampler/compare/v1.0.2...v1.0.3) (2025-01-14)
+
+### Bug Fixes
+
+- **.releaserc.mjs:** Only dist ([cf86279](https://github.com/percebus/npm-web-sampler/commit/cf862790db0c1d8ffb9fa03158764fa5e0e0eb6b))
+
 ## [1.0.2](https://github.com/percebus/npm-web-sampler/compare/v1.0.1...v1.0.2) (2025-01-14)
 
 ### Bug Fixes
