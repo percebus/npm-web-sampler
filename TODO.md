@@ -6,6 +6,11 @@
 - [ ] Add GitOps 1 click to website
 - [ ] Add `semver` npm package (See `algorithmic-excercises`)
 
+### infra
+
+- [ ] Add `terraform` for serverless cloud hosting (i.e. AWS s3, Azure Storage, etc)
+- [ ] Add `terraform` for Kubernetes hosted (i.e. EKS, AKS)
+
 ## Done
 
 - [x] ~~Add `.io` website~~
