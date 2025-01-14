@@ -1,1 +1,22 @@
 # npm-web-sampler CHANGELOG
+
+# 1.0.0 (2025-01-14)
+
+### Bug Fixes
+
+- ****tests**:** Removed year check ([87fd592](https://github.com/percebus/npm-web-sampler/commit/87fd592457e6508740dd597f1bdbbea259f977b6))
+- **.github/workflows/always.yml:** npm validate ([93e074e](https://github.com/percebus/npm-web-sampler/commit/93e074ee01030935a75ad2b3b143b79b31cbbcdf))
+- **.releaserc.mjs:** Change to reformat only ([54e45b8](https://github.com/percebus/npm-web-sampler/commit/54e45b86ef7156e7c70a48208752e1a6b8329d86))
+- **always.yml:** Added missing bits from static.yml ([9139f6b](https://github.com/percebus/npm-web-sampler/commit/9139f6b840ff135f5a217483460fadd181e19bdd))
+- **always.yml:** jxunit unable to publish test results ([9c6617a](https://github.com/percebus/npm-web-sampler/commit/9c6617abb3945a6e2a3bd2c2941a72d780269efa))
+- **CONTRIBUTING:** Tweaked ([#6](https://github.com/percebus/npm-web-sampler/issues/6)) ([6022605](https://github.com/percebus/npm-web-sampler/commit/60226055636fc7f39cf5e15e10ae8dae2bff57fb))
+- **workflows/always.yml:** Updated github actions ([c94e9de](https://github.com/percebus/npm-web-sampler/commit/c94e9de5e217ac0c438708a12789cad745b6c87d))
+
+### Features
+
+- **bootstrap:** Added some simple styling ([#4](https://github.com/percebus/npm-web-sampler/issues/4)) ([57c198d](https://github.com/percebus/npm-web-sampler/commit/57c198dcada9ee93500c2597e9ca4d8e4d367238))
+- **bower:** Added package to download ([#22](https://github.com/percebus/npm-web-sampler/issues/22)) ([8d0f468](https://github.com/percebus/npm-web-sampler/commit/8d0f468045ad479e61bc88f0ac8e79c4d30e9acf))
+- **Dockerfile.next:** To emulate a "next" Dockerfile ([#14](https://github.com/percebus/npm-web-sampler/issues/14)) ([2df45d2](https://github.com/percebus/npm-web-sampler/commit/2df45d282e42cf4d58877505fc37f4543dc97393))
+- **helm:** WiP ([#30](https://github.com/percebus/npm-web-sampler/issues/30)) ([431a266](https://github.com/percebus/npm-web-sampler/commit/431a266817a1c4a7a68fec0ac8a22d9ac4e83d86))
+- **requirements:** pip packages ([ee1c29c](https://github.com/percebus/npm-web-sampler/commit/ee1c29c54029a830007a15a1d575bb466aed92a8))
+- **semantic-versioning:** To tag on `main` ([#31](https://github.com/percebus/npm-web-sampler/issues/31)) ([77f1327](https://github.com/percebus/npm-web-sampler/commit/77f132731def94a0f2fc4fec407d862be9745638))
