@@ -22,11 +22,10 @@ jobs:
     name: npm audit
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-node/.github/actions/node_setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
@@ -38,11 +37,9 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
 
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
@@ -117,12 +114,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
           ls_options: ''
 
       - name: setup python @ ${{ env.PYTHON_VERSION }}
@@ -191,11 +185,9 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
 
       # XXX run inside container
       - name: bower install
@@ -242,11 +234,9 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
 
       # XXX run inside container
       - name: bower install
@@ -345,11 +335,9 @@ jobs:
     name: Validate
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
 
       - name: setup python @ ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
