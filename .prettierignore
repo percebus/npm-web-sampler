@@ -7,6 +7,9 @@ helm/
 # Ignore artifacts:
 tmp/
 
+# git submodule we do not control here
+scripts/
+
 # other repos
 bower_components/
 
