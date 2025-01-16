@@ -50,9 +50,6 @@ jobs:
       - uses: percebus/github-actions-node/.github/actions/node_setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
-      - name: ls bower_components
-        run: ls -la ./bower_components
-
       # prettier
       - name: npm run lint:misc
         run: npm run lint:misc
