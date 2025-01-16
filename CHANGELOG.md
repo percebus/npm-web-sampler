@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.1.0](https://github.com/percebus/npm-web-sampler/compare/v1.0.3...v1.1.0) (2025-01-16)
+
+### Features
+
+- **\_scripts:** From common/scripts ([#34](https://github.com/percebus/npm-web-sampler/issues/34)) ([8e7f519](https://github.com/percebus/npm-web-sampler/commit/8e7f519ba1309555929852c44e256664ab2f4bd2))
+
 ## [1.0.3](https://github.com/percebus/npm-web-sampler/compare/v1.0.2...v1.0.3) (2025-01-14)
 
 ### Bug Fixes
