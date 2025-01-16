@@ -99,6 +99,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: build
     strategy:
+      fail-fast: false
       max-parallel: 6
       matrix:
         node:
