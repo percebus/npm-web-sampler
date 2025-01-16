@@ -3,7 +3,7 @@
 set -e
 set -v
 
-echo "this install.ba.sh overwrites commons/scripts/install.ba.sh"
+echo "this setup.ba.sh overwrites commons/scripts/setup.ba.sh"
 
 set +v
 set +e
