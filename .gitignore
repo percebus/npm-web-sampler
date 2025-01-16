@@ -17,6 +17,10 @@ dist/
 testem.xunit.xml
 junit*.xml
 
+# commons/scripts
+repos/
+_scripts/
+
 
 ######################
 ### Node.gitignore ### SRC: https://github.com/github/gitignore/blob/main/Node.gitignore
