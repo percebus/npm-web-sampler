@@ -2,7 +2,7 @@
 
 [`CHANGELOG`](./CHANGELOG.md) | [`TODO`s](./TODO.md) | [`LICENSE`](./LICENSE.md) | [`CONTRIBUTING`](./CONTRIBUTING.md) | [`CODE_OF_CONDUCT`](./CODE_OF_CONDUCT.md) | [`SECURITY`](./SECURITY.md)
 
-[![verify](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml) [![dependency review](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
+[![Continuous Integration](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml) [![dependency review](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml) [![dependabot](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates)
 
 ## Summary
 
