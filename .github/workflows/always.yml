@@ -19,8 +19,8 @@ env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
 
 jobs:
-  build:
-    name: Build
+  verify:
+    name: Verify
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
@@ -79,9 +79,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-  builds:
+  verify_matrix:
     if: github.ref == 'refs/heads/main'
-    needs: build
+    needs: verify
     strategy:
       fail-fast: false
       max-parallel: 6
@@ -94,7 +94,7 @@ jobs:
           - macOS-latest
           # - windows-latest # FIXME SSH not working, and bower install fails!
     runs-on: ${{ matrix.os }}
-    name: Build @ node:${{ matrix.node }}@${{ matrix.os }}
+    name: Verify @ node:${{ matrix.node }}@${{ matrix.os }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
@@ -129,7 +129,7 @@ jobs:
   testem:
     if: false # FIXME not working
     name: "test'em"
-    needs: build
+    needs: verify
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
@@ -141,7 +141,7 @@ jobs:
 
   docker_compose:
     name: docker compose
-    needs: build
+    needs: verify
     runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.9.0
@@ -256,7 +256,7 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
   codeQL:
-    needs: build
+    needs: verify
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -288,7 +288,7 @@ jobs:
 
   deploy-pages:
     if: github.ref == 'refs/heads/main'
-    needs: build
+    needs: verify
     runs-on: ubuntu-latest
     environment:
       url: ${{ steps.deployment.outputs.page_url }}
