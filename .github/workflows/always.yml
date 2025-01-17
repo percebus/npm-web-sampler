@@ -150,7 +150,7 @@ jobs:
   testem:
     if: false # FIXME not working
     name: "test'em"
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
