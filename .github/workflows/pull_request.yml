@@ -16,3 +16,6 @@ env:
 jobs:
   dependency-review:
     uses: percebus/github-actions-common/.github/workflows/dependency-review.yml@main
+
+  npm_audit:
+    uses: percebus/github-actions-npm/.github/workflows/npm_audit.yml@main
