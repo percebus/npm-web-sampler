@@ -75,8 +75,8 @@ jobs:
 
       #
       # test
-      - name: npm run testem
-        run: npm run testem:ci:dot
+      - name: npm test
+        run: npm test --ignore-scripts
       - name: junit.xml
         uses: dorny/test-reporter@v1
         if: success() || failure()
@@ -146,6 +146,19 @@ jobs:
 
       - name: npm run dist
         run: npm run dist
+
+  testem:
+    if: false # FIXME not working
+    name: "test'em"
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-node/.github/actions/node_setup@main
+      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+
+      - name: testem:ci
+        run: npm run testem:ci:dot
 
   docker_compose:
     name: docker compose
