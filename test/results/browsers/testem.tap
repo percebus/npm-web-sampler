@@ -1,0 +1,15 @@
+
+> npm-web-sampler@1.2.0 testem:ci
+> testem ci --reporter tap
+
+ok 1 Chrome 131.0 - [undefined ms] - jest true is true
+ok 2 Firefox 134.0 - [undefined ms] - jest true is true
+
+1..2
+# tests 2
+# pass  2
+# skip  0
+# todo  0
+# fail  0
+
+# ok

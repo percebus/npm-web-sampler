@@ -75,8 +75,8 @@ jobs:
 
       #
       # test
-      - name: npm test
-        run: npm test --ignore-scripts
+      - name: npm run testem
+        run: npm run testem:ci:dot
       - name: junit.xml
         uses: dorny/test-reporter@v1
         if: success() || failure()

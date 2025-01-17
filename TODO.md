@@ -2,11 +2,9 @@
 
 ## TODOs
 
-- [ ] Add ~~`precommit`~~ `husky` and `lint-staged`
 - [ ] Add GitOps 1 click to website
 - [ ] Finish `helm`
 - [ ] Standardize `web`, `webapp` & `web-app`
-- [ ] Stop using this file and use "Issues" instead
 
 ### infra
 
@@ -18,3 +16,5 @@
 - [x] ~~Add `.io` website~~
 - [x] ~~Add a `bower.json` file pointing to another github repo~~
 - [x] ~~Add `semantic-release` npm package (See `algorithmic-excercises`)~~
+- [x] ~~Stop using this file and use "Issues" instead~~
+- [x] ~~Add `husky` and `lint-staged`~~
