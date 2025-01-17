@@ -4,6 +4,9 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 env:
+  # Disable HUSKY in CI
+  HUSKY: 0
+
   # OS: ubuntu-latest # TODO
   ARCHITECTURE: x64
 
