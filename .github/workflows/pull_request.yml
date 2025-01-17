@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+env:
+  # Disable HUSKY in CI
+  HUSKY: 0
+
 jobs:
   dependency-review:
     uses: percebus/github-actions-common/.github/workflows/dependency-review.yml@main
