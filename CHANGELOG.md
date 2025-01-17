@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.2.0](https://github.com/percebus/npm-web-sampler/compare/v1.1.0...v1.2.0) (2025-01-17)
+
+### Features
+
+- **husky:** w/ lint-staged ([#38](https://github.com/percebus/npm-web-sampler/issues/38)) ([9632ee4](https://github.com/percebus/npm-web-sampler/commit/9632ee4977ea9450d3a60e46af714e9a52568fbc))
+
 # [1.1.0](https://github.com/percebus/npm-web-sampler/compare/v1.0.3...v1.1.0) (2025-01-16)
 
 ### Features
