@@ -1,7 +1,7 @@
 describe('jest', () => {
   describe('true', () => {
     it('is true', () => {
-      expect(true).toBe(true)
+      expect(true).toBe(false)
     })
   })
 })
