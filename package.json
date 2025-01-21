@@ -71,6 +71,8 @@
     "testem:ci:all": "npm run testem:ci:tap && npm run testem:ci:xunit",
     "pretest": "npm run lint",
     "test": "npm run jest:ci:unit",
+    "predev": "npm run style",
+    "dev": "npm run test",
     "semantic-release": "semantic-release",
     "tag": "npm run semantic-release",
     "dist": "npm run grunt:dist",
