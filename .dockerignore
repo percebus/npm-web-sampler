@@ -12,7 +12,10 @@
 
 # packages
 node_modules/
-# bower_components/ # FIXME Docker needs an Access Token to be able to pull from another repo
+
+# FIXME Docker needs an Access Token to be able to pull from another repo
+repos/
+# _scripts/
 
 # python
 .venv/

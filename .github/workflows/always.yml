@@ -60,11 +60,7 @@ jobs:
       # test
       - name: npm test
         run: npm test --ignore-scripts
-      - uses: percebus/github-actions-testing/.github/actions/test-reporter@main
-        with:
-          name: Unit Tests
-          reporter: jest-junit
-          files_pattern: junit.xml
+      - uses: percebus/github-actions-testing/.github/actions/junit@main
 
       - name: npm run dist
         run: npm run dist
