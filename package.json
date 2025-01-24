@@ -16,7 +16,7 @@
     "prepip:install:all": "npm run pipx:install",
     "pip:install:all": "python -m pip install -r ./requirements.txt",
     "postpip:install:all": "npm run pip:freeze",
-    "npm:install:global:ci": "npm install --location=global bower grunt-cli",
+    "npm:install:global:ci": "npm install --force --location=global bower grunt-cli",
     "npm:install:global:all": "npm install --location=global yarn bower grunt-cli open-cli",
     "setup": "npm run pip:install:all && npm run npm:install:global:all",
     "setup:ci": "npm run pip:install:all && npm run npm:install:global:ci",
