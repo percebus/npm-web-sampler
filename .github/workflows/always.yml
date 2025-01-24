@@ -38,8 +38,8 @@ jobs:
       # - uses: percebus/github-actions-npm/.github/actions/npm_install@main
       - name: npm install
         run: |
-          npm run setup:ci
-          npm clean-install
+          npm run setup:ci --prefix .
+          npm clean-install --prefix .
 
       # prettier
       - name: npm run lint:misc
