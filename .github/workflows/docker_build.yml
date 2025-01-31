@@ -10,7 +10,7 @@ on:
 
 jobs:
   docker_build:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # TODO
     name: docker build --file ${{ input.docker_file }} --target
     continue-on-error: true
     strategy:
