@@ -4,7 +4,7 @@ on:
     inputs:
       ssh-private-key:
         type: string
-        description: 'SSH private key'
+        description: SSH private key
         required: true
 
       docker_file:
