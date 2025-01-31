@@ -17,6 +17,8 @@ env:
 
   REPOSITORY_NAME: ${{ github.event.repository.name }}
 
+  SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }}
+
 jobs:
   verify:
     name: Verify
@@ -145,7 +147,7 @@ jobs:
     steps:
       - uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+          ssh-private-key: ${{ env.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
