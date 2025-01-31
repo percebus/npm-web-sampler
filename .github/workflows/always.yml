@@ -159,101 +159,16 @@ jobs:
         run: docker compose build
 
   docker_build_matrix:
-    if: github.ref == 'refs/heads/main'
-    name: docker build --target
     needs: docker_compose
-    continue-on-error: true
-    strategy:
-      max-parallel: 10
-      matrix:
-        DOCKER_TARGET:
-          # - base
-          # - project
-          # - dev
-          - test
-
-          # final release
-          # - release
-          - webapp
-
-    runs-on: ubuntu-latest
-    steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      # XXX run inside container
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
-      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
-        run: |
-          docker build . \
-            --target ${{ matrix.DOCKER_TARGET }} \
-            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-
-      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-        uses: anchore/scan-action@v3
-        id: scan
-        with:
-          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-          fail-build: false
-          output-format: sarif
-      - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+    uses: ./.github/workflows/docker_build.yml
+    with:
+      docker_file: Dockerfile.next
 
   docker_next_build_matrix:
-    if: github.ref == 'refs/heads/main'
-    name: docker build --file Dockerfile.next --target
     needs: docker_compose
-    continue-on-error: true
-    env:
-      DOCKER_TAG_VERSION: next
-    strategy:
-      max-parallel: 10
-      matrix:
-        DOCKER_TARGET:
-          # - base
-          # - project
-          # - dev
-          - test
-
-          # final release
-          # - release
-          - webapp
-
-    runs-on: ubuntu-latest
-    steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      # XXX run inside container
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
-      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
-        run: |
-          docker build . \
-            --file Dockerfile.next \
-            --target ${{ matrix.DOCKER_TARGET }} \
-            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-
-      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-        uses: anchore/scan-action@v3
-        id: scan
-        with:
-          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-          fail-build: false
-          output-format: sarif
-      - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+    uses: ./.github/workflows/docker_build.yml
+    with:
+      docker_file: Dockerfile.next
 
   codeQL:
     needs: verify
