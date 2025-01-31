@@ -3,6 +3,7 @@ on:
   workflow_call: # SRC: https://docs.github.com/en/actions/using-workflows/reusing-workflows
     inputs:
       ssh-private-key:
+        type: string
         description: 'SSH private key'
         required: true
 
