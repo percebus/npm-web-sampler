@@ -14,7 +14,6 @@ env:
   PYTHON_VERSION: 3.x
 
   DOCKER_BUILDKIT: 1
-  DOCKER_TAG_VERSION: latest
 
   REPOSITORY_NAME: ${{ github.event.repository.name }}
 
@@ -162,13 +161,15 @@ jobs:
     needs: docker_compose
     uses: ./.github/workflows/docker_build.yml
     with:
-      docker_file: Dockerfile.next
+      docker_file: Dockerfile
+      image_tag: latest
 
   docker_next_build_matrix:
     needs: docker_compose
     uses: ./.github/workflows/docker_build.yml
     with:
       docker_file: Dockerfile.next
+      image_tag: next
 
   codeQL:
     needs: verify

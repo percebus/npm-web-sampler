@@ -8,15 +8,21 @@ on:
         required: false
         default: ./Dockerfile
 
+      image_tag:
+        type: string
+        description: Docker image tag
+        required: false
+        default: latest
+
 jobs:
   docker_build:
     # if: github.ref == 'refs/heads/main' # TODO
-    name: docker build --file ${{ input.docker_file }} --target
+    name: docker build --file ${{ inputs.docker_file }} --target
     continue-on-error: true
     strategy:
       max-parallel: 10
       matrix:
-        DOCKER_TARGET:
+        docker_target:
           # - base
           # - project
           # - dev
@@ -37,18 +43,18 @@ jobs:
         run: |
           npm run npm:install:global:ci
           npm run bower:install
-      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
+      - name: 'docker build: ${{ matrix.docker_target }}'
         run: |
           docker build . \
-            --file ${{ input.docker_file }} \
-            --target ${{ matrix.DOCKER_TARGET }} \
-            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
+            --file ${{ inputs.docker_file }} \
+            --target ${{ matrix.docker_target }} \
+            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
 
-      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
+      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
+          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
           fail-build: false
           output-format: sarif
       - name: Upload SARIF
