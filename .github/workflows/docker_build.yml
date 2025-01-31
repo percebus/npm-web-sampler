@@ -2,6 +2,10 @@ name: docker build
 on:
   workflow_call: # SRC: https://docs.github.com/en/actions/using-workflows/reusing-workflows
     inputs:
+      ssh-private-key:
+        description: 'SSH private key'
+        required: true
+
       docker_file:
         type: string
         description: Dockerfile location
@@ -36,7 +40,7 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+          ssh-private-key: ${{ inputs.ssh-private-key }}
 
       # XXX run inside container
       - name: bower install
