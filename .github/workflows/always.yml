@@ -197,15 +197,15 @@ jobs:
       - name: 'docker build: ${{ matrix.docker_target }}'
         run: |
           docker build . \
-            --file ${{ inputs.docker_file }} \
+            --file ${{ matrix.docker_file }} \
             --target ${{ matrix.docker_target }} \
-            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
+            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag }}
 
-      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
+      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag }}
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
+          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag }}
           fail-build: false
           output-format: sarif
       - name: Upload SARIF
