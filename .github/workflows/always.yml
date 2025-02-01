@@ -161,7 +161,6 @@ jobs:
 
   docker_build_matrix:
     # if: github.ref == 'refs/heads/main' # TODO
-    name: docker build --file ${{ inputs.docker_file }} --target
     needs: docker_compose
     continue-on-error: true
     strategy:
@@ -185,7 +184,7 @@ jobs:
             image_tag_suffix: next
 
     runs-on: ubuntu-latest
-
+    name: docker build --file ${{ matrix.docker_file }} --target ${{ matrix.do }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
