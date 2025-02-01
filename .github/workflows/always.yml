@@ -160,20 +160,20 @@ jobs:
         run: docker compose build
 
   docker_build_matrix:
+    # needs: docker_compose
     strategy:
       max-parallel: 10
       matrix:
         include:
-          - docker_file: Dockerfile
+          - docker_file: ./Dockerfile
             image_tag: latest
 
-          - docker_file: Dockerfile.next
+          - docker_file: ./Dockerfile.next
             image_tag: next
 
-    needs: docker_compose
     uses: ./.github/workflows/docker_build.yml
     with:
-      ssh-private-key: $SSH_KEY_PRIVATE
+      # ssh-private-key: $SSH_KEY_PRIVATE
       docker_file: ${{ matrix.docker_file }}
       image_tag: ${{ matrix.image_tag }}
 

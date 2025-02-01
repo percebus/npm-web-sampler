@@ -5,7 +5,7 @@ on:
       ssh-private-key:
         type: string
         description: SSH private key
-        required: true
+        required: false
 
       docker_file:
         type: string
@@ -22,7 +22,6 @@ on:
 jobs:
   docker_build:
     # if: github.ref == 'refs/heads/main' # TODO
-    name: docker build --file ${{ inputs.docker_file }} --target
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -37,11 +36,12 @@ jobs:
           # - release
           - webapp
 
+    name: docker build --file ${{ inputs.docker_file }} --target ${{ matrix.docker_target }}
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
-          ssh-private-key: '${{ inputs.ssh-private-key }}'
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       # XXX run inside container
       - name: bower install
