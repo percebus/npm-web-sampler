@@ -147,7 +147,7 @@ jobs:
     steps:
       - uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ env.SSH_KEY_PRIVATE }}
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
@@ -173,7 +173,7 @@ jobs:
     needs: docker_compose
     uses: ./.github/workflows/docker_build.yml
     with:
-      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      ssh-private-key: ${{ env.SSH_KEY_PRIVATE }}
       docker_file: ${{ matrix.docker_file }}
       image_tag: ${{ matrix.image_tag }}
 
