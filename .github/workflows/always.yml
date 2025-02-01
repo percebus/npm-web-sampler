@@ -132,6 +132,7 @@ jobs:
     needs: verify
     uses: percebus/github-actions-npm/.github/workflows/npm_run_script.yml@main
     with:
+      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
       script: testem:ci:dot
 
   docker_compose:
