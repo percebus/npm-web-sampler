@@ -185,7 +185,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      IMAGE_FULL_TAG: ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag_suffix }}
+      IMAGE_FULL_NAME: ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag_suffix }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
@@ -201,13 +201,13 @@ jobs:
           docker build . \
             --file ${{ matrix.docker_file }} \
             --target ${{ matrix.docker_target }} \
-            --tag ${{ env.IMAGE_FULL_TAG }}
+            --tag ${{ env.IMAGE_FULL_NAME }}
 
-      - name: Scan ${{ env.IMAGE_FULL_TAG }}
+      - name: Scan ${{ env.IMAGE_FULL_NAME }}
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.IMAGE_FULL_TAG }}
+          image: ${{ env.IMAGE_FULL_NAME }}
           fail-build: false
           output-format: sarif
       - name: Upload SARIF
@@ -215,14 +215,6 @@ jobs:
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
-
-  docker_next_build_matrix:
-    needs: docker_compose
-    uses: ./.github/workflows/docker_build.yml
-    with:
-      ssh-private-key: '${{ secrets.SSH_KEY_PRIVATE }}'
-      docker_file: Dockerfile.next
-      image_tag: next
 
   codeQL:
     needs: verify
