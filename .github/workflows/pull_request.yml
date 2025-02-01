@@ -12,9 +12,10 @@ permissions:
 env:
   # Disable HUSKY in CI
   HUSKY: 0
+  SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }}
 
 jobs:
   dependency-review:
     uses: percebus/github-actions-npm/.github/workflows/dependency-review.yml@main
     with:
-      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      ssh-private-key: ${{ env.SSH_KEY_PRIVATE }}
