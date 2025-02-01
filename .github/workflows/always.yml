@@ -184,8 +184,7 @@ jobs:
             image_tag_suffix: next
 
     runs-on: ubuntu-latest
-    env:
-      IMAGE_FULL_NAME: ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag_suffix }}
+
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
@@ -201,13 +200,13 @@ jobs:
           docker build . \
             --file ${{ matrix.docker_file }} \
             --target ${{ matrix.docker_target }} \
-            --tag ${{ env.IMAGE_FULL_NAME }}
+            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag_suffix }}
 
-      - name: Scan ${{ env.IMAGE_FULL_NAME }}
+      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag_suffix }}
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.IMAGE_FULL_NAME }}
+          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ matrix.image_tag_suffix }}
           fail-build: false
           output-format: sarif
       - name: Upload SARIF
