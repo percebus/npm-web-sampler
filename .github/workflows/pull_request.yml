@@ -18,4 +18,4 @@ jobs:
   dependency-review:
     uses: percebus/github-actions-npm/.github/workflows/dependency-review.yml@main
     with:
-      ssh-private-key: ${{ env.SSH_KEY_PRIVATE }}
+      ssh-private-key: $SSH_KEY_PRIVATE
