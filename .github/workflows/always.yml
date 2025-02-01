@@ -162,6 +162,7 @@ jobs:
   docker_build_matrix:
     # if: github.ref == 'refs/heads/main' # TODO
     name: docker build --file ${{ inputs.docker_file }} --target
+    needs: docker_compose
     continue-on-error: true
     strategy:
       max-parallel: 10
