@@ -160,18 +160,65 @@ jobs:
         run: docker compose build
 
   docker_build_matrix:
-    needs: docker_compose
-    uses: ./.github/workflows/docker_build.yml
-    with:
-      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-      docker_file: Dockerfile
-      image_tag: latest
+    # if: github.ref == 'refs/heads/main' # TODO
+    name: docker build --file ${{ inputs.docker_file }} --target
+    continue-on-error: true
+    strategy:
+      max-parallel: 10
+      matrix:
+        docker_target:
+          # - base
+          # - project
+          # - dev
+          - test
+
+          # final release
+          # - release
+          - webapp
+
+        include:
+          - docker_file: ./Dockerfile
+            image_tag: latest
+
+          - docker_file: ./Dockerfile.next
+            image_tag: next
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.ssh-private-key }}
+
+      # XXX run inside container
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
+      - name: 'docker build: ${{ matrix.docker_target }}'
+        run: |
+          docker build . \
+            --file ${{ inputs.docker_file }} \
+            --target ${{ matrix.docker_target }} \
+            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
+
+      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
+        uses: anchore/scan-action@v3
+        id: scan
+        with:
+          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.docker_target }}:${{ inputs.image_tag }}
+          fail-build: false
+          output-format: sarif
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
 
   docker_next_build_matrix:
     needs: docker_compose
     uses: ./.github/workflows/docker_build.yml
     with:
-      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+      ssh-private-key: '${{ secrets.SSH_KEY_PRIVATE }}'
       docker_file: Dockerfile.next
       image_tag: next
 
