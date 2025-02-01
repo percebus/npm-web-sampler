@@ -188,7 +188,7 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
-          ssh-private-key: ${{ secrets.ssh-private-key }}
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       # XXX run inside container
       - name: bower install
