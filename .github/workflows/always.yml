@@ -215,7 +215,6 @@ jobs:
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
-
   codeQL:
     needs: verify
     runs-on: ubuntu-latest
