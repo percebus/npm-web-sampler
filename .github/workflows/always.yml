@@ -173,7 +173,7 @@ jobs:
     needs: docker_compose
     uses: ./.github/workflows/docker_build.yml
     with:
-      ssh-private-key: '${{ env.SSH_KEY_PRIVATE }}'
+      ssh-private-key: $SSH_KEY_PRIVATE
       docker_file: ${{ matrix.docker_file }}
       image_tag: ${{ matrix.image_tag }}
 
