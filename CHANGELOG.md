@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.2.1](https://github.com/percebus/npm-web-sampler/compare/v1.2.0...v1.2.1) (2025-02-01)
+
+### Bug Fixes
+
+- **worfklows:** pull_request ([#49](https://github.com/percebus/npm-web-sampler/issues/49)) ([99765de](https://github.com/percebus/npm-web-sampler/commit/99765de0c905bebdeba2cbfadd0bddb6470b9dfb))
+
 # [1.2.0](https://github.com/percebus/npm-web-sampler/compare/v1.1.0...v1.2.0) (2025-01-17)
 
 ### Features
