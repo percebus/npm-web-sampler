@@ -344,8 +344,7 @@ jobs:
 
       - name: npm run validate
         run: npm run validate
-      - uses: percebus/github-actions-testing/.github/actions/test-reporter@main
+      - uses: percebus/github-actions-testing/.github/actions/junit@main
         with:
-          name: Integration Tests
-          reporter: jest-junit
-          files_pattern: junit.xml
+          tests_name: Integration Tests
+          summary_title: Integration Tests Summary
