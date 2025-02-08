@@ -14,7 +14,7 @@ env:
   PYTHON_VERSION: 3.x
 
   DOCKER_BUILDKIT: 1
-  DOCKER_TAG_VERSION: latest
+  IMAGE_TAG_SUFFIX: latest
 
   REPOSITORY_NAME: ${{ github.event.repository.name }}
 
@@ -154,7 +154,7 @@ jobs:
         run: docker compose build
 
   docker_build_matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # FIXME
     name: docker build --target
     needs: docker_compose
     continue-on-error: true
@@ -182,31 +182,19 @@ jobs:
         run: |
           npm run npm:install:global:ci
           npm run bower:install
-      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
-        run: |
-          docker build . \
-            --target ${{ matrix.DOCKER_TARGET }} \
-            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
 
-      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-        uses: anchore/scan-action@v3
-        id: scan
+      - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
         with:
-          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-          fail-build: false
-          output-format: sarif
-      - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+          target: ${{ matrix.DOCKER_TARGET }}
+          image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   docker_next_build_matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # FIXME
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
     env:
-      DOCKER_TAG_VERSION: next
+      IMAGE_TAG_SUFFIX: next
     strategy:
       max-parallel: 10
       matrix:
@@ -231,24 +219,12 @@ jobs:
         run: |
           npm run npm:install:global:ci
           npm run bower:install
-      - name: 'docker build: ${{ matrix.DOCKER_TARGET }}'
-        run: |
-          docker build . \
-            --file Dockerfile.next \
-            --target ${{ matrix.DOCKER_TARGET }} \
-            --tag ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
 
-      - name: Scan ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-        uses: anchore/scan-action@v3
-        id: scan
+      - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
         with:
-          image: ${{ env.REPOSITORY_NAME }}.${{ matrix.DOCKER_TARGET }}:${{ env.DOCKER_TAG_VERSION }}
-          fail-build: false
-          output-format: sarif
-      - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+          dockerfile: Dockerfile.next
+          target: ${{ matrix.DOCKER_TARGET }}
+          image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   codeQL:
     needs: verify
