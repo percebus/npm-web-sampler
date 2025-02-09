@@ -66,6 +66,8 @@ jobs:
         with:
           tests_name: Unit Tests
           summary_title: Unit Tests Summary
+          check_name: Unit Tests Deltas
+          comment_title: Unit Tests Deltas
 
       - name: npm run dist
         run: npm run dist
