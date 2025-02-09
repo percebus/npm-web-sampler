@@ -154,14 +154,13 @@ jobs:
         run: docker compose build
 
   docker_build_matrix:
-    if: github.ref == 'refs/heads/main'
     name: docker build --target
     needs: docker_compose
     continue-on-error: true
     strategy:
       max-parallel: 10
       matrix:
-        DOCKER_TARGET:
+        target:
           # - base
           # - project
           # - dev
@@ -185,7 +184,7 @@ jobs:
 
       - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
         with:
-          target: ${{ matrix.DOCKER_TARGET }}
+          target: ${{ matrix.target }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   docker_next_build_matrix:
@@ -198,7 +197,7 @@ jobs:
     strategy:
       max-parallel: 10
       matrix:
-        DOCKER_TARGET:
+        target:
           # - base
           # - project
           # - dev
@@ -223,7 +222,7 @@ jobs:
       - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
         with:
           dockerfile: Dockerfile.next
-          target: ${{ matrix.DOCKER_TARGET }}
+          target: ${{ matrix.target }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   codeQL:
