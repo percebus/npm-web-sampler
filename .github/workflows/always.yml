@@ -63,6 +63,9 @@ jobs:
 
       - uses: percebus/github-actions-testing/.github/actions/junit@main
         if: always()
+        with:
+          tests_name: Unit Tests
+          summary_title: Unit Tests Summary
 
       - name: npm run dist
         run: npm run dist
@@ -318,3 +321,5 @@ jobs:
         with:
           tests_name: Integration Tests
           summary_title: Integration Tests Summary
+          check_name: Integration Tests Deltas
+          comment_title: Integration Tests Deltas
