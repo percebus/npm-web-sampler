@@ -7,12 +7,12 @@ RUN ls -la
 RUN bash _scripts/clean.ba.sh
 
 FROM project AS dev
-RUN npm run setup:ci && npm ci --ignore-scripts
+RUN npm run setup:Dockerfile:dev && npm ci
 
 FROM project AS release
-RUN npm run setup:release && npm ci --ignore-scripts --production
+RUN npm run pip:install:release && npm ci --production
 
-FROM dev AS test
+FROM dev AS tested
 RUN npm test --ignore-scripts
 
 FROM dev AS dist

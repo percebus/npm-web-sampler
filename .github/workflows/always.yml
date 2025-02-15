@@ -155,6 +155,7 @@ jobs:
         run: |
           npm run npm:install:global:ci
           npm run bower:install
+
       - name: docker compose build
         run: docker compose build
 
@@ -169,7 +170,7 @@ jobs:
           # - base
           # - project
           # - dev
-          - test
+          - tested
 
           # final release
           # - release
@@ -206,7 +207,7 @@ jobs:
           # - base
           # - project
           # - dev
-          - test
+          - tested
 
           # final release
           # - release
