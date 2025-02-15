@@ -152,7 +152,10 @@ jobs:
 
       # XXX run inside container
       - name: bower install
-        run: npm run npm:install:global:ci
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
+
       - name: docker compose build
         run: docker compose build
 
@@ -181,7 +184,9 @@ jobs:
 
       # XXX run inside container
       - name: bower install
-        run: npm run npm:install:global:ci
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
 
       - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
         with:
@@ -216,7 +221,9 @@ jobs:
 
       # XXX run inside container
       - name: bower install
-        run: npm run npm:install:global:ci
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
 
       - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
         with:
