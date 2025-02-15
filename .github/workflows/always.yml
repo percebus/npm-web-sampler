@@ -170,7 +170,7 @@ jobs:
           # - base
           # - project
           # - dev
-          - test
+          - tested
 
           # final release
           # - release
@@ -207,7 +207,7 @@ jobs:
           # - base
           # - project
           # - dev
-          - test
+          - tested
 
           # final release
           # - release
