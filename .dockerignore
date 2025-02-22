@@ -14,7 +14,7 @@
 node_modules/
 
 # FIXME Docker needs an Access Token to be able to pull from another repo
-repos/
+repositories/
 # _scripts/
 
 # python

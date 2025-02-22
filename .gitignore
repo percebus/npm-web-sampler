@@ -18,7 +18,7 @@ testem.xunit.xml
 junit*.xml
 
 # commons/scripts
-repos/
+repositories/
 _scripts/
 
 
