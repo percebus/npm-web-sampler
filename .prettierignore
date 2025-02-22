@@ -8,7 +8,7 @@ helm/
 tmp/
 
 # commons/scripts
-repos/
+repositories/
 _scripts/
 
 # webapp

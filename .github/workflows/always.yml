@@ -230,6 +230,10 @@ jobs:
 
     name: 'CodeQL: ${{ matrix.language }}'
     steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
       - name: setup CodeQL
         uses: github/codeql-action/init@v3
         with:
