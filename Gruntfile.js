@@ -42,7 +42,7 @@ module.exports = (grunt) => {
             dest: 'dist/'
           },
           {
-            cwd: 'src/assets/',
+            cwd: 'repositories/percebus-assets/assets/',
             expand: true,
             src: ['**'],
             dest: 'dist'
@@ -50,14 +50,12 @@ module.exports = (grunt) => {
         ]
       }
     },
-    cssmin: {
+    concat: {
       options: { sourceMap: true },
-      target: {
-        files: [
-          {
-            'dist/vendor/vendor.min.css': ['build/vendor/style/**/*.css']
-          }
-        ]
+      vendor: {
+        files: {
+          'dist/vendor/vendor.min.css': ['build/vendor/style/**/*.css']
+        }
       }
     },
     htmlmin: {
@@ -78,7 +76,7 @@ module.exports = (grunt) => {
     'build',
     'clean:dist',
     'copy:dist',
-    'cssmin',
+    'concat',
     'htmlmin'
   ])
 

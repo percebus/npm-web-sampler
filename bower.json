@@ -2,6 +2,9 @@
   "name": "npm-web-sampler",
   "private": true,
   "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
+  "dependencies": {
+    "percebus-assets": "git@github.com:percebus/percebus-assets.git#main"
+  },
   "devDependencies": {
     "commons": "git@github.com:percebus/commons.git#main"
   }
