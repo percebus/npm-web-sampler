@@ -76,8 +76,8 @@ module.exports = (grunt) => {
     'build',
     'clean:dist',
     'copy:dist',
-    'concat',
-    'htmlmin'
+    'concat'
+    // 'htmlmin'
   ])
 
   grunt.registerTask('default', ['dist'])

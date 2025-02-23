@@ -2,7 +2,8 @@
   "name": "npm-web-sampler",
   "version": "1.2.1",
   "description": "npm packages sampler",
-  "main": "Gruntfile.js",
+  "source": "src/app/ui/views/main/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "npm:install:global:ci": "npm install --force --location=global bower grunt-cli",
     "npm:install:global:all": "npm install --location=global yarn bower grunt-cli open-cli",
@@ -68,14 +69,16 @@
     "testem:ci:tap": "npm run testem:ci -- --reporter tap > test/results/browsers/testem.tap",
     "testem:ci:xunit": "npm run testem:ci -- --reporter xunit > test/results/browsers/testem.xunit.xml",
     "testem:ci:all": "npm run testem:ci:tap && npm run testem:ci:xunit",
+    "parcel:default": "parcel",
+    "parcel:build": "parcel build",
     "pretest": "npm run lint",
     "test": "npm run jest:ci:unit",
     "predev": "npm run style",
     "dev": "npm run test",
     "semantic-release": "semantic-release",
     "tag": "npm run semantic-release",
-    "dist": "npm run grunt:dist",
-    "postdist": "npm run LICENSES",
+    "predist": "npm run grunt:dist && npm run LICENSES",
+    "dist": "npm run parcel:build",
     "husky": "husky",
     "husky:install": "husky",
     "husky:uninstall": "git config --unset core.hooksPath",
@@ -103,7 +106,7 @@
     "minikube:start": "minikube start",
     "verify": "npm test && npm run dist",
     "verify:docker": "npm run docker:this:build:test",
-    "start": "npm run python:http.server",
+    "start": "npm run parcel:default",
     "start:docker": "docker:compose:up",
     "browser": "open-cli http://127.0.0.1:8080",
     "validate": "npm run jest:ci:rest:npm-web-sampler"
@@ -131,6 +134,10 @@
   "bugs": {
     "url": "https://github.com/percebus/npm-web-sampler/issues"
   },
+  "parcelIgnore": [
+    "LICENSE.md",
+    "vendor/LICENSES.md"
+  ],
   "homepage": "https://github.com/percebus/npm-web-sampler#readme",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
@@ -157,6 +164,7 @@
     "lint-staged": "^15.4.3",
     "load-grunt-tasks": "^5.1.0",
     "lodash": "^4.17.21",
+    "parcel": "^2.13.3",
     "prettier": "^3.5.1",
     "standard": "^17.1.2",
     "testem": "^3.15.2"
