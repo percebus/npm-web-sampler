@@ -103,7 +103,7 @@ $> npm run verify:docker
 
 ## Logos
 
-<table background="white">
+<table>
   <tbody>
     <tr>
       <td><img src="./assets/img/tools/bower.png" alt="bower logo" width="200" /></td>
