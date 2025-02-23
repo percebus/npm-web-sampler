@@ -100,3 +100,40 @@ $> npm run verify:docker
 
 - [How to Use Your Own Registry](https://www.docker.com/blog/how-to-use-your-own-registry-2/)
 - [Deploying a Docker Container to Kubernetes using Helm and Helm Charts](https://aahil13.hashnode.dev/deploying-a-docker-container-to-kubernetes-using-helm-and-helm-charts)
+
+## Logos
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="./assets/img/tools/bower.png" alt="bower logo" width="200" /></td>
+      <td><img src="./assets/img/tools/docker.png" alt="docker logo" width="200" /></td>
+      <td><img src="./assets/img/tools/eslint.png" alt="eslint logo" width="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/img/tools/frisby.png" alt="frisby logo" width="200" /></td>
+      <td><img src="./assets/img/tools/github.png" alt="github logo" width="200" /></td>
+      <td><img src="./assets/img/tools/github_actions.png" alt="github actions logo" width="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/img/tools/helm.png" alt="helm logo" width="200" /></td>
+      <td><img src="./assets/img/tools/husky.png" alt="husky logo" width="200" /></td>
+      <td><img src="./assets/img/tools/jasmine.png" alt="jasmine logo" width="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/img/tools/jest.png" alt="jest logo" width="200" /></td>
+      <td><img src="./assets/img/tools/junit.png" alt="junit logo" width="200" /></td>
+      <td><img src="./assets/img/tools/lint-staged.png" alt="lint-staged logo" width="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/img/tools/node.png" alt="node logo" width="200" /></td>
+      <td><img src="./assets/img/tools/npm.png" alt="npm logo" width="200" /></td>
+      <td><img src="./assets/img/tools/pip.png" alt="pip logo" width="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/img/tools/prettier.png" alt="prettier logo" width="200" /></td>
+      <td><img src="./assets/img/tools/semantic-release.png" alt="semantic-release logo" width="200" /></td>
+      <td><img src="./assets/img/tools/yarn.png" alt="yarn logo" width="200" /></td>
+    </tr>
+  </tbody>
+</table>
