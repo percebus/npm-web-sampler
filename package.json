@@ -138,10 +138,6 @@
   "bugs": {
     "url": "https://github.com/percebus/npm-web-sampler/issues"
   },
-  "parcelIgnore": [
-    "LICENSE.md",
-    "vendor/LICENSES.md"
-  ],
   "homepage": "https://github.com/percebus/npm-web-sampler#readme",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
