@@ -53,17 +53,6 @@ module.exports = (grunt) => {
           'build/vendor/vendor.min.css': ['tmp/vendor/style/**/*.css']
         }
       }
-    },
-    htmlmin: {
-      dist: {
-        options: {
-          removeComments: true,
-          collapseWhitespace: true
-        },
-        files: {
-          'dist/index.html': 'build/index.html'
-        }
-      }
     }
   })
 
