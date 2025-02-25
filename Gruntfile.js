@@ -67,11 +67,7 @@ module.exports = (grunt) => {
     }
   })
 
-  grunt.registerTask('build', [
-    'clean',
-    'copy',
-    'concat'
-  ])
+  grunt.registerTask('build', ['clean', 'copy', 'concat'])
 
   grunt.registerTask('default', ['build'])
 }
