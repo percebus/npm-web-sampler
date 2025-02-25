@@ -15,37 +15,33 @@ module.exports = (grunt) => {
       dist: 'dist'
     },
     copy: {
+      tmp: {
+        files: [
+          {
+            cwd: 'node_modules/bootstrap/dist/css/',
+            expand: true,
+            src: ['bootstrap.min.*'],
+            dest: 'tmp/vendor/style'
+          }
+        ]
+      },
       build: {
         files: [
+          {
+            cwd: 'src/',
+            expand: true,
+            src: ['**'],
+            dest: 'build'
+          },
           {
             src: ['LICENSE*'],
             dest: 'build/'
           },
           {
-            cwd: 'node_modules/bootstrap/dist/css/',
-            expand: true,
-            src: ['bootstrap.min.*'],
-            dest: 'build/vendor/style'
-          },
-          {
-            cwd: 'src/app/ui/views/main/',
-            expand: true,
-            src: ['*.htm*'],
-            dest: 'build'
-          }
-        ]
-      },
-      dist: {
-        files: [
-          {
-            src: ['LICENSE*'],
-            dest: 'dist/'
-          },
-          {
             cwd: 'repositories/percebus-assets/assets/',
             expand: true,
             src: ['**'],
-            dest: 'dist'
+            dest: 'build/assets'
           }
         ]
       }
@@ -54,7 +50,7 @@ module.exports = (grunt) => {
       options: { sourceMap: true },
       vendor: {
         files: {
-          'dist/vendor/vendor.min.css': ['build/vendor/style/**/*.css']
+          'build/vendor/vendor.min.css': ['tmp/vendor/style/**/*.css']
         }
       }
     },
@@ -71,14 +67,11 @@ module.exports = (grunt) => {
     }
   })
 
-  grunt.registerTask('build', ['clean:build', 'copy:build'])
-  grunt.registerTask('dist', [
-    'build',
-    'clean:dist',
-    'copy:dist',
+  grunt.registerTask('build', [
+    'clean',
+    'copy',
     'concat'
-    // 'htmlmin'
   ])
 
-  grunt.registerTask('default', ['dist'])
+  grunt.registerTask('default', ['build'])
 }

@@ -20,4 +20,4 @@ RUN npm run dist
 
 FROM release AS webapp
 COPY --from=dist /usr/project/dist ./dist
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:dist"]
