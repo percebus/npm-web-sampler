@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.3.0](https://github.com/percebus/npm-web-sampler/compare/v1.2.1...v1.3.0) (2025-02-25)
+
+### Features
+
+- **parcel:** Replaces dist ([#64](https://github.com/percebus/npm-web-sampler/issues/64)) ([799f03f](https://github.com/percebus/npm-web-sampler/commit/799f03f47bf8a0f534b7d2b06e7d7396f8cbf0d6))
+
 ## [1.2.1](https://github.com/percebus/npm-web-sampler/compare/v1.2.0...v1.2.1) (2025-02-01)
 
 ### Bug Fixes
