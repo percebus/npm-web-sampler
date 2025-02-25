@@ -140,7 +140,7 @@ jobs:
           npm run bower:install
 
       - name: docker compose build
-        run: docker compose build
+        run: docker compose build --remove-orphans
 
   docker_build__matrix:
     name: docker build --target
