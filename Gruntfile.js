@@ -30,7 +30,7 @@ module.exports = (grunt) => {
           {
             cwd: 'src/',
             expand: true,
-            src: ['**'],
+            src: ['app/**'],
             dest: 'build'
           },
           {

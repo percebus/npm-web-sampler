@@ -17,7 +17,9 @@ RUN npm test --ignore-scripts
 
 FROM dev AS dist
 RUN npm run dist
+RUN ls -la dist
 
 FROM release AS webapp
 COPY --from=dist /usr/project/dist ./dist
+RUN ls -la dist
 CMD ["npm", "run", "start:dist"]
