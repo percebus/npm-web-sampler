@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.3.2](https://github.com/percebus/npm-web-sampler/compare/v1.3.1...v1.3.2) (2025-02-26)
+
+### Bug Fixes
+
+- **workflows/always.yml:** tweaked docer compose ([35f9c1d](https://github.com/percebus/npm-web-sampler/commit/35f9c1dd2626f97f4fa2742472240de1fa087d74))
+
 ## [1.3.1](https://github.com/percebus/npm-web-sampler/compare/v1.3.0...v1.3.1) (2025-02-26)
 
 ### Bug Fixes
