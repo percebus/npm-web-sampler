@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.3.1](https://github.com/percebus/npm-web-sampler/compare/v1.3.0...v1.3.1) (2025-02-26)
+
+### Bug Fixes
+
+- **package.json:** Added relative public-url ([29664f1](https://github.com/percebus/npm-web-sampler/commit/29664f1e954b5a5eabe4bfaac20f1721ff9cfdd0))
+
 # [1.3.0](https://github.com/percebus/npm-web-sampler/compare/v1.2.1...v1.3.0) (2025-02-25)
 
 ### Features
