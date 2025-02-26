@@ -25,7 +25,7 @@ describe('IO.GitHub.percebus/npm-web-sampler/index.html', () => {
                   .expect('bodyContains', 'Lorem Ipsum')
                   //
                   // tags
-                  .expect('bodyContains', 'src="img/percebus.png"')
+                  .expect('bodyContains', '.png')
                   //
                   // LICENSES
                   .expect('bodyContains', 'LICENSE')

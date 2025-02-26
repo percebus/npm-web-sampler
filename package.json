@@ -2,7 +2,7 @@
   "name": "npm-web-sampler",
   "version": "1.3.1",
   "description": "npm packages sampler",
-  "source": "build/app/ui/views/main/index.html",
+  "source": "build/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "npm:install:global:ci": "npm install --force --location=global bower grunt-cli",
