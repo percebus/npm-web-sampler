@@ -54,7 +54,7 @@
     "lint:html": "npm run grunt:htmllint",
     "lint:docker": "npm run dockerlint:all",
     "lint:helm": "npm run helm:lint",
-    "lint": "npm run prettier:check && npm run standard:check && npm run grunt:htmllint && npm run dockerlint:all && npm run helm:lint",
+    "lint": "npm run prettier:check && npm run standard:check && npm run grunt:htmllint && npm run helm:lint",
     "style": "npm run prettier:write && npm run standard:fix",
     "poststyle": "npm run lint",
     "browserslist:update-db": "browserslist --update-db",
