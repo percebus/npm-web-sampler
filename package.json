@@ -160,7 +160,7 @@
     "jest": "^29.7.0",
     "jest-github-actions": "^0.5.0",
     "jest-junit": "^16.0.0",
-    "lint-staged": "^15.4.3",
+    "lint-staged": "^15.5.0",
     "load-grunt-tasks": "^5.1.0",
     "lodash": "^4.17.21",
     "parcel": "^2.13.3",
