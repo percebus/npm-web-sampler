@@ -163,7 +163,7 @@
     "lint-staged": "^15.5.0",
     "load-grunt-tasks": "^5.1.0",
     "lodash": "^4.17.21",
-    "parcel": "^2.13.3",
+    "parcel": "^2.14.2",
     "posthtml-doctype": "^1.1.1",
     "prettier": "^3.5.3",
     "standard": "^17.1.2",
