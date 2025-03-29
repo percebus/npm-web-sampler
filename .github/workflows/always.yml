@@ -19,8 +19,8 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-node/.github/actions/node_setup@main
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-node/.github/actions/setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       # prettier
@@ -92,8 +92,8 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
           ls_options: ''
 
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-node/.github/actions/node_setup@main
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-node/.github/actions/setup@main
         with:
           node-version: ${{ matrix.node }}
 
@@ -295,8 +295,8 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-node/.github/actions/node_setup@main
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-node/.github/actions/setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       - name: npm run validate
