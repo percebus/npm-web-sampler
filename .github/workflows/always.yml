@@ -1,4 +1,4 @@
-name: '[C]ontinuous [I]ntegration'
+name: "[C]ontinuous [I]ntegration"
 on:
   push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
@@ -85,12 +85,12 @@ jobs:
           - macOS-latest
           # - windows-latest # FIXME SSH not working, and bower install fails!
     runs-on: ${{ matrix.OS }}
-    name: 'Verify: node@${{ matrix.node }} @ ${{ matrix.OS }}'
+    name: "Verify: node@${{ matrix.node }} @ ${{ matrix.OS }}"
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-          ls_options: ''
+          ls_options: ""
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-node/.github/actions/setup@main
@@ -99,7 +99,7 @@ jobs:
 
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
         with:
-          ls_options: ''
+          ls_options: ""
 
       - name: npm test
         run: npm test --ignore-scripts
@@ -228,7 +228,7 @@ jobs:
         language:
           - javascript
 
-    name: 'CodeQL: ${{ matrix.language }}'
+    name: "CodeQL: ${{ matrix.language }}"
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
@@ -259,7 +259,7 @@ jobs:
     # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
     # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
     concurrency:
-      group: 'pages'
+      group: "pages"
       cancel-in-progress: false
 
     permissions: # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages

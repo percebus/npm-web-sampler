@@ -1,8 +1,8 @@
 module.exports = {
   verbose: true,
   reporters: [
-    'default',
+    "default",
     // 'github-actions', // FIXME
-    'jest-junit'
+    "jest-junit"
   ]
 }

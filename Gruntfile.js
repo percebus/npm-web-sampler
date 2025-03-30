@@ -1,47 +1,47 @@
 module.exports = (grunt) => {
-  'use strict'
+  "use strict"
 
-  require('load-grunt-tasks')(grunt, {
-    pattern: ['grunt-*', '!grunt-template-*']
+  require("load-grunt-tasks")(grunt, {
+    pattern: ["grunt-*", "!grunt-template-*"]
   })
 
   grunt.initConfig({
     htmllint: {
       options: { force: true, htmllintrc: true },
-      index: ['src/app/**/*.html']
+      index: ["src/app/**/*.html"]
     },
     clean: {
-      build: 'build',
-      dist: 'dist'
+      build: "build",
+      dist: "dist"
     },
     copy: {
       tmp: {
         files: [
           {
-            cwd: 'node_modules/bootstrap/dist/css/',
+            cwd: "node_modules/bootstrap/dist/css/",
             expand: true,
-            src: ['bootstrap.min.*'],
-            dest: 'tmp/vendor/style'
+            src: ["bootstrap.min.*"],
+            dest: "tmp/vendor/style"
           }
         ]
       },
       build: {
         files: [
           {
-            cwd: 'src/',
+            cwd: "src/",
             expand: true,
-            src: ['**'],
-            dest: 'build'
+            src: ["**"],
+            dest: "build"
           },
           {
-            src: ['LICENSE*'],
-            dest: 'build/'
+            src: ["LICENSE*"],
+            dest: "build/"
           },
           {
-            cwd: 'repositories/percebus-assets/assets/',
+            cwd: "repositories/percebus-assets/assets/",
             expand: true,
-            src: ['**'],
-            dest: 'build/assets'
+            src: ["**"],
+            dest: "build/assets"
           }
         ]
       }
@@ -50,13 +50,13 @@ module.exports = (grunt) => {
       options: { sourceMap: true },
       vendor: {
         files: {
-          'build/vendor/vendor.min.css': ['tmp/vendor/style/**/*.css']
+          "build/vendor/vendor.min.css": ["tmp/vendor/style/**/*.css"]
         }
       }
     }
   })
 
-  grunt.registerTask('build', ['clean', 'copy', 'concat'])
+  grunt.registerTask("build", ["clean", "copy", "concat"])
 
-  grunt.registerTask('default', ['build'])
+  grunt.registerTask("default", ["build"])
 }

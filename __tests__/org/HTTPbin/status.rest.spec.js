@@ -1,22 +1,22 @@
-describe('org.HTTPbin', () => {
-  const _ = require('lodash')
-  const frisby = require('frisby')
+describe("org.HTTPbin", () => {
+  const _ = require("lodash")
+  const frisby = require("frisby")
   const templates = {
-    url: _.template('<%= protocol %>://HTTPbin.org/status/<%= status %>')
+    url: _.template("<%= protocol %>://HTTPbin.org/status/<%= status %>")
   }
 
-  _.forEach(['https'], (protocol) => {
+  _.forEach(["https"], (protocol) => {
     describe(protocol, () => {
-      describe('/status', () => {
-        describe('GET', () => {
-          describe('/200', () => {
+      describe("/status", () => {
+        describe("GET", () => {
+          describe("/200", () => {
             it('returns 200: "OK"', () => {
               const url = templates.url({ protocol, status: 200 })
-              return frisby.get(url).expect('status', 200)
+              return frisby.get(url).expect("status", 200)
             })
           })
 
-          describe('/418', () => {
+          describe("/418", () => {
             it('returns "Im a teapot"', () => {
               /*
                *  -=[ teapot ]=-
@@ -32,8 +32,8 @@ describe('org.HTTPbin', () => {
               const url = templates.url({ protocol, status: 418 })
               return frisby
                 .get(url)
-                .expect('status', 418)
-                .expect('bodyContains', 'teapot')
+                .expect("status", 418)
+                .expect("bodyContains", "teapot")
             })
           })
         })
