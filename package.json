@@ -40,9 +40,9 @@
     "grunt:copy": "npm run grunt -- copy",
     "grunt:concat": "npm run grunt -- concat",
     "grunt:build": "npm run grunt -- build",
-    "standard": "standard *.js __tests__/**/*.js --verbose",
-    "standard:check": "npm run standard",
-    "standard:fix": "npm run standard -- --fix",
+    "standardx": "standardx *.js __tests__/**/*.js --verbose",
+    "standardx:check": "npm run standardx",
+    "standardx:fix": "npm run standardx -- --fix",
     "dockerlint": "dockerlint -d",
     "dockerlint:Dockerfile": "npm run dockerlint -- -f Dockerfile",
     "dockerlint:Dockerfile.next": "npm run dockerlint -- -f Dockerfile.next",
@@ -50,12 +50,12 @@
     "helm:lint": "helm lint ./helm",
     "lint-staged": "lint-staged",
     "lint:misc": "npm run prettier:check",
-    "lint:js": "npm run standard:check",
+    "lint:js": "npm run standardx:check",
     "lint:html": "npm run grunt:htmllint",
     "lint:docker": "npm run dockerlint:all",
     "lint:helm": "npm run helm:lint",
-    "lint": "npm run prettier:check && npm run standard:check && npm run grunt:htmllint && npm run helm:lint",
-    "style": "npm run prettier:write && npm run standard:fix",
+    "lint": "npm run prettier:check && npm run standardx:check && npm run grunt:htmllint && npm run helm:lint",
+    "style": "npm run prettier:write && npm run standardx:fix",
     "poststyle": "npm run lint",
     "browserslist:update-db": "browserslist --update-db",
     "jest:ci": "jest --ci",
@@ -115,7 +115,7 @@
     "browser": "open-cli http://127.0.0.1:8080",
     "validate": "npm run jest:ci:rest:npm-web-sampler"
   },
-  "standard": {
+  "standardx": {
     "env": [
       "jest"
     ]
@@ -149,6 +149,7 @@
     "@semantic-release/release-notes-generator": "^14.0.3",
     "browserslist": "latest",
     "dockerlint": "^0.3.9",
+    "eslint-config-prettier": "^10.1.1",
     "frisby": "^2.1.3",
     "grunt": "^1.6.1",
     "grunt-contrib-clean": "^2.0.1",
@@ -166,7 +167,7 @@
     "parcel": "^2.14.2",
     "posthtml-doctype": "^1.1.1",
     "prettier": "^3.5.3",
-    "standard": "^17.1.2",
+    "standardx": "^7.0.0",
     "testem": "^3.15.2"
   },
   "dependencies": {

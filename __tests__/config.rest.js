@@ -1,4 +1,4 @@
-const frisby = require('frisby')
+const frisby = require("frisby")
 // TODO add timeout
 
 module.exports = {
