@@ -95,6 +95,7 @@ $> npm run verify:docker
 - [Using dotenv with Jest](https://lusbuab.medium.com/using-dotenv-with-jest-7e735b34e55f)
 - [Deploy Your Programs onto Minikube with Docker and Helm](https://siweheee.medium.com/deploy-your-programs-onto-minikube-with-docker-and-helm-a68097e8d545)
 - [Docker + Kubernetes + Helm: A comprehensive step-by-step using Java](https://ignaciocicero.medium.com/docker-kubernetes-helm-a-comprehensive-step-by-step-using-java-df83f6780d80)
+- [Jest + Selenium WebDriver](https://medium.com/@mathieux51/jest-selenium-webdriver-e25604969c6)
 
 ### Container-ization
 
