@@ -4,7 +4,9 @@
   "description": "npm packages sampler",
   "source": "build/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
+  "type": "commonjs",
   "scripts": {
+    "playwright:install": "playwright install",
     "npm:install:global:ci": "npm install --force --location=global bower grunt-cli",
     "npm:install:global:all": "npm install --location=global yarn bower grunt-cli open-cli",
     "scripts:prepare": "bash repositories/commons/scripts/prepare.ba.sh",
@@ -65,11 +67,14 @@
     "jest:ci:rest:npm-web-sampler": "npm run jest:ci:rest -- --rootDir=__tests__/npm-web-sampler",
     "jest:ci:rest:google": "npm run jest:ci:rest -- --rootDir=__tests__/com/google",
     "jest:ci:rest:HTTPbin": "npm run jest:ci:rest -- --rootDir=__tests__/org/HTTPbin",
+    "jest:playwright": "jest --detectOpenHandles --forceExit --testTimeout=60000 pw.spec.js",
+    "jest:selenium": "jest --verbose --runInBand --detectOpenHandles --forceExit --testTimeout=60000 se.spec.js",
     "testem:ci": "testem ci",
     "testem:ci:dot": "npm run testem:ci -- --reporter dot",
     "testem:ci:tap": "npm run testem:ci -- --reporter tap > test/results/browsers/testem.tap",
     "testem:ci:xunit": "npm run testem:ci -- --reporter xunit > test/results/browsers/testem.xunit.xml",
     "testem:ci:all": "npm run testem:ci:tap && npm run testem:ci:xunit",
+    "selenium-side-runner": "selenium-side-runner selenium/clicks.side",
     "parcel": "parcel",
     "parcel:build": "parcel build --public-url ./",
     "pretest": "npm run lint",
@@ -112,8 +117,7 @@
     "start": "npm run parcel",
     "start:dist": "npm run python:http.server",
     "start:docker": "npm run docker:compose:up",
-    "browser": "open-cli http://127.0.0.1:8080",
-    "validate": "npm run jest:ci:rest:npm-web-sampler"
+    "browser": "open-cli http://127.0.0.1:8080"
   },
   "standardx": {
     "env": [
@@ -148,9 +152,11 @@
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "browserslist": "latest",
+    "chromedriver": "^134.0.5",
     "dockerlint": "^0.3.9",
     "eslint-config-prettier": "^10.1.1",
     "frisby": "^2.1.3",
+    "geckodriver": "^5.0.0",
     "grunt": "^1.6.1",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-concat": "^2.1.0",
@@ -165,8 +171,11 @@
     "load-grunt-tasks": "^5.1.0",
     "lodash": "^4.17.21",
     "parcel": "^2.14.2",
+    "playwright": "^1.51.1",
     "posthtml-doctype": "^1.1.1",
     "prettier": "^3.5.3",
+    "selenium-side-runner": "^4.0.13",
+    "selenium-webdriver": "^4.30.0",
     "standardx": "^7.0.0",
     "testem": "^3.15.2"
   },

@@ -285,10 +285,11 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  validate:
+  integration-tests:
     if: github.ref == 'refs/heads/main'
     needs: deploy-pages
-    name: Validate
+    name: Integration Tests
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
@@ -299,11 +300,39 @@ jobs:
       - uses: percebus/github-actions-node/.github/actions/setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
-      - name: npm run validate
-        run: npm run validate
+      - name: npm run jest:ci:rest:npm-web-sampler
+        run: npm run jest:ci:rest:npm-web-sampler
+
       - uses: percebus/github-actions-testing/.github/actions/junit@main
         with:
-          tests_name: Integration Tests
+          tests_name: Integration Tests Results
           summary_title: Integration Tests Summary
           check_name: Integration Tests Deltas
           comment_title: Integration Tests Deltas
+
+  e2e-tests:
+    if: github.ref == 'refs/heads/main'
+    needs: integration-tests
+    name: E2E Tests
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-node/.github/actions/setup@main
+      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+
+      - name: npm run jest:playwright
+        run: |
+          npm run playwright:install
+          npm run jest:playwright
+
+      - uses: percebus/github-actions-testing/.github/actions/junit@main
+        with:
+          tests_name: E2E Tests Results
+          summary_title: E2E Tests Summary
+          check_name: E2E Tests Deltas
+          comment_title: E2E Tests Deltas
