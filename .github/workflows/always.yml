@@ -286,9 +286,8 @@ jobs:
         uses: actions/deploy-pages@v4
 
   integration-tests:
-    # if: github.ref == 'refs/heads/main' # FIXME
-    # needs: deploy-pages # FIXME
-    needs: verify # XXX
+    if: github.ref == 'refs/heads/main'
+    needs: deploy-pages
     name: Integration Tests
     continue-on-error: true
     runs-on: ubuntu-latest
@@ -312,7 +311,7 @@ jobs:
           comment_title: Integration Tests Deltas
 
   e2e-tests:
-    # if: github.ref == 'refs/heads/main' # FIXME
+    if: github.ref == 'refs/heads/main'
     needs: integration-tests
     name: E2E Tests
     continue-on-error: true
