@@ -327,7 +327,9 @@ jobs:
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       - name: npm run jest:playwright
-        run: npm run jest:playwright
+        run: |
+          playwright install
+          npm run jest:playwright
 
       - uses: percebus/github-actions-testing/.github/actions/junit@main
         with:

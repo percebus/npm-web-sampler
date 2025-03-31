@@ -28,7 +28,6 @@
     "postpip:install:all": "npm run pip:freeze",
     "setup": "npm run npm:install:global:all && npm run bower:install && npm run pip:install:all",
     "setup:ci": "npm run npm:install:global:ci && npm run bower:install && npm run pip:install:all",
-    "postinstall": "npm run playwright:install",
     "setup:Dockerfile:dev": "npm run npm:install:global:ci && npm run pip:install:all",
     "yarn:licenses:list:prod": "yarn licenses list --prod > build/vendor/LICENSES.txt",
     "yarn:licenses:generate-disclaimer:prod": "yarn licenses generate-disclaimer --prod > build/vendor/LICENSES.md",
@@ -70,7 +69,6 @@
     "jest:ci:rest:HTTPbin": "npm run jest:ci:rest -- --rootDir=__tests__/org/HTTPbin",
     "jest:playwright": "jest --detectOpenHandles --forceExit --testTimeout=60000 pw.spec.js",
     "jest:selenium": "jest --verbose --runInBand --detectOpenHandles --forceExit --testTimeout=60000 se.spec.js",
-
     "testem:ci": "testem ci",
     "testem:ci:dot": "npm run testem:ci -- --reporter dot",
     "testem:ci:tap": "npm run testem:ci -- --reporter tap > test/results/browsers/testem.tap",
