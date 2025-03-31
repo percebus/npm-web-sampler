@@ -249,7 +249,7 @@ jobs:
         uses: github/codeql-action/analyze@v3
 
   deploy-pages:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # FIXME
     needs: verify
     runs-on: ubuntu-latest
     environment:
@@ -286,7 +286,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   validate:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # FIXME
     needs: deploy-pages
     name: Validate
     continue-on-error: true
