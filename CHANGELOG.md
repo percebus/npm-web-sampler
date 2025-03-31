@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.4.0](https://github.com/percebus/npm-web-sampler/compare/v1.3.2...v1.4.0) (2025-03-31)
+
+### Features
+
+- **e2e tests:** Selenium & playwright ([#74](https://github.com/percebus/npm-web-sampler/issues/74)) ([b837ec7](https://github.com/percebus/npm-web-sampler/commit/b837ec790893dc8c8a8cc50f17ecaf8c31501500))
+
 ## [1.3.2](https://github.com/percebus/npm-web-sampler/compare/v1.3.1...v1.3.2) (2025-02-26)
 
 ### Bug Fixes
