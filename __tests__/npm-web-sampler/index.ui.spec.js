@@ -1,20 +1,30 @@
-const { Builder } = require("selenium-webdriver")
+const { chromium } = require("playwright")
 
-describe("My First Selenium Test", () => {
-  let driver
+let page, browser
 
-  beforeAll(async () => {
-    driver = await new Builder().forBrowser("chrome").build()
-    await driver.manage().setTimeouts({ implicit: 10000 })
-  })
+beforeEach(async () => {
+  browser = await chromium.launch()
+  const context = await browser.newContext()
+  page = await context.newPage()
 
-  afterAll(async () => {
-    await driver.quit()
-  })
+  await page.goto("http://localhost:1234")
+})
 
-  it("navigates to a website and check the title", async () => {
-    await driver.get("http://localhost:1234")
-    const title = await driver.getTitle()
-    expect(title).toBe("Example Domain")
-  })
+afterEach(async () => {
+  await browser.close()
+})
+
+test("navigates to a website and checks the title", async () => {
+  const title = await page.title()
+  expect(title).toBe("Simple HTML")
+})
+
+test("checks if a specific element exists on the page", async () => {
+  const element = await page.$("h1")
+  expect(element).not.toBeNull()
+})
+
+test("verifies navigation to another page", async () => {
+  await page.click("a") // Assuming there's a link to click
+  expect(page.url()).not.toBe("http://localhost:1234")
 })
