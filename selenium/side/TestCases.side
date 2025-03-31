@@ -2,7 +2,7 @@
   "id": "ddcbc4ec-6c20-4450-b3d1-44c4de918af7",
   "version": "2.0",
   "name": "npm-web-sampler",
-  "url": "http://localhost:1234",
+  "url": "https://percebus.github.io/",
   "tests": [{
     "id": "453d4a39-3e04-4152-ac87-f2b0a3b4cafb",
     "name": "clicks",
@@ -10,7 +10,7 @@
       "id": "7f03ab7b-4c37-4a1c-8bfc-2abf74453a15",
       "comment": "",
       "command": "open",
-      "target": "/",
+      "target": "/npm-web-sampler",
       "targets": [],
       "value": ""
     }, {
@@ -136,6 +136,108 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "95120c74-a991-4be3-b783-6e5ce294093a",
+    "name": "LICENSEs",
+    "commands": [{
+      "id": "8569ff45-e1dd-4ce2-a22d-0fdcebc55871",
+      "comment": "",
+      "command": "open",
+      "target": "/npm-web-sampler",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2f3dc3b2-cc78-4335-bffc-ccbb4d1342e1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1091x692",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6ab41079-e4ed-4aa7-a44c-a2a87b4870f2",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(1) > pre",
+      "targets": [
+        ["css=a:nth-child(1) > pre", "css:finder"],
+        ["xpath=//pre", "xpath:position"],
+        ["xpath=//pre[contains(.,'LICENSE.md')]", "xpath:innerText"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win8603",
+      "windowTimeout": 2000
+    }, {
+      "id": "c65027da-5c21-43d7-9b49-2ac62db97ad0",
+      "comment": "",
+      "command": "storeWindowHandle",
+      "target": "root",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "65dd88c7-841b-4ee2-8f63-739f4e871249",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win8603}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5aa501cb-2f65-4f45-a4b5-73206de423c2",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "460cd383-484b-4a50-ac6b-f7624b14fb3a",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${root}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1beb29bd-3b25-4000-8e57-64841bbc34b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(2) > pre",
+      "targets": [
+        ["css=a:nth-child(2) > pre", "css:finder"],
+        ["xpath=//a[2]/pre", "xpath:position"],
+        ["xpath=//pre[contains(.,'LICENSES.md')]", "xpath:innerText"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win8241",
+      "windowTimeout": 2000
+    }, {
+      "id": "6b680856-d6e6-4f32-890a-2c27e1b7b4b5",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win8241}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fdcd5529-26cf-4251-a6ec-3cfcbb1d5798",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6c571e89-3ea7-4d71-9aaf-bba37be8a65c",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${root}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3cbfc4fb-818f-47d0-9ec6-336a4cd2633a",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "47ed1600-c1c3-4a7f-ac6b-867c1391f8ec",
@@ -145,6 +247,6 @@
     "timeout": 300,
     "tests": ["453d4a39-3e04-4152-ac87-f2b0a3b4cafb"]
   }],
-  "urls": ["http://localhost:1234/"],
+  "urls": ["https://percebus.github.io/npm-web-sampler/", "https://percebus.github.io/npm-web-sampler", "https://percebus.github.io/"],
   "plugins": []
 }
