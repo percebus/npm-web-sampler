@@ -306,7 +306,7 @@ jobs:
 
       - uses: percebus/github-actions-testing/.github/actions/junit@main
         with:
-          tests_name: Integration Tests
+          tests_name: Integration Tests Results
           summary_title: Integration Tests Summary
           check_name: Integration Tests Deltas
           comment_title: Integration Tests Deltas
@@ -333,7 +333,7 @@ jobs:
 
       - uses: percebus/github-actions-testing/.github/actions/junit@main
         with:
-          tests_name: E2E Tests
-          summary_title: E2E Tests Summary ${{ matrix.script }}
-          check_name: E2E Tests Deltas ${{ matrix.script }}
-          comment_title: E2E Tests Deltas ${{ matrix.script }}
+          tests_name: E2E Tests Results
+          summary_title: E2E Tests Summary
+          check_name: E2E Tests Deltas
+          comment_title: E2E Tests Deltas
