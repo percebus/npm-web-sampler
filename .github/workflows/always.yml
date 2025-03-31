@@ -285,19 +285,12 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  validate:
+  integration-tests:
     # if: github.ref == 'refs/heads/main' # FIXME
     # needs: deploy-pages # FIXME
     needs: verify # XXX
-    name: Validate
+    name: Integration Tests
     continue-on-error: true
-    strategy:
-      max-parallel: 10
-      matrix:
-        script:
-          - jest:rest:npm-web-sampler
-          - jest:playwright
-
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
@@ -308,12 +301,38 @@ jobs:
       - uses: percebus/github-actions-node/.github/actions/setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
-      - name: npm run ${{ matrix.script }}
-        run: npm run ${{ matrix.script }}
+      - name: npm run jest:rest:npm-web-sampler
+        run: npm run jest:rest:npm-web-sampler
 
       - uses: percebus/github-actions-testing/.github/actions/junit@main
         with:
-          tests_name: Integration Tests ${{ matrix.script }}
-          summary_title: Integration Tests Summary ${{ matrix.script }}
-          check_name: Integration Tests Deltas ${{ matrix.script }}
-          comment_title: Integration Tests Deltas ${{ matrix.script }}
+          tests_name: Integration Tests
+          summary_title: Integration Tests Summary
+          check_name: Integration Tests Deltas
+          comment_title: Integration Tests Deltas
+
+  e2e-tests:
+    # if: github.ref == 'refs/heads/main' # FIXME
+    # needs: deploy-pages # FIXME
+    needs: integration-tests
+    name: E2E Tests
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-node/.github/actions/setup@main
+      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+
+      - name: npm run jest:playwright
+        run: npm run jest:playwright
+
+      - uses: percebus/github-actions-testing/.github/actions/junit@main
+        with:
+          tests_name: E2E Tests
+          summary_title: E2E Tests Summary ${{ matrix.script }}
+          check_name: E2E Tests Deltas ${{ matrix.script }}
+          comment_title: E2E Tests Deltas ${{ matrix.script }}
