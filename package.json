@@ -70,7 +70,7 @@
     "jest:ci:rest:HTTPbin": "npm run jest:ci:rest -- --rootDir=__tests__/org/HTTPbin",
     "jest:playwright": "jest --detectOpenHandles --forceExit --testTimeout=60000 pw.spec.js",
     "jest:selenium": "jest --verbose --runInBand --detectOpenHandles --forceExit --testTimeout=60000 se.spec.js",
-    "jest:npm-web-sampler": "npm run jest:ci:rest:npm-web-sampler && npm run jest:playwright",
+
     "testem:ci": "testem ci",
     "testem:ci:dot": "npm run testem:ci -- --reporter dot",
     "testem:ci:tap": "npm run testem:ci -- --reporter tap > test/results/browsers/testem.tap",
@@ -119,8 +119,7 @@
     "start": "npm run parcel",
     "start:dist": "npm run python:http.server",
     "start:docker": "npm run docker:compose:up",
-    "browser": "open-cli http://127.0.0.1:8080",
-    "validate": "npm run jest:ci:rest:npm-web-sampler"
+    "browser": "open-cli http://127.0.0.1:8080"
   },
   "standardx": {
     "env": [

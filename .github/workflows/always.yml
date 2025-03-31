@@ -301,8 +301,8 @@ jobs:
       - uses: percebus/github-actions-node/.github/actions/setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
-      - name: npm run jest:rest:npm-web-sampler
-        run: npm run jest:rest:npm-web-sampler
+      - name: npm run jest:ci:rest:npm-web-sampler
+        run: npm run jest:ci:rest:npm-web-sampler
 
       - uses: percebus/github-actions-testing/.github/actions/junit@main
         with:
@@ -313,7 +313,6 @@ jobs:
 
   e2e-tests:
     # if: github.ref == 'refs/heads/main' # FIXME
-    # needs: deploy-pages # FIXME
     needs: integration-tests
     name: E2E Tests
     continue-on-error: true
