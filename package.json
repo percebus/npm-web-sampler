@@ -6,6 +6,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "type": "commonjs",
   "scripts": {
+    "playwright:install": "playwright install",
     "npm:install:global:ci": "npm install --force --location=global bower grunt-cli",
     "npm:install:global:all": "npm install --location=global yarn bower grunt-cli open-cli",
     "scripts:prepare": "bash repositories/commons/scripts/prepare.ba.sh",
@@ -25,8 +26,8 @@
     "prepip:install:all": "npm run pipx:install",
     "pip:install:all": "pip install -r ./requirements.txt",
     "postpip:install:all": "npm run pip:freeze",
-    "setup": "npm run npm:install:global:all && npm run bower:install && npm run pip:install:all",
-    "setup:ci": "npm run npm:install:global:ci && npm run bower:install && npm run pip:install:all",
+    "setup": "npm run npm:install:global:all && npm run bower:install && npm run pip:install:all && npm run playwright:install",
+    "setup:ci": "npm run npm:install:global:ci && npm run bower:install && npm run pip:install:all && npm run playwright:install",
     "setup:Dockerfile:dev": "npm run npm:install:global:ci && npm run pip:install:all",
     "yarn:licenses:list:prod": "yarn licenses list --prod > build/vendor/LICENSES.txt",
     "yarn:licenses:generate-disclaimer:prod": "yarn licenses generate-disclaimer --prod > build/vendor/LICENSES.md",

@@ -12,7 +12,7 @@ async function firstScript() {
   await driver.get("https://www.selenium.dev/selenium/web/web-form.html")
 
   // 3. Request browser information
-  const title = await driver.getTitle()
+  // const title = await driver.getTitle() // TODO
 
   // 5. Find an element
   const textBox = await driver.findElement(By.name("my-text"))
@@ -22,9 +22,9 @@ async function firstScript() {
   await textBox.sendKeys("Selenium")
   await submitButton.click()
 
-  // 7. Request element information
-  const message = await driver.findElement(By.id("message"))
-  const value = await message.getText()
+  // 7. Request element information // TODO
+  // const message = await driver.findElement(By.id("message"))
+  // const value = await message.getText()
 
   // 8. End the session
   await driver.quit()

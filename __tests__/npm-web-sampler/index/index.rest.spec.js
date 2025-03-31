@@ -1,7 +1,7 @@
 describe("IO.GitHub.percebus/npm-web-sampler/index.html", () => {
   "use strict"
   const _ = require("lodash")
-  const config = require("./config")
+  const config = require("../config")
   const host = config.host
   const frisby = config.frisby
 

@@ -1,7 +1,7 @@
 describe("index.html", () => {
   const { chromium } = require("playwright")
 
-  const config = require("./config")
+  const config = require("../config")
   const host = config.host
   const url = `https://${host.uri}`
 
