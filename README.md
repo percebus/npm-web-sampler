@@ -127,15 +127,20 @@ $> npm run verify:docker
     <tr>
       <td><img src="./assets/img/tools/jest.png" alt="jest logo" width="200" /></td>
       <td><img src="./assets/img/tools/junit.png" alt="junit logo" width="200" /></td>
-      <td><img src="./assets/img/tools/lint-staged.png" alt="lint-staged logo" width="200" /></td>
+      <td><img src="./assets/img/tools/kubernetes.png" alt="kubernetes logo" width="200" /></td>
     </tr>
     <tr>
+      <td><img src="./assets/img/tools/lint-staged.png" alt="lint-staged logo" width="200" /></td>
       <td><img src="./assets/img/tools/node.png" alt="node logo" width="200" /></td>
       <td><img src="./assets/img/tools/npm.png" alt="npm logo" width="200" /></td>
-      <td><img src="./assets/img/tools/pip.png" alt="pip logo" width="200" /></td>
     </tr>
     <tr>
+      <td><img src="./assets/img/tools/parcel.png" alt="parcel logo" width="200" /></td>
+      <td><img src="./assets/img/tools/pip.png" alt="pip logo" width="200" /></td>
       <td><img src="./assets/img/tools/prettier.png" alt="prettier logo" width="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/img/tools/selenium.png" alt="selenium logo" width="200" /></td>
       <td><img src="./assets/img/tools/semantic-release.png" alt="semantic-release logo" width="200" /></td>
       <td><img src="./assets/img/tools/yarn.png" alt="yarn logo" width="200" /></td>
     </tr>
