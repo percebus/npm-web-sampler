@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.5.0](https://github.com/percebus/npm-web-sampler/compare/v1.4.0...v1.5.0) (2025-04-03)
+
+### Features
+
+- **index.html:** Display version ([#77](https://github.com/percebus/npm-web-sampler/issues/77)) ([e52f918](https://github.com/percebus/npm-web-sampler/commit/e52f918b9510095ced36dc0ba65db0f1930b8ead))
+
 # [1.4.0](https://github.com/percebus/npm-web-sampler/compare/v1.3.2...v1.4.0) (2025-03-31)
 
 ### Features
