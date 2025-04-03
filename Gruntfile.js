@@ -22,7 +22,13 @@ module.exports = (grunt) => {
             expand: true,
             src: ["bootstrap.min.*"],
             dest: "tmp/vendor/style"
-          }
+          },
+          {
+            cwd: "node_modules/bootstrap/dist/js/",
+            expand: true,
+            src: ["bootstrap.min.*"],
+            dest: "tmp/vendor/js"
+          },
         ]
       },
       build: {
@@ -50,7 +56,8 @@ module.exports = (grunt) => {
       options: { sourceMap: true },
       vendor: {
         files: {
-          "build/vendor/vendor.min.css": ["tmp/vendor/style/**/*.css"]
+          "build/vendor/vendor.min.css": ["tmp/vendor/style/**/*.css"],
+          "build/vendor/vendor.min.js": ["tmp/vendor/js/**/*.js"]
         }
       }
     }
