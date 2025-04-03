@@ -28,7 +28,7 @@ module.exports = (grunt) => {
             expand: true,
             src: ["bootstrap.min.*"],
             dest: "tmp/vendor/js"
-          },
+          }
         ]
       },
       build: {

@@ -29,7 +29,7 @@ describe("index.html", () => {
   describe("heading", () => {
     it("says 'Lorem Ipsum'", async () => {
       const element = await page.$("h1")
-      expect(element).toEquals("Lorem Ipsum")
+      expect(element).toEqual("Lorem Ipsum")
     })
   })
 
@@ -43,7 +43,7 @@ describe("index.html", () => {
   describe("version", () => {
     it("has the same as package.json", async () => {
       const element = await page.locator("id=version")
-      expect(element).toEquals(pkg.version)
+      expect(element).toEqual(pkg.version)
     })
   })
 })
