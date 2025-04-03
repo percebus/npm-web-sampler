@@ -2,6 +2,9 @@ name: "[C]ontinuous [I]ntegration"
 on:
   push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   # Disable HUSKY in CI
