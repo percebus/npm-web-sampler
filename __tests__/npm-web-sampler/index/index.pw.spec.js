@@ -1,5 +1,6 @@
 describe("index.html", () => {
   const { chromium } = require("playwright")
+  const pkg = require("../../../package.json")
 
   const config = require("../config")
   const host = config.host
@@ -25,15 +26,24 @@ describe("index.html", () => {
     })
   })
 
-  it("has an h1 heading", async () => {
-    const element = await page.$("h1")
-    expect(element).not.toBeNull()
+  describe("heading", () => {
+    it("says 'Lorem Ipsum'", async () => {
+      const element = await page.$("h1")
+      expect(element).toEqual("Lorem Ipsum")
+    })
   })
 
-  describe("[a]nchor", () => {
+  describe("<a>nchor", () => {
     it("navigates elsewhere", async () => {
       await page.click("a") // Assuming there's a link to click
       expect(page.url()).not.toBe(url)
+    })
+  })
+
+  describe("version", () => {
+    it("has the same as package.json", async () => {
+      const element = await page.locator("id=version")
+      expect(element).toEqual(pkg.version)
     })
   })
 })
