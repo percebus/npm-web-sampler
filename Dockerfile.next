@@ -10,7 +10,7 @@ FROM project AS dev
 RUN npm run setup:Dockerfile:dev && npm ci
 
 FROM project AS release
-RUN npm run pip:install:release && npm ci --production
+RUN npm run setup:Dockerfile:prd && npm ci --production
 
 FROM dev AS tested
 RUN npm test --ignore-scripts
