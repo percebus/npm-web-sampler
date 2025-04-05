@@ -7,7 +7,7 @@
   "type": "commonjs",
   "scripts": {
     "npm:upgrade": "npm install --location=global --update npm",
-    "prenpm:install:global": "npm run npm:upgrade",
+    "TODO_prenpm:install:global": "npm run npm:upgrade",
     "npm:install:global": "npm install --force --location=global",
     "npm:install:global:ci": "npm run npm:install:global -- --force bower grunt-cli",
     "npm:install:global:all": "npm run npm:install:global -- --force yarn bower grunt-cli http-server open-cli",
