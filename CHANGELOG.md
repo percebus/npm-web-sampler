@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.5.2](https://github.com/percebus/npm-web-sampler/compare/v1.5.1...v1.5.2) (2025-04-05)
+
+### Bug Fixes
+
+- **docker:** some tweaks ([f34660f](https://github.com/percebus/npm-web-sampler/commit/f34660f68a6bd5b05cb875dff1a33379440bc4d3))
+
 ## [1.5.1](https://github.com/percebus/npm-web-sampler/compare/v1.5.0...v1.5.1) (2025-04-03)
 
 ### Bug Fixes
