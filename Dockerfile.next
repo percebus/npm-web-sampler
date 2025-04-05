@@ -9,9 +9,6 @@ RUN bash _scripts/clean.ba.sh
 FROM project AS dev
 RUN npm run setup:Dockerfile:dev && npm ci
 
-FROM project AS release
-RUN npm run setup:Dockerfile:prd && npm ci --production
-
 FROM dev AS tested
 RUN npm test --ignore-scripts
 
@@ -19,7 +16,14 @@ FROM dev AS dist
 RUN npm run dist
 RUN ls -la dist
 
-FROM release AS webapp
+# FROM project AS release # 2.1GB
+# node:23-slim # ???MBs
+FROM node:23-slim AS release
 COPY --from=dist /usr/project/dist ./dist
+COPY --from=project /usr/project/package*.json .
+RUN npm run setup:Dockerfile:prd
+# RUN npm ci # Only needed for node apps. This is a static app.
+
+FROM release AS webapp
 RUN ls -la dist
 CMD ["npm", "run", "start:dist"]
