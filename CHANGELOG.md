@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-- ****tests**:** Right locator ([2596299](https://github.com/percebus/npm-web-sampler/commit/259629943352d2efc3d23ef9b2cd6ba65623e708))
+- **tests**: Right locator ([2596299](https://github.com/percebus/npm-web-sampler/commit/259629943352d2efc3d23ef9b2cd6ba65623e708))
 
 # [1.5.0](https://github.com/percebus/npm-web-sampler/compare/v1.4.0...v1.5.0) (2025-04-03)
 
