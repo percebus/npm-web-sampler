@@ -1,6 +1,6 @@
 {
   "name": "npm-web-sampler",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "npm packages sampler",
   "source": "build/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",

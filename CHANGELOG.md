@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.6.0](https://github.com/percebus/npm-web-sampler/compare/v1.5.2...v1.6.0) (2025-04-12)
+
+### Features
+
+- **megalinter:** assisted installer ([#85](https://github.com/percebus/npm-web-sampler/issues/85)) ([d34d97e](https://github.com/percebus/npm-web-sampler/commit/d34d97e3264739a002ad68fb70ed51e50a272013)), closes [#79](https://github.com/percebus/npm-web-sampler/issues/79)
+
 ## [1.5.2](https://github.com/percebus/npm-web-sampler/compare/v1.5.1...v1.5.2) (2025-04-05)
 
 ### Bug Fixes
