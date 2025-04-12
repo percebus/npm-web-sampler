@@ -12,9 +12,12 @@ APPLY_FIXES: all
 
 # If you use ENABLE_LINTERS variable, all other linters will be disabled by
 # default
-# ENABLE_LINTERS:
+# ENABLE_LINTERS: # TODO?
 #   - JAVASCRIPT_PRETTIER
 #   - JAVASCRIPT_ES
+
+DISABLE_LINTERS:
+  - JAVASCRIPT_STANDARD # We're using standardx (prettier friendly)
 
 # DISABLE:
 # - COPYPASTE # Uncomment to disable checks of excessive copy-pastes
@@ -25,3 +28,5 @@ SHOW_ELAPSED_TIME: true
 FILEIO_REPORTER: false
 # Uncomment if you want MegaLinter to detect errors but not block CI to pass
 # DISABLE_ERRORS: true
+
+MARKDOWN_MARKDOWNLINT_FILTER_REGEX_EXCLUDE: CHANGELOG.md
