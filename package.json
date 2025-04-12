@@ -162,7 +162,7 @@
     "browserslist": "latest",
     "chromedriver": "^134.0.5",
     "dockerlint": "^0.3.9",
-    "eslint-config-prettier": "^10.1.1",
+    "eslint-config-prettier": "^10.1.2",
     "frisby": "^2.1.3",
     "geckodriver": "^5.0.0",
     "grunt": "^1.6.1",
