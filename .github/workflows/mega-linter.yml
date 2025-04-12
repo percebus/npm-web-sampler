@@ -8,12 +8,13 @@ name: MegaLinter
 on: # NOTE: Choose either push or pull_request, but not both.
   # Comment this line to trigger action only on pull-requests
   # (not recommended if you don't pay for GH Actions)
-  # push:
+  push:
+    branches:
+      - main
 
   pull_request:
     branches:
       - main
-      - master
 
 # Comment env block if you do not want to apply fixes
 env:
