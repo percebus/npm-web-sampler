@@ -21,11 +21,11 @@ A web sampler of technologies and tools that can be used to quickly scaffold a w
 
 This project goes to great lengths to prove all the DevOps & CI/CD work needed for something like simple static `index.html`.
 
-This is ALL THE BELLS AND WHISTLES, but WITHOUT the Christmass tree 🎄.
+This is ALL THE BELLS AND WHISTLES, but WITHOUT the Christmas tree 🎄.
 
 ## Purpose
 
-Demonstrate the ammount of code and overhead needed for devops, even without having an actual project.
+Demonstrate the amount of code and overhead needed for devops, even without having an actual project.
 
 ## Setup
 
