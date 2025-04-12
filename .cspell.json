@@ -13,7 +13,10 @@
     "package*.json",
     "report",
     "requirements*.txt",
-    "Dockerfile*"
+    "Dockerfile*",
+    "src/LICENSE.md",
+    "src/assets/**",
+    "src/vendor/**"
   ],
   "language": "en",
   "noConfigSearch": true,
