@@ -24,7 +24,6 @@ _scripts/
 # megalinter
 megalinter-reports/
 
-
 ######################
 ### Node.gitignore ### SRC: https://github.com/github/gitignore/blob/main/Node.gitignore
 ######################
