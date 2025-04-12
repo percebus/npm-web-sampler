@@ -14,12 +14,19 @@
     "report",
     "requirements*.txt",
     "Dockerfile*",
-    "src/LICENSE.md",
-    "src/assets/**",
-    "src/vendor/**"
+    "**/src/LICENSE.md",
+    "**/src/assets/**",
+    "**/src/vendor/**"
   ],
   "language": "en",
   "noConfigSearch": true,
-  "words": ["megalinter", "oxsecurity", "frisby", "percebus", "automagically", "ization"],
+  "words": [
+    "megalinter",
+    "oxsecurity",
+    "frisby",
+    "percebus",
+    "automagically",
+    "ization"
+  ],
   "version": "0.2"
 }

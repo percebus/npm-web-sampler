@@ -1,3 +1,8 @@
+# This runs on
+#  - push to branch for PR
+#  - on main
+#  - Potentially nightly (github doesn't like this tho)
+---
 name: "[C]ontinuous [I]ntegration"
 on:
   push:

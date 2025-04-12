@@ -5,15 +5,19 @@ name: MegaLinter
 
 # Trigger mega-linter at every push. Action will also be visible from
 # Pull Requests to main
-on:
+on: # NOTE: Choose either push or pull_request, but not both.
   # Comment this line to trigger action only on pull-requests
   # (not recommended if you don't pay for GH Actions)
-  push:
+  # push:
 
   pull_request:
     branches:
       - main
       - master
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 # Comment env block if you do not want to apply fixes
 env:
