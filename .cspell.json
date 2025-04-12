@@ -14,9 +14,7 @@
     "report",
     "requirements*.txt",
     "Dockerfile*",
-    "**/src/LICENSE.md",
-    "**/src/assets/**",
-    "**/src/vendor/**"
+    "CHANGELOG.md"
   ],
   "language": "en",
   "noConfigSearch": true,
@@ -26,7 +24,8 @@
     "frisby",
     "percebus",
     "automagically",
-    "ization"
+    "ization",
+    "pipx"
   ],
   "version": "0.2"
 }

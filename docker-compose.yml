@@ -1,3 +1,5 @@
+# docker compose up FtW
+---
 services:
   web:
     build: .
