@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.6.1](https://github.com/percebus/npm-web-sampler/compare/v1.6.0...v1.6.1) (2025-04-12)
+
+### Bug Fixes
+
+- **mega-linter:** Run on main too ([5038cfb](https://github.com/percebus/npm-web-sampler/commit/5038cfbe88f70637e1be8f954bb56997879a38eb))
+
 # [1.6.0](https://github.com/percebus/npm-web-sampler/compare/v1.5.2...v1.6.0) (2025-04-12)
 
 ### Features
