@@ -21,11 +21,11 @@ A web sampler of technologies and tools that can be used to quickly scaffold a w
 
 This project goes to great lengths to prove all the DevOps & CI/CD work needed for something like simple static `index.html`.
 
-This is ALL THE BELLS AND WHISTLES, but WITHOUT the Christmass tree 🎄.
+This is ALL THE BELLS AND WHISTLES, but WITHOUT the Christmas tree 🎄.
 
 ## Purpose
 
-Demonstrate the ammount of code and overhead needed for devops, even without having an actual project.
+Demonstrate the amount of code and overhead needed for devops, even without having an actual project.
 
 ## Setup
 
@@ -89,6 +89,8 @@ $> npm run verify:docker
 
 ## Resources
 
+ <!-- markdown-link-check-disable -->
+
 - [Playwright vs Selenium: What are the Main Differences and Which is Better?](https://applitools.com/blog/playwright-vs-selenium/)
 
 ### Medium
@@ -104,6 +106,8 @@ $> npm run verify:docker
 
 - [How to Use Your Own Registry](https://www.docker.com/blog/how-to-use-your-own-registry-2/)
 - [Deploying a Docker Container to Kubernetes using Helm and Helm Charts](https://aahil13.hashnode.dev/deploying-a-docker-container-to-kubernetes-using-helm-and-helm-charts)
+
+<!-- markdown-link-check-enable -->
 
 ## Logos
 
@@ -131,16 +135,20 @@ $> npm run verify:docker
     </tr>
     <tr>
       <td><img src="./assets/img/tools/lint-staged.png" alt="lint-staged logo" width="200" /></td>
+      <td><img src="./assets/img/tools/mega-linter.png" alt="mega-linter logo" width="200" /></td>
       <td><img src="./assets/img/tools/node.png" alt="node logo" width="200" /></td>
-      <td><img src="./assets/img/tools/npm.png" alt="npm logo" width="200" /></td>
     </tr>
     <tr>
+      <td><img src="./assets/img/tools/npm.png" alt="npm logo" width="200" /></td>
+      <td><img src="./assets/img/tools/ox_security.png" alt="ox security logo" width="200" /></td>
       <td><img src="./assets/img/tools/parcel.png" alt="parcel logo" width="200" /></td>
+    </tr>
+    <tr>
       <td><img src="./assets/img/tools/pip.png" alt="pip logo" width="200" /></td>
       <td><img src="./assets/img/tools/prettier.png" alt="prettier logo" width="200" /></td>
+      <td><img src="./assets/img/tools/selenium.png" alt="selenium logo" width="200" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/selenium.png" alt="selenium logo" width="200" /></td>
       <td><img src="./assets/img/tools/semantic-release.png" alt="semantic-release logo" width="200" /></td>
       <td><img src="./assets/img/tools/yarn.png" alt="yarn logo" width="200" /></td>
     </tr>

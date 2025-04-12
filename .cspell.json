@@ -1,0 +1,31 @@
+{
+  "ignorePaths": [
+    ".*",
+    ".vscode",
+    ".gitignore",
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/**",
+    "**/.pnpm-lock.json",
+    "**__tests__/**",
+    "**megalinter**",
+    "**cspell**",
+    "package*.json",
+    "report",
+    "requirements*.txt",
+    "Dockerfile*",
+    "CHANGELOG.md"
+  ],
+  "language": "en",
+  "noConfigSearch": true,
+  "words": [
+    "megalinter",
+    "oxsecurity",
+    "frisby",
+    "percebus",
+    "automagically",
+    "ization",
+    "pipx"
+  ],
+  "version": "0.2"
+}

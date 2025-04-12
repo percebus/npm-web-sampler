@@ -1,3 +1,6 @@
+# Dependency Review
+# is only supported on pull_request events.
+---
 name: Pull Request
 
 # "This run was triggered by the "push" event, which is unsupported.
