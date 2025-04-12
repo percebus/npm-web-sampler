@@ -1,13 +1,16 @@
 {
   "ignorePaths": [
+    ".*",
+    ".vscode",
+    ".gitignore",
     "**/node_modules/**",
     "**/vscode-extension/**",
     "**/.git/**",
     "**/.pnpm-lock.json",
-    ".vscode",
     "megalinter",
     "package-lock.json",
-    "report"
+    "report",
+    "requirements*.txt"
   ],
   "language": "en",
   "noConfigSearch": true,
