@@ -19,6 +19,7 @@ RUN ls -la dist
 # FROM project AS release # 2.1GB
 # node:22-slim # 312MBs
 FROM node:22-slim AS release
+WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
 RUN npm run setup:Dockerfile:prd
