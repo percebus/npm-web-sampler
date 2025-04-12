@@ -15,10 +15,6 @@ on: # NOTE: Choose either push or pull_request, but not both.
       - main
       - master
 
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
-
 # Comment env block if you do not want to apply fixes
 env:
   # Apply linter fixes configuration
