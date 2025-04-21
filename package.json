@@ -180,7 +180,7 @@
     "lodash": "^4.17.21",
     "mega-linter-runner": "^8.5.0",
     "parcel": "^2.14.2",
-    "playwright": "^1.51.1",
+    "playwright": "^1.52.0",
     "posthtml-doctype": "^1.1.1",
     "prettier": "^3.5.3",
     "selenium-side-runner": "^4.0.13",
