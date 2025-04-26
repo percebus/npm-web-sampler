@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.7.0](https://github.com/percebus/npm-web-sampler/compare/v1.6.1...v1.7.0) (2025-04-26)
+
+### Features
+
+- **pip-audit:** audit pip packages ([#93](https://github.com/percebus/npm-web-sampler/issues/93)) ([291cf73](https://github.com/percebus/npm-web-sampler/commit/291cf7366f1c934f4d157d8d597b0276d8ec3859)), closes [#92](https://github.com/percebus/npm-web-sampler/issues/92)
+
 ## [1.6.1](https://github.com/percebus/npm-web-sampler/compare/v1.6.0...v1.6.1) (2025-04-12)
 
 ### Bug Fixes
