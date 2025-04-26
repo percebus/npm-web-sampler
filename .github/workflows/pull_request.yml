@@ -21,7 +21,7 @@ jobs:
     uses: percebus/github-actions-common/.github/workflows/dependency-review.yml@main
 
   audit:
-    name: npm audit
+    name: audit
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
@@ -33,7 +33,7 @@ jobs:
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       - name: pip-audit
-        run: pipx pip-audit -- --requirement requirements.frozen.txt
+        run: pipx run pip-audit -- --requirement requirements.frozen.txt
         continue-on-error: true
 
       - name: npm audit
