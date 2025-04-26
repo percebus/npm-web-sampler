@@ -20,7 +20,7 @@ jobs:
   dependency-review:
     uses: percebus/github-actions-common/.github/workflows/dependency-review.yml@main
 
-  npm_audit:
+  audit:
     name: npm audit
     runs-on: ubuntu-latest
     steps:
@@ -28,8 +28,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
+      - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-node/.github/actions/setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+
+      - name: pip-audit
+        run: pipx pip-audit -- --requirement requirements.frozen.txt
+        continue-on-error: true
 
       - name: npm audit
         run: npm audit
