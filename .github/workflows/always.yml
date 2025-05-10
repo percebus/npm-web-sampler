@@ -8,7 +8,7 @@ on:
   push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
 env:
@@ -28,7 +28,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-node/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       # prettier
@@ -305,7 +305,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-node/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       - name: npm run jest:ci:rest:npm-web-sampler
@@ -330,7 +330,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-node/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
       - name: npm run jest:playwright
