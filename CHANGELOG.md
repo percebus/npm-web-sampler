@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.8.0](https://github.com/percebus/npm-web-sampler/compare/v1.7.0...v1.8.0) (2025-05-10)
+
+### Features
+
+- **nvm:** install & use ([#103](https://github.com/percebus/npm-web-sampler/issues/103)) ([35a90b6](https://github.com/percebus/npm-web-sampler/commit/35a90b6dd38cef92d1f314790fefc505f7478502)), closes [#94](https://github.com/percebus/npm-web-sampler/issues/94)
+
 # [1.7.0](https://github.com/percebus/npm-web-sampler/compare/v1.6.1...v1.7.0) (2025-04-26)
 
 ### Features
