@@ -186,7 +186,7 @@
     "selenium-side-runner": "^4.0.13",
     "selenium-webdriver": "^4.32.0",
     "standardx": "^7.0.0",
-    "testem": "^3.15.2"
+    "testem": "^3.16.0"
   },
   "dependencies": {
     "bootstrap": "^5.3.6"
