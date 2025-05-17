@@ -35,9 +35,9 @@ jobs:
       - uses: percebus/github-actions-node/.github/actions/setup@main
       - uses: percebus/github-actions-npm/.github/actions/npm_install@main
 
-      - name: pip-audit requirements.frozen.txt
-        run: pipx run pip-audit --requirement ./requirements.frozen.txt
-        continue-on-error: true
+      - uses: percebus/github-actions-pipx/.github/actions/run_pip-audit@main
+        with:
+          requirements-file: requirements.frozen.txt
 
       - name: npm audit
         run: npm audit
