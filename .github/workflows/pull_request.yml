@@ -24,12 +24,9 @@ jobs:
     uses: percebus/github-actions-common/.github/workflows/dependency-review.yml@main
 
   npm_audit:
-    name: npm audit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: percebus/github-actions-npm/.github/workflows/npm_audit.yml@main
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+    uses: percebus/github-actions-npm/.github/workflows/npm_audit.yml@main
+    with:
+      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
   pip-audit:
     name: pip-audit
