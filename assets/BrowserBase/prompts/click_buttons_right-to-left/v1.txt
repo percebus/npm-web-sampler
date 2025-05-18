@@ -1,0 +1,2 @@
+Go to https://percebus.github.io/npm-web-sampler/ and click every button, from right to left.
+But do not click on links

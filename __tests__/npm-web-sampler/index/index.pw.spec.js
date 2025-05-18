@@ -13,6 +13,9 @@ describe("index.html", () => {
     page = await context.newPage()
 
     await page.goto(url)
+
+    // Wait for the page to load and buttons to be present
+    await page.waitForLoadState("networkidle")
   })
 
   afterEach(async () => {
@@ -44,6 +47,67 @@ describe("index.html", () => {
     it("has the same as package.json", async () => {
       const dt = await page.locator("id=version").textContent()
       expect(dt).toEqual(pkg.version)
+    })
+  })
+
+  describe("browserBase.com", () => {
+    // Prompt: Go to https://percebus.github.io/npm-web-sampler/
+    // and click every button, from right to left.
+    // But do not click on links
+    describe("Prompt 1: buttons", () => {
+      it("clicks buttons from right to left", async () => {
+        // Get all button elements, excluding link elements
+        const buttons = page.locator("button:not(a)").all()
+
+        // Get the buttons array and reverse it
+        const buttonsArray = await buttons
+        const reversedButtons = buttonsArray.reverse()
+
+        // Click each button in reverse order
+        for (let i = 0; i < reversedButtons.length; i++) {
+          // Wait for each button to be visible
+          await reversedButtons[i].waitFor({ state: "visible" })
+          // Click the button
+          await reversedButtons[i].click()
+          // Small delay between clicks
+          await page.waitForTimeout(500)
+        }
+      })
+    })
+
+    // Prompt: Click each button from right to left
+    // Get all buttons on the page (excluding links)
+    describe("Prompt 2: buttons", () => {
+      it("clicks buttons from right to left", async () => {
+        const buttonSelector = "button:not(.btn-link)"
+        await page.waitForSelector(buttonSelector)
+        const allButtons = await page.locator(buttonSelector).all()
+
+        // Click each button in reverse order
+        for (let i = allButtons.length - 1; i >= 0; i--) {
+          await allButtons[i].waitFor({ state: "visible" })
+          await allButtons[i].click()
+          await page.waitForTimeout(300)
+        }
+      })
+    })
+
+    // Prompt: Open license links in new tabs
+    // Get all license links
+    describe("Prompt 3: license links in new tabs", () => {
+      it("opens each one in a new tab", async () => {
+        const licenseLinks = await page.locator("footer a").all()
+
+        // Add target="_blank" to each link to make them open in new tabs
+        for (const link of licenseLinks) {
+          await page.evaluate(
+            (link) => {
+              link.setAttribute("target", "_blank")
+            },
+            await link.elementHandle()
+          )
+        }
+      })
     })
   })
 })
