@@ -15,7 +15,7 @@ describe("IO.GitHub.percebus/npm-web-sampler/index.html", () => {
         _.forEach(["", "/", "/index.html"], (path) => {
           describe(path, () => {
             const url = templates.url({ protocol, uri: host.uri, path })
-            it("returns contains expected content", () => {
+            it("returns HTML w/ expected content", () => {
               return (
                 frisby
                   .get(url)
