@@ -2,7 +2,10 @@
 
 [`CHANGELOG`](./CHANGELOG.md) | [`TODO`s](./TODO.md) | [`LICENSE`](./LICENSE.md) | [`CONTRIBUTING`](./CONTRIBUTING.md) | [`CODE_OF_CONDUCT`](./CODE_OF_CONDUCT.md) | [`SECURITY`](./SECURITY.md)
 
-[![Continuous Integration](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml) [![Pull Request](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml) [![dependabot](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates)
+- [![Continuous Integration](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml)
+- [![MegaLinter](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml)
+- [![Pull Request](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
+- [![dependabot](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates)
 
 ## Summary
 
@@ -16,6 +19,8 @@ A web sampler of technologies and tools that can be used to quickly scaffold a w
 - `semantic-release`: To automagically create releases
 - `docker` ( & `docker-compose` )
 - `helm`: To Deploy to Kubernetes
+- `megalinter`
+- `parcel`: Bundler
 
 ## Motivation
 
