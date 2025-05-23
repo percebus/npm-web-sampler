@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-- ****tests**:** Different name ([a70c00b](https://github.com/percebus/npm-web-sampler/commit/a70c00b37df348afea693034cdb276e8bfc219c1))
+- **tests:** Different name ([a70c00b](https://github.com/percebus/npm-web-sampler/commit/a70c00b37df348afea693034cdb276e8bfc219c1))
 
 # [1.8.0](https://github.com/percebus/npm-web-sampler/compare/v1.7.0...v1.8.0) (2025-05-10)
 
