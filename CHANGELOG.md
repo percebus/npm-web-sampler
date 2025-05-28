@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.8.3](https://github.com/percebus/npm-web-sampler/compare/v1.8.2...v1.8.3) (2025-05-28)
+
+### Reverts
+
+- Revert "fix(dependabot): Added token ([#117](https://github.com/percebus/npm-web-sampler/issues/117))" ([6eb6786](https://github.com/percebus/npm-web-sampler/commit/6eb6786f86272d0a01d2919052fca17ff8756d0f))
+
 ## [1.8.2](https://github.com/percebus/npm-web-sampler/compare/v1.8.1...v1.8.2) (2025-05-28)
 
 ### Bug Fixes
