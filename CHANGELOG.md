@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.9.0](https://github.com/percebus/npm-web-sampler/compare/v1.8.3...v1.9.0) (2025-05-28)
+
+### Features
+
+- **.github/workflows/always:** GH Actions in CodeQL ([#121](https://github.com/percebus/npm-web-sampler/issues/121)) ([7e0e894](https://github.com/percebus/npm-web-sampler/commit/7e0e894b232a9980238f98c929f455078dc6c169))
+
 ## [1.8.3](https://github.com/percebus/npm-web-sampler/compare/v1.8.2...v1.8.3) (2025-05-28)
 
 ### Reverts
