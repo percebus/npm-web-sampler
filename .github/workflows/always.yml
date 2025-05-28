@@ -235,6 +235,7 @@ jobs:
       matrix:
         language:
           - javascript
+          - actions
 
     name: "CodeQL: ${{ matrix.language }}"
     steps:
