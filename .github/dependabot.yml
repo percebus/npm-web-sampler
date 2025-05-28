@@ -7,6 +7,5 @@ version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
-    token: ${{ secrets.SSH_KEY_PRIVATE }} # Token to use for authentication
     schedule:
-      interval: "monthly" # See documentation for possible values
+      interval: "weekly"
