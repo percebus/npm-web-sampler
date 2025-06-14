@@ -55,9 +55,8 @@ describe("index.html", () => {
     // and click every button, from right to left.
     // But do not click on links
     describe("Prompt 1: buttons", () => {
-      it("clicks buttons from right to left", async () => {
-        // Get all button elements, excluding link elements
-        const buttons = page.locator("button:not(a)").all()
+      it("clicks buttons from right to left and dismisses alerts", async () => {
+        const buttons = await page.locator("button:not(a)").all()
 
         // Get the buttons array and reverse it
         const buttonsArray = await buttons
@@ -69,7 +68,16 @@ describe("index.html", () => {
           await reversedButtons[i].waitFor({ state: "visible" })
           // Click the button
           await reversedButtons[i].click()
-          // Small delay between clicks
+
+          // Prompt:
+          // "Now I need to update this playwright test
+          //  so it closes the open alert that we added on each click"
+          //
+          // Listen for the dialog and dismiss it
+          await page.on("dialog", async dialog => {
+            expect(dialog.message()).toMatch(/Button type: \w+/)
+            // await dialog.accept()  // "Cannot accept dialog which is already handled!"
+          })
           await page.waitForTimeout(500)
         }
       })
@@ -78,15 +86,22 @@ describe("index.html", () => {
     // Prompt: Click each button from right to left
     // Get all buttons on the page (excluding links)
     describe("Prompt 2: buttons", () => {
-      it("clicks buttons from right to left", async () => {
+      it("clicks buttons from right to left and dismisses alerts", async () => {
         const buttonSelector = "button:not(.btn-link)"
         await page.waitForSelector(buttonSelector)
         const allButtons = await page.locator(buttonSelector).all()
 
-        // Click each button in reverse order
         for (let i = allButtons.length - 1; i >= 0; i--) {
           await allButtons[i].waitFor({ state: "visible" })
           await allButtons[i].click()
+
+          // Prompt:
+          // "Now I need to update this playwright test
+          //  so it closes the open alert that we added on each click"
+          await page.on("dialog", async dialog => {
+            expect(dialog.message()).toMatch(/Button type: \w+/)
+            // await dialog.accept()  // "Cannot accept dialog which is already handled!"
+          })
           await page.waitForTimeout(300)
         }
       })
