@@ -7,6 +7,7 @@ function loadVersion() {
   document.getElementById("version").innerText = pkg.version
 }
 
+// TODO move to events.js
 function addOnClickEvents() {
   // Prompt
   // "I have some buttons.
@@ -19,18 +20,17 @@ function addOnClickEvents() {
       console.info("click")
       console.debug(e)
 
-      const type = button.classList.contains("btn-link")
-        ? "link"
-        : button.classList[1].split("-")[1]
+      const secondClass = button.classList[1] // ['btn', 'btn-primary'] -> btn-primary
+      const buttonType = secondClass.split("-")[1] // 'btn-primary' -> 'primary'
 
-      console.debug(type)
-
-      alert(`Button type: ${type}`)
+      console.debug(buttonType)
+      alert(`Button type: ${buttonType}`)
     })
   })
 }
 
 function main() {
+  console.debug("main()")
   loadVersion()
   addOnClickEvents()
 }
