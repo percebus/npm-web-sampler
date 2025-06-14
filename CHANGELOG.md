@@ -1,5 +1,12 @@
 # npm-web-sampler CHANGELOG
 
+# [1.10.0](https://github.com/percebus/npm-web-sampler/compare/v1.9.0...v1.10.0) (2025-06-14)
+
+### Features
+
+- **src/app/script.js:** Add on click ([3dae5b2](https://github.com/percebus/npm-web-sampler/commit/3dae5b2307f68be09f7ba62e75dd46b253244574))
+- **src/app/script.js:** Add on click ([#124](https://github.com/percebus/npm-web-sampler/issues/124)) ([69bec34](https://github.com/percebus/npm-web-sampler/commit/69bec34a0027461880b4fe0fdcebd70f9acaae71))
+
 # [1.9.0](https://github.com/percebus/npm-web-sampler/compare/v1.8.3...v1.9.0) (2025-05-28)
 
 ### Features
