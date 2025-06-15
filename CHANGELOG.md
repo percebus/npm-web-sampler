@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.10.1](https://github.com/percebus/npm-web-sampler/compare/v1.10.0...v1.10.1) (2025-06-15)
+
+### Bug Fixes
+
+- **playwright test:** dismiss alert ([#129](https://github.com/percebus/npm-web-sampler/issues/129)) ([66c5eec](https://github.com/percebus/npm-web-sampler/commit/66c5eecf7e41807ecb87dc0a915100d3d4d2e9f9))
+
 # [1.10.0](https://github.com/percebus/npm-web-sampler/compare/v1.9.0...v1.10.0) (2025-06-14)
 
 ### Features
