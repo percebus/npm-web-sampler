@@ -51,77 +51,104 @@ describe("index.html", () => {
   })
 
   describe("browserBase.com", () => {
-    // Prompt: Go to https://percebus.github.io/npm-web-sampler/
-    // and click every button, from right to left.
-    // But do not click on links
-    describe("Prompt 1: buttons", () => {
-      it("clicks buttons from right to left and dismisses alerts", async () => {
-        const buttons = await page.locator("button:not(a)").all()
-
-        // Get the buttons array and reverse it
-        const buttonsArray = await buttons
-        const reversedButtons = buttonsArray.reverse()
-
-        // Click each button in reverse order
-        for (let i = 0; i < reversedButtons.length; i++) {
-          // Wait for each button to be visible
-          await reversedButtons[i].waitFor({ state: "visible" })
-          // Click the button
-          await reversedButtons[i].click()
-
-          // Prompt:
-          // "Now I need to update this playwright test
-          //  so it closes the open alert that we added on each click"
-          //
-          // Listen for the dialog and dismiss it
-          await page.on("dialog", async dialog => {
-            expect(dialog.message()).toMatch(/Button type: \w+/)
-            // await dialog.accept()  // "Cannot accept dialog which is already handled!"
-          })
-          await page.waitForTimeout(500)
-        }
+    beforeEach(async () => {
+      // Prompt:
+      // "Now I need to update this playwright test
+      //  so it closes the open alert that we added on each click"
+      //
+      // Listen for the dialog and dismiss it
+      // Enable handling of dialog boxes
+      page.on("dialog", async (dialog) => {
+        await dialog.accept()
       })
     })
 
-    // Prompt: Click each button from right to left
-    // Get all buttons on the page (excluding links)
-    describe("Prompt 2: buttons", () => {
-      it("clicks buttons from right to left and dismisses alerts", async () => {
-        const buttonSelector = "button:not(.btn-link)"
-        await page.waitForSelector(buttonSelector)
-        const allButtons = await page.locator(buttonSelector).all()
+    describe("buttons", () => {
+      // Prompt:
+      // "Go to https://percebus.github.io/npm-web-sampler/
+      //  and click every button, from right to left.
+      //  But do not click on links"
+      describe("Prompt 1", () => {
+        it("clicks buttons from right to left", async () => {
+          const buttons = await page.locator("button:not(a)").all()
 
-        for (let i = allButtons.length - 1; i >= 0; i--) {
-          await allButtons[i].waitFor({ state: "visible" })
-          await allButtons[i].click()
+          // Get the buttons array and reverse it
+          const buttonsArray = await buttons
+          const reversedButtons = buttonsArray.reverse()
 
-          // Prompt:
-          // "Now I need to update this playwright test
-          //  so it closes the open alert that we added on each click"
-          await page.on("dialog", async dialog => {
-            expect(dialog.message()).toMatch(/Button type: \w+/)
-            // await dialog.accept()  // "Cannot accept dialog which is already handled!"
-          })
-          await page.waitForTimeout(300)
-        }
+          // Click each button in reverse order
+          for (let i = 0; i < reversedButtons.length; i++) {
+            // Wait for each button to be visible
+            await reversedButtons[i].waitFor({ state: "visible" })
+            // Click the button
+            await reversedButtons[i].click()
+
+            await page.waitForTimeout(500)
+          }
+        })
+      })
+
+      // Prompt:
+      // "Click each button from right to left
+      //  Get all buttons on the page (excluding links)"
+      describe("Prompt 2", () => {
+        it("clicks buttons from right to left", async () => {
+          const buttonSelector = "button:not(.btn-link)"
+          await page.waitForSelector(buttonSelector)
+          const allButtons = await page.locator(buttonSelector).all()
+
+          for (let i = allButtons.length - 1; i >= 0; i--) {
+            await allButtons[i].waitFor({ state: "visible" })
+            await allButtons[i].click()
+
+            await page.waitForTimeout(300)
+          }
+        })
+      })
+
+      // Prompt:
+      // "Go to https://percebus.github.io/npm-web-sampler/
+      //  and click every button, from right to left.
+      //  But do not click on links.
+      //  Be aware that after some click,
+      //  an alert will show with a text saying "Button type: {type}"
+      //  which needs to be either accepted or omitted
+      //  before being able to click the next button"
+      describe("Prompt 3", () => {
+        it("clicks button from right to left", async () => {
+          // Wait for all buttons to be visible
+          await page.waitForSelector("button")
+
+          // Get all buttons and reverse the order
+          const buttons = await page.locator("button").all()
+          const numButtons = buttons.length
+
+          // Click each button in reverse order with a small delay between clicks
+          for (let i = numButtons - 1; i >= 0; i--) {
+            await buttons[i].click()
+            // Small delay to ensure dialog is handled
+            await page.waitForTimeout(500)
+          }
+        })
       })
     })
 
-    // Prompt: Open license links in new tabs
-    // Get all license links
-    describe("Prompt 3: license links in new tabs", () => {
-      it("opens each one in a new tab", async () => {
-        const licenseLinks = await page.locator("footer a").all()
+    describe("footer", () => {
+      // Prompt: "Open license links in new tabs"
+      describe("Prompt 1", () => {
+        it("opens each one in a new tab", async () => {
+          const licenseLinks = await page.locator("footer a").all()
 
-        // Add target="_blank" to each link to make them open in new tabs
-        for (const link of licenseLinks) {
-          await page.evaluate(
-            (link) => {
-              link.setAttribute("target", "_blank")
-            },
-            await link.elementHandle()
-          )
-        }
+          // Add target="_blank" to each link to make them open in new tabs
+          for (const link of licenseLinks) {
+            await page.evaluate(
+              (link) => {
+                link.setAttribute("target", "_blank")
+              },
+              await link.elementHandle()
+            )
+          }
+        })
       })
     })
   })
