@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.10.2](https://github.com/percebus/npm-web-sampler/compare/v1.10.1...v1.10.2) (2025-06-22)
+
+### Bug Fixes
+
+- **playwright:** Added production environment ([c24908f](https://github.com/percebus/npm-web-sampler/commit/c24908f4a63bf71fe4134d69b5a649364b668b8f))
+
 ## [1.10.1](https://github.com/percebus/npm-web-sampler/compare/v1.10.0...v1.10.1) (2025-06-15)
 
 ### Bug Fixes
