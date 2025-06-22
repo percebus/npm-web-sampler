@@ -124,7 +124,8 @@
     "browser": "open-cli http://127.0.0.1:8080",
     "prestart": "npm run dist",
     "start": "npm run parcel",
-    "start:dist": "npm run http-server:dist",
+    "FIXME_prestart:http-server": "npm run dist",
+    "start:http-server": "npm run http-server:dist",
     "start:docker": "npm run docker:compose:up"
   },
   "standardx": {
