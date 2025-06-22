@@ -1,13 +1,14 @@
 /* global alert */
 
 import pkg from "../../package.json"
+import _ from "lodash"
 
 function loadVersion() {
   console.debug("Loading version " + pkg.version)
 
   // NOTE only for demo purposes
-  // DO NOT use console.debug in production code
-  console.debug(".env variables: ", process.env)
+  const variables = _.map(process.env, ["ENVIRONMENT", "LEVEL"])
+  console.debug(".env variables: ", variables)
 
   document.getElementById("version").innerText =
     `${pkg.version}-${process.env.NODE_ENV}`
