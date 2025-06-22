@@ -133,10 +133,7 @@ $> npm run verify:docker
     </tr>
     <tr>
       <td><img src="./assets/img/tools/github_actions.png" alt="github actions logo" width="200" /></td>
-      <td>
-        <img src="./assets/img/tools/grunt.png" alt="grunt logo" width="200" /><br />
-        [![Built with Grunt](https://gruntjs.com/builtwith.svg)](https://gruntjs.com/)
-      </td>
+      <td><img src="./assets/img/tools/grunt.png" alt="grunt logo" width="200" /></td>
       <td><img src="./assets/img/tools/helm.png" alt="helm logo" width="200" /></td>
     </tr>
     <tr>
