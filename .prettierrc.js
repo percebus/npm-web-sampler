@@ -2,5 +2,6 @@ module.exports = {
   // rules consistent w/ standard JS
   semi: false,
   singleQuote: false,
-  trailingComma: "none"
+  trailingComma: "none",
+  endOfLine: "auto"
 }

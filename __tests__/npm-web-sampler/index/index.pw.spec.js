@@ -46,7 +46,8 @@ describe("index.html", () => {
   describe("version", () => {
     it("has the same as package.json", async () => {
       const dt = await page.locator("id=version").textContent()
-      expect(dt).toEqual(pkg.version)
+      const fullVersion = `${pkg.version}-${process.env.NODE_ENV}`
+      expect(dt).toEqual(fullVersion)
     })
   })
 

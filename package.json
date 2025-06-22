@@ -122,8 +122,8 @@
     "verify": "npm test && npm run dist",
     "verify:docker": "npm run docker:this:build:test",
     "browser": "open-cli http://127.0.0.1:8080",
+    "prestart": "npm run dist",
     "start": "npm run parcel",
-    "FIXME_prestart:dist": "npm run dist",
     "start:dist": "npm run http-server:dist",
     "start:docker": "npm run docker:compose:up"
   },
@@ -177,7 +177,6 @@
     "jest-junit": "^16.0.0",
     "lint-staged": "^16.1.0",
     "load-grunt-tasks": "^5.1.0",
-    "lodash": "^4.17.21",
     "mega-linter-runner": "^8.7.0",
     "parcel": "^2.14.2",
     "playwright": "^1.52.0",
@@ -189,6 +188,7 @@
     "testem": "^3.16.0"
   },
   "dependencies": {
-    "bootstrap": "^5.3.6"
+    "bootstrap": "^5.3.6",
+    "lodash": "^4.17.21"
   }
 }

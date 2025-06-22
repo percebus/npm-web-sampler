@@ -1,10 +1,21 @@
 /* global alert */
 
 import pkg from "../../package.json"
+import _ from "lodash"
 
 function loadVersion() {
   console.debug("Loading version " + pkg.version)
-  document.getElementById("version").innerText = pkg.version
+
+  // NOTE only for demo purposes
+  const variables = {
+    SCOPE: process.env.SCOPE,
+    ENVIRONMENT: process.env.ENVIRONMENT
+  }
+
+  console.debug(".env variables: ", variables)
+
+  document.getElementById("version").innerText =
+    `${pkg.version}-${process.env.NODE_ENV}`
 }
 
 // TODO move to events.js
