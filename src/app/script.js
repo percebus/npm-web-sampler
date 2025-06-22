@@ -7,7 +7,11 @@ function loadVersion() {
   console.debug("Loading version " + pkg.version)
 
   // NOTE only for demo purposes
-  const variables = _.map(process.env, ["ENVIRONMENT", "LEVEL"])
+  const variables = {
+    SCOPE: process.env.SCOPE,
+    ENVIRONMENT: process.env.ENVIRONMENT
+  }
+
   console.debug(".env variables: ", variables)
 
   document.getElementById("version").innerText =

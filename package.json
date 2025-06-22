@@ -122,8 +122,8 @@
     "verify": "npm test && npm run dist",
     "verify:docker": "npm run docker:this:build:test",
     "browser": "open-cli http://127.0.0.1:8080",
+    "prestart": "npm run dist",
     "start": "npm run parcel",
-    "FIXME_prestart:dist": "npm run dist",
     "start:dist": "npm run http-server:dist",
     "start:docker": "npm run docker:compose:up"
   },
