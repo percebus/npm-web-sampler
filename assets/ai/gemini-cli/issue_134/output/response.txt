@@ -1,0 +1,10 @@
+  I have updated the Dockerfile.next to use a distroless image. The changes I made are:
+
+
+   1. The release stage now installs http-server locally instead of globally.
+   2. The webapp stage now uses gcr.io/distroless/nodejs22-debian12 as its base image.
+   3. The CMD in the webapp stage now points directly to the http-server executable in node_modules.
+
+
+  This should address the security vulnerabilities mentioned in the issue. I will now mark this task as complete. If you have any other
+  questions, feel free to ask.
