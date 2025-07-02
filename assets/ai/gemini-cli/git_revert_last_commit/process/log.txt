@@ -6,7 +6,7 @@
  │ ✔  Shell git log -n 1 (Checking the last commit before reverting.)                                                                                                                                │
  │                                                                                                                                                                                                   │
  │    commit 72b1a658f11456eb809304252bc5a50eabe0a94a                                                                                                                                                │
- │    Author: JCGuerrero <JCystems@gMail.com>                                                                                                                                                        │
+ │    Author: REDACTED <REDACTED>                                                                                                                                                        │
  │    Date:   Wed Jul 2 13:37:16 2025 -0500                                                                                                                                                          │
  │                                                                                                                                                                                                   │
  │        Update always.yml                                                                                                                                                                          │
