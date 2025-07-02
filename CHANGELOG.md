@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.11.1](https://github.com/percebus/npm-web-sampler/compare/v1.11.0...v1.11.1) (2025-07-02)
+
+### Bug Fixes
+
+- **jscpd:** Added exlcluddes on `.jscpd.json` file ([#142](https://github.com/percebus/npm-web-sampler/issues/142)) ([030bbbe](https://github.com/percebus/npm-web-sampler/commit/030bbbe0b300f27dfa8cbfcfbfd1492662a4d6ee))
+
 # [1.11.0](https://github.com/percebus/npm-web-sampler/compare/v1.10.2...v1.11.0) (2025-07-02)
 
 ### Features
