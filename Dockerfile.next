@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.13-nodejs23 AS base
+FROM node:24-slim AS base
 
 FROM base AS project
 WORKDIR /usr/project
@@ -7,6 +7,7 @@ RUN ls -la
 RUN bash _scripts/clean.ba.sh
 
 FROM project AS dev
+RUN apt-get update && apt-get install -y python3 python3-pip python3.11-venv
 RUN npm run setup:Dockerfile:dev && npm ci
 
 FROM dev AS tested
@@ -16,16 +17,15 @@ FROM dev AS dist
 RUN npm run dist
 RUN ls -la dist
 
-# FROM project AS release # 2.1GB
-# node:23-slim # ???MBs
-FROM node:23-slim AS release
+FROM node:24-slim AS release
 WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
 RUN npm install --production http-server
-# RUN npm ci # Only needed for node apps. This is a static app.
 
-FROM gcr.io/distroless/nodejs22-debian12 AS webapp
+FROM gcr.io/distroless/nodejs24-debian12 AS webapp
 WORKDIR /opt/app
 COPY --from=release /opt/app .
+USER nonroot
+EXPOSE 8080
 CMD ["/opt/app/node_modules/.bin/http-server", "./dist", "--port", "8080"]
