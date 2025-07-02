@@ -71,22 +71,22 @@
  │        build(deps-dev): bump lint-staged from 15.5.1 to 16.0.0 (#107)                                                                                                                             │
  │                                                                                                                                                                                                   │
  │    commit a70c00b37df348afea693034cdb276e8bfc219c1                                                                                                                                                │
- │    Author: JCGuerrero <JCystems@gMail.com>                                                                                                                                                        │
+ │    Author: REDACTED <REDACTED>                                                                                                                                                        │
  │                                                                                                                                                                                                   │
  │        fix(__tests__): Different name                                                                                                                                                             │
  │                                                                                                                                                                                                   │
  │    commit 9da51bb52dbb37cb2ff968679d847fe0f7522fef                                                                                                                                                │
- │    Author: JC Guerrero <JCystems@gMail.com>                                                                                                                                                       │
+ │    Author: JC Guerrero <REDACTED>                                                                                                                                                       │
  │                                                                                                                                                                                                   │
  │        test(clicks) (#110)                                                                                                                                                                        │
  │                                                                                                                                                                                                   │
  │    commit 91e5b5cefb2a5d5ba98904cf01e29165d0be4df5                                                                                                                                                │
- │    Author: JC Guerrero <JCystems@gMail.com>                                                                                                                                                       │
+ │    Author: JC Guerrero <REDACTED>                                                                                                                                                       │
  │                                                                                                                                                                                                   │
  │        refactor(run_pip-audit): use reusable (#109)                                                                                                                                               │
  │                                                                                                                                                                                                   │
  │    commit 220ae3863e02050ed5eb0a1ec0b83107cebf43c6                                                                                                                                                │
- │    Author: JCGuerrero <JCystems@gMail.com>                                                                                                                                                        │
+ │    Author: REDACTED <REDACTED>                                                                                                                                                        │
  │                                                                                                                                                                                                   │
  │        Revert "build(deps-dev): bump parcel from 2.14.4 to 2.15.0 (#108)"                                                                                                                         │
  │                                                                                                                                                                                                   │
@@ -141,7 +141,7 @@
  │        chore(release): 1.8.0 [skip ci]                                                                                                                                                            │
  │                                                                                                                                                                                                   │
  │    commit 35a90b6dd38cef92d1f314790fefc505f7478502                                                                                                                                                │
- │    Author: JC Guerrero <JCystems@gMail.com>                                                                                                                                                       │
+ │    Author: JC Guerrero <REDACTED>                                                                                                                                                       │
  │                                                                                                                                                                                                   │
  │        feat(nvm): install & use (#103)                                                                                                                                                            │
  │                                                                                                                                                                                                   │
