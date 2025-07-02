@@ -22,9 +22,10 @@ FROM node:23-slim AS release
 WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
-RUN npm run setup:Dockerfile:prd
+RUN npm install --production http-server
 # RUN npm ci # Only needed for node apps. This is a static app.
 
-FROM release AS webapp
-RUN ls -la dist
-CMD ["npm", "run", "start:dist"]
+FROM gcr.io/distroless/nodejs22-debian12 AS webapp
+WORKDIR /opt/app
+COPY --from=release /opt/app .
+CMD ["/opt/app/node_modules/.bin/http-server", "./dist", "--port", "8080"]
