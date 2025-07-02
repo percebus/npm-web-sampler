@@ -1,0 +1,188 @@
+ I will get the git changes from the last 2 months.
+ ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+ │ ✔  Shell git log --since="2 months ago" --pretty=format:"%h - %an, %ar : %s" (Get the git changes from the last 2 months.)                                                                        │
+ │                                                                                                                                                                                                   │
+ │    fatal: ambiguous argument 'months': unknown revision or path not in the working tree.                                                                                                          │
+ │    Use '--' to separate paths from revisions, like this:                                                                                                                                          │
+ │    'git <command> [<revision>...] -- [<file>...]'                                                                                                                                                 │
+ │                                                                                                                                                                                                   │
+ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ The last command failed. I'll try a different format for the date parameter.
+ ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+ │ ✔  Shell git log --since=2.months --pretty=format:"%h - %an, %ar : %s" (Get the git changes from the last 2 months using a different date format.)                                                │
+ │                                                                                                                                                                                                   │
+ │    fatal: ambiguous argument '%an,': unknown revision or path not in the working tree.                                                                                                            │
+ │    Use '--' to separate paths from revisions, like this:                                                                                                                                          │
+ │    'git <command> [<revision>...] -- [<file>...]'                                                                                                                                                 │
+ │                                                                                                                                                                                                   │
+ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ It seems like the date format is causing issues. I'll try another way.
+ ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+ │ ✔  Shell git log --since="60 days" --pretty=format:"%h - %an, %ar : %s" (Get the git changes from the last 60 days.)                                                                              │
+ │                                                                                                                                                                                                   │
+ │    fatal: ambiguous argument 'days"': unknown revision or path not in the working tree.                                                                                                           │
+ │    Use '--' to separate paths from revisions, like this:                                                                                                                                          │
+ │    'git <command> [<revision>...] -- [<file>...]'                                                                                                                                                 │
+ │                                                                                                                                                                                                   │
+ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ The quoting seems to be the issue. I will try again with a different quoting style which might be more robust on your system.
+ ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+ │ ✔  Shell git log --since='2 months ago' --pretty=format:'%h - %an, %ar : %s' (Get the git changes from the last 2 months, using single quotes to avoid shell parsing issues.)                     │
+ │                                                                                                                                                                                                   │
+ │    fatal: ambiguous argument 'months': unknown revision or path not in the working tree.                                                                                                          │
+ │    Use '--' to separate paths from revisions, like this:                                                                                                                                          │
+ │    'git <command> [<revision>...] -- [<file>...]'                                                                                                                                                 │
+ │                                                                                                                                                                                                   │
+ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ It appears the relative date expressions are not working. I'll switch to a specific date format, which should be more reliable.
+ ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+ │ ✔  Shell git log --since='2025-05-02' --pretty=format:'%h - %an, %ar : %s' (Get the git changes since May 2nd, 2025.)                                                                             │
+ │                                                                                                                                                                                                   │
+ │    fatal: ambiguous argument '%an,': unknown revision or path not in the working tree.                                                                                                            │
+ │    Use '--' to separate paths from revisions, like this:                                                                                                                                          │
+ │    'git <command> [<revision>...] -- [<file>...]'                                                                                                                                                 │
+ │                                                                                                                                                                                                   │
+ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ It seems the format string itself is causing problems on your system. I will try a simplified format without special characters to see if that works.
+ ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+ │ ✔  Shell git log --since='2025-05-02' --pretty=format:'%h %an %ar %s' (Get git changes with a simplified format string.)                                                                          │
+ │                                                                                                                                                                                                   │
+ │    fatal: ambiguous argument '%an': unknown revision or path not in the working tree.                                                                                                             │
+ │    Use '--' to separate paths from revisions, like this:                                                                                                                                          │
+ │    'git <command> [<revision>...] -- [<file>...]'                                                                                                                                                 │
+ │                                                                                                                                                                                                   │
+ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ This is very unusual. It seems the pretty=format option is not being interpreted correctly at all. I will try one last time, using a built-in format that is equivalent to what I was trying to build. This
+  avoids the problematic format string.
+ ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+ │ ✔  Shell git log --since='2025-05-02' --pretty=short (Get git changes using a built-in pretty format.)                                                                                            │
+ │                                                                                                                                                                                                   │
+ │    ... first 114 lines hidden ...                                                                                                                                                                 │
+ │        build(deps-dev): bump chromedriver from 136.0.0 to 136.0.2 (#112)                                                                                                                          │
+ │                                                                                                                                                                                                   │
+ │    commit 40caba6b7f329186f31c69a33f8640e078e5fc0e                                                                                                                                                │
+ │    Author: semantic-release-bot <semantic-release-bot@martynus.net>                                                                                                                               │
+ │                                                                                                                                                                                                   │
+ │        chore(release): 1.8.1 [skip ci]                                                                                                                                                            │
+ │                                                                                                                                                                                                   │
+ │    commit e8224a18679bbff6e1d7ca2d45c4794a3dcb5c27                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump lint-staged from 15.5.1 to 16.0.0 (#107)                                                                                                                             │
+ │                                                                                                                                                                                                   │
+ │    commit a70c00b37df348afea693034cdb276e8bfc219c1                                                                                                                                                │
+ │    Author: JCGuerrero <JCystems@gMail.com>                                                                                                                                                        │
+ │                                                                                                                                                                                                   │
+ │        fix(__tests__): Different name                                                                                                                                                             │
+ │                                                                                                                                                                                                   │
+ │    commit 9da51bb52dbb37cb2ff968679d847fe0f7522fef                                                                                                                                                │
+ │    Author: JC Guerrero <JCystems@gMail.com>                                                                                                                                                       │
+ │                                                                                                                                                                                                   │
+ │        test(clicks) (#110)                                                                                                                                                                        │
+ │                                                                                                                                                                                                   │
+ │    commit 91e5b5cefb2a5d5ba98904cf01e29165d0be4df5                                                                                                                                                │
+ │    Author: JC Guerrero <JCystems@gMail.com>                                                                                                                                                       │
+ │                                                                                                                                                                                                   │
+ │        refactor(run_pip-audit): use reusable (#109)                                                                                                                                               │
+ │                                                                                                                                                                                                   │
+ │    commit 220ae3863e02050ed5eb0a1ec0b83107cebf43c6                                                                                                                                                │
+ │    Author: JCGuerrero <JCystems@gMail.com>                                                                                                                                                        │
+ │                                                                                                                                                                                                   │
+ │        Revert "build(deps-dev): bump parcel from 2.14.4 to 2.15.0 (#108)"                                                                                                                         │
+ │                                                                                                                                                                                                   │
+ │    commit 287ada330c787ce2e98f3ac0dd9971f6e3334883                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump parcel from 2.14.4 to 2.15.0 (#108)                                                                                                                                  │
+ │                                                                                                                                                                                                   │
+ │    commit 931ac55021e69aacf92987ecadad4ff81e4318a5                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump testem from 3.15.2 to 3.16.0 (#106)                                                                                                                                  │
+ │                                                                                                                                                                                                   │
+ │    commit 0df657e5c9de11abe67ca99e5e29a7643c7499aa                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump eslint-config-prettier from 10.1.2 to 10.1.5 (#105)                                                                                                                  │
+ │                                                                                                                                                                                                   │
+ │    commit a90b13b79f165c6bdd52c80a4ca99a181e155898                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump @semantic-release/exec from 7.0.3 to 7.1.0 (#104)                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │    commit 7ddc894c01d0b37fd50c85afa6378bfff64b7c06                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump browserslist from 4.24.4 to 4.24.5 (#101)                                                                                                                            │
+ │                                                                                                                                                                                                   │
+ │    commit 1e165e12ad4b20071020509c98e64fda7e6b17a5                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump selenium-webdriver from 4.31.0 to 4.32.0 (#102)                                                                                                                      │
+ │                                                                                                                                                                                                   │
+ │    commit 9f8b23aa8530eeeb023df081b160412448066b6e                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps): bump bootstrap from 5.3.5 to 5.3.6 (#100)                                                                                                                                     │
+ │                                                                                                                                                                                                   │
+ │    commit 36044c1912e96cfd2ce45f76f36dcf716fe4c93e                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump mega-linter-runner from 8.6.0 to 8.7.0 (#99)                                                                                                                         │
+ │                                                                                                                                                                                                   │
+ │    commit 6dddb08f15576258850fb3a642ff9ad97dd3e038                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump chromedriver from 135.0.4 to 136.0.0 (#98)                                                                                                                           │
+ │                                                                                                                                                                                                   │
+ │    commit 90da519d8ab7fe7278c64df1d17f94c47ad132c4                                                                                                                                                │
+ │    Author: semantic-release-bot <semantic-release-bot@martynus.net>                                                                                                                               │
+ │                                                                                                                                                                                                   │
+ │        chore(release): 1.8.0 [skip ci]                                                                                                                                                            │
+ │                                                                                                                                                                                                   │
+ │    commit 35a90b6dd38cef92d1f314790fefc505f7478502                                                                                                                                                │
+ │    Author: JC Guerrero <JCystems@gMail.com>                                                                                                                                                       │
+ │                                                                                                                                                                                                   │
+ │        feat(nvm): install & use (#103)                                                                                                                                                            │
+ │                                                                                                                                                                                                   │
+ │    commit 9446cbdcb8f17c3225a04404d13ef16024b516e8                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump @semantic-release/github from 11.0.1 to 11.0.2 (#95)                                                                                                                 │
+ │                                                                                                                                                                                                   │
+ │    commit f13036d6896c15b919c2f0c842fd1dc0cd4f5388                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump mega-linter-runner from 8.5.0 to 8.6.0 (#96)                                                                                                                         │
+ │                                                                                                                                                                                                   │
+ │    commit 8c3f5a2ca2fed4dcdadc3515b46d4b1df56bce14                                                                                                                                                │
+ │    Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>                                                                                                                    │
+ │                                                                                                                                                                                                   │
+ │        build(deps-dev): bump chromedriver from 135.0.2 to 135.0.4 (#97)                                                                                                                           │
+ │                                                                                                                                                                                                   │
+ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+✦ Excellent, that worked. Here is a summary of the recent changes in the repository:
+
+
+  Over the last two months, there have been numerous updates, primarily focused on dependency management, feature additions, and bug fixes.
+
+
+  Key Changes:
+
+
+   * Dependency Updates: A significant number of commits are from dependabot, keeping project dependencies like lint-staged, chromedriver, parcel, selenium-webdriver, bootstrap, and various
+     @semantic-release packages up to date. There were also some reverts of dependency bumps, indicating potential compatibility issues that were addressed.
+   * Release Automation: semantic-release-bot has been active, automatically creating release commits and version bumps (e.g., v1.8.0, v1.9.0, v1.10.2).
+   * New Features:
+       * A feature for handling .env files was added.
+       * An "on click" event handler was added to src/app/script.js.
+       * GitHub Actions were configured to use CodeQL for security analysis.
+       * nvm (Node Version Manager) support was integrated to enforce a consistent Node.js version.
+   * Fixes & Refinements:
+       * A Playwright test was fixed to handle a production environment and to correctly dismiss an alert.
+       * A reusable workflow was implemented for run_pip-audit.
+       * A fix was applied related to dependabot's token usage.
+       * Minor documentation and code style adjustments were made to the README and CHANGELOG.
+   * Testing:
+       * New tests for click interactions were added.
+       * Some test names were adjusted for clarity.

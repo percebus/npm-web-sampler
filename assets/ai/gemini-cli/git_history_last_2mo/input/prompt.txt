@@ -1,0 +1,1 @@
+Give me a summary of all git changes of the last 2 months
