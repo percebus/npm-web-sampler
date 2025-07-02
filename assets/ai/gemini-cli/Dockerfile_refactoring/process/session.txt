@@ -1,0 +1,19 @@
+│  Agent powering down. Goodbye!
+│
+│  Interaction Summary
+│  Tool Calls:                 32 ( ✔ 32 ✖ 0 )
+│  Success Rate:               100.0%
+│  User Agreement:             100.0% (3 reviewed)
+│
+│  Performance
+│  Wall Time:                  54m 51s
+│  Agent Active:               31m 2s
+│    » API Time:               10m 13s (33.0%)
+│    » Tool Time:              20m 48s (67.0%)
+│
+│
+│  Model Usage                  Reqs   Input Tokens  Output Tokens
+│  ───────────────────────────────────────────────────────────────
+│  gemini-2.5-pro                 40      5,659,415         11,038
+│
+│  Savings Highlight: 2,911,877 (51.5%) of input tokens were served from the cache, reducing costs.
