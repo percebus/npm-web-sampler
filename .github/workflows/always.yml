@@ -185,7 +185,7 @@ jobs:
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   docker_build_next__matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main'
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
