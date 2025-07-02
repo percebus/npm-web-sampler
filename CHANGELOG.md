@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.11.0](https://github.com/percebus/npm-web-sampler/compare/v1.10.2...v1.11.0) (2025-07-02)
+
+### Features
+
+- **gemini-cli:** Run exp ([#140](https://github.com/percebus/npm-web-sampler/issues/140)) ([5b17a91](https://github.com/percebus/npm-web-sampler/commit/5b17a918ebec14b9baed28a0000dfd49df3dd0de))
+
 ## [1.10.2](https://github.com/percebus/npm-web-sampler/compare/v1.10.1...v1.10.2) (2025-06-22)
 
 ### Bug Fixes
