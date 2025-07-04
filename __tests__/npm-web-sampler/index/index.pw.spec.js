@@ -180,9 +180,10 @@ describe("index.html", () => {
           // When I extract the HTML content of the page filtered to remove scripts and styles
           // Then I should receive clean HTML without JavaScript or CSS code
           describe("HTML Content Extraction", () => {
-            it("should extract clean HTML content without scripts and styles", async () => {
+            let cleanHtml
+            beforeEach(async () => {
               // Extract HTML content and remove scripts and styles
-              const cleanHtml = await page.evaluate(() => {
+              cleanHtml = await page.evaluate(() => {
                 // Clone the document to avoid modifying the original
                 const docClone = document.cloneNode(true)
 
@@ -208,18 +209,9 @@ describe("index.html", () => {
 
                 return docClone.documentElement.outerHTML
               })
+            })
 
-              // Verify clean HTML doesn't contain scripts or styles
-              expect(cleanHtml).not.toContain("<script")
-              expect(cleanHtml).not.toContain("<style")
-              expect(cleanHtml).not.toContain('rel="stylesheet"')
-              expect(cleanHtml).not.toContain("style=")
-
-              // Verify it still contains basic HTML structure
-              expect(cleanHtml).toContain("<html")
-              expect(cleanHtml).toContain("<body")
-              expect(cleanHtml).toContain("<head")
-
+            afterEach(() => {
               // Optionally save to file for inspection
               const fs = require("fs")
               const path = require("path")
@@ -233,6 +225,19 @@ describe("index.html", () => {
 
               fs.writeFileSync(outputPath, cleanHtml)
             })
+
+            it("should extract clean HTML content without scripts and styles", async () => {
+              // Verify clean HTML doesn't contain scripts or styles
+              expect(cleanHtml).not.toContain("<script")
+              expect(cleanHtml).not.toContain("<style")
+              expect(cleanHtml).not.toContain('rel="stylesheet"')
+              expect(cleanHtml).not.toContain("style=")
+
+              // Verify it still contains basic HTML structure
+              expect(cleanHtml).toContain("<html")
+              expect(cleanHtml).toContain("<body")
+              expect(cleanHtml).toContain("<head")
+            })
           })
 
           // Prompt:
@@ -240,9 +245,10 @@ describe("index.html", () => {
           // When I extract all visible text from the page
           // Then I should see the article content in plain text without hidden elements
           describe("Visible Text Extraction", () => {
-            it("should extract all visible text from the page", async () => {
+            let visibleText
+            beforeEach(async () => {
               // Extract all visible text content
-              const visibleText = await page.evaluate(() => {
+              visibleText = await page.evaluate(() => {
                 // Function to check if element is visible
                 const isVisible = (element) => {
                   const style = window.getComputedStyle(element)
@@ -259,6 +265,7 @@ describe("index.html", () => {
                 const getVisibleTextNodes = (node) => {
                   let textContent = ""
 
+                  // eslint-disable-next-line no-undef
                   if (node.nodeType === Node.TEXT_NODE) {
                     // Check if parent element is visible
                     const parent = node.parentElement
@@ -268,7 +275,12 @@ describe("index.html", () => {
                         textContent += text + " "
                       }
                     }
-                  } else if (node.nodeType === Node.ELEMENT_NODE) {
+
+                    return textContent
+                  }
+
+                  // eslint-disable-next-line no-undef
+                  if (node.nodeType === Node.ELEMENT_NODE) {
                     // Skip script, style, and other non-visible elements
                     const tagName = node.tagName.toLowerCase()
                     if (
@@ -292,7 +304,24 @@ describe("index.html", () => {
                 // Clean up extra whitespace
                 return bodyText.replace(/\s+/g, " ").trim()
               })
+            })
 
+            afterEach(() => {
+              // Save visible text to file for inspection
+              const fs = require("fs")
+              const path = require("path")
+              const outputPath = "assets/scraping/visible-content.txt"
+
+              // Create directory if it doesn't exist
+              const dir = path.dirname(outputPath)
+              if (!fs.existsSync(dir)) {
+                fs.mkdirSync(dir, { recursive: true })
+              }
+
+              fs.writeFileSync(outputPath, visibleText)
+            })
+
+            it("should extract all visible text from the page", async () => {
               // Verify we got some text content
               expect(visibleText).toBeTruthy()
               expect(visibleText.length).toBeGreaterThan(0)
@@ -306,19 +335,10 @@ describe("index.html", () => {
 
               // Verify it contains expected content (assuming Lorem Ipsum is visible)
               expect(visibleText).toContain("Lorem Ipsum")
+              expect(visibleText).toContain("This is a sample HTML")
 
-              // Save visible text to file for inspection
-              const fs = require("fs")
-              const path = require("path")
-              const outputPath = "assets/scraping/visible-content.txt"
-
-              // Create directory if it doesn't exist
-              const dir = path.dirname(outputPath)
-              if (!fs.existsSync(dir)) {
-                fs.mkdirSync(dir, { recursive: true })
-              }
-
-              fs.writeFileSync(outputPath, visibleText)
+              // hidden text
+              expect(visibleText).not.toContain("secret")
             })
           })
         })
