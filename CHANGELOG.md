@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.12.0](https://github.com/percebus/npm-web-sampler/compare/v1.11.1...v1.12.0) (2025-07-04)
+
+### Features
+
+- **playwright-mcp-server:** ai experiments ([#143](https://github.com/percebus/npm-web-sampler/issues/143)) ([60ba9cc](https://github.com/percebus/npm-web-sampler/commit/60ba9cc42dacf6cd7a951f8ea302e19dd1b8803f))
+
 ## [1.11.1](https://github.com/percebus/npm-web-sampler/compare/v1.11.0...v1.11.1) (2025-07-02)
 
 ### Bug Fixes
