@@ -124,7 +124,7 @@
     "verify": "npm test && npm run dist",
     "verify:docker": "npm run docker:this:build:test",
     "browser": "open-cli http://127.0.0.1:8080",
-    "prestart": "npm run dist",
+    "FIXME_prestart": "npm run dist",
     "start": "npm run parcel",
     "FIXME_prestart:http-server": "npm run dist",
     "start:http-server": "npm run http-server:dist",
@@ -155,6 +155,7 @@
   },
   "homepage": "https://github.com/percebus/npm-web-sampler#readme",
   "devDependencies": {
+    "@executeautomation/playwright-mcp-server": "^1.0.6",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",

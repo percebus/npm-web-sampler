@@ -1,5 +1,5 @@
 describe("index.html", () => {
-  const { chromium } = require("playwright")
+  const { chromium, firefox, webkit } = require("playwright")
   const pkg = require("../../../package.json")
 
   const config = require("../config")
@@ -149,6 +149,34 @@ describe("index.html", () => {
               await link.elementHandle()
             )
           }
+        })
+      })
+    })
+  })
+
+  describe("Browser Screenshots", () => {
+    let browser
+    let page
+
+    afterEach(async () => {
+      if (browser) {
+        await browser.close()
+      }
+    })
+
+    const browsers = {
+      FireFox: firefox,
+      // WebKit: webkit,  // Works only on a Mac
+    }
+
+    Object.entries(browsers).forEach(([browserName, browserModule]) => {
+      describe(browserName, () => {
+        it(`should take a screenshot with ${browserName}`, async () => {
+          browser = await browserModule.launch()
+          const context = await browser.newContext()
+          page = await context.newPage()
+          await page.goto("http://localhost:1234")
+          await page.screenshot({ path: `assets/img/screenshots/${browserName}/example.png` })
         })
       })
     })
