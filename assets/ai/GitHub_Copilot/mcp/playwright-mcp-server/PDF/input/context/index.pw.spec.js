@@ -156,7 +156,7 @@ describe("index.html", () => {
 
   describe("Browser Screenshots", () => {
     const browsers = {
-      FireFox: firefox,
+      FireFox: firefox
       // WebKit: webkit,  // Works only on a Mac
     }
 
@@ -167,7 +167,9 @@ describe("index.html", () => {
           const context = await browser.newContext()
           page = await context.newPage()
           await page.goto("http://localhost:1234")
-          await page.screenshot({ path: `assets/img/screenshots/${browserName}/example.png` })
+          await page.screenshot({
+            path: `assets/img/screenshots/${browserName}/example.png`
+          })
         })
       })
     })
