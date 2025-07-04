@@ -21,7 +21,7 @@ FROM node:24-slim AS release
 WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
-RUN npm install --production http-server
+RUN npm run setup:Dockerfile:prd
 
 FROM gcr.io/distroless/nodejs24-debian12 AS webapp
 WORKDIR /opt/app

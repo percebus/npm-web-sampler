@@ -4,7 +4,13 @@ module.exports = {
   frisby: config.frisby,
   environment: "production", // what was used when built and deployed
   host: {
-    protocols: ["http", "https"],
-    uri: "percebus.GitHub.IO/npm-web-sampler"
+    // parcel
+    // npm start
+    protocols: ["http"],
+    uri: "localhost:1234"
+
+    // percebus.GitHub.IO
+    // protocols: ["http", "https"],
+    // uri: "percebus.GitHub.IO/npm-web-sampler"
   }
 }
