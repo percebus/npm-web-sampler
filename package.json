@@ -8,7 +8,7 @@
   "scripts": {
     "npm:upgrade": "npm install --location=global --update npm",
     "pre_npm:install:global": "npm run npm:upgrade",
-    "_npm:install:global": "npm install --location=global --force",
+    "_npm:install:global": "npm install --location=global",
     "npm:install:global:all": "npm install --location=global yarn bower grunt-cli http-server open-cli @google/gemini-cli",
     "npm:install:global:ci": "npm install --location=global  --force bower grunt-cli",
     "npm:install:global:Dockerfile": "npm run _npm:install:global -- --force yarn bower grunt-cli",
