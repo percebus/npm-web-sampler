@@ -29,6 +29,6 @@ FILEIO_REPORTER: false
 # Uncomment if you want MegaLinter to detect errors but not block CI to pass
 # DISABLE_ERRORS: true
 
-FILTER_REGEX_EXCLUDE: (assets/ai/)
+FILTER_REGEX_EXCLUDE: (assets/ai|assets/scraping)
 MARKDOWN_MARKDOWNLINT_FILTER_REGEX_EXCLUDE: (CHANGELOG.md|.github/PULL_REQUEST_TEMPLATE.md)
-YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (.*/helm/.*\.(yml|yaml))
+YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (helm/.*\.(yml|yaml))
