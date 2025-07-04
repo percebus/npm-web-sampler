@@ -6,11 +6,12 @@ module.exports = {
   host: {
     // parcel
     // npm start
-    protocols: ["http"],
-    uri: "localhost:1234"
+    // TODO move to .env or something
+    // protocols: ["http"],
+    // uri: "localhost:1234"
 
     // percebus.GitHub.IO
-    // protocols: ["http", "https"],
-    // uri: "percebus.GitHub.IO/npm-web-sampler"
+    protocols: ["http", "https"],
+    uri: "percebus.GitHub.IO/npm-web-sampler"
   }
 }
