@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.12.1](https://github.com/percebus/npm-web-sampler/compare/v1.12.0...v1.12.1) (2025-07-04)
+
+### Bug Fixes
+
+- **Dockerfile:** Use distroless ([#144](https://github.com/percebus/npm-web-sampler/issues/144)) ([6d20b3b](https://github.com/percebus/npm-web-sampler/commit/6d20b3b304f22d67b9844fee67817ee7ebf48c51)), closes [#134](https://github.com/percebus/npm-web-sampler/issues/134) [#145](https://github.com/percebus/npm-web-sampler/issues/145)
+
 # [1.12.0](https://github.com/percebus/npm-web-sampler/compare/v1.11.1...v1.12.0) (2025-07-04)
 
 ### Features
