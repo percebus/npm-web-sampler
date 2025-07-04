@@ -17,6 +17,6 @@
     "build/**",
     "dist/**",
     "assets/ai/**",
-    "assets/scraping/**",
+    "assets/scraping/**"
   ]
 }
