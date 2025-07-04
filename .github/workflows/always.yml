@@ -224,6 +224,7 @@ jobs:
         with:
           dockerfile: Dockerfile.next
           target: ${{ matrix.target }}
+          scan-image: ${{ matrix.scan-image }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   codeQL:
