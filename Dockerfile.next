@@ -16,9 +16,8 @@ FROM dev AS dist
 RUN npm run dist
 RUN ls -la dist
 
-# FROM project AS release # GBs
-# node:24-slim # MBs
-FROM node:24-slim AS release
+
+FROM node:24-alpine AS release
 WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
