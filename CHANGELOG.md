@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.12.2](https://github.com/percebus/npm-web-sampler/compare/v1.12.1...v1.12.2) (2025-07-04)
+
+### Bug Fixes
+
+- **.github/worklfows:** Forgot the scan-image param ([73fbfa3](https://github.com/percebus/npm-web-sampler/commit/73fbfa3ce67d24707b22bdfe9f34b7b4267e751c))
+
 ## [1.12.1](https://github.com/percebus/npm-web-sampler/compare/v1.12.0...v1.12.1) (2025-07-04)
 
 ### Bug Fixes
