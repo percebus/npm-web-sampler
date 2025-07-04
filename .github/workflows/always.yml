@@ -206,7 +206,7 @@ jobs:
           # final release
           # - release
           - target: webapp
-            scan-image: true
+            scan-image: ${{ github.ref == 'refs/heads/main' }}
 
     runs-on: ubuntu-latest
     steps:
