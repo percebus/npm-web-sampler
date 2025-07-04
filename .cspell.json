@@ -8,6 +8,8 @@
     "**/.git/**",
     "**/.pnpm-lock.json",
     "**__tests__/**",
+    "**/assets/ai/**",
+    "**/assets/scraping/**",
     "**megalinter**",
     "**cspell**",
     "package*.json",
