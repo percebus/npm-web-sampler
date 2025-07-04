@@ -157,15 +157,17 @@ jobs:
     strategy:
       max-parallel: 10
       matrix:
-        target:
+        include:
           # - base
           # - project
           # - dev
-          - tested
+          - target: tested
+            scan-image: false
 
           # final release
           # - release
-          - webapp
+          - target: webapp
+            scan-image: true
 
     runs-on: ubuntu-latest
     steps:
@@ -194,15 +196,17 @@ jobs:
     strategy:
       max-parallel: 10
       matrix:
-        target:
+        include:
           # - base
           # - project
           # - dev
-          - tested
+          - target: tested
+            scan-image: false
 
           # final release
           # - release
-          - webapp
+          - target: webapp
+            scan-image: true
 
     runs-on: ubuntu-latest
     steps:
