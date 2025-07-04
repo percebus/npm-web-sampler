@@ -16,15 +16,16 @@ FROM dev AS dist
 RUN npm run dist
 RUN ls -la dist
 
-# FROM project AS release # 2.1GB
-# node:22-slim # 312MBs
-FROM node:22-slim AS release
+
+FROM node:22-alpine AS release
 WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
 RUN npm run setup:Dockerfile:prd
-# RUN npm ci # Only needed for node apps. This is a static app.
 
 FROM release AS webapp
-RUN ls -la dist
-CMD ["npm", "run", "start:dist"]
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nodejs -u 1001
+USER nodejs
+EXPOSE 8080
+CMD ["/opt/app/node_modules/.bin/http-server", "./dist", "--port", "8080"]
