@@ -28,4 +28,5 @@ FROM gcr.io/distroless/nodejs22-debian12 AS webapp
 WORKDIR /opt/app
 COPY --from=release /opt/app .
 USER nonroot
-CMD ["npm", "run", "start:http-server"]
+EXPOSE 8080
+CMD ["/opt/app/node_modules/.bin/http-server", "./dist", "--port", "8080"]
