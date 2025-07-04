@@ -1,5 +1,4 @@
-FROM node:24-slim AS base
-RUN apt-get update && apt-get install -y python3 python3-pip python3.11-venv
+FROM nikolaik/python-nodejs:python3.12-nodejs24 AS base
 
 FROM base AS project
 WORKDIR /usr/project
@@ -17,6 +16,8 @@ FROM dev AS dist
 RUN npm run dist
 RUN ls -la dist
 
+# FROM project AS release # GBs
+# node:24-slim # MBs
 FROM node:24-slim AS release
 WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
@@ -27,4 +28,4 @@ FROM gcr.io/distroless/nodejs24-debian12 AS webapp
 WORKDIR /opt/app
 COPY --from=release /opt/app .
 USER nonroot
-CMD ["/opt/app/node_modules/.bin/http-server", "./dist", "--port", "8080"]
+CMD ["npm", "run", "start:http-server"]
