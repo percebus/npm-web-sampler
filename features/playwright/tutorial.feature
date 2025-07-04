@@ -12,6 +12,13 @@ When I save the current page as a PDF in "assets/PDF/screenshot.pdf" folder with
 Then I should see confirmation that the PDF was saved
 
 # SRC: https://executeautomation.github.io/mcp-playwright/docs/playwright-web/Examples#extracting-page-content
+# You can extract visible text content from the page:
+Scenario: Extracting Visible Text Content
+Given I navigate to website "http://localhost:1234"
+When I extract all visible text from the page
+Then I should see the article content in plain text without hidden elements
+
+# You can also filter HTML content for easier analysis:
 Scenario: Extracting Clean HTML Content
 Given I navigate to website "http://localhost:1234"
 When I extract the HTML content of the page filtered to remove scripts and styles

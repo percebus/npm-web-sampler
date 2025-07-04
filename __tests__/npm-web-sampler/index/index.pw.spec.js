@@ -165,7 +165,7 @@ describe("index.html", () => {
         describe("PDF Generation", () => {
           it("downloads the current page as a PDF", async () => {
             // Save as PDF
-            const pdfPath = "assets/PDF/screenshot.pdf"
+            const pdfPath = "assets/scraping/screenshot.pdf"
             await page.pdf({ path: pdfPath, format: "A4" })
 
             // Verify PDF was created
@@ -174,71 +174,157 @@ describe("index.html", () => {
           })
         })
 
-        // Prompt:
-        // Given I navigate to website "http://localhost:1234"
-        // When I extract the HTML content of the page filtered to remove scripts and styles
-        // Then I should receive clean HTML without JavaScript or CSS code
-        describe("HTML Content Extraction", () => {
-          it("should extract clean HTML content without scripts and styles", async () => {
-            // Extract HTML content and remove scripts and styles
-            const cleanHtml = await page.evaluate(() => {
-              // Clone the document to avoid modifying the original
-              const docClone = document.cloneNode(true)
+        describe("Extracting Page Content", () => {
 
-              // Remove all script tags
-              const scripts = docClone.querySelectorAll("script")
-              scripts.forEach((script) => script.remove())
+            // Prompt:
+            // Given I navigate to website "http://localhost:1234"
+            // When I extract the HTML content of the page filtered to remove scripts and styles
+            // Then I should receive clean HTML without JavaScript or CSS code
+            describe("HTML Content Extraction", () => {
+              it("should extract clean HTML content without scripts and styles", async () => {
+                // Extract HTML content and remove scripts and styles
+                const cleanHtml = await page.evaluate(() => {
+                  // Clone the document to avoid modifying the original
+                  const docClone = document.cloneNode(true)
 
-              // Remove all style tags
-              const styles = docClone.querySelectorAll("style")
-              styles.forEach((style) => style.remove())
+                  // Remove all script tags
+                  const scripts = docClone.querySelectorAll("script")
+                  scripts.forEach((script) => script.remove())
 
-              // Remove all link tags with rel="stylesheet"
-              const stylesheets = docClone.querySelectorAll(
-                'link[rel="stylesheet"]'
-              )
-              stylesheets.forEach((link) => link.remove())
+                  // Remove all style tags
+                  const styles = docClone.querySelectorAll("style")
+                  styles.forEach((style) => style.remove())
 
-              // Remove inline style attributes
-              const elementsWithStyle = docClone.querySelectorAll("*[style]")
-              elementsWithStyle.forEach((element) =>
-                element.removeAttribute("style")
-              )
+                  // Remove all link tags with rel="stylesheet"
+                  const stylesheets = docClone.querySelectorAll(
+                    'link[rel="stylesheet"]'
+                  )
+                  stylesheets.forEach((link) => link.remove())
 
-              return docClone.documentElement.outerHTML
+                  // Remove inline style attributes
+                  const elementsWithStyle = docClone.querySelectorAll("*[style]")
+                  elementsWithStyle.forEach((element) =>
+                    element.removeAttribute("style")
+                  )
+
+                  return docClone.documentElement.outerHTML
+                })
+
+                // Verify clean HTML doesn't contain scripts or styles
+                expect(cleanHtml).not.toContain("<script")
+                expect(cleanHtml).not.toContain("<style")
+                expect(cleanHtml).not.toContain('rel="stylesheet"')
+                expect(cleanHtml).not.toContain("style=")
+
+                // Verify it still contains basic HTML structure
+                expect(cleanHtml).toContain("<html")
+                expect(cleanHtml).toContain("<body")
+                expect(cleanHtml).toContain("<head")
+
+                // Optionally save to file for inspection
+                const fs = require("fs")
+                const path = require("path")
+                const outputPath = "assets/scraping/scrubbed.html"
+
+                // Create directory if it doesn't exist
+                const dir = path.dirname(outputPath)
+                if (!fs.existsSync(dir)) {
+                  fs.mkdirSync(dir, { recursive: true })
+                }
+
+                fs.writeFileSync(outputPath, cleanHtml)
+              })
             })
 
-            // Verify clean HTML doesn't contain scripts or styles
-            expect(cleanHtml).not.toContain("<script")
-            expect(cleanHtml).not.toContain("<style")
-            expect(cleanHtml).not.toContain('rel="stylesheet"')
-            expect(cleanHtml).not.toContain("style=")
+            // Prompt:
+            // Given I navigate to website "http://localhost:1234"
+            // When I extract all visible text from the page
+            // Then I should see the article content in plain text without hidden elements
+            describe("Visible Text Extraction", () => {
+              it("should extract all visible text from the page", async () => {
+                // Extract all visible text content
+                const visibleText = await page.evaluate(() => {
+                  // Function to check if element is visible
+                  const isVisible = (element) => {
+                    const style = window.getComputedStyle(element)
+                    return (
+                      style.display !== "none" &&
+                      style.visibility !== "hidden" &&
+                      style.opacity !== "0" &&
+                      element.offsetWidth > 0 &&
+                      element.offsetHeight > 0
+                    )
+                  }
 
-            // Verify it still contains basic HTML structure
-            expect(cleanHtml).toContain("<html")
-            expect(cleanHtml).toContain("<body")
-            expect(cleanHtml).toContain("<head")
+                  // Get all text nodes that are visible
+                  const getVisibleTextNodes = (node) => {
+                    let textContent = ""
 
-            // Log confirmation
-            console.log("Clean HTML extracted successfully")
-            console.log(`Clean HTML length: ${cleanHtml.length} characters`)
+                    if (node.nodeType === Node.TEXT_NODE) {
+                      // Check if parent element is visible
+                      const parent = node.parentElement
+                      if (parent && isVisible(parent)) {
+                        const text = node.textContent.trim()
+                        if (text) {
+                          textContent += text + " "
+                        }
+                      }
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                      // Skip script, style, and other non-visible elements
+                      const tagName = node.tagName.toLowerCase()
+                      if (
+                        tagName !== "script" &&
+                        tagName !== "style" &&
+                        tagName !== "noscript" &&
+                        isVisible(node)
+                      ) {
+                        for (const child of node.childNodes) {
+                          textContent += getVisibleTextNodes(child)
+                        }
+                      }
+                    }
 
-            // Optionally save to file for inspection
-            const fs = require("fs")
-            const path = require("path")
-            const outputPath = "assets/HTML/scrubbed.html"
+                    return textContent
+                  }
 
-            // Create directory if it doesn't exist
-            const dir = path.dirname(outputPath)
-            if (!fs.existsSync(dir)) {
-              fs.mkdirSync(dir, { recursive: true })
-            }
+                  // Start from body to avoid head content
+                  const bodyText = getVisibleTextNodes(document.body)
 
-            fs.writeFileSync(outputPath, cleanHtml)
-            console.log(`Clean HTML saved to: ${outputPath}`)
+                  // Clean up extra whitespace
+                  return bodyText.replace(/\s+/g, " ").trim()
+                })
+
+                // Verify we got some text content
+                expect(visibleText).toBeTruthy()
+                expect(visibleText.length).toBeGreaterThan(0)
+
+                // Verify it doesn't contain script or style content
+                expect(visibleText).not.toContain("function")
+                expect(visibleText).not.toContain("var ")
+                expect(visibleText).not.toContain("const ")
+                expect(visibleText).not.toContain("color:")
+                expect(visibleText).not.toContain("font-size:")
+
+                // Verify it contains expected content (assuming Lorem Ipsum is visible)
+                expect(visibleText).toContain("Lorem Ipsum")
+
+                // Save visible text to file for inspection
+                const fs = require("fs")
+                const path = require("path")
+                const outputPath = "assets/scraping/visible-content.txt"
+
+                // Create directory if it doesn't exist
+                const dir = path.dirname(outputPath)
+                if (!fs.existsSync(dir)) {
+                  fs.mkdirSync(dir, { recursive: true })
+                }
+
+                fs.writeFileSync(outputPath, visibleText)
+              })
+            })
           })
         })
-      })
+
 
       // Prompt:
       // Given I navigate to website "http://localhost:1234" using the "firefox" browser
@@ -262,7 +348,7 @@ describe("index.html", () => {
             it(`takes a screenshot with ${browserName}`, async () => {
               await page.goto(url)
               await page.screenshot({
-                path: `assets/img/screenshots/${browserName}/example.png`
+                path: `assets/scraping/screenshots/${browserName}/example.png`
               })
             })
           })
