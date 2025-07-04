@@ -76,7 +76,7 @@
     "jest:ci:rest:npm-web-sampler": "npm run jest:ci:rest -- --rootDir=__tests__/npm-web-sampler",
     "jest:ci:rest:google": "npm run jest:ci:rest -- --rootDir=__tests__/com/google",
     "jest:ci:rest:HTTPbin": "npm run jest:ci:rest -- --rootDir=__tests__/org/HTTPbin",
-    "jest:playwright": "jest --detectOpenHandles --forceExit --testTimeout=60000 pw.spec.js",
+    "jest:playwright": "jest --detectOpenHandles --forceExit --testTimeout=60000 --rootDir=__tests__/ pw.spec.js",
     "jest:selenium": "jest --verbose --runInBand --detectOpenHandles --forceExit --testTimeout=60000 se.spec.js",
     "testem:ci": "testem ci",
     "testem:ci:dot": "npm run testem:ci -- --reporter dot",
