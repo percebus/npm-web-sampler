@@ -11,7 +11,7 @@
     "_npm:install:global": "npm install --location=global",
     "npm:install:global:all": "npm install --location=global yarn bower grunt-cli http-server open-cli @google/gemini-cli",
     "npm:install:global:ci": "npm install --location=global --force bower grunt-cli",
-    "npm:install:global:Dockerfile": "npm run _npm:install:global -- yarn bower grunt-cli",
+    "npm:install:global:Dockerfile": "npm run _npm:install:global -- bower grunt-cli",
     "playwright:install": "playwright install",
     "scripts:prepare": "bash repositories/commons/scripts/prepare.ba.sh",
     "bower:update": "bower update --allow-root",
