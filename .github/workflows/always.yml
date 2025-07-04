@@ -201,7 +201,7 @@ jobs:
           # - project
           # - dev
           - target: tested
-            scan-image: false
+            scan-image: 'false'
 
           # final release
           # - release
