@@ -24,9 +24,9 @@ COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
 RUN npm run setup:Dockerfile:prd
 
-FROM gcr.io/distroless/nodejs22-debian12 AS webapp
-WORKDIR /opt/app
-COPY --from=release /opt/app .
-USER nonroot
+FROM release AS webapp
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nodejs -u 1001
+USER nodejs
 EXPOSE 8080
 CMD ["/opt/app/node_modules/.bin/http-server", "./dist", "--port", "8080"]
