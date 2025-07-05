@@ -152,7 +152,7 @@ jobs:
 
   docker_build__matrix:
     name: docker build --target
-    needs: docker_compose
+    # needs: docker_compose  # TODO
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -167,7 +167,7 @@ jobs:
           # final release
           # - release
           - target: webapp
-            scan-image: true
+            scan-image: ${{ github.ref == 'refs/heads/main' }}
 
     runs-on: ubuntu-latest
     steps:
@@ -184,6 +184,7 @@ jobs:
       - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
         with:
           target: ${{ matrix.target }}
+          scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   docker_build_next__matrix:
@@ -224,7 +225,7 @@ jobs:
         with:
           dockerfile: Dockerfile.next
           target: ${{ matrix.target }}
-          scan-image: ${{ matrix.scan-image }}
+          scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   codeQL:
