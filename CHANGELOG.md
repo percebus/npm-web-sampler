@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.12.3](https://github.com/percebus/npm-web-sampler/compare/v1.12.2...v1.12.3) (2025-07-05)
+
+### Bug Fixes
+
+- **scan-image:** Pass string ([#146](https://github.com/percebus/npm-web-sampler/issues/146)) ([f39c04f](https://github.com/percebus/npm-web-sampler/commit/f39c04f53cc96a067c32a4b03c40e205f1f2bdca))
+
 ## [1.12.2](https://github.com/percebus/npm-web-sampler/compare/v1.12.1...v1.12.2) (2025-07-04)
 
 ### Bug Fixes
