@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [1.12.4](https://github.com/percebus/npm-web-sampler/compare/v1.12.3...v1.12.4) (2025-07-20)
+
+### Bug Fixes
+
+- **github-actions-npm:** Broken references ([#150](https://github.com/percebus/npm-web-sampler/issues/150)) ([e92e96a](https://github.com/percebus/npm-web-sampler/commit/e92e96a05343c136100e4c246247875398a0c539))
+
 ## [1.12.3](https://github.com/percebus/npm-web-sampler/compare/v1.12.2...v1.12.3) (2025-07-05)
 
 ### Bug Fixes
