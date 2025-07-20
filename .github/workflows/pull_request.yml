@@ -8,6 +8,7 @@ name: Pull Request
 on:
   pull_request:
   workflow_call: # SRC: https://docs.github.com/en/actions/using-workflows/reusing-workflows
+
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
@@ -39,7 +40,7 @@ jobs:
       - uses: percebus/github-actions-npm/.github/actions/install@main
 
       - name: npm audit
-        run: npm audit
+        run: npm audit --omit=dev
         continue-on-error: true
 
   pip-audit:
