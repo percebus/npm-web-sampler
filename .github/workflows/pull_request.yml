@@ -28,6 +28,9 @@ jobs:
 
   npm_audit:
     uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
+    with:
+      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
     # name: npm audit
     # runs-on: ubuntu-latest
     # steps:
