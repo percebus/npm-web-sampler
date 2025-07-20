@@ -29,7 +29,7 @@ jobs:
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+      - uses: percebus/github-actions-npm/.github/actions/install@main
 
       # prettier
       - name: npm run lint:misc
@@ -105,7 +105,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+      - uses: percebus/github-actions-npm/.github/actions/install@main
         with:
           ls_options: ""
 
@@ -126,7 +126,7 @@ jobs:
     if: false # FIXME not working
     name: "test'em"
     needs: verify
-    uses: percebus/github-actions-npm/.github/workflows/npm_run_script.yml@main
+    uses: percebus/github-actions-npm/.github/workflows/run_script.yml@main
     with:
       script: testem:ci:dot
 
@@ -313,7 +313,7 @@ jobs:
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+      - uses: percebus/github-actions-npm/.github/actions/install@main
 
       - name: npm run jest:ci:rest:npm-web-sampler
         run: npm run jest:ci:rest:npm-web-sampler
@@ -338,7 +338,7 @@ jobs:
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+      - uses: percebus/github-actions-npm/.github/actions/install@main
 
       - name: npm run jest:playwright
         run: |

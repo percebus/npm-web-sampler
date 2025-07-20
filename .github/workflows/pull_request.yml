@@ -22,22 +22,25 @@ env:
 jobs:
   dependency-review:
     uses: percebus/github-actions-common/.github/workflows/dependency-review.yml@main
+    permissions:
+      contents: read
+      pull-requests: read
 
   npm_audit:
-    # uses: percebus/github-actions-npm/.github/workflows/npm_audit.yml@main // FIXME
-    name: npm audit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+    uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
+    # name: npm audit
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - uses: percebus/github-actions-common/.github/actions/checkout@main
+    #     with:
+    #       ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/github-actions-node/.github/actions/setup@main
-      - uses: percebus/github-actions-npm/.github/actions/npm_install@main
+    #   - uses: percebus/github-actions-node/.github/actions/setup@main
+    #   - uses: percebus/github-actions-npm/.github/actions/install@main
 
-      - name: npm audit
-        run: npm audit
-        continue-on-error: true
+    #   - name: npm audit
+    #     run: npm audit
+    #     continue-on-error: true
 
   pip-audit:
     name: pip-audit
