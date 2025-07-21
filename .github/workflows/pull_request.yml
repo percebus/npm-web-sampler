@@ -44,6 +44,6 @@ jobs:
         continue-on-error: true
 
   pip-audit:
-    uses: percebus/github-actions-pipx/.github/actions/run_pip-audit.yml@main
+    uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit.yml@main
     with:
       audit-requirements-file: requirements.release.txt
