@@ -13,12 +13,12 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
-
 env:
   # Disable HUSKY in CI
   HUSKY: 0
+
+permissions:
+  contents: read
 
 jobs:
   dependency-review:

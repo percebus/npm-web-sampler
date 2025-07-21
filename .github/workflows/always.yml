@@ -20,6 +20,9 @@ env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
   IMAGE_TAG_SUFFIX: latest
 
+permissions:
+  contents: read
+
 jobs:
   verify:
     name: Verify
