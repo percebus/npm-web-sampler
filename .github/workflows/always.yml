@@ -20,9 +20,8 @@ env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
   IMAGE_TAG_SUFFIX: latest
 
-# TODO
-# permissions:
-#   contents: read
+permissions:
+  contents: read
 
 jobs:
   verify:
@@ -255,19 +254,15 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - name: setup CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: ${{ matrix.language }}
-
       - name: dist.zip
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
-      - name: CodeQL
-        uses: github/codeql-action/analyze@v3
+      - uses: percebus/github-actions-compliance/.github/actions/codeql_analyze@main
+        with:
+          language: ${{ matrix.language }}
 
   deploy-pages:
     if: github.ref == 'refs/heads/main'
