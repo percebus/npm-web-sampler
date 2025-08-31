@@ -190,7 +190,7 @@ jobs:
           npm run npm:install:global:ci
           npm run bower:install
 
-      - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
+      - uses: percebus/github-actions-docker/.github/actions/build@main
         with:
           target: ${{ matrix.target }}
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
@@ -230,7 +230,7 @@ jobs:
           npm run npm:install:global:ci
           npm run bower:install
 
-      - uses: percebus/github-actions-docker/.github/actions/docker_build_target@main
+      - uses: percebus/github-actions-docker/.github/actions/build@main
         with:
           dockerfile: Dockerfile.next
           target: ${{ matrix.target }}
