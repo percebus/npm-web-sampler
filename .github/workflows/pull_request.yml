@@ -28,7 +28,12 @@ jobs:
       pull-requests: read
 
   npm_audit:
-    # uses: percebus/github-actions-npm/.github/workflows/audit.yml@main  # FIXME
+    # FIXME: SSH not working, and bower install fails!
+    # uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
+    # with:
+    #   ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+    # XXX: vvv Use the re-usable workflow instead ^^^
     name: npm audit
     runs-on: ubuntu-latest
     steps:
@@ -38,10 +43,8 @@ jobs:
 
       - uses: percebus/github-actions-node/.github/actions/setup@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
-
-      - name: npm audit
-        run: npm audit --omit=dev
-        continue-on-error: true
+      - uses: percebus/github-actions-npm/.github/actions/audit@main
+    # XXX: ^^^
 
   pip-audit:
     uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit.yml@main
