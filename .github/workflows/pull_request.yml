@@ -29,6 +29,8 @@ jobs:
 
   npm_audit:
     uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
+    with:
+      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
   pip-audit:
     uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit.yml@main
