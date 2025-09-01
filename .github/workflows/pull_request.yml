@@ -28,20 +28,7 @@ jobs:
       pull-requests: read
 
   npm_audit:
-    # uses: percebus/github-actions-npm/.github/workflows/audit.yml@main  # FIXME
-    name: npm audit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-node/.github/actions/setup@main
-      - uses: percebus/github-actions-npm/.github/actions/install@main
-
-      - name: npm audit
-        run: npm audit --omit=dev
-        continue-on-error: true
+    uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
 
   pip-audit:
     uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit.yml@main
