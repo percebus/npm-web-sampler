@@ -150,7 +150,7 @@ jobs:
 
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      # XXX run inside container
+      # XXX? run inside container
       - name: bower install
         run: |
           npm run npm:install:global:ci
@@ -184,7 +184,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      # XXX run inside container
+      # XXX? run inside container
       - name: bower install
         run: |
           npm run npm:install:global:ci
@@ -224,7 +224,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      # XXX run inside container
+      # XXX? run inside container
       - name: bower install
         run: |
           npm run npm:install:global:ci
