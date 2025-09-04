@@ -1,9 +1,9 @@
-# sample
-**/*.sample
+# example
+!**/*example.*
+!**/*.example
 
 # env
-!env/**
-!env/**.sample
+!env/*.example
 env/*.json
 
 # semantic-release
