@@ -118,7 +118,7 @@
     "docker:all:exited:containers:rm": "docker ps --all --filter status=exited | tail -n +2 | awk '{print $1}' | xargs docker rm",
     "docker:all:prune": "docker builder prune --all --force",
     "_docker:all:containers:rm": "docker rm $(docker ps --all --quiet)",
-    "predocker:clean": "npm run docker:this:clean",
+    "predocker:clean": "npm run docker:this:images:rm",
     "docker:clean": "npm run docker:all:exited:containers:rm && npm run docker:all:prune",
     "docker:compose:up": "docker compose up --build --remove-orphans",
     "minikube:start": "minikube start",
