@@ -1,6 +1,6 @@
 # npm-web-sampler
 
-[`CHANGELOG`](./CHANGELOG.md) | [`TODO`s](./TODO.md) | [`LICENSE`](./LICENSE.md) | [`CONTRIBUTING`](./CONTRIBUTING.md) | [`CODE_OF_CONDUCT`](./CODE_OF_CONDUCT.md) | [`SECURITY`](./SECURITY.md)
+[`CODE_OF_CONDUCT`](./CODE_OF_CONDUCT.md) | [`CONTRIBUTING`](./CONTRIBUTING.md) | [`LICENSE`](./LICENSE.md) | [`SECURITY`](./SECURITY.md) | [`CHANGELOG`](./CHANGELOG.md) | [`TODO`s](./TODO.md)
 
 - [![Continuous Integration](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml)
 - [![MegaLinter](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml)
@@ -32,19 +32,46 @@ This is ALL THE BELLS AND WHISTLES, but WITHOUT the Christmas tree 🎄.
 
 Demonstrate the amount of code and overhead needed for devops, even without having an actual project.
 
+## Testing
+
+### [B]ehavior [D]riven [D]evelopment
+
+- [`features/`](./features/)
+- [`__tests__/`](./__tests__/)
+  - `*.unit.spec.js`: `jest`+`jasmine` unit tests
+  - `*.rest.spec.js`: `jest`+`jasmine`+`frisby` RESTful Integration tests
+  - `*.se.spec.js`: `jest`+`selenium` Integration tests: (See below)
+  - `*.pw.spec.js`: `jest`+`playwright` Integration tests
+
+### Selenium
+
+- [`selenium/`](./selenium/)
+- [`__tests__/`](./__tests__/)
+  - `*.se.spec.js`: Integration tests
+  - `*.se.js`: Manual tests
+
 ## Setup
 
-### First time
+### Husky
+
+**Install**:
 
 ```bash
-$> npm run setup
+$> npm run husky:install
+```
+
+See [`.husky/`](./.husky/)
+
+**Uninstall**:
+
+```bash
+$> npm run husky:uninstall
 ```
 
 ### Dependencies
 
-```bash
-$> npm install
-```
+1. `$> npm run setup`
+1. `$> npm install`
 
 ## Development
 
@@ -119,52 +146,52 @@ $> npm run verify:docker
 <table>
   <tbody>
     <tr>
-      <td><img src="./assets/img/tools/bower.png" alt="bower logo" width="200" /></td>
+      <td><img src="./assets/img/tools/bower.png" alt="bower logo" width="150" /></td>
       <td align="center">
-        <img src="./assets/img/tools/BrowserBase.png" alt="bower logo" width="200" /><br />
+        <img src="./assets/img/tools/BrowserBase.png" alt="bower logo" width="150" /><br />
         BrowserBase.com
       </td>
-      <td><img src="./assets/img/tools/docker.png" alt="docker logo" width="200" /></td>
+      <td><img src="./assets/img/tools/docker.png" alt="docker logo" width="150" /></td>
+      <td><img src="./assets/img/tools/eslint.png" alt="eslint logo" width="150" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/eslint.png" alt="eslint logo" width="200" /></td>
-      <td><img src="./assets/img/tools/frisby.png" alt="frisby logo" width="200" /></td>
-      <td><img src="./assets/img/tools/github.png" alt="github logo" width="200" /></td>
+      <td><img src="./assets/img/tools/frisby.png" alt="frisby logo" width="150" /></td>
+      <td><img src="./assets/img/tools/github.png" alt="github logo" width="150" /></td>
+      <td><img src="./assets/img/tools/github_actions.png" alt="github actions logo" width="150" /></td>
+      <td><img src="./assets/img/tools/grunt.png" alt="grunt logo" width="150" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/github_actions.png" alt="github actions logo" width="200" /></td>
-      <td><img src="./assets/img/tools/grunt.png" alt="grunt logo" width="200" /></td>
-      <td><img src="./assets/img/tools/helm.png" alt="helm logo" width="200" /></td>
+      <td><img src="./assets/img/tools/helm.png" alt="helm logo" width="150" /></td>
+      <td><img src="./assets/img/tools/husky.png" alt="husky logo" width="150" /></td>
+      <td><img src="./assets/img/tools/jasmine.png" alt="jasmine logo" width="150" /></td>
+      <td><img src="./assets/img/tools/jest.png" alt="jest logo" width="150" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/husky.png" alt="husky logo" width="200" /></td>
-      <td><img src="./assets/img/tools/jasmine.png" alt="jasmine logo" width="200" /></td>
-      <td><img src="./assets/img/tools/jest.png" alt="jest logo" width="200" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/junit.png" alt="junit logo" width="200" /></td>
-      <td><img src="./assets/img/tools/kubernetes.png" alt="kubernetes logo" width="200" /></td>
-      <td><img src="./assets/img/tools/lint-staged.png" alt="lint-staged logo" width="200" /></td>
+      <td><img src="./assets/img/tools/junit.png" alt="junit logo" width="150" /></td>
+      <td><img src="./assets/img/tools/kubernetes.png" alt="kubernetes logo" width="150" /></td>
+      <td><img src="./assets/img/tools/lint-staged.png" alt="lint-staged logo" width="150" /></td>
+      <td><img src="./assets/img/tools/mega-linter.png" alt="mega-linter logo" width="150" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/mega-linter.png" alt="mega-linter logo" width="200" /></td>
-      <td><img src="./assets/img/tools/node.png" alt="node logo" width="200" /></td>
-      <td><img src="./assets/img/tools/npm.png" alt="npm logo" width="200" /></td>
+      <td><img src="./assets/img/tools/node.png" alt="node logo" width="150" /></td>
+      <td><img src="./assets/img/tools/npm.png" alt="npm logo" width="150" /></td>
+      <td><img src="./assets/img/tools/ox_security.png" alt="ox security logo" width="150" /></td>
+      <td><img src="./assets/img/tools/parcel.png" alt="parcel logo" width="150" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/ox_security.png" alt="ox security logo" width="200" /></td>
-      <td><img src="./assets/img/tools/parcel.png" alt="parcel logo" width="200" /></td>
-      <td><img src="./assets/img/tools/pip.png" alt="pip logo" width="200" /></td>
-    </tr>
-    <tr>
-      <td><img src="./assets/img/tools/prettier.png" alt="prettier logo" width="200" /></td>
-      <td><img src="./assets/img/tools/selenium.png" alt="selenium logo" width="200" /></td>
+      <td><img src="./assets/img/tools/pip.png" alt="pip logo" width="150" /></td>
+      <td><img src="./assets/img/tools/prettier.png" alt="prettier logo" width="150" /></td>
+      <td><img src="./assets/img/tools/selenium.png" alt="selenium logo" width="150" /></td>
       <td align="center">
-        <img src="./assets/img/tools/semantic-release.png" alt="semantic-release logo" width="200" /><br />
+        <img src="./assets/img/tools/semantic-release.png" alt="semantic-release logo" width="150" /><br />
         <code>semantic-release</code>
       </td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/yarn.png" alt="yarn logo" width="200" /></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/img/tools/yarn.png" alt="yarn logo" width="150" /></td>
   </tbody>
 </table>
