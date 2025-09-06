@@ -34,33 +34,11 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 
 ## Package Managers
 
-| name    | file                                     | destination     | comments                          |
-| ------- | ---------------------------------------- | --------------- | --------------------------------- |
-| `npm`   | [`package.json`](./package.json)         | `node_modules/` | `node` packages                   |
-| `bower` | [`bower.json`](./bower.json)             | `repositories/` | `git clone {repo}@main`           |
-| `pip`   | [`requirements.txt`](./requirements.txt) | `.venv/`        | `pip install -r requirements.txt` |
-
-### Lock/Frozen files
-
-| name  | file                                                   |
-| ----- | ------------------------------------------------------ |
-| `npm` | [`package-lock.json`](./package-lock.json)             |
-| `pip` | [`requirements.frozen.txt`](./requirements.frozen.txt) |
-
-## Task Runners
-
-| name    | file                                     | destination     | comments                          |
-| ------- | ---------------------------------------- | --------------- | --------------------------------- |
-| `npm`   | [`package.json`](./package.json)         | `node_modules/` | `node` packages                   |
-| `bower` | [`bower.json`](./bower.json)             | `repositories/` | `git clone {repo}#main`           |
-| `pip`   | [`requirements.txt`](./requirements.txt) | `.venv/`        | `pip install -r requirements.txt` |
-
-## Lock/Frozen files
-
-| name  | file                                                   |
-| ----- | ------------------------------------------------------ |
-| `npm` | [`package-lock.json`](./package-lock.json)             |
-| `pip` | [`requirements.frozen.txt`](./requirements.frozen.txt) |
+| name    | file                                     | lock file                                              | destination                   | comments                          |
+| ------- | ---------------------------------------- | ------------------------------------------------------ | ----------------------------- | --------------------------------- |
+| `npm`   | [`package.json`](./package.json)         | [`package-lock.json`](./package-lock.json)             | `node_packages/`              | Node packages                     |
+| `bower` | [`bower.json`](./bower.json)             |                                                        | [`repositories/`](./.bowerrc) | `git clone {repo}@main`           |
+| `pip`   | [`requirements.txt`](./requirements.txt) | [`requirements.frozen.txt`](./requirements.frozen.txt) | `.venv/`                      | `pip install -r requirements.txt` |
 
 ## Task Runners
 
@@ -73,10 +51,10 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 
 | tool          | file                                                           |
 | ------------- | -------------------------------------------------------------- |
-| `prettier`    | [`.prettierrc.js`](./.prettierrc.js)                           |
+| `prettier`    | [`.prettierrc*`](./.prettierrc.js)                             |
 | `htmllint`    | [`.htmllintrc`](./.htmllintrc) [(via `grunt`)](./Gruntfile.js) |
 | `lint-staged` | [`.lintstagedrc.json`](./.lintstagedrc.json)                   |
-| `standardx`   | [`.eslintrc`](./.eslintrc)                                     |
+| `standardx`   | [`.eslintrc*`](./.eslintrc)                                    |
 
 ### MegaLinter
 
@@ -85,8 +63,8 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 | [`.mega-linter.yml`](./.mega-linter.yml) | MegaLinter: All-in-one linter                                           |
 | [`.cspell.json`](./.cspell.json)         | Code Spell Checker                                                      |
 | [`.djlintrc`](./.djlintrc)               | DjLint: HTML, Markdown and YAML linter and formatter                    |
-| [`htmlnanorc`](./htmlnanorc)             | HTMLHint: Static code analysis tool you can use to check your HTML code |
-| [`jscpd.json`](./jscpd.json)             | JSCPD: Copy/Paste Detector                                              |
+| [`.htmlnanorc`](./.htmlnanorc)           | HTMLHint: Static code analysis tool you can use to check your HTML code |
+| [`.jscpd.json`](./.jscpd.json)           | JSCPD: Copy/Paste Detector                                              |
 | [`.lycheeignore`](./.lycheeignore)       | Lychee: Link checker                                                    |
 | [`.posthtmlrc`](./.posthtmlrc)           | PostHTML: Tool to transform HTML/XML with JS plugins                    |
 
