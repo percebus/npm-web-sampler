@@ -49,11 +49,11 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 
 ## Task Runners
 
-| name    | file                                     | destination                       | comments                          |
-| ------- | ---------------------------------------- | --------------------------------- | --------------------------------- |
-| `npm`   | [`package.json`](./package.json)         | [`node_modules/`](./node_modules) | `node` packages                   |
-| `bower` | [`bower.json`](./bower.json)             | [`repositories/`](./repositories) | `git clone {repo}#main`           |
-| `pip`   | [`requirements.txt`](./requirements.txt) | [`venv/`](./venv)                 | `pip install -r requirements.txt` |
+| name    | file                                     | destination     | comments                          |
+| ------- | ---------------------------------------- | --------------- | --------------------------------- |
+| `npm`   | [`package.json`](./package.json)         | `node_modules/` | `node` packages                   |
+| `bower` | [`bower.json`](./bower.json)             | `repositories/` | `git clone {repo}#main`           |
+| `pip`   | [`requirements.txt`](./requirements.txt) | `.venv/`        | `pip install -r requirements.txt` |
 
 ## Lock/Frozen files
 
