@@ -34,11 +34,12 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 
 ## Package Managers
 
-| name    | file                                     | lock file                                              | destination                   | comments                          |
-| ------- | ---------------------------------------- | ------------------------------------------------------ | ----------------------------- | --------------------------------- |
-| `npm`   | [`package.json`](./package.json)         | [`package-lock.json`](./package-lock.json)             | `node_packages/`              | Node packages                     |
-| `bower` | [`bower.json`](./bower.json)             |                                                        | [`repositories/`](./.bowerrc) | `git clone {repo}@main`           |
-| `pip`   | [`requirements.txt`](./requirements.txt) | [`requirements.frozen.txt`](./requirements.frozen.txt) | `.venv/`                      | `pip install -r requirements.txt` |
+| name    | file                                               | lock file                                              | destination                   | comments                          |
+| ------- | -------------------------------------------------- | ------------------------------------------------------ | ----------------------------- | --------------------------------- |
+| `npm`   | [`package.json`](./package.json)                   | [`package-lock.json`](./package-lock.json)             | `node_packages/`              | Node packages                     |
+| `bower` | [`bower.json`](./bower.json)                       |                                                        | [`repositories/`](./.bowerrc) | `git clone {repo}@main`           |
+| `pip`   | [`requirements*.txt`](./requirements.txt)          | [`requirements.frozen.txt`](./requirements.frozen.txt) | `.venv/`                      | `pip install -r requirements.txt` |
+| `pipx`  | [`requirements.pipx.txt`](./requirements.pipx.txt) |                                                        | `.venv/`                      | `pip` executable-only packages    |
 
 ## Task Runners
 
