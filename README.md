@@ -41,12 +41,22 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 | `pip`   | [`requirements*.txt`](./requirements.txt)          | [`requirements.frozen.txt`](./requirements.frozen.txt) | `.venv/`                      | `pip install -r requirements.txt` |
 | `pipx`  | [`requirements.pipx.txt`](./requirements.pipx.txt) |                                                        | `.venv/`                      | `pip` executable-only packages    |
 
+<!-- prettier-ignore-start -->
+> [!WARNING]
+> `bower` is `DEPRECATED`. We only use the task runner. But NOT the `bower` registry.
+
+> [!NOTE]
+> `gil` (`pip install`) could replace `bower` for `git clone {repo}@main` functionality.
+> I wish `npm` would allow this.
+<!-- prettier-ignore-end -->
+
 ## Task Runners
 
-| name      | file                             | comments           |
-| --------- | -------------------------------- | ------------------ |
-| `npm/npx` | [`package.json`](./package.json) | See `scripts`      |
-| `grunt`   | [`Gruntfile.js`](./Gruntfile.js) | For advanced tasks |
+| name      | file                             | comments             |
+| --------- | -------------------------------- | -------------------- |
+| `npm/npx` | [`package.json`](./package.json) | See `scripts`        |
+| `yarn`    | [`package.json`](./package.json) | See `scripts:yarn:*` |
+| `grunt`   | [`Gruntfile.js`](./Gruntfile.js) | For advanced tasks   |
 
 ## Linting
 
@@ -172,7 +182,7 @@ $> npm run verify
 $> npm run verify:docker
 ```
 
-## Resources
+## References
 
  <!-- markdown-link-check-disable -->
 
@@ -193,6 +203,12 @@ $> npm run verify:docker
 - [Deploying a Docker Container to Kubernetes using Helm and Helm Charts](https://aahil13.hashnode.dev/deploying-a-docker-container-to-kubernetes-using-helm-and-helm-charts)
 
 <!-- markdown-link-check-enable -->
+
+### GitHub
+
+- [`percebus`](https://github.com/percebus) /
+  - [`commons`](https://github.com/percebus/commons)
+  - [`percebus-assets`](https://github.com/percebus/percebus-assets)
 
 ## Logos
 
