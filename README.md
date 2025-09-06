@@ -32,14 +32,51 @@ This is ALL THE BELLS AND WHISTLES, but WITHOUT the Christmas tree 🎄.
 
 Demonstrate the amount of code and overhead needed for devops, even without having an actual project.
 
+## Package Managers
+
+| name    | file                                     | destination     | comments                          |
+| ------- | ---------------------------------------- | --------------- | --------------------------------- |
+| `npm`   | [`package.json`](./package.json)         | `node_modules/` | `node` packages                   |
+| `bower` | [`bower.json`](./bower.json)             | `repositories/` | `git clone {repo}@main`           |
+| `pip`   | [`requirements.txt`](./requirements.txt) | `.venv/`        | `pip install -r requirements.txt` |
+
+### Lock/Frozen files
+
+| name  | file                                                   |
+| ----- | ------------------------------------------------------ |
+| `npm` | [`package-lock.json`](./package-lock.json)             |
+| `pip` | [`requirements.frozen.txt`](./requirements.frozen.txt) |
+
+## Task Runners
+
+| name    | file                                     |
+| ------- | ---------------------------------------- | --------------------------------- | --------------------------------- |
+| `npm`   | [`package.json`](./package.json)         | [`node_modules/`](./node_modules) | `node` packages                   |
+| `bower` | [`bower.json`](./bower.json)             | [`repositories/`](./repositories) | `git clone {repo}@main`           |
+| `pip`   | [`requirements.txt`](./requirements.txt) | [`venv/`](./venv)                 | `pip install -r requirements.txt` |
+
+## Lock/Frozen files
+
+| name  | file                                                   |
+| ----- | ------------------------------------------------------ |
+| `npm` | [`package-lock.json`](./package-lock.json)             |
+| `pip` | [`requirements.frozen.txt`](./requirements.frozen.txt) |
+
+## Task Runners
+
+| name      | file                             | comments           |
+| --------- | -------------------------------- | ------------------ |
+| `npm/npx` | [`package.json`](./package.json) | See `scripts`      |
+| `grunt`   | [`Gruntfile.js`](./Gruntfile.js) | For advanced tasks |
+
 ## Linting
 
-| tool          | file                                         |
-| ------------- | -------------------------------------------- |
-| `prettier`    | [`.prettierrc.js`](./.prettierrc.js)         |
-| `htmllint`    | [`.htmllintrc`](./.htmllintrc) (via `grunt`) |
-| `lint-staged` | [`.lintstagedrc.json`](./.lintstagedrc.json) |
-| `standardx`   | [`.eslintrc`](./.eslintrc)                   |
+| tool          | file                                                           |
+| ------------- | -------------------------------------------------------------- |
+| `prettier`    | [`.prettierrc.js`](./.prettierrc.js)                           |
+| `htmllint`    | [`.htmllintrc`](./.htmllintrc) [(via `grunt`)](./Gruntfile.js) |
+| `lint-staged` | [`.lintstagedrc.json`](./.lintstagedrc.json)                   |
+| `standardx`   | [`.eslintrc`](./.eslintrc)                                     |
 
 ### MegaLinter
 
