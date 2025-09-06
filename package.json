@@ -84,7 +84,7 @@
     "testem:ci:tap": "npm run testem:ci -- --reporter tap > test/results/browsers/testem.tap",
     "testem:ci:xunit": "npm run testem:ci -- --reporter xunit > test/results/browsers/testem.xunit.xml",
     "testem:ci:all": "npm run testem:ci:tap && npm run testem:ci:xunit",
-    "selenium-side-runner": "selenium-side-runner selenium/clicks.side",
+    "selenium-side-runner:TestCases": "selenium-side-runner selenium/side/TestCases.side",
     "parcel": "parcel",
     "parcel:build": "parcel build --public-url ./",
     "pretest": "npm run lint",
