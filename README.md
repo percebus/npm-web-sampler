@@ -36,10 +36,10 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 
 | tool          | file                                         |
 | ------------- | -------------------------------------------- |
-| `prettier`    | [`.prettierrc`](./.prettierrc)               |
-| `htmllint`    | [`.htmlhintrc`](./.htmlhintrc) (via `grunt`) |
+| `prettier`    | [`.prettierrc.js`](./.prettierrc.js)         |
+| `htmllint`    | [`.htmllintrc`](./.htmllintrc) (via `grunt`) |
 | `lint-staged` | [`.lintstagedrc.json`](./.lintstagedrc.json) |
-| `standardx`   | [`.eslintrc.json`](./.eslintrc.json)         |
+| `standardx`   | [`.eslintrc`](./.eslintrc)                   |
 
 ### MegaLinter
 
