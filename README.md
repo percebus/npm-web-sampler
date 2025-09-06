@@ -32,11 +32,33 @@ This is ALL THE BELLS AND WHISTLES, but WITHOUT the Christmas tree 🎄.
 
 Demonstrate the amount of code and overhead needed for devops, even without having an actual project.
 
+## Linting
+
+| tool          | file                                         |
+| ------------- | -------------------------------------------- |
+| `prettier`    | [`.prettierrc`](./.prettierrc)               |
+| `htmllint`    | [`.htmlhintrc`](./.htmlhintrc) (via `grunt`) |
+| `lint-staged` | [`.lintstagedrc.json`](./.lintstagedrc.json) |
+| `standardx`   | [`.eslintrc.json`](./.eslintrc.json)         |
+
+### MegaLinter
+
+| file                                     | does                                                                    |
+| ---------------------------------------- | ----------------------------------------------------------------------- |
+| [`.mega-linter.yml`](./.mega-linter.yml) | MegaLinter: All-in-one linter                                           |
+| [`.cspell.json`](./.cspell.json)         | Code Spell Checker                                                      |
+| [`.djlintrc`](./.djlintrc)               | DjLint: HTML, Markdown and YAML linter and formatter                    |
+| [`htmlnanorc`](./htmlnanorc)             | HTMLHint: Static code analysis tool you can use to check your HTML code |
+| [`jscpd.json`](./jscpd.json)             | JSCPD: Copy/Paste Detector                                              |
+| [`.lycheeignore`](./.lycheeignore)       | Lychee: Link checker                                                    |
+| [`.posthtmlrc`](./.posthtmlrc)           | PostHTML: Tool to transform HTML/XML with JS plugins                    |
+
 ## Testing
 
 ### [B]ehavior [D]riven [D]evelopment
 
 - [`features/`](./features/)
+- [`testem.yml`](./testem.yml): Test'em (run unit tests in all browsers)
 - [`__tests__/`](./__tests__/)
   - `*.unit.spec.js`: `jest`+`jasmine` unit tests
   - `*.rest.spec.js`: `jest`+`jasmine`+`frisby` RESTful Integration tests
@@ -51,6 +73,21 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
   - `*.se.js`: Manual tests
 
 ## Setup
+
+### env
+
+#### `.env` files
+
+1. Copy `.env.*.local.example` to `.env.*.local` and modify as needed. i.e.-
+   1. `.env.development.local.example`
+
+#### `env/` folder
+
+Convenient `scripts` to `export FOO` into memory,
+
+1. Copy `.*.src.sh.example` to `.*.src.sh` and modify as needed. i.e.-
+   1. `google.src.src.sh.example`: For `npx gemini` CLI
+   2. `kaggle.src.sh.example`: For `kaggle` CLI
 
 ### Husky
 
