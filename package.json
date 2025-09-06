@@ -183,7 +183,7 @@
     "lint-staged": "^16.1.0",
     "load-grunt-tasks": "^5.1.0",
     "mega-linter-runner": "^8.7.0",
-    "parcel": "^2.14.2",
+    "parcel": "^2.15.4",
     "playwright": "^1.52.0",
     "posthtml-doctype": "^1.1.1",
     "prettier": "^3.5.3",
