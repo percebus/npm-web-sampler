@@ -69,15 +69,16 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 
 ### MegaLinter
 
-| file                                     | does                                                                    |
-| ---------------------------------------- | ----------------------------------------------------------------------- |
-| [`.mega-linter.yml`](./.mega-linter.yml) | MegaLinter: All-in-one linter                                           |
-| [`.cspell.json`](./.cspell.json)         | Code Spell Checker                                                      |
-| [`.djlintrc`](./.djlintrc)               | DjLint: HTML, Markdown and YAML linter and formatter                    |
-| [`.htmlnanorc`](./.htmlnanorc)           | HTMLHint: Static code analysis tool you can use to check your HTML code |
-| [`.jscpd.json`](./.jscpd.json)           | JSCPD: Copy/Paste Detector                                              |
-| [`.lycheeignore`](./.lycheeignore)       | Lychee: Link checker                                                    |
-| [`.posthtmlrc`](./.posthtmlrc)           | PostHTML: Tool to transform HTML/XML with JS plugins                    |
+| file                                         | does                                                                    |
+| -------------------------------------------- | ----------------------------------------------------------------------- |
+| [`.mega-linter.yml`](./.mega-linter.yml)     | MegaLinter: All-in-one linter                                           |
+| [`.cspell.json`](./.cspell.json)             | Code Spell Checker                                                      |
+| [`.djlintrc`](./.djlintrc)                   | DjLint: HTML, Markdown and YAML linter and formatter                    |
+| [`.markdownlint.json`](./.markdownlint.json) | MarkdownLint: Markdown style checker                                    |
+| [`.htmlnanorc`](./.htmlnanorc)               | HTMLHint: Static code analysis tool you can use to check your HTML code |
+| [`.jscpd.json`](./.jscpd.json)               | JSCPD: Copy/Paste Detector                                              |
+| [`.lycheeignore`](./.lycheeignore)           | Lychee: Link checker                                                    |
+| [`.posthtmlrc`](./.posthtmlrc)               | PostHTML: Tool to transform HTML/XML with JS plugins                    |
 
 ## Testing
 
