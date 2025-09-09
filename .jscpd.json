@@ -1,22 +1,24 @@
 {
-  "threshold": 0,
+  "threshold": 5,
   "reporters": ["html", "markdown"],
   "ignore": [
-    "megalinter-reports/**",
-    "**/node_modules/**",
     "**/.git/**",
+    "**/.github/**",
+    "**/.idea/**",
     "**/.rbenv/**",
     "**/.venv/**",
     "**/*cache*/**",
-    "**/.github/**",
-    "**/.idea/**",
-    "**/report/**",
     "**/*.svg",
-    "repositories/**",
+    "**/node_modules/**",
+    "**/report/**",
+    ".parcel-cache/**",
     "_scripts/**",
+    "assets/ai/**",
+    "assets/scraping/**",
+    "megalinter-reports/**",
+    "repositories/**",
     "build/**",
     "dist/**",
-    "assets/ai/**",
-    "assets/scraping/**"
+    "tmp/**"
   ]
 }

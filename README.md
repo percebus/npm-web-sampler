@@ -69,11 +69,32 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 
 ### MegaLinter
 
+```
++----MATCHING LINTERS-----+----------+----------------+------------+
+| Descriptor | Linter     | Criteria | Matching files | Format/Fix |
++------------+------------+----------+----------------+------------+
+| COPYPASTE  | jscpd      |          | project        | yes        |
+| REPOSITORY | checkov    |          | project        | yes        |
+| REPOSITORY | devskim    |          | project        | yes        |
+| REPOSITORY | dustilock  |          | project        | yes        |
+| REPOSITORY | git_diff   |          | project        | yes        |
+| REPOSITORY | gitleaks   |          | project        | yes        |
+| REPOSITORY | grype      |          | project        | yes        |
+| REPOSITORY | kics       |          | project        | yes        |
+| REPOSITORY | secretlint |          | project        | yes        |
+| REPOSITORY | syft       |          | project        | yes        |
+| REPOSITORY | trivy      |          | project        | yes        |
+| REPOSITORY | trivy-sbom |          | project        | yes        |
+| REPOSITORY | trufflehog |          | project        | yes        |
++------------+------------+----------+----------------+------------+
+```
+
 | name               | file                                         | does                                                                     |
 | ------------------ | -------------------------------------------- | ------------------------------------------------------------------------ |
 | MegaLinter         | [`.mega-linter.yml`](./.mega-linter.yml)     | MegaLinter: All-in-one linter                                            |
 | Code Spell Checker | [`.cspell.json`](./.cspell.json)             | Code Spell Checker                                                       |
 | DjLint             | [`.djlintrc`](./.djlintrc)                   | DjLint: HTML, Markdown and YAML linter and formatter                     |
+| Gherkin Lint       | [`.gherkin-lintrc`](./.gherkin-lintrc)       | Gherkin Lint: Linter for Gherkin syntax                                  |
 | MarkdownLint       | [`.markdownlint.json`](./.markdownlint.json) | MarkdownLint: Markdown style checker                                     |
 | HTML LINT          | [`.htmlnanorc`](./.htmlnanorc)               | HTML LINT: Static code analysis tool you can use to check your HTML code |
 | JSCPD              | [`.jscpd.json`](./.jscpd.json)               | JSCPD: Copy/Paste Detector                                               |
