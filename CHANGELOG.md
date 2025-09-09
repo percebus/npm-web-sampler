@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [1.14.0](https://github.com/percebus/npm-web-sampler/compare/v1.13.0...v1.14.0) (2025-09-09)
+
+### Features
+
+- **`.github`:** `copilot-instructions.md` ([#175](https://github.com/percebus/npm-web-sampler/issues/175)) ([e18e0b3](https://github.com/percebus/npm-web-sampler/commit/e18e0b31483c6f5e4ba7d8c4bd968e0a307d5cd1)), closes [#173](https://github.com/percebus/npm-web-sampler/issues/173)
+
 # [1.13.0](https://github.com/percebus/npm-web-sampler/compare/v1.12.4...v1.13.0) (2025-09-09)
 
 ### Features
