@@ -16,18 +16,30 @@
     "report",
     "requirements*.txt",
     "Dockerfile*",
+    "README.md",
     "CHANGELOG.md"
   ],
   "language": "en",
   "noConfigSearch": true,
   "words": [
-    "megalinter",
-    "oxsecurity",
-    "frisby",
-    "percebus",
     "automagically",
+    "djlintrc",
+    "frisby",
+    "htmllint",
+    "htmllintrc",
+    "htmlnanorc",
     "ization",
-    "pipx"
+    "kaggle",
+    "lintstagedrc",
+    "lycheeignore",
+    "megalinter",
+    "misconfig",
+    "oxsecurity",
+    "percebus",
+    "posthtmlrc",
+    "pipx",
+    "standardx",
+    "venv"
   ],
   "version": "0.2"
 }

@@ -69,15 +69,17 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 
 ### MegaLinter
 
-| file                                     | does                                                                    |
-| ---------------------------------------- | ----------------------------------------------------------------------- |
-| [`.mega-linter.yml`](./.mega-linter.yml) | MegaLinter: All-in-one linter                                           |
-| [`.cspell.json`](./.cspell.json)         | Code Spell Checker                                                      |
-| [`.djlintrc`](./.djlintrc)               | DjLint: HTML, Markdown and YAML linter and formatter                    |
-| [`.htmlnanorc`](./.htmlnanorc)           | HTMLHint: Static code analysis tool you can use to check your HTML code |
-| [`.jscpd.json`](./.jscpd.json)           | JSCPD: Copy/Paste Detector                                              |
-| [`.lycheeignore`](./.lycheeignore)       | Lychee: Link checker                                                    |
-| [`.posthtmlrc`](./.posthtmlrc)           | PostHTML: Tool to transform HTML/XML with JS plugins                    |
+| name               | file                                         | does                                                                     |
+| ------------------ | -------------------------------------------- | ------------------------------------------------------------------------ |
+| MegaLinter         | [`.mega-linter.yml`](./.mega-linter.yml)     | MegaLinter: All-in-one linter                                            |
+| Code Spell Checker | [`.cspell.json`](./.cspell.json)             | Code Spell Checker                                                       |
+| DjLint             | [`.djlintrc`](./.djlintrc)                   | DjLint: HTML, Markdown and YAML linter and formatter                     |
+| MarkdownLint       | [`.markdownlint.json`](./.markdownlint.json) | MarkdownLint: Markdown style checker                                     |
+| HTML LINT          | [`.htmlnanorc`](./.htmlnanorc)               | HTML LINT: Static code analysis tool you can use to check your HTML code |
+| JSCPD              | [`.jscpd.json`](./.jscpd.json)               | JSCPD: Copy/Paste Detector                                               |
+| Lychee             | [`.lycheeignore`](./.lycheeignore)           | Lychee: Link checker                                                     |
+| PostHTML           | [`.posthtmlrc`](./.posthtmlrc)               | PostHTML: Tool to transform HTML/XML with JS plugins                     |
+| Trivy              | [`trivy.yaml`](./trivy.yaml)                 | Trivy: Find vulnerabilities in container images and filesystems          |
 
 ## Testing
 

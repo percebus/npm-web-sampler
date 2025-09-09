@@ -1,0 +1,17 @@
+# Trivy configuration for security scanning
+# See: https://aquasecurity.github.io/trivy/latest/docs/configuration/
+
+# Exclude directories from scanning
+scan:
+  skip-dirs:
+    - assets/
+    - node_modules/
+    - .git/
+    - tmp/
+
+# Set timeout to prevent hanging scans
+timeout: 10m
+
+# Additional exclusions for misconfigurations
+misconfig:
+  include-non-failures: false
