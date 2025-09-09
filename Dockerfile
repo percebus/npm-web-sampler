@@ -27,5 +27,7 @@ FROM release AS web-app
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nodejs -u 1001
 USER nodejs
+# Add a simple HEALTHCHECK so orchestrators can detect unhealthy containers
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD wget -qO- http://127.0.0.1:8080/ || exit 1
 EXPOSE 8080
 CMD ["/opt/app/node_modules/.bin/http-server", "./dist", "--port", "8080"]
