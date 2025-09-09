@@ -3,7 +3,6 @@ bleach==6.2.0
 certifi==2025.8.3
 charset-normalizer==3.4.3
 click==8.2.1
-colorama==0.4.6
 idna==3.10
 kaggle==1.7.4.5
 packaging==25.0
