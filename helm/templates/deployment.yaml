@@ -2,7 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Chart.Name | quote }}
-  namespace: {{ .Values.namespace | default "default" | quote }}
+  namespace: {{ .Values.namespace | default "web-app" | quote }}
+  labels:
+    app: {{ .Chart.Name | quote }}
+    app.kubernetes.io/name: {{ .Chart.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/component: "frontend"
+    app.kubernetes.io/part-of: "npm-web-sampler"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -12,6 +18,10 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name | quote }}
+        app.kubernetes.io/name: {{ .Chart.Name | quote }}
+        app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+        app.kubernetes.io/component: "frontend"
+        app.kubernetes.io/part-of: "npm-web-sampler"
     spec:
       # Service account settings
       automountServiceAccountToken: false
@@ -26,7 +36,7 @@ spec:
           type: RuntimeDefault
       containers:
       - name: {{ .Chart.Name | quote }}
-        image: {{ printf "%s:%s" .Values.image.repository (.Values.image.tag | default .Chart.AppVersion) | quote }}
+        image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag | quote }}
         ports:
         - containerPort: 8080
         # Add health checks
