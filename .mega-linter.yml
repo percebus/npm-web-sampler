@@ -17,9 +17,16 @@ APPLY_FIXES: all
 #   - JAVASCRIPT_ES
 
 DISABLE_LINTERS:
-  - JAVASCRIPT_STANDARD # We're using standardx (prettier friendly)
-  - MARKDOWN_MARKDOWNLINT # Too many false positives, we use prettier
-  - MARKDOWN_MARKDOWN_TABLE_FORMATTER # prettier and this are fighting over table formatting
+  #
+  # We're using standardx (prettier friendly)
+  - JAVASCRIPT_STANDARD
+  #
+  # Too many false positives, we use prettier
+  - MARKDOWN_MARKDOWNLINT
+  #
+  # prettier and this are fighting over table formatting
+  - MARKDOWN_MARKDOWN_TABLE_FORMATTER
+  #
   # WARNING: Claude keeps compulsively adding these ignores
   # - REPOSITORY_DEVSKIM # XML parsing issues with test files
   # - REPOSITORY_GRYPE # Vulnerability scanner causing noise
@@ -35,8 +42,8 @@ FILEIO_REPORTER: false
 # Uncomment if you want MegaLinter to detect errors but not block CI to pass
 # DISABLE_ERRORS: true
 
-FILTER_REGEX_EXCLUDE: (_scripts/|assets/|megalinter-reports/|repositories/|build/|dist/|tmp/)
-MARKDOWN_MARKDOWNLINT_FILTER_REGEX_EXCLUDE: (CHANGELOG.md|.github/PULL_REQUEST_TEMPLATE.md)
+FILTER_REGEX_EXCLUDE: (_scripts/|\.github/|\.husky/|\.idea/|\.parcel-cache/|\.venv/|\.vscode/|assets/|build/|dist/|megalinter-reports/|node_modules/|repositories/|tmp/).*
+MARKDOWN_MARKDOWNLINT_FILTER_REGEX_EXCLUDE: (README|CHANGELOG|\.github/PULL_REQUEST_TEMPLATE)\..md
 YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (helm/.*\.(yml|yaml))
 
 # WARNING: Added by Claude Sonnet 4
