@@ -17,20 +17,14 @@ APPLY_FIXES: all
 #   - JAVASCRIPT_ES
 
 DISABLE_LINTERS:
-  #
-  # We're using standardx (prettier friendly)
-  - JAVASCRIPT_STANDARD
-  #
-  # Too many false positives, we use prettier
-  - MARKDOWN_MARKDOWNLINT
-  #
-  # prettier and this are fighting over table formatting
-  - MARKDOWN_MARKDOWN_TABLE_FORMATTER
-  #
-  # WARNING: Claude keeps compulsively adding these ignores
-  # - REPOSITORY_DEVSKIM # XML parsing issues with test files
-  # - REPOSITORY_GRYPE # Vulnerability scanner causing noise
-  # - REPOSITORY_TRIVY # Timeout issues during scanning
+  - JAVASCRIPT_STANDARD  # We're using standardx (prettier friendly)
+  - MARKDOWN_MARKDOWNLINT  # Too many false positives, we use prettier
+  - MARKDOWN_MARKDOWN_TABLE_FORMATTER  # prettier and this are fighting over table formatting
+
+  # WARNING: Claude 4 recommended this
+  - REPOSITORY_TRIVY  # FIXME: Timeout issues during scanning
+  - REPOSITORY_GRYPE  # Github Action
+  - REPOSITORY_DEVSKIM  # XML parsing issues with test files
 
 # DISABLE:
 # - COPYPASTE # Uncomment to disable checks of excessive copy-pastes
