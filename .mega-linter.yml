@@ -18,6 +18,7 @@ APPLY_FIXES: all
 
 DISABLE_LINTERS:
   - JAVASCRIPT_STANDARD # We're using standardx (prettier friendly)
+  - MARKDOWN_MARKDOWNLINT # Too many false positives, we use prettier
 
 # DISABLE:
 # - COPYPASTE # Uncomment to disable checks of excessive copy-pastes
