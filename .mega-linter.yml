@@ -19,6 +19,11 @@ APPLY_FIXES: all
 DISABLE_LINTERS:
   - JAVASCRIPT_STANDARD # We're using standardx (prettier friendly)
   - MARKDOWN_MARKDOWNLINT # Too many false positives, we use prettier
+  - MARKDOWN_MARKDOWN_TABLE_FORMATTER # prettier and this are fighting over table formatting
+  # WARNING: Claude keeps compulsively adding these ignores
+  # - REPOSITORY_DEVSKIM # XML parsing issues with test files
+  # - REPOSITORY_GRYPE # Vulnerability scanner causing noise
+  # - REPOSITORY_TRIVY # Timeout issues during scanning
 
 # DISABLE:
 # - COPYPASTE # Uncomment to disable checks of excessive copy-pastes
@@ -30,7 +35,7 @@ FILEIO_REPORTER: false
 # Uncomment if you want MegaLinter to detect errors but not block CI to pass
 # DISABLE_ERRORS: true
 
-FILTER_REGEX_EXCLUDE: (assets/)
+FILTER_REGEX_EXCLUDE: (_scripts/|assets/|megalinter-reports/|repositories/|build/|dist/|tmp/)
 MARKDOWN_MARKDOWNLINT_FILTER_REGEX_EXCLUDE: (CHANGELOG.md|.github/PULL_REQUEST_TEMPLATE.md)
 YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (helm/.*\.(yml|yaml))
 
@@ -38,3 +43,6 @@ YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (helm/.*\.(yml|yaml))
 # Repository scanner configuration - skip image tag/digest checks since we use latest for development
 REPOSITORY_CHECKOV_ARGUMENTS: "--skip-check CKV_K8S_14,CKV_K8S_43"
 REPOSITORY_KICS_ARGUMENTS: "--exclude-queries bb241e61-77c3-4b97-9575-c0f8a1e008d0"
+
+# Enable Kubernetes scanning since we have Helm charts in helm/ directory
+KUBERNETES_HELM_ARGUMENTS: "--strict"
