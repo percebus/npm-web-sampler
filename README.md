@@ -74,6 +74,7 @@ Demonstrate the amount of code and overhead needed for devops, even without havi
 | MegaLinter         | [`.mega-linter.yml`](./.mega-linter.yml)     | MegaLinter: All-in-one linter                                            |
 | Code Spell Checker | [`.cspell.json`](./.cspell.json)             | Code Spell Checker                                                       |
 | DjLint             | [`.djlintrc`](./.djlintrc)                   | DjLint: HTML, Markdown and YAML linter and formatter                     |
+| Gherkin Lint       | [`.gherkin-lintrc`](./.gherkin-lintrc)       | Gherkin Lint: Linter for Gherkin syntax                                  |
 | MarkdownLint       | [`.markdownlint.json`](./.markdownlint.json) | MarkdownLint: Markdown style checker                                     |
 | HTML LINT          | [`.htmlnanorc`](./.htmlnanorc)               | HTML LINT: Static code analysis tool you can use to check your HTML code |
 | JSCPD              | [`.jscpd.json`](./.jscpd.json)               | JSCPD: Copy/Paste Detector                                               |

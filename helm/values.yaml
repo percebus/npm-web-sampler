@@ -1,7 +1,10 @@
 replicaCount: 1
 
+# Namespace to deploy to (avoiding default namespace)  
+namespace: web-app
+
 image:
   repository: localhost:5000/web-app
-  tag: latest
+  tag: "1.0.0"
   pullSecrets: []
   pullPolicy: IfNotPresent
