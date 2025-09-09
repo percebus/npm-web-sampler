@@ -16,18 +16,29 @@
     "report",
     "requirements*.txt",
     "Dockerfile*",
+    "README.md",
     "CHANGELOG.md"
   ],
   "language": "en",
   "noConfigSearch": true,
   "words": [
+    "automagically",
+    "djlintrc",
+    "frisby",
+    "htmllint",
+    "htmllintrc",
+    "htmlnanorc",
+    "ization",
+    "kaggle",
+    "lintstagedrc",
+    "lycheeignore",
     "megalinter",
     "oxsecurity",
-    "frisby",
     "percebus",
-    "automagically",
-    "ization",
-    "pipx"
+    "posthtmlrc",
+    "pipx",
+    "standardx",
+    "venv"
   ],
   "version": "0.2"
 }
