@@ -1,5 +1,15 @@
 # npm-web-sampler CHANGELOG
 
+# [1.13.0](https://github.com/percebus/npm-web-sampler/compare/v1.12.4...v1.13.0) (2025-09-09)
+
+### Features
+
+- claude code ([#170](https://github.com/percebus/npm-web-sampler/issues/170)) ([b26227d](https://github.com/percebus/npm-web-sampler/commit/b26227dafd9f748ecdf3d7122e7a2032fb927d9d))
+
+### Reverts
+
+- **`.github/actions/always.yml`:** `permissions` issues ([0fe3489](https://github.com/percebus/npm-web-sampler/commit/0fe34891537df1dd9eb21a764dbcb465d1581755))
+
 ## [1.12.4](https://github.com/percebus/npm-web-sampler/compare/v1.12.3...v1.12.4) (2025-07-20)
 
 ### Bug Fixes
