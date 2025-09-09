@@ -4,7 +4,6 @@
 
 - [ ] Add GitOps 1 click to website
 - [ ] Finish `helm`
-- [ ] Standardize `web`, `webapp` & `web-app`
 
 ### infra
 
@@ -13,6 +12,7 @@
 
 ## Done
 
+- [x] ~~Standardize `web`, `webapp` & `web-app` as `web-app`~~
 - [x] ~~Add `.io` website~~
 - [x] ~~Add a `bower.json` file pointing to another github repo~~
 - [x] ~~Stop using this file and use "Issues" instead~~

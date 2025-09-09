@@ -11,7 +11,7 @@ tmp/
 repositories/
 _scripts/
 
-# webapp
+# web-app
 build/
 dist/
 

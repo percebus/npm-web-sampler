@@ -23,7 +23,7 @@ COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
 RUN npm run setup:Dockerfile:prd
 
-FROM release AS webapp
+FROM release AS web-app
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nodejs -u 1001
 USER nodejs
