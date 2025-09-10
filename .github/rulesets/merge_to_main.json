@@ -1,0 +1,61 @@
+{
+  "id": 8007950,
+  "name": "merge to main",
+  "target": "branch",
+  "source_type": "Repository",
+  "source": "percebus/npm-web-sampler",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "exclude": [],
+      "include": ["~DEFAULT_BRANCH"]
+    }
+  },
+  "rules": [
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          {
+            "context": "Verify",
+            "integration_id": 15368
+          },
+          {
+            "context": "MegaLinter",
+            "integration_id": 15368
+          },
+          {
+            "context": "CodeQL: actions",
+            "integration_id": 15368
+          },
+          {
+            "context": "CodeQL: javascript",
+            "integration_id": 15368
+          },
+          {
+            "context": "docker compose",
+            "integration_id": 15368
+          }
+        ]
+      }
+    },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 0,
+        "dismiss_stale_reviews_on_push": true,
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": false,
+        "automatic_copilot_code_review_enabled": false,
+        "allowed_merge_methods": ["merge", "squash"]
+      }
+    },
+    {
+      "type": "deletion"
+    }
+  ],
+  "bypass_actors": []
+}
