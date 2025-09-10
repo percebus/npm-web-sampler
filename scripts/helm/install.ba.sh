@@ -21,11 +21,11 @@ if [ $errors -gt 0 ]; then
 fi
 
 set -x
-helm install ${release_name} ./helm/ --namespace ${HELM_NAMESPACE} --create-namespace
+helm install "${release_name}" ./helm/ --namespace "${HELM_NAMESPACE}" --create-namespace
 set -x
 
 set +v
-helm list --namespace ${HELM_NAMESPACE} | grep ${release_name}
+helm list --namespace "${HELM_NAMESPACE}" | grep "${release_name}"
 set -v
 
 set +e

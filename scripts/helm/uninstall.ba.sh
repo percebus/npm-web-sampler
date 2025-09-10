@@ -17,7 +17,7 @@ fi
 
 set -x
 
-helm uninstall ${release_name} --namespace ${HELM_NAMESPACE}
+helm uninstall "${release_name}" --namespace "${HELM_NAMESPACE}"
 
 set +x
 set +e
