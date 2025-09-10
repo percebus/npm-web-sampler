@@ -4,7 +4,7 @@ set -e
 set -v
 
 # https://medium.com/@dsharma182/install-minikube-on-windows-10-home-edition-with-virtualbox-48d1b33909f3
-eval $(minikube docker-env)
+eval "$(minikube docker-env)"
 
 echo "DOCKER_TLS_VERIFY: ${DOCKER_TLS_VERIFY}"
 echo "DOCKER_HOST: ${DOCKER_HOST}"
