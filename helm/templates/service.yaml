@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: {{ printf "%s-service" .Chart.Name | quote }}
   namespace: {{ .Values.namespace | default "web-app" | quote }}
+  meta.helm.sh/release-name: {{ .Release.Name | quote }}
   labels:
     app: {{ .Chart.Name | quote }}
     app.kubernetes.io/name: {{ .Chart.Name | quote }}

@@ -1,6 +1,2 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: {{ .Values.namespace | default "web-app" | quote }}
-  labels:
-    name: {{ .Values.namespace | default "web-app" | quote }}
+# Namespace creation is handled by --create-namespace flag in install script
+# This template is disabled to avoid conflicts

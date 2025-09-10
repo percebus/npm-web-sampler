@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
     app.kubernetes.io/component: "frontend"
     app.kubernetes.io/part-of: "npm-web-sampler"
+    app.kubernetes.io/managed-by: "Helm"
 data:
   app.name: {{ .Chart.Name | quote }}
   app.version: {{ .Chart.AppVersion | quote }}

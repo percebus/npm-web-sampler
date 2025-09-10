@@ -1,11 +1,11 @@
 replicaCount: 1
 
 # Namespace to deploy to (avoiding default namespace)
-namespace: web-app
+namespace: npm-web-sampler
 
 image:
-  repository: localhost:5000/web-app
-  tag: latest
+  repository: npm-web-sampler
+  tag: local
   pullSecrets: []
   pullPolicy: IfNotPresent
 
@@ -14,3 +14,18 @@ service:
   type: ClusterIP
   port: 80
   targetPort: 8080
+
+# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+livenessProbe:
+  httpGet:
+    path: /
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5

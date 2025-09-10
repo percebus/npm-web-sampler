@@ -3,7 +3,7 @@
 ## TODOs
 
 - [ ] Add GitOps 1 click to website
-- [ ] Finish `helm`
+- [ ] Move `scripts/helm` to `commons` repo
 
 ### Agents
 
@@ -18,6 +18,7 @@
 
 ## Done
 
+- [x] ~~Finish `helm`~~
 - [x] ~~Standardize `web`, `webapp` & `web-app` as `web-app`~~
 - [x] ~~Add `.io` website~~
 - [x] ~~Add a `bower.json` file pointing to another github repo~~

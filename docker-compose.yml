@@ -1,7 +1,7 @@
 # docker compose up FtW
 ---
 services:
-  web:
+  web-app:
     build: .
     ports:
       - 8080:8080
