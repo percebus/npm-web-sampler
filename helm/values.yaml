@@ -7,7 +7,7 @@ image:
   repository: npm-web-sampler
   tag: local
   pullSecrets: []
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 # Service configuration
 service:
@@ -19,9 +19,13 @@ service:
 livenessProbe:
   httpGet:
     path: /
-    port: http
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
 
 readinessProbe:
   httpGet:
     path: /
-    port: http
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5
