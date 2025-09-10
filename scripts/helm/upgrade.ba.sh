@@ -21,7 +21,7 @@ if [ $errors -gt 0 ]; then
 fi
 
 set -x
-helm install ${release_name} ./helm/ --namespace ${HELM_NAMESPACE} --create-namespace
+helm upgrade ${release_name} ./helm/ --namespace ${HELM_NAMESPACE}
 set -x
 
 set +v
