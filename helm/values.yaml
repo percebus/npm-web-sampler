@@ -7,7 +7,7 @@ image:
   repository: npm-web-sampler
   tag: local
   pullSecrets: []
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 # Service configuration
 service:
