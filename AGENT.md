@@ -28,14 +28,14 @@ should reduce friction, not obscure complexity.
 
 ## 2. Core Principles
 
-| Principle | Meaning for Agents |
-|-----------|--------------------|
-| DevOps First | Prefer automation and reproducibility over feature bloat. |
-| Explicit over Implicit | When unsure, document intent (README or `docs/`). |
-| Minimal Side Effects | No hidden behaviors; surface config & script impact. |
-| Multi-Tool Cohesion | Keep npm / pip / bower / Docker / Helm aligned. |
-| Security & Compliance | Never add plaintext secrets; trust existing scanners. |
-| Educational Value | Clarity + commentary over clever opacity. |
+| Principle              | Meaning for Agents                                        |
+| ---------------------- | --------------------------------------------------------- |
+| DevOps First           | Prefer automation and reproducibility over feature bloat. |
+| Explicit over Implicit | When unsure, document intent (README or `docs/`).         |
+| Minimal Side Effects   | No hidden behaviors; surface config & script impact.      |
+| Multi-Tool Cohesion    | Keep npm / pip / bower / Docker / Helm aligned.           |
+| Security & Compliance  | Never add plaintext secrets; trust existing scanners.     |
+| Educational Value      | Clarity + commentary over clever opacity.                 |
 
 ## 3. Repository Domains (High-Level Map)
 
@@ -48,15 +48,15 @@ should reduce friction, not obscure complexity.
 
 ## 4. Agent Activity Categories
 
-| Category | Allowed? | Notes |
-|----------|----------|-------|
-| Documentation enhancements | YES | Cross-links, indexes, tables. |
-| Add tests (uncovered logic) | YES | Small: happy + 1 edge case. |
-| Refactors (non-behavioral) | YES (small) | Keep build + verify green. |
-| New dependencies | CAUTION | Justify; prefer devDependency. |
-| Removing tools | RARE | Only if superseded & value retained. |
-| License / legal edits | LIMITED | Formatting / accuracy only. |
-| Experimental features | ISOLATE | Use clearly named folder. |
+| Category                    | Allowed?    | Notes                                |
+| --------------------------- | ----------- | ------------------------------------ |
+| Documentation enhancements  | YES         | Cross-links, indexes, tables.        |
+| Add tests (uncovered logic) | YES         | Small: happy + 1 edge case.          |
+| Refactors (non-behavioral)  | YES (small) | Keep build + verify green.           |
+| New dependencies            | CAUTION     | Justify; prefer devDependency.       |
+| Removing tools              | RARE        | Only if superseded & value retained. |
+| License / legal edits       | LIMITED     | Formatting / accuracy only.          |
+| Experimental features       | ISOLATE     | Use clearly named folder.            |
 
 ## 5. Standard Workflow (Macro Loop)
 
@@ -65,37 +65,37 @@ should reduce friction, not obscure complexity.
 3. Implement smallest vertical slice.
 4. Run quality gates (see §7).
 5. If scripts changed, update `README.md`.
-     - Do NOT edit `CHANGELOG.md`; semantic-release auto-generates it on merge
-         to `main`.
+   - Do NOT edit `CHANGELOG.md`; semantic-release auto-generates it on merge
+     to `main`.
 6. Avoid new broad version wildcards unless deliberate.
 7. Commit with semantic-release format: `type(scope): summary`.
 
 ## 6. Semantic Commit Guidelines (Abbrev)
 
-| Type | Example Scope | When to Use |
-|------|---------------|-------------|
-| feat | build | New script or capability |
-| fix | lint | Resolve failure / reliability issue |
-| docs | readme | Markdown / comments only |
-| chore | deps | Version bumps / meta changes |
-| refactor | app | Behavior preserved restructuring |
-| test | playwright | New or improved tests |
-| ci | github-actions | Workflow edits |
-| perf | build | Performance improvement |
-| security | docker | Hardening adjustments |
+| Type     | Example Scope  | When to Use                         |
+| -------- | -------------- | ----------------------------------- |
+| feat     | build          | New script or capability            |
+| fix      | lint           | Resolve failure / reliability issue |
+| docs     | readme         | Markdown / comments only            |
+| chore    | deps           | Version bumps / meta changes        |
+| refactor | app            | Behavior preserved restructuring    |
+| test     | playwright     | New or improved tests               |
+| ci       | github-actions | Workflow edits                      |
+| perf     | build          | Performance improvement             |
+| security | docker         | Hardening adjustments               |
 
 Add BREAKING CHANGE footer only if public contract changes.
 
 ## 7. Quality Gates
 
-| Gate | Command | Expectation |
-|------|---------|-------------|
-| Style & Lint (fast) | `npm run lint` | No errors (warns explained) |
-| Auto-Fix (optional) | `npm run style` | Formatting applied |
-| Unit Tests | `npm test` | All pass |
-| Full Verify | `npm run verify` | Build + dist + tests pass |
-| Deep Lint / Security | `npm run mega-linter` | No new critical issues |
-| Container Scan (opt) | `npm run docker:this:build` | No new high vulns |
+| Gate                 | Command                     | Expectation                 |
+| -------------------- | --------------------------- | --------------------------- |
+| Style & Lint (fast)  | `npm run lint`              | No errors (warns explained) |
+| Auto-Fix (optional)  | `npm run style`             | Formatting applied          |
+| Unit Tests           | `npm test`                  | All pass                    |
+| Full Verify          | `npm run verify`            | Build + dist + tests pass   |
+| Deep Lint / Security | `npm run mega-linter`       | No new critical issues      |
+| Container Scan (opt) | `npm run docker:this:build` | No new high vulns           |
 
 Do not skip `verify` when touching build, test or deployment surfaces.
 
@@ -109,25 +109,25 @@ Do not skip `verify` when touching build, test or deployment surfaces.
 
 ## 9. Testing Guidance
 
-| Layer | Location | Trigger |
-|-------|----------|---------|
-| Unit | `__tests__/*.unit.spec.js` | New logic branch |
-| REST | `__tests__/*.rest.spec.js` | API integration changes |
-| Browser (Testem) | `testem.yml` (multi-browser) | Config or multi-engine need |
-| Playwright | `__tests__/*.pw.spec.js` | End-to-end flow |
-| Selenium | `__tests__/*.se.spec.js` | Cross-driver / legacy concerns |
-| BDD | `features/` | Behavior worth describing |
+| Layer            | Location                     | Trigger                        |
+| ---------------- | ---------------------------- | ------------------------------ |
+| Unit             | `__tests__/*.unit.spec.js`   | New logic branch               |
+| REST             | `__tests__/*.rest.spec.js`   | API integration changes        |
+| Browser (Testem) | `testem.yml` (multi-browser) | Config or multi-engine need    |
+| Playwright       | `__tests__/*.pw.spec.js`     | End-to-end flow                |
+| Selenium         | `__tests__/*.se.spec.js`     | Cross-driver / legacy concerns |
+| BDD              | `features/`                  | Behavior worth describing      |
 
 Reuse helpers and keep fixtures minimal.
 
 ## 10. Documentation Rules
 
-| Action | Also Update |
-|--------|-------------|
-| Add npm script | `README.md` scripts section |
-| Add linter/tool | Lint tables + rationale |
-| Add env var | `.env.*.local.example` + README |
-| Add Helm value | `helm/values.yaml` + README if user-facing |
+| Action          | Also Update                                |
+| --------------- | ------------------------------------------ |
+| Add npm script  | `README.md` scripts section                |
+| Add linter/tool | Lint tables + rationale                    |
+| Add env var     | `.env.*.local.example` + README            |
+| Add Helm value  | `helm/values.yaml` + README if user-facing |
 
 Favor concise tables and cross-links.
 
@@ -141,22 +141,22 @@ Favor concise tables and cross-links.
 
 ## 12. Dependency Management
 
-| Ecosystem | Primary | Lock / Freeze | Notes |
-|-----------|---------|---------------|-------|
-| npm | `package.json` | `package-lock.json` | Document scripts |
-| bower | `bower.json` | (none) | Git clone only (deprecated) |
-| pip | `requirements.txt` | `requirements.frozen.txt` | Freeze post-upgrade |
-| pipx | `requirements.pipx.txt` | (isolated) | Executable tools |
+| Ecosystem | Primary                 | Lock / Freeze             | Notes                       |
+| --------- | ----------------------- | ------------------------- | --------------------------- |
+| npm       | `package.json`          | `package-lock.json`       | Document scripts            |
+| bower     | `bower.json`            | (none)                    | Git clone only (deprecated) |
+| pip       | `requirements.txt`      | `requirements.frozen.txt` | Freeze post-upgrade         |
+| pipx      | `requirements.pipx.txt` | (isolated)                | Executable tools            |
 
 Freeze after verifying no regressions.
 
 ## 13. Deployment Surfaces
 
-| Surface | Directory | Caution |
-|---------|-----------|---------|
-| Docker Image | `Dockerfile*` | Keep stages small |
-| Compose | `docker-compose.yml` | Consistent naming |
-| Helm | `helm/` | Respect templating & values |
+| Surface      | Directory            | Caution                     |
+| ------------ | -------------------- | --------------------------- |
+| Docker Image | `Dockerfile*`        | Keep stages small           |
+| Compose      | `docker-compose.yml` | Consistent naming           |
+| Helm         | `helm/`              | Respect templating & values |
 
 If runtime changes (ports/base image), update docs + Helm.
 
@@ -210,13 +210,13 @@ Read these after this file:
 
 ## 20. Glossary
 
-| Term | Meaning |
-|------|---------|
-| Verify | Build + tests + dist (`npm run verify`) |
-| Dist | Parcel production bundle (`dist/`) |
-| Build | Grunt output (`build/`) |
-| Freeze | Generate `requirements.frozen.txt` |
-| MegaLinter | Aggregated lint & security suite |
+| Term       | Meaning                                 |
+| ---------- | --------------------------------------- |
+| Verify     | Build + tests + dist (`npm run verify`) |
+| Dist       | Parcel production bundle (`dist/`)      |
+| Build      | Grunt output (`build/`)                 |
+| Freeze     | Generate `requirements.frozen.txt`      |
+| MegaLinter | Aggregated lint & security suite        |
 
 ---
 
