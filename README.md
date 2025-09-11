@@ -10,7 +10,7 @@
 ## AI
 
 - [`AGENT.md`](./AGENT.md)
-- [`copilot-instructions.md`](./copilot-instructions.md)
+- [`copilot-instructions.md`](./.github/copilot-instructions.md)
 - [`GEMINI.md`](./GEMINI.md)
 - [`CLAUDE.md`](./CLAUDE.md)
 
