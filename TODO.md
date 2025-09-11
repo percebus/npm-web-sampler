@@ -8,8 +8,6 @@
 ### Agents
 
 - [ ] `AGENT.md`
-- [ ] `CLAUDE.md`
-- [ ] `GEMINI.md`
 
 ### infra
 
@@ -18,6 +16,8 @@
 
 ## Done
 
+- [x] ~~`CLAUDE.md`~~
+- [x] ~~`GEMINI.md`~~
 - [x] ~~Finish `helm`~~
 - [x] ~~Standardize `web`, `webapp` & `web-app` as `web-app`~~
 - [x] ~~Add `.io` website~~
