@@ -7,6 +7,13 @@
 - [![Pull Request](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
 - [![dependabot](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates)
 
+## AI
+
+- [`AGENT.md`](./AGENT.md)
+- [`copilot-instructions.md`](./.github/copilot-instructions.md)
+- [`GEMINI.md`](./GEMINI.md)
+- [`CLAUDE.md`](./CLAUDE.md)
+
 ## Summary
 
 A web sampler of technologies and tools that can be used to quickly scaffold a web-project
@@ -209,6 +216,7 @@ $> npm run verify:docker
 
  <!-- markdown-link-check-disable -->
 
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Playwright vs Selenium: What are the Main Differences and Which is Better?](https://applitools.com/blog/playwright-vs-selenium/)
 
 ### Medium
@@ -243,47 +251,50 @@ $> npm run verify:docker
         <img src="./assets/img/tools/BrowserBase.png" alt="bower logo" width="150" /><br />
         BrowserBase.com
       </td>
+      <td><img src="./assets/img/tools/claude.png" alt="claude logo" width="150" /></td>
       <td><img src="./assets/img/tools/docker.png" alt="docker logo" width="150" /></td>
-      <td><img src="./assets/img/tools/eslint.png" alt="eslint logo" width="150" /></td>
     </tr>
     <tr>
       <td><img src="./assets/img/tools/frisby.png" alt="frisby logo" width="150" /></td>
+      <td><img src="./assets/img/tools/eslint.png" alt="eslint logo" width="150" /></td>
+      <td><img src="./assets/img/tools/gemini.png" alt="gemini logo" width="150" /></td>
       <td><img src="./assets/img/tools/github.png" alt="github logo" width="150" /></td>
-      <td><img src="./assets/img/tools/github_actions.png" alt="github actions logo" width="150" /></td>
-      <td><img src="./assets/img/tools/grunt.png" alt="grunt logo" width="150" /></td>
     </tr>
     <tr>
+      <td><img src="./assets/img/tools/github_actions.png" alt="github actions logo" width="150" /></td>
+      <td><img src="./assets/img/tools/github_copilot.png" alt="github copilot logo" width="150" /></td>
+      <td><img src="./assets/img/tools/grunt.png" alt="grunt logo" width="150" /></td>
       <td><img src="./assets/img/tools/helm.png" alt="helm logo" width="150" /></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
       <td><img src="./assets/img/tools/husky.png" alt="husky logo" width="150" /></td>
       <td><img src="./assets/img/tools/jasmine.png" alt="jasmine logo" width="150" /></td>
       <td><img src="./assets/img/tools/jest.png" alt="jest logo" width="150" /></td>
-    </tr>
-    <tr>
-    </tr>
-    <tr>
       <td><img src="./assets/img/tools/junit.png" alt="junit logo" width="150" /></td>
+    </tr>
+    <tr>
       <td><img src="./assets/img/tools/kubernetes.png" alt="kubernetes logo" width="150" /></td>
       <td><img src="./assets/img/tools/lint-staged.png" alt="lint-staged logo" width="150" /></td>
       <td><img src="./assets/img/tools/mega-linter.png" alt="mega-linter logo" width="150" /></td>
+      <td><img src="./assets/img/tools/node.png" alt="node logo" width="150" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/node.png" alt="node logo" width="150" /></td>
       <td><img src="./assets/img/tools/npm.png" alt="npm logo" width="150" /></td>
       <td><img src="./assets/img/tools/ox_security.png" alt="ox security logo" width="150" /></td>
       <td><img src="./assets/img/tools/parcel.png" alt="parcel logo" width="150" /></td>
+      <td><img src="./assets/img/tools/pip.png" alt="pip logo" width="150" /></td>
     </tr>
     <tr>
-      <td><img src="./assets/img/tools/pip.png" alt="pip logo" width="150" /></td>
+    </tr>
+    <tr>
       <td><img src="./assets/img/tools/prettier.png" alt="prettier logo" width="150" /></td>
       <td><img src="./assets/img/tools/selenium.png" alt="selenium logo" width="150" /></td>
       <td align="center">
         <img src="./assets/img/tools/semantic-release.png" alt="semantic-release logo" width="150" /><br />
         <code>semantic-release</code>
       </td>
-    </tr>
-    <tr>
-    </tr>
-    <tr>
       <td><img src="./assets/img/tools/yarn.png" alt="yarn logo" width="150" /></td>
   </tbody>
 </table>

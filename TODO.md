@@ -5,12 +5,6 @@
 - [ ] Add GitOps 1 click to website
 - [ ] Move `scripts/helm` to `commons` repo
 
-### Agents
-
-- [ ] `AGENT.md`
-- [ ] `CLAUDE.md`
-- [ ] `GEMINI.md`
-
 ### infra
 
 - [ ] Add `terraform` for serverless cloud hosting (i.e. AWS s3, Azure Storage, etc)
@@ -18,6 +12,9 @@
 
 ## Done
 
+- [x] ~~`AGENT.md`~~
+- [x] ~~`CLAUDE.md`~~
+- [x] ~~`GEMINI.md`~~
 - [x] ~~Finish `helm`~~
 - [x] ~~Standardize `web`, `webapp` & `web-app` as `web-app`~~
 - [x] ~~Add `.io` website~~
