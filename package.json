@@ -165,7 +165,7 @@
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "browserslist": "latest",
-    "chromedriver": "^136.0.2",
+    "chromedriver": "^140.0.3",
     "dockerlint": "^0.3.9",
     "eslint-config-prettier": "^10.1.5",
     "frisby": "^2.1.3",
