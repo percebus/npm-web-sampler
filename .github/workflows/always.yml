@@ -20,17 +20,21 @@ env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
   IMAGE_TAG_SUFFIX: latest
 
-# FIXME: It fails on pushing tag
-# permissions:
-#   contents: read
-#   actions: read
-#   checks: write
-#   pull-requests: write
+permissions:
+  contents: read
+  actions: read
+  checks: write
+  pull-requests: write
 
 jobs:
   verify:
     name: Verify
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      checks: write
+      pull-requests: write
+
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
