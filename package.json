@@ -68,9 +68,9 @@
     "lint": "npm run prettier:check && npm run standardx:check && npm run grunt:htmllint && npm run helm:lint",
     "style": "npm run prettier:write && npm run standardx:fix",
     "poststyle": "npm run lint",
-    "browserslist:update-db": "browserslist --update-db",
+    "update-browserslist-db": "npx update-browserslist-db@latest",
     "jest:ci": "jest --ci",
-    "prejest:ci:unit": "npm run browserslist:update-db",
+    "prejest:ci:unit": "npm run update-browserslist-db",
     "jest:ci:unit": "npm run jest:ci -- unit.spec.js",
     "jest:ci:rest": "npm run jest:ci -- rest.spec.js",
     "jest:ci:rest:npm-web-sampler": "npm run jest:ci:rest -- --rootDir=__tests__/npm-web-sampler",
@@ -190,7 +190,8 @@
     "selenium-side-runner": "^4.0.13",
     "selenium-webdriver": "^4.32.0",
     "standardx": "^7.0.0",
-    "testem": "^3.16.0"
+    "testem": "^3.16.0",
+    "update-browserslist-db": "latest"
   },
   "dependencies": {
     "bootstrap": "^5.3.6",
