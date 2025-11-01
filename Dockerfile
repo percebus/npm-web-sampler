@@ -1,6 +1,5 @@
 FROM nikolaik/python-nodejs:python3.12-nodejs22 AS base
 
-
 FROM base AS project
 WORKDIR /usr/project
 COPY . .
