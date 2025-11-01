@@ -21,20 +21,23 @@ env:
   IMAGE_TAG_SUFFIX: latest
 
 permissions:
-  contents: read
-  actions: read
   checks: write
+  actions: read
+  contents: write
   pull-requests: write
+  security-events: read
 
 jobs:
   verify:
     name: Verify
     runs-on: ubuntu-latest
     permissions:
-      contents: write
       checks: write
+      issues: write
+      actions: read
+      contents: write
       pull-requests: write
-
+      security-events: read
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
@@ -94,6 +97,7 @@ jobs:
       - name: semantic-release
         run: npm run semantic-release
         env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   verify__matrix:
