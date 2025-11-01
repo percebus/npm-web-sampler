@@ -66,7 +66,11 @@ jobs:
         run: npm test --ignore-scripts
 
       - uses: percebus/github-actions-testing/.github/actions/junit@main
-        if: always()
+        if: |
+          (
+            (success() || failure())
+            && !startsWith(github.ref, 'refs/heads/dependabot/')
+          )
         with:
           tests_name: Unit Tests
           summary_title: Unit Tests Summary
@@ -76,6 +80,7 @@ jobs:
       # TODO move to -actions-npm
       - name: npm run dist
         run: npm run dist
+        if: (success() || skipped())
       - name: dist.zip
         uses: actions/upload-artifact@v4
         with:
