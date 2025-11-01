@@ -32,7 +32,12 @@ jobs:
     name: Verify
     runs-on: ubuntu-latest
     permissions:
+      checks: write
       issues: write
+      actions: read
+      contents: write
+      pull-requests: write
+      security-events: read
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
