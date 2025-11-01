@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.0.1](https://github.com/percebus/npm-web-sampler/compare/v2.0.0...v2.0.1) (2025-11-01)
+
+### Bug Fixes
+
+- **`browserslists`:** `update-browserslist-db` ([#201](https://github.com/percebus/npm-web-sampler/issues/201)) ([400f274](https://github.com/percebus/npm-web-sampler/commit/400f274ecb075db307600c2c6f147335bb439e7a))
+
 # [2.0.0](https://github.com/percebus/npm-web-sampler/compare/v1.14.0...v2.0.0) (2025-11-01)
 
 - feat!: AI agents instruction markdowns ([#178](https://github.com/percebus/npm-web-sampler/issues/178)) ([d852a10](https://github.com/percebus/npm-web-sampler/commit/d852a107ddda058e1a92647334810bf61b026781))
