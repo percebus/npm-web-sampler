@@ -2,5 +2,6 @@
   "*": "prettier --ignore-unknown --write",
   "*.js": "standardx --fix",
   "*.html": "npm run grunt:htmllint",
+  "helm/*": "helm lint --strict",
   "Dockerfile*": "dockerlint"
 }
