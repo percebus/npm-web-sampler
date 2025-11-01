@@ -1,3 +1,6 @@
 {
-  "*": "prettier --ignore-unknown --write"
+  "*": "prettier --ignore-unknown --write",
+  "*.js": "standardx --fix",
+  "*.html": "npm run grunt:htmllint",
+  "Dockerfile*": "dockerlint"
 }
