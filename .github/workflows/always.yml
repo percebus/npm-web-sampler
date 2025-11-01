@@ -69,7 +69,7 @@ jobs:
         if: |
           (
             always() &&
-            && !startsWith(github.ref, 'refs/heads/dependabot/')
+            !startsWith(github.ref, 'refs/heads/dependabot/')
           )
         with:
           tests_name: Unit Tests
