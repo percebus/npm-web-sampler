@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.0.3](https://github.com/percebus/npm-web-sampler/compare/v2.0.2...v2.0.3) (2025-11-01)
+
+### Bug Fixes
+
+- **`grype`:** write security events ([0f20010](https://github.com/percebus/npm-web-sampler/commit/0f20010fe6efd1ca5feaf229224408aaeab2a384))
+
 ## [2.0.2](https://github.com/percebus/npm-web-sampler/compare/v2.0.1...v2.0.2) (2025-11-01)
 
 ### Bug Fixes
