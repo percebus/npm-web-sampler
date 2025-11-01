@@ -21,20 +21,16 @@ env:
   IMAGE_TAG_SUFFIX: latest
 
 permissions:
-  contents: read
-  actions: read
   checks: write
+  actions: read
+  contents: write
   pull-requests: write
+  security-events: read
 
 jobs:
   verify:
     name: Verify
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      checks: write
-      pull-requests: write
-
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
@@ -206,7 +202,7 @@ jobs:
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
   docker_build_next__matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main'  # FIXME
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
