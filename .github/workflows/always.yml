@@ -80,14 +80,7 @@ jobs:
       # TODO move to -actions-npm
       - name: npm run dist
         run: npm run dist
-        if: |
-          (
-            always() &&
-            (
-              needs.previous_job.result == 'skipped' ||
-              needs.previous_job.result == 'success'
-            )
-          )
+        if: always()
       - name: dist.zip
         uses: actions/upload-artifact@v4
         with:
