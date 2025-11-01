@@ -90,6 +90,7 @@ jobs:
       - name: semantic-release
         run: npm run semantic-release
         env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   verify__matrix:
