@@ -100,7 +100,7 @@
     "husky:install": "husky",
     "husky:uninstall": "git config --unset core.hooksPath",
     "http-server:dist": "npx http-server ./dist --port 8080",
-    "serve:dist": "npx serve -s dist -l 8080",
+    "XXX_serve:dist": "npx serve -s dist -l 8080",
     "docker:registry:run": "docker run -d -p 5000:5000 --name registry registry:2.7",
     "docker:registry:logs": "docker logs registry",
     "docker:this:build": "docker build --no-cache --pull --tag npm-web-sampler:local .",
