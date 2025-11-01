@@ -1,5 +1,18 @@
 # npm-web-sampler CHANGELOG
 
+# [2.0.0](https://github.com/percebus/npm-web-sampler/compare/v1.14.0...v2.0.0) (2025-11-01)
+
+- feat!: AI agents instruction markdowns ([#178](https://github.com/percebus/npm-web-sampler/issues/178)) ([d852a10](https://github.com/percebus/npm-web-sampler/commit/d852a107ddda058e1a92647334810bf61b026781))
+
+### Bug Fixes
+
+- **`dependabot`:** Skip `junit` reporting ([#199](https://github.com/percebus/npm-web-sampler/issues/199)) ([776ef92](https://github.com/percebus/npm-web-sampler/commit/776ef92ed634f84bded6710e0aa0402c6edd4a08)), closes [#55](https://github.com/percebus/npm-web-sampler/issues/55) [#200](https://github.com/percebus/npm-web-sampler/issues/200)
+- **`semantic-release`:** `permissions` ([d9ed41a](https://github.com/percebus/npm-web-sampler/commit/d9ed41af79d34c185b135780bc4c0cf64542d2a5))
+
+### BREAKING CHANGES
+
+- Handles how AI should behave
+
 # [1.14.0](https://github.com/percebus/npm-web-sampler/compare/v1.13.0...v1.14.0) (2025-09-09)
 
 ### Features
