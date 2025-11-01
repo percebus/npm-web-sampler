@@ -68,7 +68,7 @@ jobs:
       - uses: percebus/github-actions-testing/.github/actions/junit@main
         if: |
           (
-            (success() || failure())
+            always() &&
             && !startsWith(github.ref, 'refs/heads/dependabot/')
           )
         with:
