@@ -95,7 +95,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   verify__matrix:
-    # if: github.ref == 'refs/heads/main'  # FIXME
+    if: github.ref == 'refs/heads/main'
     needs: verify
     strategy:
       fail-fast: false
