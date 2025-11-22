@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [2.1.0](https://github.com/percebus/npm-web-sampler/compare/v2.0.4...v2.1.0) (2025-11-22)
+
+### Features
+
+- **`pull_request`:** Enforce conventional-commit title ([#216](https://github.com/percebus/npm-web-sampler/issues/216)) ([74fdc44](https://github.com/percebus/npm-web-sampler/commit/74fdc44e4df9cada25e619f3cec19cd4d3a2677c))
+
 ## [2.0.4](https://github.com/percebus/npm-web-sampler/compare/v2.0.3...v2.0.4) (2025-11-03)
 
 ### Bug Fixes
