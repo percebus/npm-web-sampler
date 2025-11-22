@@ -21,7 +21,7 @@ permissions:
   contents: read
 
 jobs:
-  validate-pr-title:
+  semantic-pull-request:
     name: Semantic Pull-Request title
     runs-on: ubuntu-latest
     permissions:
