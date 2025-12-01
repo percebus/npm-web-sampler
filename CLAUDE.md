@@ -53,7 +53,7 @@ npm-web-sampler/
 ### Quality Assurance
 
 - `npm run lint` - Run all linters
-- `npm run style` - Auto-fix formatting
+- `npm run format` - Auto-fix formatting
 - `npm run mega-linter` - Comprehensive linting suite
 - `npm run prettier:check` - Check code formatting
 - `npm run standardx:check` - JavaScript linting
@@ -123,7 +123,7 @@ This project intentionally demonstrates **DevOps complexity for educational purp
 
    - Quick lint: `npm run lint`
    - Full linting: `npm run mega-linter`
-   - Auto-fix: `npm run style`
+   - Auto-fix: `npm run format`
 
 3. **Build Commands**: Verify builds work
    - Standard build: `npm run build`
@@ -136,7 +136,7 @@ This project intentionally demonstrates **DevOps complexity for educational purp
 | Install dependencies | `npm run setup`        | Installs npm, bower, and pip deps  |
 | Run tests            | `npm test`             | Unit tests only                    |
 | Full test suite      | `npm run verify`       | all tests + dist                   |
-| Fix formatting       | `npm run style`        | all linters (except `mega-linter`) |
+| Fix formatting       | `npm run format`       | all linters (except `mega-linter`) |
 | Check all linting    | `npm run lint`         | Fast linting check                 |
 | Deep security scan   | `npm run mega-linter`  | Full MegaLinter suite              |
 | Build for production | `npm run dist`         | Creates `dist/` folder             |

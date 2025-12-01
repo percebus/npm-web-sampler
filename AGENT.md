@@ -91,7 +91,7 @@ Add BREAKING CHANGE footer only if public contract changes.
 | Gate                 | Command                     | Expectation                 |
 | -------------------- | --------------------------- | --------------------------- |
 | Style & Lint (fast)  | `npm run lint`              | No errors (warns explained) |
-| Auto-Fix (optional)  | `npm run style`             | Formatting applied          |
+| Auto-Fix (optional)  | `npm run format`            | Formatting applied          |
 | Unit Tests           | `npm test`                  | All pass                    |
 | Full Verify          | `npm run verify`            | Build + dist + tests pass   |
 | Deep Lint / Security | `npm run mega-linter`       | No new critical issues      |

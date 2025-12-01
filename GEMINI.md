@@ -87,7 +87,7 @@ Before committing any changes, it is crucial to run the verification scripts to 
 2.  **Run Linters**:
 
     - For a quick linting check: `npm run lint`
-    - To auto-fix formatting issues: `npm run style`
+    - To auto-fix formatting issues: `npm run format`
     - For a deep security and quality scan: `npm run mega-linter`
 
 3.  **Verify Builds**:
@@ -104,7 +104,7 @@ Before committing any changes, it is crucial to run the verification scripts to 
 | **Testing**     | `npm test`                  | Runs unit tests only                             |
 |                 | `npm run verify`            | Runs the full build and test suite               |
 | **Linting**     | `npm run lint`              | Runs a quick check with all linters              |
-|                 | `npm run style`             | Auto-fixes formatting with Prettier & StandardX  |
+|                 | `npm run format`            | Auto-fixes formatting with Prettier & StandardX  |
 |                 | `npm run mega-linter`       | Runs the full MegaLinter suite for deep analysis |
 | **Building**    | `npm run build`             | Builds the project using Grunt to `build/`       |
 |                 | `npm run dist`              | Bundles the project using Parcel to `dist/`      |
