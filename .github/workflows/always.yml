@@ -40,6 +40,7 @@ jobs:
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
+      - uses: percebus/github-actions-helm/.github/actions/setup@main
 
       # prettier
       - name: npm run lint:misc
