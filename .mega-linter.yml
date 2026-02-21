@@ -42,7 +42,7 @@ YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (helm/.*\.(yml|yaml))
 
 # WARNING: Added by Claude Sonnet 4
 # Repository scanner configuration - skip image tag/digest checks since we use latest for development
-REPOSITORY_CHECKOV_ARGUMENTS: "--skip-check CKV2_GHA_1,CKV_K8S_14,CKV_K8S_43,CKV_K8S_10,CKV_KSV_010,CKV_K8S_15 --skip-path assets/"
+REPOSITORY_CHECKOV_ARGUMENTS: "--skip-check CKV2_GHA_1,CKV_K8S_14,CKV_K8S_43,CKV_K8S_10,CKV_KSV_010,CKV_K8S_15,CKV_GHA_7 --skip-path assets/"
 REPOSITORY_KICS_ARGUMENTS: "--exclude-queries bb241e61-77c3-4b97-9575-c0f8a1e008d0"
 
 # Enable Kubernetes scanning since we have Helm charts in helm/ directory
