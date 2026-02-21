@@ -58,6 +58,7 @@
     "dockerlint:Dockerfile.next": "npm run dockerlint -- -f Dockerfile.next",
     "dockerlint:all": "npm run dockerlint:Dockerfile && npm run dockerlint:Dockerfile.next",
     "helm:lint": "helm lint ./helm --strict",
+    "_terraform": "terraform -chdir=./terra",
     "terraform:fmt": "npm run _terraform -- fmt -recursive -diff -list=true",
     "terraform:fmt-check": "npm run terraform:fmt -- -check",
     "lint-staged": "lint-staged",
