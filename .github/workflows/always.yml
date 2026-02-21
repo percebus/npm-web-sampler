@@ -285,6 +285,8 @@ jobs:
     name: terraform
     needs: verify
     uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
+    with:
+      backend_override: true
 
   deploy-pages:
     if: github.ref == 'refs/heads/main'
