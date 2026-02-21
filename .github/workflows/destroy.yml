@@ -1,0 +1,80 @@
+name: Un-Deployment
+
+on:
+  pull_request:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+    inputs:
+      environment:
+        description: Target environment
+        required: true
+        type: choice
+        options:
+          # ci
+          - ci-main
+          - ci-branch
+          #
+          # requires approval
+          - dev
+          - prod
+
+concurrency:
+  # NOTE: Cancelling an apply might corrupt the state.
+  group: ${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    name: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - name: GITHUB_OUTPUT
+        id: set_variables
+        run: |
+          echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "environment=${{ inputs.environment || 'ci-main' }}" >> $GITHUB_OUTPUT
+          else
+            echo "environment=ci-branch" >> $GITHUB_OUTPUT
+          fi
+    outputs:
+      STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
+      environment: ${{ steps.set_variables.outputs.environment }}
+
+  terraform_plan:
+    name: terraform
+    needs: setup
+    uses: percebus/github-actions-terraform/.github/workflows/plan.yml@main
+    with:
+      environment: ${{ needs.setup.outputs.environment }}_plan
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  terraform_apply_plan:
+    name: terraform
+    needs:
+      - terraform_plan
+      - setup
+    uses: percebus/github-actions-terraform/.github/workflows/apply.yml@main
+    with:
+      environment: ${{ needs.setup.outputs.environment }}
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  terraform_plan2:
+    name: terraform
+    needs:
+      - terraform_apply_plan
+      - setup
+    uses: ./.github/workflows/plan-destroy.yml
+    with:
+      name: plan (post apply)
+      environment: ${{ needs.setup.outputs.environment }}_plan
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
