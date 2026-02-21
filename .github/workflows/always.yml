@@ -41,6 +41,7 @@ jobs:
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
       - uses: percebus/github-actions-helm/.github/actions/setup@main
+      - uses: percebus/github-actions-terraform/.github/actions/setup@main
 
       # prettier
       - name: npm run lint:misc
@@ -61,6 +62,10 @@ jobs:
       # helm lint
       - name: npm run lint:helm
         run: npm run lint:helm
+
+      # terraform lint
+      - name: npm run lint:terraform
+        run: npm run lint:terraform
 
       #
       # test
@@ -275,6 +280,13 @@ jobs:
       - uses: percebus/github-actions-compliance/.github/actions/codeql_analyze@main
         with:
           language: ${{ matrix.language }}
+
+  terraform_validate:
+    name: terraform
+    needs: verify
+    uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
+    with:
+      backend_override: true
 
   deploy-pages:
     if: github.ref == 'refs/heads/main'
