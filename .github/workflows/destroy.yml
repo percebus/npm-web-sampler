@@ -71,7 +71,7 @@ jobs:
     needs:
       - terraform_apply_plan
       - setup
-    uses: ./.github/workflows/plan-destroy.yml
+    uses: percebus/github-actions-terraform/.github/workflows/plan.yml@main
     with:
       name: plan (post apply)
       environment: ${{ needs.setup.outputs.environment }}_plan
