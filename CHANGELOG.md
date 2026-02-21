@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [2.2.0](https://github.com/percebus/npm-web-sampler/compare/v2.1.1...v2.2.0) (2026-02-21)
+
+### Features
+
+- `terraform` ([#221](https://github.com/percebus/npm-web-sampler/issues/221)) ([2574c85](https://github.com/percebus/npm-web-sampler/commit/2574c856d464d665694eb8076ff62c93c04556f5))
+
 ## [2.1.1](https://github.com/percebus/npm-web-sampler/compare/v2.1.0...v2.1.1) (2026-01-25)
 
 ### Bug Fixes
