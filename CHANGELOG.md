@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.1.1](https://github.com/percebus/npm-web-sampler/compare/v2.1.0...v2.1.1) (2026-01-25)
+
+### Bug Fixes
+
+- helm ([#220](https://github.com/percebus/npm-web-sampler/issues/220)) ([5623100](https://github.com/percebus/npm-web-sampler/commit/56231005159141ae638ce4db377281e19d32bd4e))
+
 # [2.1.0](https://github.com/percebus/npm-web-sampler/compare/v2.0.4...v2.1.0) (2025-11-22)
 
 ### Features
