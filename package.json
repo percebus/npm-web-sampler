@@ -167,7 +167,7 @@
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.3",
-    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/npm": "^13.1.2",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "bare-events": "^2.8.1",
     "browserslist": "latest",
