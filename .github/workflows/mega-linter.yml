@@ -59,6 +59,11 @@ jobs:
           # improve performance
           fetch-depth: 0
 
+      # I work on a windows machine
+      # And these permissions don't get persisted when I push to github
+      - name: chmod +x scripts/*.sh
+        run: chmod +x scripts/**/*.sh
+
       # MegaLinter
       - name: MegaLinter
 

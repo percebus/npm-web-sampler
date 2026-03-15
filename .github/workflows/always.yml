@@ -1,13 +1,11 @@
-# This runs on
-#  - push to branch for PR
-#  - on main
-#  - Potentially nightly (github doesn't like this tho)
----
 name: "[C]ontinuous [I]ntegration"
 
 on:
-  push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -184,26 +182,34 @@ jobs:
           # - project
           # - dev
           - target: tested
+            run: true
             scan-image: false
 
           # final release
           # - release
           - target: web-app
+            # Since it has already been run in docker-compose
+            # We only run it when we want to scan it
+            # which is only on main
+            run: ${{ github.ref == 'refs/heads/main' }}
             scan-image: ${{ github.ref == 'refs/heads/main' }}
 
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+        if: ${{ matrix.run }}
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       # XXX? run inside container
       - name: bower install
+        if: ${{ matrix.run }}
         run: |
           npm run npm:install:global:ci
           npm run bower:install
 
       - uses: percebus/github-actions-docker/.github/actions/build@main
+        if: ${{ matrix.run }}
         with:
           target: ${{ matrix.target }}
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
@@ -261,23 +267,27 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language:
-          - javascript
-          - actions
+        include:
+          - language: javascript
+            dist: true
 
-    name: "CodeQL: ${{ matrix.language }}"
+          - language: actions
+            dist: false
+
+    name: CodeQL analyze
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - name: dist.zip
+        if: ${{ matrix.dist }}
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
-      - uses: percebus/github-actions-compliance/.github/actions/codeql_analyze@main
+      - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
         with:
           language: ${{ matrix.language }}
 
