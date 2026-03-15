@@ -1,13 +1,11 @@
-# This runs on
-#  - push to branch for PR
-#  - on main
-#  - Potentially nightly (github doesn't like this tho)
----
 name: "[C]ontinuous [I]ntegration"
 
 on:
-  push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -184,14 +182,20 @@ jobs:
           # - project
           # - dev
           - target: tested
+            run: true
             scan-image: false
 
           # final release
           # - release
           - target: web-app
+            # Since it has already been run in docker-compose
+            # We only run it when we want to scan it
+            # which is only on main
+            run: ${{ github.ref == 'refs/heads/main' }}
             scan-image: ${{ github.ref == 'refs/heads/main' }}
 
     runs-on: ubuntu-latest
+    if: ${{ matrix.run }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
@@ -250,9 +254,6 @@ jobs:
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
-  # TODO split into 2:
-  # - actions does NOT need to download dist
-  # - javascript DOES
   codeQL:
     needs: verify
     runs-on: ubuntu-latest
@@ -264,9 +265,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language:
-          - javascript
-          - actions
+        include:
+          - language: javascript
+            dist: true
+
+          - language: actions
+            dist: false
 
     name: CodeQL analyze
     steps:
@@ -275,6 +279,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - name: dist.zip
+        if: ${{ matrix.dist }}
         uses: actions/download-artifact@v4
         with:
           name: dist

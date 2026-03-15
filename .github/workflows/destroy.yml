@@ -48,6 +48,11 @@ jobs:
   terraform_plan-destroy_and_apply:
     name: terraform
     needs: setup
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+
     uses: percebus/github-actions-terraform/.github/workflows/plan-destroy_and_apply.yml@main
     with:
       environment: ${{ needs.setup.outputs.environment }}
