@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.2.1](https://github.com/percebus/npm-web-sampler/compare/v2.2.0...v2.2.1) (2026-03-15)
+
+### Bug Fixes
+
+- **`codeql`:** action name changed ([#224](https://github.com/percebus/npm-web-sampler/issues/224)) ([020a93f](https://github.com/percebus/npm-web-sampler/commit/020a93f33ecae67f72d8106f6a162bad72d2b11b))
+
 # [2.2.0](https://github.com/percebus/npm-web-sampler/compare/v2.1.1...v2.2.0) (2026-02-21)
 
 ### Features
