@@ -195,19 +195,21 @@ jobs:
             scan-image: ${{ github.ref == 'refs/heads/main' }}
 
     runs-on: ubuntu-latest
-    if: ${{ matrix.run }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+        if: ${{ matrix.run }}
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       # XXX? run inside container
       - name: bower install
+        if: ${{ matrix.run }}
         run: |
           npm run npm:install:global:ci
           npm run bower:install
 
       - uses: percebus/github-actions-docker/.github/actions/build@main
+        if: ${{ matrix.run }}
         with:
           target: ${{ matrix.target }}
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
