@@ -23,9 +23,11 @@ permissions:
 jobs:
   semantic-pull-request:
     uses: percebus/github-actions-compliance/.github/workflows/semantic-pull-request.yml@main
+    name: github-actions-compliance
 
-  github-actions-compliance:
+  dependency-review:
     uses: percebus/github-actions-compliance/.github/workflows/dependency-review.yml@main
+    name: github-actions-compliance
     permissions:
       contents: read
       pull-requests: read
@@ -37,7 +39,7 @@ jobs:
     #   SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }}
 
     # XXX: vvv Use the re-usable workflow instead ^^^
-    name: npm audit
+    name: npm
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
@@ -50,6 +52,7 @@ jobs:
     # XXX: ^^^
 
   github-actions-pipx:
+    name: pipx
     uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit.yml@main
     with:
       audit-requirements-file: requirements.release.txt
