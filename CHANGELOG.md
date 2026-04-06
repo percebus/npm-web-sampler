@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.2.2](https://github.com/percebus/npm-web-sampler/compare/v2.2.1...v2.2.2) (2026-04-06)
+
+### Bug Fixes
+
+- **`workflows/pull_request`:** changes in `name`s and `permissions` ([#232](https://github.com/percebus/npm-web-sampler/issues/232)) ([b20ec00](https://github.com/percebus/npm-web-sampler/commit/b20ec006d762b4ad6d8a65bb91b15491a0aa8934))
+
 ## [2.2.1](https://github.com/percebus/npm-web-sampler/compare/v2.2.0...v2.2.1) (2026-03-15)
 
 ### Bug Fixes
