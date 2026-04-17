@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [2.4.0](https://github.com/percebus/npm-web-sampler/compare/v2.3.0...v2.4.0) (2026-04-17)
+
+### Features
+
+- **`codeql`:** `codeql-config` ([#236](https://github.com/percebus/npm-web-sampler/issues/236)) ([782656f](https://github.com/percebus/npm-web-sampler/commit/782656f77e473ba8d027c1268ae951954cfa480a))
+
 # [2.3.0](https://github.com/percebus/npm-web-sampler/compare/v2.2.2...v2.3.0) (2026-04-17)
 
 ### Features
