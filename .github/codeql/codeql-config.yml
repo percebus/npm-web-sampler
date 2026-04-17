@@ -1,0 +1,48 @@
+name: npm-web-sampler CodeQL Configuration
+
+paths:
+  - src
+  - __tests__
+  - features
+  - helm
+  - selenium
+  - terra
+  - env
+  - scripts
+  - .github
+  - .vscode
+  # dot-files (configs, scripts)
+  - "*.js"
+  - "*.mjs"
+  - "*.sh"
+  - "*.json"
+  - "*.yml"
+  - "*.yaml"
+  - "*.tf"
+
+paths-ignore:
+  - _scripts
+  # dependencies
+  - node_modules
+  - repositories
+  - bower_components
+  # husky
+  - .husky
+  # virtual environments
+  - .venv
+  # build outputs
+  - build
+  - dist
+  # caches
+  - .parcel-cache
+  - .cache
+  - .grunt
+  # IDE
+  - .idea
+  # temporary / generated
+  - tmp
+  - megalinter-reports
+  - test/results
+  # terraform state
+  - "**/*.tfstate"
+  - "**/*.tfstate.backup"
