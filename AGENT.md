@@ -5,9 +5,9 @@
 >
 > Specific supplemental instruction sets exist for:
 >
-> - Gemini: `GEMINI.md`
 > - GitHub Copilot: `.github/copilot-instructions.md`
 > - Claude: `CLAUDE.md`
+> - Gemini: `GEMINI.md`
 >
 > These specific documents EXTEND (never replace) the general rules below.
 > If there is a conflict:
