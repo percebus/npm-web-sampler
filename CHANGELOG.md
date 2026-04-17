@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [2.3.0](https://github.com/percebus/npm-web-sampler/compare/v2.2.2...v2.3.0) (2026-04-17)
+
+### Features
+
+- copilot-cli ([#235](https://github.com/percebus/npm-web-sampler/issues/235)) ([a221900](https://github.com/percebus/npm-web-sampler/commit/a221900d91e5ad632a432ae199dce6aaf7e58df6))
+
 ## [2.2.2](https://github.com/percebus/npm-web-sampler/compare/v2.2.1...v2.2.2) (2026-04-06)
 
 ### Bug Fixes
