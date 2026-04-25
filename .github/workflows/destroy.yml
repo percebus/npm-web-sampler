@@ -1,13 +1,16 @@
 name: Un-Deployment
 
 on:
-  workflow_run:
-    workflows:
-      - Deployment
-    types:
-      - completed
-    branches-ignore:
-      - main
+  pull_request:
+
+  # FIXME workflow_run doesn't work with checkout@main, which is required to get the PR branch name.
+  # workflow_run:
+  #   workflows:
+  #     - Deployment
+  #   types:
+  #     - completed
+  #   branches-ignore:
+  #     - main
 
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
     inputs:
@@ -41,6 +44,7 @@ jobs:
 
       - name: GITHUB_OUTPUT
         id: set_variables
+        # TODO incorporate ${{ github.event.workflow_run.head_sha }}
         run: |
           echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
           if [[ "${{ github.ref_name }}" == "main" ]]; then
@@ -62,6 +66,9 @@ jobs:
 
     uses: percebus/github-actions-terraform/.github/workflows/plan-destroy_and_apply.yml@main
     with:
+      # This forces it to use the PR branch instead of main
+      # ref: ${{ github.event.workflow_run.head_branch }}  # TODO when checkout@main accepts it
+
       environment: ${{ needs.setup.outputs.environment }}
       TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
     secrets:
