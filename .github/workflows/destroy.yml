@@ -46,6 +46,7 @@ jobs:
 
       - name: GITHUB_OUTPUT
         id: set_variables
+        # TODO incorporate ${{ github.event.workflow_run.head_sha }}
         run: |
           echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
           if [[ "${{ github.ref_name }}" == "main" ]]; then

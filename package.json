@@ -200,9 +200,7 @@
     "update-browserslist-db": "latest"
   },
   "dependencies": {
-    "baseline-browser-mapping": "^2.10.22",
     "bootstrap": "^5.3.6",
-    "caniuse-lite": "^1.0.30001790",
     "lodash": "^4.17.21"
   }
 }
