@@ -6,7 +6,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "type": "commonjs",
   "scripts": {
-    "npm:upgrade": "npm install --location=global --update npm",
+    "npm:upgrade": "npm install --location=global npm@latest",
     "pre_npm:install:global": "npm run npm:upgrade",
     "_npm:install:global": "npm install --location=global",
     "npm:install:global:all": "npm run _npm:install:global -- yarn bower grunt-cli http-server open-cli @github/copilot @anthropic-ai/claude-code @google/gemini-cli",

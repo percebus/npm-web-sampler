@@ -38,6 +38,11 @@ jobs:
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
+
+      - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
+        with:
+          language: javascript
+
       - uses: percebus/github-actions-helm/.github/actions/setup@main
       - uses: percebus/github-actions-terraform/.github/actions/setup@main
 
@@ -98,6 +103,7 @@ jobs:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
+  #
   verify__matrix:
     if: github.ref == 'refs/heads/main'
     needs: verify
@@ -142,6 +148,28 @@ jobs:
       - name: npm run dist
         run: npm run dist
 
+  #
+  codeQL:
+    needs: verify
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language:
+          - actions
+
+    name: CodeQL analyze
+    uses: percebus/github-actions-compliance/.github/workflows/codeql_analyze.yml@main
+    with:
+      language: ${{ matrix.language }}
+    secrets: # XXX? redundant?
+      SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }}
+
+  #
   testem:
     if: false # FIXME not working
     name: "test'em"
@@ -255,41 +283,6 @@ jobs:
           target: ${{ matrix.target }}
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
-
-  codeQL:
-    needs: verify
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - language: javascript
-            dist: true
-
-          - language: actions
-            dist: false
-
-    name: CodeQL analyze
-    steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - name: dist.zip
-        if: ${{ matrix.dist }}
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-
-      - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
-        with:
-          language: ${{ matrix.language }}
 
   terraform_validate:
     name: terraform

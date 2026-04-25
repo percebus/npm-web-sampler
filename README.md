@@ -1,6 +1,11 @@
 # npm-web-sampler
 
-[`CODE_OF_CONDUCT`](./CODE_OF_CONDUCT.md) | [`CONTRIBUTING`](./CONTRIBUTING.md) | [`LICENSE`](./LICENSE.md) | [`SECURITY`](./SECURITY.md) | [`CHANGELOG`](./CHANGELOG.md) | [`TODO`s](./TODO.md)
+[`CODE_OF_CONDUCT`](./CODE_OF_CONDUCT.md) |
+[`CONTRIBUTING`](./CONTRIBUTING.md) |
+[`LICENSE`](./LICENSE.md) |
+[`SECURITY`](./SECURITY.md) |
+[`CHANGELOG`](./CHANGELOG.md) |
+[`TODO`s](./TODO.md)
 
 - [![Continuous Integration](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml)
 - [![MegaLinter](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml)
