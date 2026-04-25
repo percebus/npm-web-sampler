@@ -6,6 +6,8 @@ on:
       - Deployment
     types:
       - completed
+    branches-ignore:
+      - main
 
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
     inputs:
