@@ -2,8 +2,6 @@ name: Un-Deployment
 
 on:
   pull_request:
-    branches:
-      - main
 
   # FIXME workflow_run doesn't work with checkout@main, which is required to get the PR branch name.
   # workflow_run:
