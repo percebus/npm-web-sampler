@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.2](https://github.com/percebus/npm-web-sampler/compare/v2.4.1...v2.4.2) (2026-04-25)
+
+### Bug Fixes
+
+- **`bower.json`:** Node25 fix ([#241](https://github.com/percebus/npm-web-sampler/issues/241)) ([c65656d](https://github.com/percebus/npm-web-sampler/commit/c65656da2b008deeced31885769dea9c38504e30))
+
 ## [2.4.1](https://github.com/percebus/npm-web-sampler/compare/v2.4.0...v2.4.1) (2026-04-25)
 
 ### Bug Fixes
