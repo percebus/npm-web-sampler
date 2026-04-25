@@ -2,7 +2,8 @@ name: Un-Deployment
 
 on:
   workflow_run:
-    workflows: ["Deployment"]
+    workflows:
+      - Deployment
     types:
       - completed
 
