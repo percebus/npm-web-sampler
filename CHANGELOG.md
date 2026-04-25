@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.1](https://github.com/percebus/npm-web-sampler/compare/v2.4.0...v2.4.1) (2026-04-25)
+
+### Bug Fixes
+
+- **`workflows/always.yml`:** CodeQL ([#238](https://github.com/percebus/npm-web-sampler/issues/238)) ([1896781](https://github.com/percebus/npm-web-sampler/commit/18967815403c7a808ee6adf82eb01b8e9d18e4e4))
+
 # [2.4.0](https://github.com/percebus/npm-web-sampler/compare/v2.3.0...v2.4.0) (2026-04-17)
 
 ### Features
