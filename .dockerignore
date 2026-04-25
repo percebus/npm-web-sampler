@@ -24,6 +24,10 @@ junit*.xml
 # megalinter
 megalinter-reports/
 
+# terraform
+# /terra/env/local.tfvars
+# !/terra/env/*.tfvars
+
 
 ##################################
 ### VisualStudioCode.gitignore ### SRC: https://github.com/github/gitignore/blob/main/VisualStudio.gitignore

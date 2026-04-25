@@ -105,19 +105,19 @@ jobs:
 
   #
   verify__matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # FIXME
     needs: verify
     strategy:
       fail-fast: false
       max-parallel: 6
       matrix:
         node:
-          - 22
-          - 23
+          - 24 # LTS in other OS
+          - 25 # Current
         OS:
           - ubuntu-latest
           - macOS-latest
-          # - windows-latest # FIXME SSH not working, and bower install fails!
+          - windows-latest # FIXME SSH not working, and bower install fails!
     runs-on: ${{ matrix.OS }}
     name: "Verify: node@${{ matrix.node }} @ ${{ matrix.OS }}"
     steps:
@@ -178,6 +178,7 @@ jobs:
     with:
       script: testem:ci:dot
 
+  #
   docker_compose:
     name: docker compose
     needs: verify
@@ -198,6 +199,7 @@ jobs:
       - name: docker compose build
         run: docker compose build --no-cache
 
+  #
   docker_build__matrix:
     name: docker build --target
     needs: docker_compose
@@ -243,8 +245,9 @@ jobs:
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
+  #
   docker_build_next__matrix:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main'  # FIXME
     name: docker build --file Dockerfile.next --target
     needs: docker_compose
     continue-on-error: true
@@ -284,6 +287,7 @@ jobs:
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
           image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
 
+  #
   terraform_validate:
     name: terraform
     needs: verify
@@ -291,6 +295,7 @@ jobs:
     with:
       backend_override: true
 
+  #
   deploy-pages:
     if: github.ref == 'refs/heads/main'
     needs: verify
@@ -328,6 +333,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+  #
   integration-tests:
     if: github.ref == 'refs/heads/main'
     needs: deploy-pages
@@ -353,6 +359,7 @@ jobs:
           check_name: Integration Tests Deltas
           comment_title: Integration Tests Deltas
 
+  #
   e2e-tests:
     if: github.ref == 'refs/heads/main'
     needs: integration-tests
