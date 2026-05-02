@@ -1,7 +1,6 @@
 /* global alert */
 
 import pkg from "../../package.json"
-import _ from "lodash"
 
 function loadVersion() {
   console.debug("Loading version " + pkg.version)
