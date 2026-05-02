@@ -299,7 +299,7 @@ jobs:
 
   #
   deploy-pages:
-    # if: github.ref == 'refs/heads/main'  # FIXME
+    if: github.ref == 'refs/heads/main'
     needs: verify
     runs-on: ubuntu-latest
     environment:
