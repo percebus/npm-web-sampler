@@ -295,7 +295,7 @@ jobs:
     needs: verify
     uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
     with:
-      backend_override: true
+      override: true
 
   #
   deploy-pages:
