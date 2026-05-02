@@ -1,4 +1,5 @@
 terraform {
+  required_version = "~> 1.15.1"
   required_providers {
     random = {
       source  = "hashicorp/random"
@@ -15,6 +16,4 @@ terraform {
       prefix = "npm-web-sampler_"
     }
   }
-
-  required_version = "~> 1.14.3"
 }
