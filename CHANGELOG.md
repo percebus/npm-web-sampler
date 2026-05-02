@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.3](https://github.com/percebus/npm-web-sampler/compare/v2.4.2...v2.4.3) (2026-05-02)
+
+### Bug Fixes
+
+- **`workflows/always`:** Move `dist` AFTER `semantic-release` ([#242](https://github.com/percebus/npm-web-sampler/issues/242)) ([3e81e07](https://github.com/percebus/npm-web-sampler/commit/3e81e0778eaf6e3d6d10d0447de821fa5e504042)), closes [#128](https://github.com/percebus/npm-web-sampler/issues/128) [#243](https://github.com/percebus/npm-web-sampler/issues/243)
+
 ## [2.4.2](https://github.com/percebus/npm-web-sampler/compare/v2.4.1...v2.4.2) (2026-04-25)
 
 ### Bug Fixes
