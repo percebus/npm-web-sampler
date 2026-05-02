@@ -87,21 +87,21 @@ jobs:
           check_name: Unit Tests Deltas
           comment_title: Unit Tests Deltas
 
-      # TODO move to -actions-npm
-      - name: npm run dist
-        run: npm run dist
-        if: always()
-      - name: dist.zip
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: ./dist
-
       - name: semantic-release
         run: npm run semantic-release
         env:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      # TODO move to -actions-npm
+      - name: npm run dist
+        run: npm run dist
+
+      - name: dist.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
+        with:
+          name: dist
+          path: ./dist
 
   #
   verify__matrix:
@@ -299,7 +299,7 @@ jobs:
 
   #
   deploy-pages:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main'  # FIXME
     needs: verify
     runs-on: ubuntu-latest
     environment:
