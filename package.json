@@ -188,6 +188,7 @@
     "jest-junit": "^16.0.0",
     "lint-staged": "^16.2.6",
     "load-grunt-tasks": "^5.1.0",
+    "lodash": "^4.17.21",
     "mega-linter-runner": "^8.7.0",
     "parcel": "~2.14.2",
     "playwright": "^1.52.0",
@@ -200,7 +201,6 @@
     "update-browserslist-db": "latest"
   },
   "dependencies": {
-    "bootstrap": "^5.3.6",
-    "lodash": "^4.17.21"
+    "bootstrap": "^5.3.6"
   }
 }
