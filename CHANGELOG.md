@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.4](https://github.com/percebus/npm-web-sampler/compare/v2.4.3...v2.4.4) (2026-05-16)
+
+### Bug Fixes
+
+- **megalinter:** `bash-exec` ([#247](https://github.com/percebus/npm-web-sampler/issues/247)) ([abd7ead](https://github.com/percebus/npm-web-sampler/commit/abd7ead572c4278975477d85df560e4799371c53)), closes [#246](https://github.com/percebus/npm-web-sampler/issues/246)
+
 ## [2.4.3](https://github.com/percebus/npm-web-sampler/compare/v2.4.2...v2.4.3) (2026-05-02)
 
 ### Bug Fixes
