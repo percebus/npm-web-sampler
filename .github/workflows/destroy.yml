@@ -42,12 +42,12 @@ jobs:
       - name: GITHUB_OUTPUT
         id: set_variables
         run: |
-          if [[ "${{ github.ref_name }}" == "main" ]]; then
-            echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
-            echo "environment=${{ inputs.environment || 'ci-main' }}" >> $GITHUB_OUTPUT
-          else
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
             echo "STACK_ID=$(git rev-parse --short ${{ github.event.workflow_run.head_sha }})" >> $GITHUB_OUTPUT
             echo "environment=ci-branch" >> $GITHUB_OUTPUT
+          else
+            echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+            echo "environment=${{ inputs.environment || 'ci-main' }}" >> $GITHUB_OUTPUT
           fi
     outputs:
       STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
