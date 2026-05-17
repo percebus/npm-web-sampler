@@ -1,8 +1,13 @@
-FROM nikolaik/python-nodejs:python3.12-nodejs22 AS base
+# NOTE: From Gemini
+# "If you need the image optimization features, switch your Docker base image from node:alpine
+#  to a Debian or Ubuntu-based image (e.g., node:lts-bookworm-slim),
+#  which uses standard glibc and supports Parcel's native dependencies without segfaulting."
+FROM nikolaik/python-nodejs:python3.13-nodejs24 AS base
 
 FROM base AS project
 WORKDIR /usr/project
 COPY . .
+COPY docker .
 RUN ls -la
 RUN bash _scripts/clean.ba.sh
 
@@ -15,7 +20,6 @@ RUN npm test --ignore-scripts
 FROM dev AS dist
 RUN npm run dist
 RUN ls -la dist
-
 
 FROM node:24-alpine AS release
 WORKDIR /opt/app
