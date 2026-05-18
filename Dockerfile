@@ -1,17 +1,8 @@
-# Start with the official Node slim image
-FROM node:lts-bookworm-slim AS base
-
-# Install Python 3 and pip
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
-    python3 \
-    python3-pip
-
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# (Optional) Verify installations
-RUN node --version && python3 --version
-
+# NOTE: From Gemini
+# "If you need the image optimization features, switch your Docker base image from node:alpine
+#  to a Debian or Ubuntu-based image (e.g., node:lts-bookworm-slim),
+#  which uses standard glibc and supports Parcel's native dependencies without segfaulting."
+FROM nikolaik/python-nodejs:python3.13-nodejs24 AS base
 
 FROM base AS project
 WORKDIR /usr/project
