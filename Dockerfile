@@ -1,3 +1,4 @@
+# trixie
 FROM nikolaik/python-nodejs:python3.13-nodejs24 AS base
 
 FROM base AS project
