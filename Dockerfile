@@ -1,7 +1,3 @@
-# NOTE: From Gemini
-# "If you need the image optimization features, switch your Docker base image from node:alpine
-#  to a Debian or Ubuntu-based image (e.g., node:lts-bookworm-slim),
-#  which uses standard glibc and supports Parcel's native dependencies without segfaulting."
 FROM nikolaik/python-nodejs:python3.13-nodejs24 AS base
 
 FROM base AS project
