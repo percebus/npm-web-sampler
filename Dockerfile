@@ -9,7 +9,7 @@ WORKDIR /usr/project
 COPY . .
 COPY docker .
 RUN ls -la
-RUN bash _scripts/clean.ba.sh
+RUN bash _scripts/bash/clean.ba.sh
 
 FROM project AS dev
 RUN npm run setup:Dockerfile:dev && npm ci
