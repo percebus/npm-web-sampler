@@ -150,12 +150,12 @@ See [Parcel](https://parceljs.org/getting-started/webapp/) docs.
 
 Alpine VS Debian
 
-| Feature             | Debian                   | Alpine Linux                       |
-| :------------------ | :----------------------- | :--------------------------------- |
-| **Base Size**       | ~100MB to 1GB            | **~5MB** (Node wrapper adds ~40MB) |
-| **C Library**       | `glibc` (Standard GNU)   | `musl` (Ultra-lightweight)         |
-| **Package Manager** | `apt` / `apt-get`        | `apk`                              |
-| **Shell**           | `bash`                   | `sh` (via BusyBox)                 |
+| Feature             | Debian                 | Alpine Linux                       |
+| :------------------ | :--------------------- | :--------------------------------- |
+| **Base Size**       | ~100MB to 1GB          | **~5MB** (Node wrapper adds ~40MB) |
+| **C Library**       | `glibc` (Standard GNU) | `musl` (Ultra-lightweight)         |
+| **Package Manager** | `apt` / `apt-get`      | `apk`                              |
+| **Shell**           | `bash`                 | `sh` (via BusyBox)                 |
 
 ##### Debian
 
