@@ -1,4 +1,5 @@
-FROM nikolaik/python-nodejs:python3.12-nodejs22 AS base
+# trixie
+FROM nikolaik/python-nodejs:python3.13-nodejs24 AS base
 
 FROM base AS project
 WORKDIR /usr/project
@@ -16,8 +17,7 @@ FROM dev AS dist
 RUN npm run dist
 RUN ls -la dist
 
-
-FROM node:24-alpine AS release
+FROM node:lts-alpine AS release
 WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .

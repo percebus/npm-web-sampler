@@ -112,8 +112,9 @@ jobs:
       max-parallel: 6
       matrix:
         node:
-          - 24 # LTS in other OS
-          - 25 # Current
+          - lts # LTS in other OS
+          - 25
+          - latest # Current
         OS:
           - ubuntu-latest
           - macOS-latest

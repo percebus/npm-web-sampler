@@ -142,6 +142,49 @@ See [Parcel](https://parceljs.org/getting-started/webapp/) docs.
   - `*.se.spec.js`: Integration tests
   - `*.se.js`: Manual tests
 
+## Containerizing
+
+### Docker
+
+#### Linux
+
+Alpine VS Debian
+
+| Feature             | Debian                 | Alpine Linux                       |
+| :------------------ | :--------------------- | :--------------------------------- |
+| **Base Size**       | ~100MB to 1GB          | **~5MB** (Node wrapper adds ~40MB) |
+| **C Library**       | `glibc` (Standard GNU) | `musl` (Ultra-lightweight)         |
+| **Package Manager** | `apt` / `apt-get`      | `apk`                              |
+| **Shell**           | `bash`                 | `sh` (via BusyBox)                 |
+
+##### Debian
+
+> [!NOTE]
+> Generated from Gemini
+
+| Version       | Codename     | Toy Story Meaning                          | Current Status in Docker                                         |
+| :------------ | :----------- | :----------------------------------------- | :--------------------------------------------------------------- |
+| **Debian 15** | **Duke**     | Duke Caboom (daredevil motorcyclist)       | Future release (planned).                                        |
+| **Debian 14** | **Forky**    | Bonnie's homemade spork toy                | Testing branch (experimental).                                   |
+| **Debian 13** | **Trixie**   | The blue plastic Triceratops               | **Current Stable**. Best for bleeding-edge compilers.            |
+| **Debian 12** | **Bookworm** | The smart green toy worm with a flashlight | **Old Stable**. Highly compatible, default for most modern apps. |
+| **Debian 11** | **Bullseye** | Woody's wooden toy horse                   | **Old-Old Stable**. Getting older, actively nearing End of Life. |
+| **Debian 10** | **Buster**   | Andy's real-life pet dachshund             | **Archived / EOL**. Avoid using for new builds.                  |
+| **Debian 9**  | **Stretch**  | The purple rubber toy octopus              | **Archived / EOL**. Deprecated across modern Docker builds.      |
+
+See [Linux Debian codenames](https://unix.stackexchange.com/questions/222394/linux-debian-codenames)
+
+### Dockerfiles
+
+| Name              | Purpose               |
+| ----------------- | --------------------- |
+| `Dockerfile`      | Current               |
+| `Dockerfile.next` | Experimental (future) |
+
+### docker compose
+
+Entry point for `docker`. It simplifies development by `docker compose up`-to-victory.
+
 ## Setup
 
 ### env
