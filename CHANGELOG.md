@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.5](https://github.com/percebus/npm-web-sampler/compare/v2.4.4...v2.4.5) (2026-05-19)
+
+### Bug Fixes
+
+- **docker:** broken img ([#251](https://github.com/percebus/npm-web-sampler/issues/251)) ([7be821f](https://github.com/percebus/npm-web-sampler/commit/7be821f03b501804164f96f21891c1e30ed3feeb)), closes [#248](https://github.com/percebus/npm-web-sampler/issues/248)
+
 ## [2.4.4](https://github.com/percebus/npm-web-sampler/compare/v2.4.3...v2.4.4) (2026-05-16)
 
 ### Bug Fixes
