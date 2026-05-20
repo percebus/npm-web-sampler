@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.6](https://github.com/percebus/npm-web-sampler/compare/v2.4.5...v2.4.6) (2026-05-20)
+
+### Bug Fixes
+
+- **`Dockerfile.next`:** wrong `tag` ([4b57ba6](https://github.com/percebus/npm-web-sampler/commit/4b57ba6f3e1d399f0ee5eb12a37848fb265cc146))
+
 ## [2.4.5](https://github.com/percebus/npm-web-sampler/compare/v2.4.4...v2.4.5) (2026-05-19)
 
 ### Bug Fixes
