@@ -114,7 +114,10 @@ jobs:
         node:
           - 24
           - 25
-          - 26
+
+          # npm error path /home/runner/work/npm-web-sampler/npm-web-sampler/node_modules/@playwright/browser-firefox
+          # npm error command failed
+          # - 26  # FIXME
         OS:
           - ubuntu-latest
           - macOS-latest
