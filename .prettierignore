@@ -15,6 +15,9 @@ _scripts/
 build/
 dist/
 
+# AI backup
+assets/ai/
+
 # python
 .venv/
 

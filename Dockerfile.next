@@ -1,5 +1,5 @@
 # trixie
-FROM nikolaik/python-nodejs:python-nodejs:latest AS base
+FROM nikolaik/python-nodejs:python3.14-nodejs26 AS base
 
 FROM base AS project
 WORKDIR /usr/project
