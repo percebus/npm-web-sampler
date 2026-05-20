@@ -21,7 +21,6 @@ FROM node:current-alpine AS release
 WORKDIR /opt/app
 COPY --from=dist /usr/project/dist ./dist
 COPY --from=project /usr/project/package*.json .
-COPY --from=project /usr/project/docker/* .
 RUN npm run setup:Dockerfile:prd
 
 FROM release AS web-app
