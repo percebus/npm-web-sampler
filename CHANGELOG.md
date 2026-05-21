@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.7](https://github.com/percebus/npm-web-sampler/compare/v2.4.6...v2.4.7) (2026-05-20)
+
+### Bug Fixes
+
+- Project is not ready for `node@26` ([6346c8b](https://github.com/percebus/npm-web-sampler/commit/6346c8b6bfc9184777a6ce2cc6a3b4b1907ff9e3))
+
 ## [2.4.6](https://github.com/percebus/npm-web-sampler/compare/v2.4.5...v2.4.6) (2026-05-20)
 
 ### Bug Fixes
