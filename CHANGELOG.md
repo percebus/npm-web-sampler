@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.8](https://github.com/percebus/npm-web-sampler/compare/v2.4.7...v2.4.8) (2026-05-21)
+
+### Bug Fixes
+
+- **`Dockerfile.next`:** left overs from `docker/` folder ([240abca](https://github.com/percebus/npm-web-sampler/commit/240abca4a9da87b50b8f60b1c1743ae20009e208))
+
 ## [2.4.7](https://github.com/percebus/npm-web-sampler/compare/v2.4.6...v2.4.7) (2026-05-20)
 
 ### Bug Fixes
