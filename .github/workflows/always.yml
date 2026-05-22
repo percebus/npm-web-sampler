@@ -367,8 +367,8 @@ jobs:
 
   #
   e2e-tests:
-    if: github.ref == 'refs/heads/main'
-    needs: integration-tests
+    # if: github.ref == 'refs/heads/main'
+    # needs: integration-tests
     name: E2E Tests
     continue-on-error: true
     runs-on: ubuntu-latest
