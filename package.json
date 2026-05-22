@@ -9,7 +9,7 @@
     "npm:upgrade": "npm install --location=global npm@latest",
     "pre_npm:install:global": "npm run npm:upgrade",
     "_npm:install:global": "npm install --location=global",
-    "npm:install:global:all": "npm run _npm:install:global -- yarn bower grunt-cli http-server open-cli playwright @github/copilot @anthropic-ai/claude-code @google/gemini-cli",
+    "npm:install:global:all": "npm run _npm:install:global -- yarn bower grunt-cli http-server open-cli playwright @executeautomation/playwright-mcp-server @github/copilot @anthropic-ai/claude-code @google/gemini-cli",
     "npm:install:global:ci": "npm install --location=global --force bower grunt-cli",
     "npm:install:global:Dockerfile": "npm install --location=global bower grunt-cli",
     "playwright:install": "npx playwright install",
