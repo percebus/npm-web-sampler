@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.4.9](https://github.com/percebus/npm-web-sampler/compare/v2.4.8...v2.4.9) (2026-05-22)
+
+### Bug Fixes
+
+- **`workflows/always.yml`:** E2E ([#256](https://github.com/percebus/npm-web-sampler/issues/256)) ([7eeb0c1](https://github.com/percebus/npm-web-sampler/commit/7eeb0c102d4d62bb048a08624299a72301ec7bf9)), closes [#255](https://github.com/percebus/npm-web-sampler/issues/255)
+
 ## [2.4.8](https://github.com/percebus/npm-web-sampler/compare/v2.4.7...v2.4.8) (2026-05-21)
 
 ### Bug Fixes
