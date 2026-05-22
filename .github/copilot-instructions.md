@@ -78,7 +78,7 @@ This is a comprehensive web development sampler project showcasing DevOps best p
 
 ## Dependencies Management
 
-- Keep requirements files updated (`requirements.txt`, `requirements.dev.txt`, etc.)
+- Keep requirements files updated (`requirements.txt`, etc.)
 - Freeze pip dependencies to `requirements.frozen.txt`
 - Use `--allow-root` for bower in containers
 - Install global tools via npm scripts

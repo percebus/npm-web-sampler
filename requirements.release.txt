@@ -1,2 +1,0 @@
-# This file should remain emtpy
-# As this is NOT a python app

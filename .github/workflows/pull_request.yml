@@ -54,4 +54,4 @@ jobs:
     name: pipx
     uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit.yml@main
     with:
-      audit-requirements-file: requirements.release.txt
+      audit-requirements-file: requirements.frozen.txt
