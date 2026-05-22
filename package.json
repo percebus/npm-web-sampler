@@ -72,7 +72,7 @@
     "style": "npm run format",
     "update-browserslist-db": "npx update-browserslist-db@latest",
     "jest:ci": "jest --ci",
-    "prejest:ci:unit": "npm run update-browserslist-db",
+    "XXX_prejest:ci:unit": "npm run update-browserslist-db",
     "jest:ci:unit": "npm run jest:ci -- unit.spec.js",
     "jest:ci:rest": "npm run jest:ci -- rest.spec.js",
     "jest:ci:rest:npm-web-sampler": "npm run jest:ci:rest -- --rootDir=__tests__/npm-web-sampler",
