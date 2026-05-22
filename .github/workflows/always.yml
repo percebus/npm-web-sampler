@@ -35,6 +35,24 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
+      # XXX FIXME DELETE ME
+      # npm error Error:
+      # npm error ╔═════════════════════════════════════════════════════════════════════════════╗
+      # npm error ║ An active lockfile is found at:                                             ║
+      # npm error ║                                                                             ║
+      # npm error ║   /home/runner/.cache/ms-playwright/__dirlock                               ║
+      # npm error ║                                                                             ║
+      # npm error ║ Either:                                                                     ║
+      # npm error ║ - wait a few minutes if other Playwright is installing browsers in parallel ║
+      # npm error ║ - remove lock manually with:                                                ║
+      # npm error ║                                                                             ║
+      # npm error ║     rm -rf /home/runner/.cache/ms-playwright/__dirlock                      ║
+      # npm error ║                                                                             ║
+      # npm error ║ <3 Playwright Team                                                          ║
+      # npm error ╚═════════════════════════════════════════════════════════════════════════════╝
+      - name: Remove playwright lock
+        run: rm -rf /home/runner/.cache/ms-playwright/__dirlock
+
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
