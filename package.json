@@ -158,7 +158,6 @@
   },
   "homepage": "https://github.com/percebus/npm-web-sampler#readme",
   "devDependencies": {
-    "@executeautomation/playwright-mcp-server": "^1.0.6",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",

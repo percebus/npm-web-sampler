@@ -35,12 +35,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - name: cleanup
-        run: |
-          pwd
-          ls -la ./node_modules/
-          rm -rf ./node_modules/
-
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
