@@ -29,7 +29,7 @@
     "prepip:install:requirements": "npm run pipx:install",
     "pip:install:requirements": "npm run _pip:install -- -r ./requirements.txt",
     "postpip:install:requirements": "npm run pip:freeze",
-    "setup": "npm run npm:install:global:all && npm run playwirght:install && npm run bower:install && npm run pip:install:requirements",
+    "setup": "npm run npm:install:global:all && npm run playwright:install && npm run bower:install && npm run pip:install:requirements",
     "setup:ci": "npm run npm:install:global:ci && npm run bower:install && npm run pip:install:requirements",
     "setup:Dockerfile:dev": "npm run npm:install:global:Dockerfile && npm run pip:install:requirements",
     "setup:Dockerfile:prd": "npm install --production http-server",
