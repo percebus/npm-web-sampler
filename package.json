@@ -31,6 +31,7 @@
     "postpip:install:requirements": "npm run pip:freeze",
     "setup": "npm run npm:install:global:all && npm run bower:install && npm run pip:install:requirements",
     "setup:ci": "npm run npm:install:global:ci && npm run bower:install && npm run pip:install:requirements",
+    "postsetup:ci": "rm -rf /home/runner/.cache/ms-playwright/__dirlock",
     "setup:Dockerfile:dev": "npm run npm:install:global:Dockerfile && npm run pip:install:requirements",
     "setup:Dockerfile:prd": "npm install --production http-server",
     "yarn:licenses:prod:list": "yarn licenses list --prod > build/vendor/LICENSES.txt",
