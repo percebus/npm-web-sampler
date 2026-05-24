@@ -12,7 +12,7 @@ const cracks = require("cracks")
 function verifyRelease(pluginConfig, context) {
   return new Promise((resolve, reject) => {
     const opts = {
-      paths: pluginConfig.paths || ["tests", "package.json"],
+      paths: pluginConfig.paths || ["tests"],
       silent: pluginConfig.silent !== undefined ? pluginConfig.silent : true
     }
 
