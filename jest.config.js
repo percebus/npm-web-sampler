@@ -4,7 +4,7 @@ module.exports = {
   reporters: [
     "default",
     // 'github-actions', // FIXME
-    ["jest-junit", { outputDirectory: ".", outputName: "junit.xml" }]
+    "jest-junit"
   ],
   collectCoverageFrom: ["src/app/**/*.js"]
 }
