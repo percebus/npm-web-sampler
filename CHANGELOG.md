@@ -1,5 +1,16 @@
 # npm-web-sampler CHANGELOG
 
+# [2.5.0](https://github.com/percebus/npm-web-sampler/compare/v2.4.9...v2.5.0) (2026-05-24)
+
+### Bug Fixes
+
+- remove package.json from cracks paths to use current deps for old tests ([#264](https://github.com/percebus/npm-web-sampler/issues/264)) ([150e1eb](https://github.com/percebus/npm-web-sampler/commit/150e1eb76ede1291f41fb9eb72c4cbeb4e515405))
+- wrap cracks plugin with promise adapter for semantic-release v24 compatibility ([#263](https://github.com/percebus/npm-web-sampler/issues/263)) ([8065dff](https://github.com/percebus/npm-web-sampler/commit/8065dff42c1ae13274457fd76f936912bc1ad9f4))
+
+### Features
+
+- add cracks as semantic-release verifyRelease plugin ([#262](https://github.com/percebus/npm-web-sampler/issues/262)) ([0b3e0da](https://github.com/percebus/npm-web-sampler/commit/0b3e0dabbc39e0c4ea34d248d06106b1d55d8cb2))
+
 ## [2.4.9](https://github.com/percebus/npm-web-sampler/compare/v2.4.8...v2.4.9) (2026-05-22)
 
 ### Bug Fixes
