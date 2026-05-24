@@ -87,12 +87,6 @@ jobs:
           check_name: Unit Tests Deltas
           comment_title: Unit Tests Deltas
 
-      - name: semantic-release
-        run: npm run semantic-release
-        env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
       # TODO move to -actions-npm
       - name: npm run dist
         run: npm run dist
@@ -102,6 +96,12 @@ jobs:
         with:
           name: dist
           path: ./dist
+
+      - name: semantic-release
+        run: npm run semantic-release
+        env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   #
   verify__matrix:
