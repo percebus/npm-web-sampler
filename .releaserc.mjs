@@ -5,7 +5,7 @@ export default {
   branches: ["main", "next"],
   verifyRelease: [
     [
-      "cracks",
+      "./scripts/cracks-wrapper.cjs",
       {
         paths: ["__tests__", "package.json"],
         silent: true
