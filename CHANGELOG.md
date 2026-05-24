@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.5.1](https://github.com/percebus/npm-web-sampler/compare/v2.5.0...v2.5.1) (2026-05-24)
+
+### Bug Fixes
+
+- Reorder `verify` workflow steps to run `semantic-release` after `dist.zip` ([#265](https://github.com/percebus/npm-web-sampler/issues/265)) ([397b27b](https://github.com/percebus/npm-web-sampler/commit/397b27bf961758ab724032a904b3500a1f02a977))
+
 # [2.5.0](https://github.com/percebus/npm-web-sampler/compare/v2.4.9...v2.5.0) (2026-05-24)
 
 ### Bug Fixes
