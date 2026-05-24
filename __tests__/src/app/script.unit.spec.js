@@ -4,6 +4,7 @@
 
 describe("src/app/script", () => {
   let script
+  let consoleSpies
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -13,8 +14,15 @@ describe("src/app/script", () => {
       <button class="btn btn-success">Success</button>
     `
     global.alert = jest.fn()
+    consoleSpies = ["debug", "info", "log", "warn", "error"].map((method) =>
+      jest.spyOn(console, method).mockImplementation(() => {})
+    )
     jest.resetModules()
     script = require("../../../src/app/script")
+  })
+
+  afterEach(() => {
+    consoleSpies.forEach((spy) => spy.mockRestore())
   })
 
   describe("loadVersion", () => {
