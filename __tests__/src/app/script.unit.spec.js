@@ -20,19 +20,26 @@ describe("src/app/script", () => {
   describe("loadVersion", () => {
     it("sets #version element text to package version + NODE_ENV", () => {
       const pkg = require("../../../package.json")
-      const versionEl = document.getElementById("version")
-      expect(versionEl.innerText).toBe(`${pkg.version}-${process.env.NODE_ENV}`)
-    })
-
-    it("re-sets #version element text when called again", () => {
-      const pkg = require("../../../package.json")
       script.loadVersion()
       const versionEl = document.getElementById("version")
       expect(versionEl.innerText).toBe(`${pkg.version}-${process.env.NODE_ENV}`)
     })
+
+    it("overwrites #version element text on repeated calls", () => {
+      script.loadVersion()
+      script.loadVersion()
+      const pkg = require("../../../package.json")
+      expect(document.getElementById("version").innerText).toBe(
+        `${pkg.version}-${process.env.NODE_ENV}`
+      )
+    })
   })
 
   describe("addOnClickEvents", () => {
+    beforeEach(() => {
+      script.addOnClickEvents()
+    })
+
     it("triggers alert with correct type for btn-primary", () => {
       document.querySelector(".btn-primary").click()
       expect(global.alert).toHaveBeenCalledWith("Button type: primary")
@@ -48,10 +55,10 @@ describe("src/app/script", () => {
       expect(global.alert).toHaveBeenCalledWith("Button type: success")
     })
 
-    it("re-registers listeners without duplicates when called again", () => {
+    it("adds additional listeners when called again", () => {
       script.addOnClickEvents()
       document.querySelector(".btn-primary").click()
-      expect(global.alert).toHaveBeenCalledTimes(2) // once from main(), once from re-register
+      expect(global.alert).toHaveBeenCalledTimes(2)
     })
   })
 
@@ -60,10 +67,14 @@ describe("src/app/script", () => {
       expect(typeof script.main).toBe("function")
     })
 
-    it("sets the version element after calling main()", () => {
-      document.getElementById("version").innerText = ""
+    it("sets the version element and registers button listeners", () => {
       script.main()
-      expect(document.getElementById("version").innerText).not.toBe("")
+      const pkg = require("../../../package.json")
+      expect(document.getElementById("version").innerText).toBe(
+        `${pkg.version}-${process.env.NODE_ENV}`
+      )
+      document.querySelector(".btn-primary").click()
+      expect(global.alert).toHaveBeenCalledWith("Button type: primary")
     })
   })
 })

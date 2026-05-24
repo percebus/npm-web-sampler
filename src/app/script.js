@@ -45,6 +45,7 @@ function main() {
   addOnClickEvents()
 }
 
-main()
+/* istanbul ignore next */
+document.addEventListener("DOMContentLoaded", main)
 
 module.exports = { loadVersion, addOnClickEvents, main }
