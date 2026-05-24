@@ -1,6 +1,6 @@
 /* global alert */
 
-import pkg from "../../package.json"
+const pkg = require("../../package.json")
 
 function loadVersion() {
   console.debug("Loading version " + pkg.version)
@@ -46,3 +46,5 @@ function main() {
 }
 
 main()
+
+module.exports = { loadVersion, addOnClickEvents, main }

@@ -5,5 +5,6 @@ module.exports = {
     "default",
     // 'github-actions', // FIXME
     "jest-junit"
-  ]
+  ],
+  collectCoverageFrom: ["src/app/**/*.js"]
 }
