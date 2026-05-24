@@ -3,6 +3,15 @@
  */
 export default {
   branches: ["main", "next"],
+  verifyRelease: [
+    [
+      "cracks",
+      {
+        paths: ["__tests__", "package.json"],
+        silent: true
+      }
+    ]
+  ],
   plugins: [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",

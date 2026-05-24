@@ -167,6 +167,7 @@
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "browserslist": "latest",
+    "cracks": "^3.1.2",
     "dockerlint": "^0.3.9",
     "eslint-config-prettier": "^10.1.8",
     "frisby": "^2.1.3",
