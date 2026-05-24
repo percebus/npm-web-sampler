@@ -1,6 +1,6 @@
 /* global alert */
 
-import pkg from "../../package.json"
+const pkg = require("../../package.json")
 
 function loadVersion() {
   console.debug("Loading version " + pkg.version)
@@ -45,4 +45,7 @@ function main() {
   addOnClickEvents()
 }
 
-main()
+/* istanbul ignore next */
+document.addEventListener("DOMContentLoaded", main)
+
+module.exports = { loadVersion, addOnClickEvents, main }
