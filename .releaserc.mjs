@@ -7,7 +7,7 @@ export default {
     [
       "./scripts/cracks-wrapper.cjs",
       {
-        paths: ["__tests__", "package.json"],
+        paths: ["__tests__"],
         silent: true
       }
     ]
