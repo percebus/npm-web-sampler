@@ -2,7 +2,7 @@
  * Promise-based wrapper for the `cracks` semantic-release plugin.
  *
  * The `cracks` package uses an old callback-based API that is incompatible
- * with semantic-release v20+ (which expects promise-based plugins).
+ * with semantic-release v24+ (which expects promise-based plugins).
  * This wrapper adapts the callback interface to a promise interface.
  */
 "use strict"
