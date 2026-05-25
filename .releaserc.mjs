@@ -31,7 +31,7 @@ export default {
     [
       "@semantic-release/exec",
       {
-        prepareCmd: "npx prettier . --write && npm run dist"
+        prepareCmd: "npx prettier . --write"
       }
     ],
     [
