@@ -53,7 +53,6 @@ module.exports = (grunt) => {
       }
     },
     concat: {
-      options: { sourceMap: true },
       vendor: {
         files: {
           "build/vendor/vendor.min.css": ["tmp/vendor/style/**/*.css"],
