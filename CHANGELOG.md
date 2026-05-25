@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.5.4](https://github.com/percebus/npm-web-sampler/compare/v2.5.3...v2.5.4) (2026-05-25)
+
+### Bug Fixes
+
+- Restore `semantic-release` ordering before `dist` in `always.yml` ([#268](https://github.com/percebus/npm-web-sampler/issues/268)) ([0a84da4](https://github.com/percebus/npm-web-sampler/commit/0a84da4e9edb794728fa5977e4d04fc110fbdaf4))
+
 ## [2.5.3](https://github.com/percebus/npm-web-sampler/compare/v2.5.2...v2.5.3) (2026-05-25)
 
 ### Bug Fixes
