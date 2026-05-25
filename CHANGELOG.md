@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.5.5](https://github.com/percebus/npm-web-sampler/compare/v2.5.4...v2.5.5) (2026-05-25)
+
+### Bug Fixes
+
+- Remove source maps from grunt concat to fix Parcel CSS bundling ([#269](https://github.com/percebus/npm-web-sampler/issues/269)) ([a68b2c4](https://github.com/percebus/npm-web-sampler/commit/a68b2c431f43ddead80ec207223de0fa7e02639d))
+
 ## [2.5.4](https://github.com/percebus/npm-web-sampler/compare/v2.5.3...v2.5.4) (2026-05-25)
 
 ### Bug Fixes
