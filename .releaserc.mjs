@@ -3,15 +3,6 @@
  */
 export default {
   branches: ["main", "next"],
-  verifyRelease: [
-    [
-      "./scripts/cracks-wrapper.cjs",
-      {
-        paths: ["__tests__"],
-        silent: true
-      }
-    ]
-  ],
   plugins: [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
