@@ -93,6 +93,10 @@ jobs:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
+      # TODO move to -actions-npm
+      - name: npm run dist
+        run: npm run dist
+
       - name: dist.zip
         uses: percebus/github-actions-common/.github/actions/artifact-upload@main
         with:
