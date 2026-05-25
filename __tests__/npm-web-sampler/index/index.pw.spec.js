@@ -40,6 +40,28 @@ describe("index.html", () => {
           })
         })
 
+        describe("vendor CSS (Bootstrap)", () => {
+          it(".btn-primary has CSS rules from a loaded stylesheet", async () => {
+            const hasCssRules = await page.evaluate(() => {
+              const sheets = Array.from(document.styleSheets)
+              return sheets.some((sheet) => {
+                try {
+                  const rules = Array.from(sheet.cssRules || [])
+                  return rules.some(
+                    (rule) =>
+                      rule.selectorText &&
+                      rule.selectorText.includes(".btn-primary")
+                  )
+                } catch (e) {
+                  // CORS-restricted stylesheet — skip
+                  return false
+                }
+              })
+            })
+            expect(hasCssRules).toBe(true)
+          })
+        })
+
         describe("<a>nchor", () => {
           it("navigates elsewhere", async () => {
             await page.click("a") // Assuming there's a link to click
