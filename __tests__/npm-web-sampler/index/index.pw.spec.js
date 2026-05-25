@@ -40,6 +40,19 @@ describe("index.html", () => {
           })
         })
 
+        describe("vendor CSS (Bootstrap)", () => {
+          it(".btn-primary has Bootstrap's blue background-color", async () => {
+            const btn = page.locator(".btn-primary")
+            const bgColor = await btn.evaluate((el) =>
+              window.getComputedStyle(el).getPropertyValue("background-color")
+            )
+            // Bootstrap 5 primary is rgb(13, 110, 253); transparent/default means CSS failed to load
+            expect(bgColor).not.toBe("rgba(0, 0, 0, 0)")
+            expect(bgColor).not.toBe("transparent")
+            expect(bgColor).toContain("13")
+          })
+        })
+
         describe("<a>nchor", () => {
           it("navigates elsewhere", async () => {
             await page.click("a") // Assuming there's a link to click
