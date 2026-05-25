@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.5.2](https://github.com/percebus/npm-web-sampler/compare/v2.5.1...v2.5.2) (2026-05-25)
+
+### Bug Fixes
+
+- move `npm run dist` into semantic-release, upload artifact post-release ([#266](https://github.com/percebus/npm-web-sampler/issues/266)) ([069eedf](https://github.com/percebus/npm-web-sampler/commit/069eedf41e8ab2483b1150dd77f982d6a39da000))
+
 ## [2.5.1](https://github.com/percebus/npm-web-sampler/compare/v2.5.0...v2.5.1) (2026-05-24)
 
 ### Bug Fixes
