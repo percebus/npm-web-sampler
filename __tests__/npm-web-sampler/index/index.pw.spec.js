@@ -49,7 +49,7 @@ describe("index.html", () => {
             // Bootstrap 5 primary is rgb(13, 110, 253); transparent/default means CSS failed to load
             expect(bgColor).not.toBe("rgba(0, 0, 0, 0)")
             expect(bgColor).not.toBe("transparent")
-            expect(bgColor).toContain("13")
+            expect(bgColor).toBe("rgb(13, 110, 253)")
           })
         })
 
