@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.5.3](https://github.com/percebus/npm-web-sampler/compare/v2.5.2...v2.5.3) (2026-05-25)
+
+### Bug Fixes
+
+- Restore CI build/release ordering to prevent empty CSS on GitHub Pages ([#267](https://github.com/percebus/npm-web-sampler/issues/267)) ([68bf2c3](https://github.com/percebus/npm-web-sampler/commit/68bf2c3c5ed09b6987c75e366079685d9bac40a4))
+
 ## [2.5.2](https://github.com/percebus/npm-web-sampler/compare/v2.5.1...v2.5.2) (2026-05-25)
 
 ### Bug Fixes
