@@ -15,22 +15,6 @@ module.exports = (grunt) => {
       dist: "dist"
     },
     copy: {
-      tmp: {
-        files: [
-          {
-            cwd: "node_modules/bootstrap/dist/css/",
-            expand: true,
-            src: ["bootstrap.min.*"],
-            dest: "tmp/vendor/style"
-          },
-          {
-            cwd: "node_modules/bootstrap/dist/js/",
-            expand: true,
-            src: ["bootstrap.min.*"],
-            dest: "tmp/vendor/js"
-          }
-        ]
-      },
       build: {
         files: [
           {
@@ -55,8 +39,12 @@ module.exports = (grunt) => {
     concat: {
       vendor: {
         files: {
-          "build/vendor/vendor.min.css": ["tmp/vendor/style/**/*.css"],
-          "build/vendor/vendor.min.js": ["tmp/vendor/js/**/*.js"]
+          "build/vendor/vendor.min.css": [
+            "node_modules/bootstrap/dist/css/bootstrap.min.css"
+          ],
+          "build/vendor/vendor.min.js": [
+            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+          ]
         }
       }
     }
