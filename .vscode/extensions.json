@@ -5,6 +5,7 @@
     "trabpukcip.vscode-npm-scripts",
     "ms-azuretools.vscode-docker",
     "orta.vscode-jest",
-    "artt14.npm-dependancy-graph"
+    "artt14.npm-dependancy-graph",
+    "ms-vscode-remote.remote-containers"
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+
+  // https://code.visualstudio.com/docs/devcontainers/create-dev-container
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "standard.vscode-standard",
+        "trabpukcip.vscode-npm-scripts",
+        "ms-azuretools.vscode-docker",
+        "orta.vscode-jest",
+        "artt14.npm-dependancy-graph"
+      ]
+    }
+  },
+
+  "forwardPorts": [3000]
+}
