@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [2.6.0](https://github.com/percebus/npm-web-sampler/compare/v2.5.6...v2.6.0) (2026-05-26)
+
+### Features
+
+- devcontainer ([#273](https://github.com/percebus/npm-web-sampler/issues/273)) ([9d178f6](https://github.com/percebus/npm-web-sampler/commit/9d178f6862aa12ecfebff77171cd609b28fa3497)), closes [#75](https://github.com/percebus/npm-web-sampler/issues/75) [#274](https://github.com/percebus/npm-web-sampler/issues/274)
+
 ## [2.5.6](https://github.com/percebus/npm-web-sampler/compare/v2.5.5...v2.5.6) (2026-05-26)
 
 ### Bug Fixes
