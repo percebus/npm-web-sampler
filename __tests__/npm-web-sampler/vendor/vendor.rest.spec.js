@@ -10,6 +10,7 @@ describe("IO.GitHub.percebus/npm-web-sampler/vendor", () => {
       const now = new Date()
       const year = now.getFullYear() // i.e. 2024
       _.noop(year) // FIXME bootstrap does NOT contain 2025 license
+
       const templates = {
         url: _.template("<%= protocol %>://<%= uri %>/vendor/LICENSES.md")
       }
@@ -20,17 +21,19 @@ describe("IO.GitHub.percebus/npm-web-sampler/vendor", () => {
           it("contains the expected LICENSES", () => {
             return (
               frisby
-                .get(url)
-                .expect("status", 200)
-                //
-                // i.e. 2025
-                // .expect('bodyContains', year) // FIXME bootstrap does NOT contain 2025 license
-                .expect("bodyContains", "MIT")
-                .expect("bodyContains", "The MIT License")
+              .get(url)
+              .expect("status", 200)
+              //
+              // i.e. 2025
+              // .expect('bodyContains', year) // FIXME bootstrap does NOT contain 2025 license
+              .expect("bodyContains", "MIT")
+              .expect("bodyContains", "The MIT License")
             )
           })
         })
       })
     })
+
+    // TODO (/LICENSE.txt)
   })
 })
