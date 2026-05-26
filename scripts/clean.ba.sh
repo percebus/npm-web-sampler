@@ -4,8 +4,12 @@ set -e
 set -v
 
 find ./ -type f \
-	-not -path "./.git/*" \
-	-not -path "./repositories/percebus-assets/*" \
+	\( \
+		-path "./.venv/*" \
+		-o -path "repositories/commons/scripts/*" \
+		-o -path "./scripts/*" \
+		-o -path "./_scripts/*" \
+	\) \
 	-exec sed -i 's/\r$//' {} \;
 
 set +v
