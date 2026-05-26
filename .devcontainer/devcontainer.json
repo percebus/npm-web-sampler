@@ -4,7 +4,6 @@
     "context": ".."
   },
 
-  // https://code.visualstudio.com/docs/devcontainers/create-dev-container
   "customizations": {
     "vscode": {
       "extensions": [
