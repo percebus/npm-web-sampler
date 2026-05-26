@@ -10,6 +10,7 @@ describe("IO.GitHub.percebus/npm-web-sampler/vendor", () => {
       const now = new Date()
       const year = now.getFullYear() // i.e. 2024
       _.noop(year) // FIXME bootstrap does NOT contain 2025 license
+
       const templates = {
         url: _.template("<%= protocol %>://<%= uri %>/vendor/LICENSES.md")
       }
@@ -32,5 +33,7 @@ describe("IO.GitHub.percebus/npm-web-sampler/vendor", () => {
         })
       })
     })
+
+    // TODO (/LICENSE.txt)
   })
 })

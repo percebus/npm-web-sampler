@@ -88,16 +88,28 @@ jobs:
           comment_title: Unit Tests Deltas
 
       - name: semantic-release
-        run: npm run semantic-release
+        id: semantic-release
+        run: |
+          npm run semantic-release
+
+          # SEE .releaserc.mjs: Check if the successCmd generated the file
+          if [ -f .released ]; then
+            echo "released=true" >> $GITHUB_OUTPUT
+            echo "version=$(cat .release_version)" >> $GITHUB_OUTPUT
+          else
+            echo "released=false" >> $GITHUB_OUTPUT
+          fi
         env:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       # TODO move to -actions-npm
       - name: npm run dist
+        if: steps.semantic-release.outputs.released == 'false'
         run: npm run dist
 
       - name: dist.zip
+        if: always()
         uses: percebus/github-actions-common/.github/actions/artifact-upload@main
         with:
           name: dist
@@ -114,6 +126,7 @@ jobs:
         node:
           - 24
           - 25
+          - 26
 
           # npm error path /home/runner/work/npm-web-sampler/npm-web-sampler/node_modules/@playwright/browser-firefox
           # npm error command failed
