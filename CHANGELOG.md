@@ -1,5 +1,15 @@
 # npm-web-sampler CHANGELOG
 
+## [2.5.6](https://github.com/percebus/npm-web-sampler/compare/v2.5.5...v2.5.6) (2026-05-26)
+
+### Bug Fixes
+
+- **`semantic-release`:** include `dist` ([#272](https://github.com/percebus/npm-web-sampler/issues/272)) ([16a9ccb](https://github.com/percebus/npm-web-sampler/commit/16a9ccb54cf59fc558aa8fc4e5b51a9e07c6168b))
+
+### Reverts
+
+- Revert to 3868ed7 state respecting versioning ([#270](https://github.com/percebus/npm-web-sampler/issues/270)) ([86225c3](https://github.com/percebus/npm-web-sampler/commit/86225c3e61abbaad2be4d7026ba568f15ef5a074))
+
 ## [2.5.5](https://github.com/percebus/npm-web-sampler/compare/v2.5.4...v2.5.5) (2026-05-25)
 
 ### Bug Fixes
