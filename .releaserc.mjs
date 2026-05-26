@@ -23,7 +23,8 @@ export default {
       "@semantic-release/exec",
       {
         prepareCmd: "npx prettier . --write && npm run dist",
-        successCmd: "echo 'true' > .released && echo '${nextRelease.version}' > .release_version"
+        successCmd:
+          "echo 'true' > .released && echo '${nextRelease.version}' > .release_version"
       }
     ],
     [
