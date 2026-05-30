@@ -1,10 +1,7 @@
-
-> npm-web-sampler@2.5.6 _pip
-> python -m pip freeze
-
 argcomplete==3.6.3
 click==8.4.1
+colorama==0.4.6
 packaging==26.2
-pipx==1.12.0
-platformdirs==4.9.6
+pipx==1.13.0
+platformdirs==4.10.0
 userpath==1.9.2

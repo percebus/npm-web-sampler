@@ -1,6 +1,13 @@
 # trixie
 FROM nikolaik/python-nodejs:python3.13-nodejs24 AS base
 
+COPY --from=hashicorp/terraform:1.15.5 /bin/terraform /usr/local/bin/terraform
+RUN terraform --version
+
+COPY --from=alpine/helm:4.0.5 /usr/bin/helm /usr/local/bin/helm
+RUN helm version
+
+
 FROM base AS project
 WORKDIR /usr/project
 COPY . .
@@ -8,10 +15,11 @@ RUN ls -la
 RUN bash _scripts/clean.ba.sh
 
 FROM project AS dev
-RUN npm run setup:Dockerfile:dev && npm ci
+RUN npm run setup:Dockerfile:dev
+RUN npm ci
 
 FROM dev AS tested
-RUN npm test --ignore-scripts
+RUN npm test
 
 FROM dev AS dist
 RUN npm run dist

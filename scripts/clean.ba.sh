@@ -3,14 +3,7 @@
 set -e
 set -v
 
-find ./ -type f \
-	\( \
-	-path "./.venv/*" \
-	-o -path "repositories/commons/scripts/*" \
-	-o -path "./scripts/*" \
-	-o -path "./_scripts/*" \
-	\) \
-	-exec sed -i 's/\r$//' {} \;
+find ./* -not -path './repositories/*' -type f -exec sed -i 's/\r$//' {} \;
 
 set +v
 set +e

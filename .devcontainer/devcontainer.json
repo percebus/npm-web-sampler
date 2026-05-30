@@ -1,6 +1,7 @@
 {
   "build": {
-    "dockerfile": "Dockerfile",
+    "dockerfile": "../Dockerfile",
+    "target": "dev",
     "context": ".."
   },
 
@@ -17,5 +18,7 @@
     }
   },
 
-  "forwardPorts": [3000]
+  "forwardPorts": [3000],
+
+  "postStartCommand": "npm test"
 }
