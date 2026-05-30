@@ -20,7 +20,7 @@
     "npm:install:global:Dockerfile": "npm run npm:upgrade",
     "playwright:install": "npx playwright install",
     "_pip": "python -m pip",
-    "pip:freeze": "npm run _pip -- freeze > requirements.frozen.txt",
+    "pip:freeze": "python -m pip freeze > requirements.frozen.txt",
     "_pip:install": "npm run _pip -- install --break-system-packages",
     "_pip:install:upgrade": "npm run _pip:install -- --upgrade",
     "pip:upgrade:pip": "npm run _pip:install:upgrade -- pip",
