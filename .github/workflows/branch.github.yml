@@ -4,9 +4,9 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - ./.github/wokflows/branch.github.yml
-      - ./.github/wokflows/**
-      - ./.github/actions/**
+      - .github/wokflows/branch.github.yml
+      - .github/wokflows/**
+      - .github/actions/**
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
