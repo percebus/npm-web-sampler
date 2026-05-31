@@ -1,7 +1,7 @@
 name: Semantic Pull-Request
 
 on:
-  workflow_call: # SRC: https://docs.github.com/en/actions/using-workflows/reusing-workflows
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
   # SRC: https://github.com/amannn/action-semantic-pull-request?tab=readme-ov-file#installation
   pull_request:
