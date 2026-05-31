@@ -232,10 +232,6 @@ $> npm run husky:uninstall
 1. `$> npm run setup`
 1. `$> npm install`
 
-## Development
-
-[![verify](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml)
-
 ### Build
 
 #### `dist/`
