@@ -4,6 +4,7 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
+      - .github/wokflows/branch.javascript.yml
       - src/**/*.js
       - __tests__/**/*.js
       # - features/** : @executionautomation/playwright
@@ -75,3 +76,12 @@ jobs:
         with:
           name: dist
           path: ./dist
+
+  #
+  testem:
+    if: false # FIXME not working
+    name: "test'em"
+    needs: verify
+    uses: percebus/github-actions-npm/.github/workflows/run_script.yml@main
+    with:
+      script: testem:ci:dot

@@ -9,9 +9,12 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  # Disable HUSKY in CI
+  HUSKY: 0
   DOCKER_BUILDKIT: 1
   IMAGE_TAG_SUFFIX: latest
 
+# FIXME over-permission
 permissions:
   checks: write
   issues: write
@@ -29,6 +32,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
+      - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
 
