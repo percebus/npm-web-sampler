@@ -5,7 +5,7 @@ on:
   pull_request:
     paths:
       - ./.github/wokflows/branch.helm.yml
-      - ./helm/**
+      - helm/**
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
