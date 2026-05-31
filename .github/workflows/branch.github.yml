@@ -12,14 +12,8 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
-# FIXME over-permission
 permissions:
-  checks: write
-  issues: write
-  actions: read
-  contents: write
-  pull-requests: write
-  security-events: write
+  contents: read
 
 jobs:
   codeQL:
