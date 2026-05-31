@@ -7,10 +7,19 @@
 [`CHANGELOG`](./CHANGELOG.md) |
 [`TODO`s](./TODO.md)
 
-- [![Continuous Integration](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/always.yml)
-- [![MegaLinter](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml)
-- [![Pull Request](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
-- [![dependabot](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates)
+- `pull_request`
+  - [![Semantic Pull-Request](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request_target.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request_target.yml)
+  - [![Pull Request](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/pull_request.yml)
+  - [![helm](https://github.com/percebus/npm-web-sampler/actions/workflows/branch.helm.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/branch.helm.yml)
+  - [![terraform](https://github.com/percebus/npm-web-sampler/actions/workflows/branch.terra.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/branch.terra.yml)
+  - [![[C]ontinuous [I]ntegration: PR](https://github.com/percebus/npm-web-sampler/actions/workflows/branch.any.yml/badge.svg?event=pull_request)](https://github.com/percebus/npm-web-sampler/actions/workflows/branch.any.yml)
+- `main`
+  - [![Continuous Integration @ main](https://github.com/percebus/npm-web-sampler/actions/workflows/main.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/main.yml)
+  - [![dependabot](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/dependabot/dependabot-updates)
+- `any`
+  - [![MegaLinter](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/mega-linter.yml)
+  - [![Deployment](https://github.com/percebus/npm-web-sampler/actions/workflows/deploy.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/deploy.yml)
+  - [![Un-Deployment](https://github.com/percebus/npm-web-sampler/actions/workflows/destroy.yml/badge.svg)](https://github.com/percebus/npm-web-sampler/actions/workflows/destroy.yml)
 
 ## AI
 

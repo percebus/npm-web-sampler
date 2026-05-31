@@ -1,4 +1,6 @@
 apiVersion: v2
+
+# FIXME: Recreate w/ `npm-web-sampler`
 name: web-app
 description: A Helm chart for Kubernetes
 

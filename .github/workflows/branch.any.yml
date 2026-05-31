@@ -1,0 +1,115 @@
+name: "[C]ontinuous [I]ntegration: PR"
+
+on:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  # Disable HUSKY in CI
+  HUSKY: 0
+  DOCKER_BUILDKIT: 1
+  IMAGE_TAG_SUFFIX: latest
+
+# FIXME over-permission
+permissions:
+  checks: write
+  issues: write
+  actions: read
+  contents: write
+  pull-requests: write
+  security-events: write
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+      - uses: percebus/github-actions-npm/.github/actions/install@main
+
+      # prettier
+      - name: npm run lint:misc
+        run: npm run lint:misc
+
+      # dockerlint
+      - name: npm run lint:docker
+        run: npm run lint:docker
+
+      - name: semantic-release
+        id: semantic-release
+        run: |
+          npm run semantic-release
+
+          # SEE .releaserc.mjs: Check if the successCmd generated the file
+          if [ -f .released ]; then
+            echo "released=true" >> $GITHUB_OUTPUT
+            echo "version=$(cat .release_version)" >> $GITHUB_OUTPUT
+          else
+            echo "released=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  #
+  docker_compose:
+    name: docker compose
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # XXX? run inside container
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
+
+      - name: docker compose build
+        run: docker compose build --no-cache
+
+  #
+  docker_build__matrix:
+    name: docker build --target
+    needs: docker_compose
+    continue-on-error: true
+    strategy:
+      max-parallel: 10
+      matrix:
+        include:
+          # - base
+          # - project
+          # - dev
+          - target: tested
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
+
+      - uses: percebus/github-actions-docker/.github/actions/build@main
+        with:
+          target: ${{ matrix.target }}
+          scan-image: false
+          image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
