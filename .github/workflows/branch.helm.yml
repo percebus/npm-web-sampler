@@ -4,8 +4,8 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - .github/wokflows/branch.helm.yml
-      - helm/**
+      - ./.github/wokflows/branch.helm.yml
+      - ./helm/**
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}

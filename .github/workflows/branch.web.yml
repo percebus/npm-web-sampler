@@ -4,10 +4,10 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - .github/wokflows/branch.web.yml
-      - src/**
-      - __tests__/**
-      # - features/** : @executionautomation/playwright
+      - ./.github/wokflows/branch.web.yml
+      - ./src/**
+      - ./__tests__/**
+      # - ./features/** : @executionautomation/playwright
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
