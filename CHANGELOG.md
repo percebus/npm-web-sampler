@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.6.1](https://github.com/percebus/npm-web-sampler/compare/v2.6.0...v2.6.1) (2026-05-31)
+
+### Bug Fixes
+
+- **`README`:** broken badge ([08588e0](https://github.com/percebus/npm-web-sampler/commit/08588e09aa657be448979089ab8b747b7ee78446))
+
 # [2.6.0](https://github.com/percebus/npm-web-sampler/compare/v2.5.6...v2.6.0) (2026-05-26)
 
 ### Features
