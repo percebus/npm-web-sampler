@@ -21,12 +21,6 @@ permissions:
   contents: read
 
 jobs:
-  semantic-pull-request:
-    uses: percebus/github-actions-compliance/.github/workflows/semantic-pull-request.yml@main
-    name: github-actions-compliance
-    permissions:
-      pull-requests: read
-
   dependency-review:
     uses: percebus/github-actions-compliance/.github/workflows/dependency-review.yml@main
     name: github-actions-compliance

@@ -1,10 +1,10 @@
-name: helm
+name: terraform
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - helm/**
+      - terra/**
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 jobs:
-  # FIXME replace w/ github-actions-helm/.../lint
+  # FIXME replace me w/ github-actions-terraform/.../fmt_check
   verify:
     name: Verify
     runs-on: ubuntu-latest
@@ -27,8 +27,15 @@ jobs:
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
 
-      - uses: percebus/github-actions-helm/.github/actions/setup@main
+      - uses: percebus/github-actions-terraform/.github/actions/setup@main
 
-      # helm lint
-      - name: npm run lint:helm
-        run: npm run lint:helm
+      # terraform lint
+      - name: npm run lint:terraform
+        run: npm run lint:terraform
+
+  terraform_validate:
+    name: terraform
+    needs: verify
+    uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
+    with:
+      override: true

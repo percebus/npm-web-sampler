@@ -1,20 +1,24 @@
-name: terraform
+name: html
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - terra/**
+      - src/**/*.htm
+      - src/**/*.html
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
+env:
+  # Disable HUSKY in CI
+  HUSKY: 0
+
 permissions:
   contents: read
 
 jobs:
-  # FIXME replace me w/ github-actions-terraform/.../fmt_check
   verify:
     name: Verify
     runs-on: ubuntu-latest
@@ -23,18 +27,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
+      - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
 
-      - uses: percebus/github-actions-terraform/.github/actions/setup@main
-
-      # terraform lint
-      - name: npm run lint:terraform
-        run: npm run lint:terraform
-
-  terraform_validate:
-    name: terraform
-    needs: verify
-    uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
-    with:
-      override: true
+      # htmllint (via grunt)
+      - name: npm run lint:html
+        run: npm run lint:html

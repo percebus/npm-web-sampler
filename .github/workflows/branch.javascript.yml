@@ -4,10 +4,9 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - src/**
-      - __tests__/**
+      - src/**/*.js
+      - __tests__/**/*.js
       # - features/** : @executionautomation/playwright
-      # - test/** : testem results
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
