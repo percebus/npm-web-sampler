@@ -1,0 +1,78 @@
+name: javascript
+
+on:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+    paths:
+      - src/**
+      - __tests__/**
+      # - features/** : @executionautomation/playwright
+      # - test/** : testem results
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  # Disable HUSKY in CI
+  HUSKY: 0
+
+# FIXME over-permission
+permissions:
+  checks: write
+  issues: write
+  actions: read
+  contents: write
+  pull-requests: write
+  security-events: write
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+      - uses: percebus/github-actions-npm/.github/actions/install@main
+
+      - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
+        with:
+          language: javascript
+
+      - uses: percebus/github-actions-helm/.github/actions/setup@main
+      - uses: percebus/github-actions-terraform/.github/actions/setup@main
+
+      # standard
+      - name: npm run lint:js
+        run: npm run lint:js
+
+      #
+      # test
+      - name: npm test
+        run: npm test --ignore-scripts
+
+      - uses: percebus/github-actions-testing/.github/actions/junit@main
+        if: |
+          (
+            always() &&
+            !startsWith(github.ref, 'refs/heads/dependabot/')
+          )
+        with:
+          tests_name: Unit Tests
+          summary_title: Unit Tests Summary
+          check_name: Unit Tests Deltas
+          comment_title: Unit Tests Deltas
+
+      # TODO move to -actions-npm
+      - name: npm run dist
+        run: npm run dist
+
+      - name: dist.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
+        with:
+          name: dist
+          path: ./dist

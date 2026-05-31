@@ -1,8 +1,7 @@
-name: "[C]ontinuous [I]ntegration"
+name: "[C]ontinuous [I]ntegration @ main"
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
-  pull_request:
   push:
     branches:
       - main
@@ -225,7 +224,6 @@ jobs:
           # - project
           # - dev
           - target: tested
-            run: true
             scan-image: false
 
           # final release
@@ -234,27 +232,22 @@ jobs:
             # Since it has already been run in docker-compose
             # We only run it when we want to scan it
             # which is only on main
-            run: ${{ github.ref == 'refs/heads/main' }}
             scan-image: ${{ github.ref == 'refs/heads/main' }}
 
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-        if: ${{ matrix.run }}
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-        if: ${{ matrix.run }}
 
       - name: bower install
-        if: ${{ matrix.run }}
         run: |
           npm run npm:install:global:ci
           npm run bower:install
 
       - uses: percebus/github-actions-docker/.github/actions/build@main
-        if: ${{ matrix.run }}
         with:
           target: ${{ matrix.target }}
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}

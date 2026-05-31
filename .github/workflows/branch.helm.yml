@@ -1,0 +1,33 @@
+name: helm
+
+on:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+    paths:
+      - helm/**
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # FIXME replace w/ github-actions-helm/.../lint
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+      - uses: percebus/github-actions-npm/.github/actions/install@main
+
+      - uses: percebus/github-actions-helm/.github/actions/setup@main
+
+      # helm lint
+      - name: npm run lint:helm
+        run: npm run lint:helm
