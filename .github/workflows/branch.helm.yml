@@ -26,3 +26,5 @@ jobs:
 
       - uses: percebus/github-actions-helm/.github/actions/setup@main
       - uses: percebus/github-actions-helm/.github/actions/lint@main
+        with:
+          working-directory: ./helm/npm-web-sampler
