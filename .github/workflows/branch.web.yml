@@ -1,12 +1,12 @@
-name: javascript
+name: web
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - .github/wokflows/branch.javascript.yml
-      - src/**/*.js
-      - __tests__/**/*.js
+      - .github/wokflows/branch.web.yml
+      - src/**
+      - __tests__/**
       # - features/** : @executionautomation/playwright
 
 concurrency:
@@ -49,6 +49,10 @@ jobs:
       # standard
       - name: npm run lint:js
         run: npm run lint:js
+
+      # htmllint (via grunt)
+      - name: npm run lint:html
+        run: npm run lint:html
 
       #
       # test

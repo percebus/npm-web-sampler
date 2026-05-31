@@ -22,7 +22,6 @@ permissions:
 
 jobs:
   codeQL:
-    needs: verify
     permissions:
       actions: read
       contents: read
