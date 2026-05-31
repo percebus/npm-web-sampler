@@ -1,3 +1,4 @@
+# TODO? RENAME? lower-case
 
 variable "ENVIRONMENT" {
   type = string
