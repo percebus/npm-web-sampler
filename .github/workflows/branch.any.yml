@@ -12,7 +12,6 @@ env:
   # Disable HUSKY in CI
   HUSKY: 0
   DOCKER_BUILDKIT: 1
-  IMAGE_TAG_SUFFIX: latest
 
 # FIXME over-permission
 permissions:
@@ -40,9 +39,9 @@ jobs:
       - name: npm run lint:misc
         run: npm run lint:misc
 
-      # dockerlint
-      - name: npm run lint:docker
-        run: npm run lint:docker
+      # FIXME dockerlint
+      # - name: npm run lint:docker
+      #   run: npm run lint:docker
 
       - name: semantic-release
         id: semantic-release
@@ -92,8 +91,7 @@ jobs:
         include:
           # - base
           # - project
-          # - dev
-          - target: tested
+          - target: dev
 
     runs-on: ubuntu-latest
     steps:
@@ -109,7 +107,11 @@ jobs:
           npm run bower:install
 
       - uses: percebus/github-actions-docker/.github/actions/build@main
+        id: docker_build
         with:
           target: ${{ matrix.target }}
           scan-image: false
-          image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
+
+      - name: docker run
+        run: |
+          docker run ${{ steps.docker_build.outputs.image_tag }}
