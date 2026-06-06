@@ -15,6 +15,7 @@ env:
   HUSKY: 0
   DOCKER_BUILDKIT: 1
   REPOSITORY_NAME: ${{ github.event.repository.name }}
+  IMAGE_TAG: ${{ github.event.repository.name }}
 
 permissions:
   checks: write
@@ -248,6 +249,7 @@ jobs:
       - uses: percebus/github-actions-docker/.github/actions/build@main
         with:
           target: ${{ matrix.target }}
+          image_tag: ${{ github.event.repository.name }}.${{ matrix.target }}:latest
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
 
       - name: docker run
@@ -291,6 +293,7 @@ jobs:
         with:
           dockerfile: Dockerfile.next
           target: ${{ matrix.target }}
+          image_tag: ${{ github.event.repository.name }}.${{ matrix.target }}:next
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
 
       - name: docker run
