@@ -247,6 +247,7 @@ jobs:
           npm run bower:install
 
       - uses: percebus/github-actions-docker/.github/actions/build@main
+        id: docker_build
         with:
           target: ${{ matrix.target }}
           image_tag: ${{ github.event.repository.name }}.${{ matrix.target }}:latest
@@ -290,6 +291,7 @@ jobs:
           npm run bower:install
 
       - uses: percebus/github-actions-docker/.github/actions/build@main
+        id: docker_build
         with:
           dockerfile: Dockerfile.next
           target: ${{ matrix.target }}
