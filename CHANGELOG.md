@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.6.2](https://github.com/percebus/npm-web-sampler/compare/v2.6.1...v2.6.2) (2026-06-06)
+
+### Bug Fixes
+
+- **`main.yml`:** added `id` ([ba8dcc8](https://github.com/percebus/npm-web-sampler/commit/ba8dcc8808061b859a73b7c87a91ae8de7bff8ae))
+
 ## [2.6.1](https://github.com/percebus/npm-web-sampler/compare/v2.6.0...v2.6.1) (2026-05-31)
 
 ### Bug Fixes
