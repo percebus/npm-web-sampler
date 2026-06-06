@@ -83,7 +83,7 @@ jobs:
   #
   docker_build__matrix:
     name: docker build --target
-    needs: docker_compose
+    needs: verify
     continue-on-error: true
     strategy:
       max-parallel: 10
