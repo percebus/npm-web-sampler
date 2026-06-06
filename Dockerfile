@@ -17,13 +17,11 @@ RUN bash _scripts/clean.ba.sh
 FROM project AS dev
 RUN npm run setup:Dockerfile:dev
 RUN npm ci
-
-FROM dev AS tested
-RUN npm test
+CMD ["npm", "test"]
 
 FROM dev AS dist
 RUN npm run dist
-RUN ls -la dist
+CMD ["ls", "-la", "dist"]
 
 FROM node:lts-alpine AS release
 WORKDIR /opt/app

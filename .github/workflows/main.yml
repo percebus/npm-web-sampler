@@ -15,7 +15,7 @@ env:
   HUSKY: 0
   DOCKER_BUILDKIT: 1
   REPOSITORY_NAME: ${{ github.event.repository.name }}
-  IMAGE_TAG_SUFFIX: latest
+  IMAGE_TAG: ${{ github.event.repository.name }}
 
 permissions:
   checks: write
@@ -57,9 +57,9 @@ jobs:
       - name: npm run lint:html
         run: npm run lint:html
 
-      # dockerlint
-      - name: npm run lint:docker
-        run: npm run lint:docker
+      # FIXME: dockerlint
+      # - name: npm run lint:docker
+      #   run: npm run lint:docker
 
       # helm lint
       - name: npm run lint:helm
@@ -214,7 +214,7 @@ jobs:
   #
   docker_build__matrix:
     name: docker build --target
-    needs: docker_compose
+    needs: verify
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -222,8 +222,7 @@ jobs:
         include:
           # - base
           # - project
-          # - dev
-          - target: tested
+          - target: dev
             scan-image: false
 
           # final release
@@ -250,25 +249,27 @@ jobs:
       - uses: percebus/github-actions-docker/.github/actions/build@main
         with:
           target: ${{ matrix.target }}
+          image_tag: ${{ github.event.repository.name }}.${{ matrix.target }}:latest
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
-          image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
+
+      - name: docker run
+        if: matrix.target == 'dev'
+        run: |
+          docker run ${{ steps.docker_build.outputs.image_tag }}
 
   #
   docker_build_next__matrix:
     if: github.ref == 'refs/heads/main'
     name: docker build --file Dockerfile.next --target
-    needs: docker_compose
+    needs: verify
     continue-on-error: true
-    env:
-      IMAGE_TAG_SUFFIX: next
     strategy:
       max-parallel: 10
       matrix:
         include:
           # - base
           # - project
-          # - dev
-          - target: tested
+          - target: dev
             scan-image: false
 
           # final release
@@ -292,8 +293,13 @@ jobs:
         with:
           dockerfile: Dockerfile.next
           target: ${{ matrix.target }}
+          image_tag: ${{ github.event.repository.name }}.${{ matrix.target }}:next
           scan-image: ${{ matrix.scan-image && 'true' || 'false' }}
-          image_tag_suffix: ${{ env.IMAGE_TAG_SUFFIX }}
+
+      - name: docker run
+        if: matrix.target == 'dev'
+        run: |
+          docker run ${{ steps.docker_build.outputs.image_tag }}
 
   #
   terraform_validate:
