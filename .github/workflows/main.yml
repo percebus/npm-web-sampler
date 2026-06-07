@@ -2,6 +2,10 @@ name: "[C]ontinuous [I]ntegration @ main"
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  # TODO?
+  # pull_request:
+  #   paths:
+  #     - .github/wokflows/main.yml
   push:
     branches:
       - main
@@ -16,6 +20,7 @@ env:
   DOCKER_BUILDKIT: 1
   REPOSITORY_NAME: ${{ github.event.repository.name }}
   IMAGE_TAG: ${{ github.event.repository.name }}
+  TF_IN_AUTOMATION: true
 
 permissions:
   checks: write
@@ -214,7 +219,7 @@ jobs:
   #
   docker_build__matrix:
     name: docker build --target
-    needs: verify
+    needs: docker_compose
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -255,14 +260,13 @@ jobs:
 
       - name: docker run
         if: matrix.target == 'dev'
-        run: |
-          docker run ${{ steps.docker_build.outputs.image_tag }}
+        run: docker run ${{ steps.docker_build.outputs.image_tag }}
 
   #
   docker_build_next__matrix:
     if: github.ref == 'refs/heads/main'
     name: docker build --file Dockerfile.next --target
-    needs: verify
+    needs: docker_compose
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -300,16 +304,7 @@ jobs:
 
       - name: docker run
         if: matrix.target == 'dev'
-        run: |
-          docker run ${{ steps.docker_build.outputs.image_tag }}
-
-  #
-  terraform_validate:
-    name: terraform
-    needs: verify
-    uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
-    with:
-      override: true
+        run: docker run ${{ steps.docker_build.outputs.image_tag }}
 
   #
   deploy-pages:
@@ -402,3 +397,15 @@ jobs:
           summary_title: E2E Tests Summary
           check_name: E2E Tests Deltas
           comment_title: E2E Tests Deltas
+
+  #
+  terraform_validate:
+    name: terraform
+    needs: verify
+    uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
+    with:
+      override: true
+
+  # TODO add cd
+
+  # TODO add helm

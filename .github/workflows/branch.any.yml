@@ -113,5 +113,4 @@ jobs:
           scan-image: false
 
       - name: docker run
-        run: |
-          docker run ${{ steps.docker_build.outputs.image_tag }}
+        run: docker run ${{ steps.docker_build.outputs.image_tag }}
