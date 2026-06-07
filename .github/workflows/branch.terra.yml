@@ -51,7 +51,7 @@ jobs:
   terraform_plan_and_apply:
     name: terraform
     needs:
-      - terraform_validate
+      - terraform_test
       - setup
     permissions:
       contents: read
