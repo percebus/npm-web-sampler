@@ -3,8 +3,6 @@ name: Semantic Pull-Request
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
-  # pull_request:  # TODO? or XXX?
-
   # SRC: https://github.com/amannn/action-semantic-pull-request?tab=readme-ov-file#installation
   pull_request_target:
     types:
