@@ -12,15 +12,74 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # Disable HUSKY in CI
-  HUSKY: 0
+  TF_IN_AUTOMATION: true
 
 permissions:
   contents: read
 
 jobs:
-  terraform_validate:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - name: GITHUB_OUTPUT
+        id: set_variables
+        run: |
+          echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+          echo "environment=ci-branch" >> $GITHUB_OUTPUT
+    outputs:
+      STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
+      environment: ${{ steps.set_variables.outputs.environment }}
+
+  # TODO? add environment
+  terraform_test:
     name: terraform
-    uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
+    needs: setup
+    # SRC: https://github.com/EnricoMi/publish-unit-test-result-action?tab=readme-ov-file#permissions
+    # SRC: https://github.com/dorny/test-reporter?tab=readme-ov-file#recommended-setup-for-public-repositories
+    permissions:
+      contents: read
+      actions: read
+      checks: write
+      pull-requests: write
+    uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
+      TF_CLI_ARGS_init: -reconfigure
+
+  terraform_plan_and_apply:
+    name: terraform
+    needs:
+      - terraform_test
+      - setup
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+
+    uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
+    with:
+      environment: ${{ needs.setup.outputs.environment }}
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  terraform_plan-destroy_and_apply:
+    name: terraform
+    needs:
+      - setup
+      - terraform_plan_and_apply
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+
+    uses: percebus/github-actions-terraform/.github/workflows/plan-destroy_and_apply.yml@main
+    with:
+      ref: ${{ github.event.workflow_run.head_branch }}
+      # validate: false  # TODO
+      environment: ${{ needs.setup.outputs.environment }}
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}

@@ -5,6 +5,7 @@
 # env
 !env/*.example
 env/*.json
+env/*.sh
 
 # semantic-release
 tmp/
@@ -25,8 +26,8 @@ _scripts/
 megalinter-reports/
 
 # terraform
-/terra/env/local.tfvars
-!/terra/env/*.tfvars
+terra/env/local.tfvars*
+!terra/env/*.tfvars*
 
 
 ##################################
@@ -311,9 +312,9 @@ celerybeat.pid
 # Environments
 # .env  # Global
 .venv
-env/
+# env/ terra/env
 venv/
-ENV/
+# ENV/ terra/env
 env.bak/
 venv.bak/
 

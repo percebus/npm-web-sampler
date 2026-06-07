@@ -1,14 +1,6 @@
 name: Un-Deployment
 
 on:
-  workflow_run:
-    workflows:
-      - Deployment
-    types:
-      - completed
-    branches-ignore:
-      - main
-
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
     inputs:
       environment:
@@ -28,6 +20,9 @@ concurrency:
   # NOTE: Cancelling an apply might corrupt the state.
   group: ${{ github.event_name }}-${{ github.event.workflow_run.head_branch }}
   cancel-in-progress: false
+
+env:
+  TF_IN_AUTOMATION: true
 
 permissions:
   contents: read

@@ -1,7 +1,6 @@
 name: Deployment
 
 on:
-  pull_request:
   push:
     branches:
       - main
@@ -25,6 +24,9 @@ concurrency:
   # NOTE: Cancelling an apply might corrupt the state.
   group: ${{ github.ref }}
   cancel-in-progress: false
+
+env:
+  TF_IN_AUTOMATION: true
 
 permissions:
   contents: read
@@ -59,6 +61,22 @@ jobs:
 
     uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
     with:
+      environment: ${{ needs.setup.outputs.environment }}
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  terraform_plan-destroy_and_apply:
+    name: terraform
+    needs: terraform_plan_and_apply
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+
+    uses: percebus/github-actions-terraform/.github/workflows/plan-destroy_and_apply.yml@main
+    with:
+      ref: ${{ github.event.workflow_run.head_branch }}
       environment: ${{ needs.setup.outputs.environment }}
       TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
     secrets:
