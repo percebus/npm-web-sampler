@@ -399,12 +399,20 @@ jobs:
           comment_title: E2E Tests Deltas
 
   #
-  terraform_validate:
+  terraform_test:
     name: terraform
     needs: verify
-    uses: percebus/github-actions-terraform/.github/workflows/validate.yml@main
+    # SRC: https://github.com/EnricoMi/publish-unit-test-result-action?tab=readme-ov-file#permissions
+    # SRC: https://github.com/dorny/test-reporter?tab=readme-ov-file#recommended-setup-for-public-repositories
+    permissions:
+      contents: read
+      actions: read
+      checks: write
+      pull-requests: write
+    uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
+      TF_CLI_ARGS_init: "-input=false -reconfigure"
 
   # TODO add cd
 

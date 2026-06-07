@@ -32,7 +32,7 @@ jobs:
       STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
       environment: ${{ steps.set_variables.outputs.environment }}
 
-  # TODO add environment
+  # TODO? add environment
   terraform_test:
     name: terraform
     needs: setup
