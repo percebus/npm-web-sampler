@@ -48,7 +48,7 @@ jobs:
       STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
       environment: ${{ steps.set_variables.outputs.environment }}
 
-  terraform_plan-destroy_and_apply:
+  terraform_plan-destroy_then_apply:
     name: terraform
     needs: setup
     permissions:
@@ -56,7 +56,7 @@ jobs:
       actions: read
       pull-requests: write
 
-    uses: percebus/github-actions-terraform/.github/workflows/plan-destroy_and_apply.yml@main
+    uses: percebus/github-actions-terraform/.github/workflows/plan-destroy_then_apply.yml@main
     with:
       ref: ${{ github.event.workflow_run.head_branch }}
       environment: ${{ needs.setup.outputs.environment }}
