@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.6.3](https://github.com/percebus/npm-web-sampler/compare/v2.6.2...v2.6.3) (2026-06-20)
+
+### Bug Fixes
+
+- **deploy:** Had destroy in it ([ac2cc23](https://github.com/percebus/npm-web-sampler/commit/ac2cc23e69b215b3291498a2ae36afd56312d6ef))
+
 ## [2.6.2](https://github.com/percebus/npm-web-sampler/compare/v2.6.1...v2.6.2) (2026-06-06)
 
 ### Bug Fixes
