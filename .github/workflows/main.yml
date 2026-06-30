@@ -181,10 +181,10 @@ jobs:
 
     name: CodeQL analyze
     uses: percebus/github-actions-compliance/.github/workflows/codeql_analyze.yml@main
-    with:
-      language: ${{ matrix.language }}
     secrets: # XXX? redundant?
       SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }}
+    with:
+      language: ${{ matrix.language }}
 
   #
   testem:
