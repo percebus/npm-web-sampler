@@ -60,8 +60,8 @@ jobs:
       pull-requests: write
 
     uses: percebus/github-actions-terraform/.github/workflows/plan_then_apply.yml@main
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
       environment: ${{ needs.setup.outputs.environment }}
       TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
-    secrets:
-      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
