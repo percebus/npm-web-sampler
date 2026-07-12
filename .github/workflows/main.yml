@@ -2,10 +2,9 @@ name: "[C]ontinuous [I]ntegration @ main"
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
-  # TODO?
-  # pull_request:
-  #   paths:
-  #     - .github/wokflows/main.yml
+  pull_request:
+    paths:
+      - .github/wokflows/main.yml
   push:
     branches:
       - main
@@ -31,8 +30,29 @@ permissions:
   security-events: write
 
 jobs:
+  # TODO? merge into verify?
+  setup:
+    name: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - name: GITHUB_OUTPUT
+        id: set_variables
+        run: |
+          echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "environment=ci-main" >> $GITHUB_OUTPUT
+          else
+            echo "environment=ci-branch" >> $GITHUB_OUTPUT
+          fi
+    outputs:
+      STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
+
+  #
   verify:
     name: Verify
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
@@ -196,30 +216,9 @@ jobs:
       script: testem:ci:dot
 
   #
-  docker_compose:
-    name: docker compose
-    needs: verify
-    runs-on: ubuntu-latest
-    steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-
-      # XXX? run inside container
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
-
-      - name: docker compose build
-        run: docker compose build --no-cache
-
-  #
   docker_build__matrix:
     name: docker build --target
-    needs: docker_compose
+    needs: verify
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -266,7 +265,7 @@ jobs:
   docker_build_next__matrix:
     if: github.ref == 'refs/heads/main'
     name: docker build --file Dockerfile.next --target
-    needs: docker_compose
+    needs: verify
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -305,6 +304,27 @@ jobs:
       - name: docker run
         if: matrix.target == 'dev'
         run: docker run ${{ steps.docker_build.outputs.image_tag }}
+
+  #
+  docker_compose:
+    name: docker compose
+    needs: docker_build__matrix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # XXX? run inside container
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
+
+      - name: docker compose build
+        run: docker compose build --no-cache
 
   #
   deploy-pages:
@@ -399,9 +419,12 @@ jobs:
           comment_title: E2E Tests Deltas
 
   #
-  terraform_test:
-    name: terraform
-    needs: verify
+  # TODO? split? test > integration > update > destroy?
+  terraform_qa:
+    name: terraform @ misc
+    needs:
+      - setup
+      - verify
     # SRC: https://github.com/EnricoMi/publish-unit-test-result-action?tab=readme-ov-file#permissions
     # SRC: https://github.com/dorny/test-reporter?tab=readme-ov-file#recommended-setup-for-public-repositories
     permissions:
@@ -409,11 +432,41 @@ jobs:
       actions: read
       checks: write
       pull-requests: write
-    uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
+    uses: percebus/github-actions-terraform/.github/workflows/qa.yml@main
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      override: true
-      TF_CLI_ARGS_init: "-input=false -reconfigure"
+      # tflint
+      tflint-version: latest
 
-  # TODO add cd
+      # terraform compliance
+      features_directory: features
+
+      # terraform test
+      test_environment: test
+      unit_tests_directory: tests
+      integration_tests_directory: integration_tests
+
+      # plan + apply + destroy
+      environment: ${{ needs.setup.outputs.environment }}
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
+
+  #
+  terraform_plan_and_apply:
+    name: terraform @ dev
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs:
+      - setup
+      - terraform_qa
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+    uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+    with:
+      environment: dev
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
 
   # TODO add helm
