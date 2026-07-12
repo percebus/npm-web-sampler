@@ -30,6 +30,25 @@ permissions:
   security-events: write
 
 jobs:
+  setup:
+    name: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - name: GITHUB_OUTPUT
+        id: set_variables
+        run: |
+          echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "environment=ci-main" >> $GITHUB_OUTPUT
+          else
+            echo "environment=ci-branch" >> $GITHUB_OUTPUT
+          fi
+    outputs:
+      STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
+
+  #
   verify:
     name: Verify
     runs-on: ubuntu-latest
@@ -195,30 +214,9 @@ jobs:
       script: testem:ci:dot
 
   #
-  docker_compose:
-    name: docker compose
-    needs: verify
-    runs-on: ubuntu-latest
-    steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-
-      # XXX? run inside container
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
-
-      - name: docker compose build
-        run: docker compose build --no-cache
-
-  #
   docker_build__matrix:
     name: docker build --target
-    needs: docker_compose
+    needs: verify
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -265,7 +263,7 @@ jobs:
   docker_build_next__matrix:
     if: github.ref == 'refs/heads/main'
     name: docker build --file Dockerfile.next --target
-    needs: docker_compose
+    needs: verify
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -304,6 +302,27 @@ jobs:
       - name: docker run
         if: matrix.target == 'dev'
         run: docker run ${{ steps.docker_build.outputs.image_tag }}
+
+  #
+  docker_compose:
+    name: docker compose
+    needs: docker_build__matrix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # XXX? run inside container
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
+
+      - name: docker compose build
+        run: docker compose build --no-cache
 
   #
   deploy-pages:
@@ -398,23 +417,8 @@ jobs:
           comment_title: E2E Tests Deltas
 
   #
-  setup:
-    name: setup
-    needs: e2e-tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-
-      - name: GITHUB_OUTPUT
-        id: set_variables
-        run: |
-          echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
-    outputs:
-      STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
-
   terraform_qa:
     name: terraform @ misc
-    if: ${{ github.ref == 'refs/heads/main' }}
     needs: setup
     # SRC: https://github.com/EnricoMi/publish-unit-test-result-action?tab=readme-ov-file#permissions
     # SRC: https://github.com/dorny/test-reporter?tab=readme-ov-file#recommended-setup-for-public-repositories
@@ -439,7 +443,7 @@ jobs:
       integration_tests_directory: integration_tests
 
       # plan + apply + destroy
-      environment: ci-main
+      environment: ${{ needs.setup.outputs.environment }}
       TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
 
   #
