@@ -422,7 +422,9 @@ jobs:
   # TODO? split? test > integration > update > destroy?
   terraform_qa:
     name: terraform @ misc
-    needs: setup
+    needs:
+      - setup
+      - verify
     # SRC: https://github.com/EnricoMi/publish-unit-test-result-action?tab=readme-ov-file#permissions
     # SRC: https://github.com/dorny/test-reporter?tab=readme-ov-file#recommended-setup-for-public-repositories
     permissions:
