@@ -443,7 +443,7 @@ jobs:
     #   TF_CLI_ARGS_test: ${{ needs.setup.outputs.TF_CLI_ARGS_test }}
 
   #
-  ci_apply:
+  terraform_ci-main_apply:
     name: "terraform @ ci-main"
     needs:
       - setup
@@ -452,28 +452,28 @@ jobs:
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      environment: ci-main
+      environment: ${{ needs.setup.outputs.environment }}
       features_directory: features
       TF_CLI_ARGS_plan: "-var stack_id=${{ needs.setup.outputs.stack_id }}"
 
-  ci_destroy:
+  terraform_ci-main_destroy:
     name: "terraform @ ci-main"
-    needs: ci_apply
+    needs: terraform_ci-main_apply
     uses: ./.github/workflows/apply.yml
     if: always()
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      environment: ci-main
+      environment: ${{ needs.setup.outputs.environment }}
       destroy: true
 
   #
-  terraform_plan_and_apply:
+  terraform_dev_plan_and_apply:
     name: terraform @ dev
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref_name == 'main' }}
     needs:
       - setup
-      - terraform_qa
+      - terraform_ci-main_apply
     permissions:
       contents: read
       actions: read
