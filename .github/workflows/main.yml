@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - .github/wokflows/main.yml
+      - ./.github/wokflows/main.yml
   push:
     branches:
       - main
@@ -443,8 +443,8 @@ jobs:
     #   TF_CLI_ARGS_test: ${{ needs.setup.outputs.TF_CLI_ARGS_test }}
 
   #
-  terraform_ci-main_apply:
-    name: "terraform @ ci-main"
+  terraform_ci_apply:
+    name: "terraform @ ${{ needs.setup.outputs.environment }}"
     needs:
       - setup
       - terraform_integration_tests
@@ -456,9 +456,9 @@ jobs:
       features_directory: features
       TF_CLI_ARGS_plan: "-var stack_id=${{ needs.setup.outputs.stack_id }}"
 
-  terraform_ci-main_destroy:
-    name: "terraform @ ci-main"
-    needs: terraform_ci-main_apply
+  terraform_ci_destroy:
+    name: "terraform @ ${{ needs.setup.outputs.environment }}"
+    needs: terraform_ci_apply
     uses: ./.github/workflows/apply.yml
     if: always()
     secrets:
@@ -473,7 +473,7 @@ jobs:
     if: ${{ github.ref_name == 'main' }}
     needs:
       - setup
-      - terraform_ci-main_apply
+      - terraform_ci_apply
     permissions:
       contents: read
       actions: read
