@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - .github/wokflows/main.yml
+      - .github/workflows/main.yml
   push:
     branches:
       - main
@@ -48,6 +48,7 @@ jobs:
           fi
     outputs:
       STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
+      environment: ${{ steps.set_variables.outputs.environment }}
 
   #
   verify:
@@ -421,8 +422,10 @@ jobs:
   #
   terraform_test:
     name: terraform
-    needs: setup
-    uses: ./.github/workflows/test.yml
+    needs:
+      - setup
+      - verify
+    uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
       tflint-version: latest
@@ -434,46 +437,44 @@ jobs:
     needs:
       - setup
       - terraform_test
-    uses: ./.github/workflows/integration_tests.yml
+    uses: percebus/github-actions-terraform/.github/workflows/integration_tests.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-    # with:
-    #   environment: test
-    #   TF_CLI_ARGS_init: ${{ needs.setup.outputs.TF_CLI_ARGS_init }}
-    #   TF_CLI_ARGS_test: ${{ needs.setup.outputs.TF_CLI_ARGS_test }}
 
   #
-  ci_apply:
-    name: "terraform @ ci-main"
+  terraform_ci_apply:
+    name: "terraform @ ${{ needs.setup.outputs.environment }}"
     needs:
       - setup
       - terraform_integration_tests
-    uses: ./.github/workflows/plan_and_apply.yml
+    uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      environment: ci-main
+      environment: ${{ needs.setup.outputs.environment }}
       features_directory: features
-      TF_CLI_ARGS_plan: "-var stack_id=${{ needs.setup.outputs.stack_id }}"
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
 
-  ci_destroy:
-    name: "terraform @ ci-main"
-    needs: ci_apply
-    uses: ./.github/workflows/apply.yml
+  terraform_ci_destroy:
+    name: "terraform @ ${{ needs.setup.outputs.environment }}"
+    needs:
+      - setup
+      - terraform_ci_apply
+    uses: percebus/github-actions-terraform/.github/workflows/apply.yml@main
     if: always()
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      environment: ci-main
+      environment: ${{ needs.setup.outputs.environment }}
       destroy: true
 
   #
-  terraform_plan_and_apply:
+  terraform_dev_plan_and_apply:
     name: terraform @ dev
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref_name == 'main' }}
     needs:
       - setup
-      - terraform_qa
+      - terraform_ci_apply
     permissions:
       contents: read
       actions: read
