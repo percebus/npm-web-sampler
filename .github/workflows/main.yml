@@ -42,9 +42,9 @@ jobs:
         run: |
           echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
           if [[ "${{ github.ref_name }}" == "main" ]]; then
-            echo "environment='ci-main'" >> $GITHUB_OUTPUT
+            echo "environment=ci-main" >> $GITHUB_OUTPUT
           else
-            echo "environment='ci-branch'" >> $GITHUB_OUTPUT
+            echo "environment=ci-branch" >> $GITHUB_OUTPUT
           fi
     outputs:
       STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
@@ -422,7 +422,9 @@ jobs:
   #
   terraform_test:
     name: terraform
-    needs: setup
+    needs:
+      - setup
+      - verify
     uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
@@ -438,10 +440,6 @@ jobs:
     uses: percebus/github-actions-terraform/.github/workflows/integration_tests.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-    # with:
-    #   environment: test
-    #   TF_CLI_ARGS_init: ${{ needs.setup.outputs.TF_CLI_ARGS_init }}
-    #   TF_CLI_ARGS_test: ${{ needs.setup.outputs.TF_CLI_ARGS_test }}
 
   #
   terraform_ci_apply:
