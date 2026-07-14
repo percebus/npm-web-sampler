@@ -457,7 +457,9 @@ jobs:
 
   terraform_ci_destroy:
     name: "terraform @ ${{ needs.setup.outputs.environment }}"
-    needs: terraform_ci_apply
+    needs:
+      - setup
+      - terraform_ci_apply
     uses: percebus/github-actions-terraform/.github/workflows/apply.yml@main
     if: always()
     secrets:
