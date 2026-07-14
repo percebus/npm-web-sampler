@@ -422,7 +422,7 @@ jobs:
   terraform_test:
     name: terraform
     needs: setup
-    uses: ./.github/workflows/test.yml
+    uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
       tflint-version: latest
@@ -434,7 +434,7 @@ jobs:
     needs:
       - setup
       - terraform_test
-    uses: ./.github/workflows/integration_tests.yml
+    uses: percebus/github-actions-terraform/.github/workflows/integration_tests.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     # with:
@@ -448,7 +448,7 @@ jobs:
     needs:
       - setup
       - terraform_integration_tests
-    uses: ./.github/workflows/plan_and_apply.yml
+    uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
@@ -459,7 +459,7 @@ jobs:
   terraform_ci_destroy:
     name: "terraform @ ${{ needs.setup.outputs.environment }}"
     needs: terraform_ci_apply
-    uses: ./.github/workflows/apply.yml
+    uses: percebus/github-actions-terraform/.github/workflows/apply.yml@main
     if: always()
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
