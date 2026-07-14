@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - ./.github/workflows/main.yml
+      - .github/workflows/main.yml
   push:
     branches:
       - main
@@ -42,12 +42,13 @@ jobs:
         run: |
           echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
           if [[ "${{ github.ref_name }}" == "main" ]]; then
-            echo "environment=ci-main" >> $GITHUB_OUTPUT
+            echo "environment='ci-main'" >> $GITHUB_OUTPUT
           else
-            echo "environment=ci-branch" >> $GITHUB_OUTPUT
+            echo "environment='ci-branch'" >> $GITHUB_OUTPUT
           fi
     outputs:
       STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
+      environment: ${{ steps.set_variables.outputs.environment }}
 
   #
   verify:
