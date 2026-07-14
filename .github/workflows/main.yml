@@ -453,7 +453,7 @@ jobs:
     with:
       environment: ${{ needs.setup.outputs.environment }}
       features_directory: features
-      TF_CLI_ARGS_plan: "-var stack_id=${{ needs.setup.outputs.stack_id }}"
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
 
   terraform_ci_destroy:
     name: "terraform @ ${{ needs.setup.outputs.environment }}"
