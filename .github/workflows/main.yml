@@ -71,6 +71,13 @@ jobs:
           name: repositories
           path: ./repositories
 
+      - name: scripts.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
+        with:
+          name: scripts
+          path: ./_scripts
+
+
   #
   # FIXME: bower install doesn't work with percebus.semantic-release GH App
   verify:
@@ -97,6 +104,18 @@ jobs:
 
       # FIXME bower doesn't play nice w/ percebus.semantic-release GH App
       # - uses: percebus/github-actions-npm/.github/actions/install@main
+
+      - name: repositories.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-download@main
+        with:
+          name: repositories
+          path: ./repositories
+
+      - name: scripts.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-download@main
+        with:
+          name: scripts
+          path: ./_scripts
 
       - name: npm run setup:semantic-release
         run: npm run setup:semantic-release
@@ -151,12 +170,6 @@ jobs:
           summary_title: Unit Tests Summary
           check_name: Unit Tests Deltas
           comment_title: Unit Tests Deltas
-
-      - name: repositories.zip
-        uses: percebus/github-actions-common/.github/actions/artifact-download@main
-        with:
-          name: repositories
-          path: ./repositories
 
       - name: semantic-release
         id: semantic-release
