@@ -49,50 +49,6 @@ jobs:
       STACK_ID: ${{ steps.GITHUB_OUTPUT.outputs.STACK_ID }}
       environment: ${{ steps.GITHUB_OUTPUT.outputs.environment }}
 
-  tag:
-    name: tag
-    needs: VARIABLES
-    runs-on: ubuntu-latest
-    steps:
-      - name: create-github-app-token
-        id: github-app-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-
-      - name: checkout
-        uses: actions/checkout@v7
-        with:
-          token: ${{ steps.github-app-token.outputs.token }}
-          persist-credentials: false
-
-      - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-
-      - name: npm install
-        run: npm clean-install
-
-      # prettier
-      - name: npm run lint:misc
-        run: npm run lint:misc
-
-      - name: semantic-release
-        id: semantic-release
-        env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          npm run semantic-release
-
-          # SEE .releaserc.mjs: Check if the successCmd generated the file
-          if [ -f .released ]; then
-            echo "released=true" >> $GITHUB_OUTPUT
-            echo "version=$(cat .release_version)" >> $GITHUB_OUTPUT
-          else
-            echo "released=false" >> $GITHUB_OUTPUT
-          fi
-
   #
   verify:
     name: Verify
@@ -114,10 +70,9 @@ jobs:
       - uses: percebus/github-actions-helm/.github/actions/setup@main
       - uses: percebus/github-actions-terraform/.github/actions/setup@main
 
-      # Ran in tag
-      # # prettier
-      # - name: npm run lint:misc
-      #   run: npm run lint:misc
+      # prettier
+      - name: npm run lint:misc
+        run: npm run lint:misc
 
       # standard
       - name: npm run lint:js
@@ -168,10 +123,56 @@ jobs:
           name: dist
           path: ./dist
 
+  semantic-release:
+    name: semantic-release
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: create-github-app-token
+        id: github-app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          token: ${{ steps.github-app-token.outputs.token }}
+          persist-credentials: false
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+
+      - name: npm install
+        run: npm clean-install
+
+      - name: dist.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: semantic-release
+        id: semantic-release
+        env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npm run semantic-release
+
+          # SEE .releaserc.mjs: Check if the successCmd generated the file
+          if [ -f .released ]; then
+            echo "released=true" >> $GITHUB_OUTPUT
+            echo "version=$(cat .release_version)" >> $GITHUB_OUTPUT
+          else
+            echo "released=false" >> $GITHUB_OUTPUT
+          fi
+
   #
   verify__matrix:
     if: github.ref_name == 'main'
-    needs: verify
+    needs: semantic-release
     strategy:
       fail-fast: false
       max-parallel: 6
@@ -217,7 +218,7 @@ jobs:
 
   #
   codeQL:
-    needs: verify
+    needs: semantic-release
     permissions:
       actions: read
       contents: read
@@ -240,7 +241,7 @@ jobs:
   testem:
     if: false # FIXME not working
     name: "test'em"
-    needs: verify
+    needs: semantic-release
     uses: percebus/github-actions-npm/.github/workflows/run_script.yml@main
     with:
       script: testem:ci:dot
@@ -249,7 +250,7 @@ jobs:
   docker_build__matrix:
     if: github.ref_name == 'main' # NOTE: branch.any.yml runs it
     name: docker build --target
-    needs: verify
+    needs: semantic-release
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -295,7 +296,7 @@ jobs:
   #
   docker_build_next__matrix:
     name: docker build --file Dockerfile.next --target
-    needs: verify
+    needs: semantic-release
     if: github.ref_name == 'main'
     continue-on-error: true
     strategy:
@@ -360,7 +361,7 @@ jobs:
 
   #
   deploy-pages:
-    needs: verify
+    needs: semantic-release
     if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     environment:
