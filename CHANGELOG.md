@@ -1,5 +1,13 @@
 # npm-web-sampler CHANGELOG
 
+# [3.0.0](https://github.com/percebus/npm-web-sampler/compare/v2.6.6...v3.0.0) (2026-07-18)
+
+- fix!: split `repositories/` as a `job` ([#316](https://github.com/percebus/npm-web-sampler/issues/316)) ([4f61b1d](https://github.com/percebus/npm-web-sampler/commit/4f61b1dab1002bee9c21b12b03a3a839e97d66c1))
+
+### BREAKING CHANGES
+
+- `workflows/main`
+
 ## [2.6.6](https://github.com/percebus/npm-web-sampler/compare/v2.6.5...v2.6.6) (2026-07-18)
 
 ### Bug Fixes
