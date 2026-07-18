@@ -30,7 +30,6 @@ permissions:
   security-events: write
 
 jobs:
-  # TODO? merge into verify?
   VARIABLES:
     name: VARIABLES
     runs-on: ubuntu-latest
@@ -50,9 +49,8 @@ jobs:
       STACK_ID: ${{ steps.GITHUB_OUTPUT.outputs.STACK_ID }}
       environment: ${{ steps.GITHUB_OUTPUT.outputs.environment }}
 
-  #
-  verify:
-    name: Verify
+  tag:
+    name: tag
     needs: VARIABLES
     runs-on: ubuntu-latest
     steps:
@@ -71,6 +69,42 @@ jobs:
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+
+      - name: npm install
+        run: npm clean-install
+
+      # prettier
+      - name: npm run lint:misc
+        run: npm run lint:misc
+
+      - name: semantic-release
+        id: semantic-release
+        env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npm run semantic-release
+
+          # SEE .releaserc.mjs: Check if the successCmd generated the file
+          if [ -f .released ]; then
+            echo "released=true" >> $GITHUB_OUTPUT
+            echo "version=$(cat .release_version)" >> $GITHUB_OUTPUT
+          else
+            echo "released=false" >> $GITHUB_OUTPUT
+          fi
+
+  #
+  verify:
+    name: Verify
+    needs: tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
 
       - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
@@ -80,9 +114,10 @@ jobs:
       - uses: percebus/github-actions-helm/.github/actions/setup@main
       - uses: percebus/github-actions-terraform/.github/actions/setup@main
 
-      # prettier
-      - name: npm run lint:misc
-        run: npm run lint:misc
+      # Ran in tag
+      # # prettier
+      # - name: npm run lint:misc
+      #   run: npm run lint:misc
 
       # standard
       - name: npm run lint:js
@@ -120,22 +155,6 @@ jobs:
           summary_title: Unit Tests Summary
           check_name: Unit Tests Deltas
           comment_title: Unit Tests Deltas
-
-      - name: semantic-release
-        id: semantic-release
-        run: |
-          npm run semantic-release
-
-          # SEE .releaserc.mjs: Check if the successCmd generated the file
-          if [ -f .released ]; then
-            echo "released=true" >> $GITHUB_OUTPUT
-            echo "version=$(cat .release_version)" >> $GITHUB_OUTPUT
-          else
-            echo "released=false" >> $GITHUB_OUTPUT
-          fi
-        env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       # TODO move to -actions-npm
       - name: npm run dist
