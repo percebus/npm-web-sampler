@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [2.6.4](https://github.com/percebus/npm-web-sampler/compare/v2.6.3...v2.6.4) (2026-07-14)
+
+### Bug Fixes
+
+- **`workflows/main`:** Split `terraform_qa` ([#306](https://github.com/percebus/npm-web-sampler/issues/306)) ([2e3b812](https://github.com/percebus/npm-web-sampler/commit/2e3b812df8f573895be9b590359fad33c7ba23b4))
+
 ## [2.6.3](https://github.com/percebus/npm-web-sampler/compare/v2.6.2...v2.6.3) (2026-06-20)
 
 ### Bug Fixes
