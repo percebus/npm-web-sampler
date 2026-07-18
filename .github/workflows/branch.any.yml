@@ -37,6 +37,10 @@ jobs:
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
       - uses: percebus/github-actions-npm/.github/actions/install@main
 
+      - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
+        with:
+          language: javascript
+
       # prettier
       - name: npm run lint:misc
         run: npm run lint:misc
@@ -47,6 +51,9 @@ jobs:
 
       - name: semantic-release
         id: semantic-release
+        env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           npm run semantic-release
 
@@ -57,9 +64,6 @@ jobs:
           else
             echo "released=false" >> $GITHUB_OUTPUT
           fi
-        env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   #
   docker_build__matrix:
