@@ -31,14 +31,14 @@ permissions:
 
 jobs:
   # TODO? merge into verify?
-  setup:
-    name: setup
+  VARIABLES:
+    name: VARIABLES
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
       - name: GITHUB_OUTPUT
-        id: set_variables
+        id: GITHUB_OUTPUT
         run: |
           echo "STACK_ID=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
           if [[ "${{ github.ref_name }}" == "main" ]]; then
@@ -47,13 +47,13 @@ jobs:
             echo "environment=ci-branch" >> $GITHUB_OUTPUT
           fi
     outputs:
-      STACK_ID: ${{ steps.set_variables.outputs.STACK_ID }}
-      environment: ${{ steps.set_variables.outputs.environment }}
+      STACK_ID: ${{ steps.GITHUB_OUTPUT.outputs.STACK_ID }}
+      environment: ${{ steps.GITHUB_OUTPUT.outputs.environment }}
 
   #
   verify:
     name: Verify
-    needs: setup
+    needs: VARIABLES
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
@@ -104,7 +104,7 @@ jobs:
         if: |
           (
             always() &&
-            !startsWith(github.ref, 'refs/heads/dependabot/')
+            !startsWith(github.ref_name, 'dependabot')
           )
         with:
           tests_name: Unit Tests
@@ -142,7 +142,7 @@ jobs:
 
   #
   verify__matrix:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref_name == 'main'
     needs: verify
     strategy:
       fail-fast: false
@@ -161,6 +161,7 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
         with:
+          # NOTE: use APP_PRIVATE_KEY instead?
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
           ls_options: ""
 
@@ -218,6 +219,7 @@ jobs:
 
   #
   docker_build__matrix:
+    if: github.ref_name == 'main' # NOTE: branch.any.yml runs it
     name: docker build --target
     needs: verify
     continue-on-error: true
@@ -236,7 +238,7 @@ jobs:
             # Since it has already been run in docker-compose
             # We only run it when we want to scan it
             # which is only on main
-            scan-image: ${{ github.ref == 'refs/heads/main' }}
+            scan-image: ${{ github.ref_name == 'main' }}
 
     runs-on: ubuntu-latest
     steps:
@@ -264,9 +266,9 @@ jobs:
 
   #
   docker_build_next__matrix:
-    if: github.ref == 'refs/heads/main'
     name: docker build --file Dockerfile.next --target
     needs: verify
+    if: github.ref_name == 'main'
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -280,7 +282,7 @@ jobs:
           # final release
           # - release
           - target: web-app
-            scan-image: ${{ github.ref == 'refs/heads/main' }}
+            scan-image: ${{ github.ref_name == 'main' }}
 
     runs-on: ubuntu-latest
     steps:
@@ -310,6 +312,7 @@ jobs:
   docker_compose:
     name: docker compose
     needs: docker_build__matrix
+    if: github.ref_name == 'main' # NOTE: branch.any.yml runs it
     runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.9.0
@@ -329,8 +332,8 @@ jobs:
 
   #
   deploy-pages:
-    if: github.ref == 'refs/heads/main'
     needs: verify
+    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     environment:
       url: ${{ steps.deployment.outputs.page_url }}
@@ -367,9 +370,9 @@ jobs:
 
   #
   integration-tests:
-    if: github.ref == 'refs/heads/main'
-    needs: deploy-pages
     name: Integration Tests
+    needs: deploy-pages
+    if: github.ref_name == 'main'
     continue-on-error: true
     runs-on: ubuntu-latest
     steps:
@@ -393,9 +396,9 @@ jobs:
 
   #
   e2e-tests:
-    if: github.ref == 'refs/heads/main'
-    needs: integration-tests
     name: E2E Tests
+    needs: integration-tests
+    if: github.ref_name == 'main'
     continue-on-error: true
     runs-on: ubuntu-latest
     steps:
@@ -423,19 +426,19 @@ jobs:
   terraform_test:
     name: terraform
     needs:
-      - setup
+      - VARIABLES
       - verify
     uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
       tflint-version: latest
-      TF_CLI_ARGS_init: ${{ needs.setup.outputs.TF_CLI_ARGS_init }}
+      TF_CLI_ARGS_init: ${{ needs.VARIABLES.outputs.TF_CLI_ARGS_init }}
 
   #
   terraform_integration_tests:
     name: terraform @ test
     needs:
-      - setup
+      - VARIABLES
       - terraform_test
     uses: percebus/github-actions-terraform/.github/workflows/integration_tests.yml@main
     secrets:
@@ -443,29 +446,29 @@ jobs:
 
   #
   terraform_ci_apply:
-    name: "terraform @ ${{ needs.setup.outputs.environment }}"
+    name: "terraform @ ${{ needs.VARIABLES.outputs.environment }}"
     needs:
-      - setup
+      - VARIABLES
       - terraform_integration_tests
     uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      environment: ${{ needs.setup.outputs.environment }}
+      environment: ${{ needs.VARIABLES.outputs.environment }}
       features_directory: features
-      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.VARIABLES.outputs.STACK_ID }}"
 
   terraform_ci_destroy:
-    name: "terraform @ ${{ needs.setup.outputs.environment }}"
+    name: "terraform @ ${{ needs.VARIABLES.outputs.environment }}"
+    if: always()
     needs:
-      - setup
+      - VARIABLES
       - terraform_ci_apply
     uses: percebus/github-actions-terraform/.github/workflows/apply.yml@main
-    if: always()
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      environment: ${{ needs.setup.outputs.environment }}
+      environment: ${{ needs.VARIABLES.outputs.environment }}
       destroy: true
 
   #
@@ -473,7 +476,7 @@ jobs:
     name: terraform @ dev
     if: ${{ github.ref_name == 'main' }}
     needs:
-      - setup
+      - VARIABLES
       - terraform_ci_apply
     permissions:
       contents: read
@@ -484,6 +487,6 @@ jobs:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
       environment: dev
-      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.VARIABLES.outputs.STACK_ID }}"
 
   # TODO add helm
