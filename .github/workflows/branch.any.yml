@@ -62,27 +62,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   #
-  docker_compose:
-    name: docker compose
-    needs: verify
-    runs-on: ubuntu-latest
-    steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-
-      # XXX? run inside container
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
-
-      - name: docker compose build
-        run: docker compose build --no-cache
-
-  #
   docker_build__matrix:
     name: docker build --target
     needs: verify
@@ -116,3 +95,24 @@ jobs:
 
       - name: docker run
         run: docker run ${{ steps.docker_build.outputs.image_tag }}
+
+  #
+  docker_compose:
+    name: docker compose
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # XXX? run inside container
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
+
+      - name: docker compose build
+        run: docker compose build --no-cache
