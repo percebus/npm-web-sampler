@@ -170,9 +170,9 @@ jobs:
             echo "released=false" >> $GITHUB_OUTPUT
           fi
 
-      outputs:
-        released: ${{ steps.semantic-release.outputs.released }}
-        version: ${{ steps.semantic-release.outputs.version }}
+    outputs:
+      released: ${{ steps.semantic-release.outputs.released }}
+      version: ${{ steps.semantic-release.outputs.version }}
 
   #
   verify__matrix:
