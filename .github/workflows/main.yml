@@ -71,13 +71,6 @@ jobs:
           name: repositories
           path: ./repositories
 
-      - name: scripts.zip
-        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
-        with:
-          name: scripts
-          path: ./_scripts
-
-
   #
   # FIXME: bower install doesn't work with percebus.semantic-release GH App
   verify:
@@ -110,12 +103,6 @@ jobs:
         with:
           name: repositories
           path: ./repositories
-
-      - name: scripts.zip
-        uses: percebus/github-actions-common/.github/actions/artifact-download@main
-        with:
-          name: scripts
-          path: ./_scripts
 
       - name: npm run setup:semantic-release
         run: npm run setup:semantic-release
