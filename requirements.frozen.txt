@@ -1,6 +1,7 @@
 argcomplete==3.7.0
 click==8.4.2
+filelock==3.31.0
 packaging==26.2
-pipx==1.15.0
-platformdirs==4.10.0
+pipx==1.16.0
+platformdirs==4.10.1
 userpath==1.9.2

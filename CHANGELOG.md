@@ -1,5 +1,12 @@
 # npm-web-sampler CHANGELOG
 
+## [2.6.6](https://github.com/percebus/npm-web-sampler/compare/v2.6.5...v2.6.6) (2026-07-18)
+
+### Bug Fixes
+
+- **`workflow/main`:** forgot `pip freeze` ([8989f16](https://github.com/percebus/npm-web-sampler/commit/8989f1646304c6d1bbb0d634ebb5c24b1eaedb6f))
+- **`workflows/main`:** `output` indentation ([d2de60d](https://github.com/percebus/npm-web-sampler/commit/d2de60d54803579671ba183ab5154eef5bfe3e8a))
+
 ## [2.6.5](https://github.com/percebus/npm-web-sampler/compare/v2.6.4...v2.6.5) (2026-07-18)
 
 ### Bug Fixes
