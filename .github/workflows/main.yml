@@ -115,7 +115,6 @@ jobs:
         run: npm run dist
 
       - name: dist.zip
-        if: always()
         uses: percebus/github-actions-common/.github/actions/artifact-upload@main
         with:
           name: dist
@@ -133,13 +132,18 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
+      # TODO? incorporate into `github-actions-common/.../checkout`?
       - name: checkout
         uses: actions/checkout@v7
         with:
           token: ${{ steps.github-app-token.outputs.token }}
           persist-credentials: false
 
+      - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+
+      - name: pip install
+        run: npm run pip:install:requirements
 
       - name: npm install
         run: npm clean-install
@@ -165,6 +169,10 @@ jobs:
           else
             echo "released=false" >> $GITHUB_OUTPUT
           fi
+
+      outputs:
+        released: ${{ steps.semantic-release.outputs.released }}
+        version: ${{ steps.semantic-release.outputs.version }}
 
   #
   verify__matrix:
@@ -453,7 +461,7 @@ jobs:
     name: terraform
     needs:
       - VARIABLES
-      - verify
+      - semantic-release
     uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
