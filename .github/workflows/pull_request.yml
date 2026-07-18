@@ -28,7 +28,7 @@ jobs:
     # FIXME: SSH not working, and bower install fails!
     uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
     secrets:
-      SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }}
+      ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
     # # XXX: vvv Use the re-usable workflow instead ^^^
     # name: npm audit
