@@ -402,7 +402,7 @@ jobs:
         run: ls -la ./dist
 
       - name: Upload artifact
-        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
       - name: Configure GitHub.IO Pages
