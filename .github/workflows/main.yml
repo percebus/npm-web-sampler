@@ -111,9 +111,7 @@ jobs:
           check_name: Unit Tests Deltas
           comment_title: Unit Tests Deltas
 
-      # TODO move to -actions-npm
       - name: npm run dist
-        if: steps.semantic-release.outputs.released == 'false'
         run: npm run dist
 
       - name: dist.zip
