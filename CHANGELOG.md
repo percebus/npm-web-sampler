@@ -1,5 +1,15 @@
 # npm-web-sampler CHANGELOG
 
+## [2.6.5](https://github.com/percebus/npm-web-sampler/compare/v2.6.4...v2.6.5) (2026-07-18)
+
+### Bug Fixes
+
+- **`.github/workflows`:** VARIABLES ([#315](https://github.com/percebus/npm-web-sampler/issues/315)) ([b4418d5](https://github.com/percebus/npm-web-sampler/commit/b4418d5319a3dea9dfb010962d52a9e997d7cdd1))
+- **`workflows/main`:** swap `tag` (`semantic-release`) and `verify` ([58f5cba](https://github.com/percebus/npm-web-sampler/commit/58f5cba5b07e9f2961fd2b468797a12de143b91d))
+- **`workflows/main`:** use `github-app-token` ([58efded](https://github.com/percebus/npm-web-sampler/commit/58efded6faf442d052823824cf8af3d5f56dd8e1))
+- **`workflows/main`:** Wrong `needs` ([5bedac2](https://github.com/percebus/npm-web-sampler/commit/5bedac2514eb0d466a15f00d8512d32574ac69e6))
+- **workflows/main:** remove unnecessary condition for npm run dist ([05ca166](https://github.com/percebus/npm-web-sampler/commit/05ca16644e56e4241bf4ca449194f45797ef6c9d))
+
 ## [2.6.4](https://github.com/percebus/npm-web-sampler/compare/v2.6.3...v2.6.4) (2026-07-14)
 
 ### Bug Fixes
