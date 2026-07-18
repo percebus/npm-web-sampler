@@ -56,9 +56,18 @@ jobs:
     needs: VARIABLES
     runs-on: ubuntu-latest
     steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - name: create-github-app-token
+        id: github-app-token
+        uses: actions/create-github-app-token@v1
         with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          token: ${{ steps.github-app-token.outputs.token }}
+          persist-credentials: false
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
