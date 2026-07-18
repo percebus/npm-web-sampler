@@ -33,6 +33,7 @@
     "helm:lint": "helm lint ./helm/npm-web-sampler/ --strict",
     "setup": "npm run npm:install:global:all && npm run playwright:install && npm run bower:install && npm run pip:install:requirements && npm run pipx:install:requirements",
     "setup:ci": "npm run npm:install:global:ci && npm run bower:install && npm run pip:install:requirements && npm run pipx:install:requirements",
+    "setup:semantic-release": "npm run npm:install:global:ci && npm run pip:install:requirements && npm run pipx:install:requirements",
     "setup:Dockerfile:dev": "npm run npm:install:global:Dockerfile && npm run pip:install:requirements && npm run pipx:ensurepath && npm run pipx:install:requirements",
     "setup:Dockerfile:prd": "npm install --production http-server",
     "yarn:licenses:prod:list": "npx yarn licenses list --prod > build/vendor/LICENSES.txt",
