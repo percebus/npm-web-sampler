@@ -49,9 +49,9 @@ jobs:
       STACK_ID: ${{ steps.GITHUB_OUTPUT.outputs.STACK_ID }}
       environment: ${{ steps.GITHUB_OUTPUT.outputs.environment }}
 
-  #
-  verify:
-    name: Verify
+  # XXX DELETE ME
+  repositories:
+    name: repositories
     needs: VARIABLES
     runs-on: ubuntu-latest
     steps:
@@ -61,7 +61,54 @@ jobs:
 
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-      - uses: percebus/github-actions-npm/.github/actions/install@main
+
+      - name: npm run bower:install
+        run: npm run bower:install
+
+      - name: repositories.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
+        with:
+          name: repositories
+          path: ./repositories
+
+  #
+  # FIXME: bower install doesn't work with percebus.semantic-release GH App
+  verify:
+    name: Verify
+    needs: repositories
+    runs-on: ubuntu-latest
+    steps:
+      - name: create-github-app-token
+        id: github-app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      # TODO? incorporate into `github-actions-common/.../checkout`?
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          token: ${{ steps.github-app-token.outputs.token }}
+          persist-credentials: false
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+
+      # FIXME bower doesn't play nice w/ percebus.semantic-release GH App
+      # - uses: percebus/github-actions-npm/.github/actions/install@main
+
+      - name: repositories.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-download@main
+        with:
+          name: repositories
+          path: ./repositories
+
+      - name: npm run setup:semantic-release
+        run: npm run setup:semantic-release
+
+      - name: npm install
+        run: npm clean-install
 
       - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
         with:
@@ -111,49 +158,6 @@ jobs:
           check_name: Unit Tests Deltas
           comment_title: Unit Tests Deltas
 
-      - name: npm run dist
-        run: npm run dist
-
-      - name: dist.zip
-        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
-        with:
-          name: dist
-          path: ./dist
-
-  semantic-release:
-    name: semantic-release
-    needs: verify
-    runs-on: ubuntu-latest
-    steps:
-      - name: create-github-app-token
-        id: github-app-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-
-      # TODO? incorporate into `github-actions-common/.../checkout`?
-      - name: checkout
-        uses: actions/checkout@v7
-        with:
-          token: ${{ steps.github-app-token.outputs.token }}
-          persist-credentials: false
-
-      - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-
-      - name: pip install
-        run: npm run pip:install:requirements
-
-      - name: npm install
-        run: npm clean-install
-
-      - name: dist.zip
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-
       - name: semantic-release
         id: semantic-release
         env:
@@ -170,14 +174,21 @@ jobs:
             echo "released=false" >> $GITHUB_OUTPUT
           fi
 
-    outputs:
-      released: ${{ steps.semantic-release.outputs.released }}
-      version: ${{ steps.semantic-release.outputs.version }}
+      # TODO? move to -actions-npm?
+      - name: npm run dist
+        if: steps.semantic-release.outputs.released == 'false'
+        run: npm run dist
+
+      - name: dist.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
+        with:
+          name: dist
+          path: ./dist
 
   #
   verify__matrix:
     if: github.ref_name == 'main'
-    needs: semantic-release
+    needs: verify
     strategy:
       fail-fast: false
       max-parallel: 6
@@ -223,7 +234,7 @@ jobs:
 
   #
   codeQL:
-    needs: semantic-release
+    needs: verify
     permissions:
       actions: read
       contents: read
@@ -246,16 +257,15 @@ jobs:
   testem:
     if: false # FIXME not working
     name: "test'em"
-    needs: semantic-release
+    needs: verify
     uses: percebus/github-actions-npm/.github/workflows/run_script.yml@main
     with:
       script: testem:ci:dot
 
   #
   docker_build__matrix:
-    if: github.ref_name == 'main' # NOTE: branch.any.yml runs it
     name: docker build --target
-    needs: semantic-release
+    needs: verify
     continue-on-error: true
     strategy:
       max-parallel: 10
@@ -301,7 +311,7 @@ jobs:
   #
   docker_build_next__matrix:
     name: docker build --file Dockerfile.next --target
-    needs: semantic-release
+    needs: verify
     if: github.ref_name == 'main'
     continue-on-error: true
     strategy:
@@ -346,7 +356,6 @@ jobs:
   docker_compose:
     name: docker compose
     needs: docker_build__matrix
-    if: github.ref_name == 'main' # NOTE: branch.any.yml runs it
     runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.9.0
@@ -366,7 +375,7 @@ jobs:
 
   #
   deploy-pages:
-    needs: semantic-release
+    needs: verify
     if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     environment:
@@ -385,7 +394,7 @@ jobs:
       id-token: write
     steps:
       - name: dist.zip
-        uses: actions/download-artifact@v4
+        uses: percebus/github-actions-common/.github/actions/artifact-download@main
         with:
           name: dist
           path: dist
@@ -393,7 +402,7 @@ jobs:
         run: ls -la ./dist
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
         with:
           path: ./dist
       - name: Configure GitHub.IO Pages
@@ -461,7 +470,7 @@ jobs:
     name: terraform
     needs:
       - VARIABLES
-      - semantic-release
+      - verify
     uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
