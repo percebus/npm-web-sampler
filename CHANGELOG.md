@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.0.2](https://github.com/percebus/npm-web-sampler/compare/v3.0.1...v3.0.2) (2026-07-19)
+
+### Bug Fixes
+
+- **`semantic-release`:** Added `env` variables ([#318](https://github.com/percebus/npm-web-sampler/issues/318)) ([ed5b190](https://github.com/percebus/npm-web-sampler/commit/ed5b1909c6d5ca91d905f841131670926fce0746)), closes [#317](https://github.com/percebus/npm-web-sampler/issues/317)
+
 ## [3.0.1](https://github.com/percebus/npm-web-sampler/compare/v3.0.0...v3.0.1) (2026-07-18)
 
 ### Bug Fixes
