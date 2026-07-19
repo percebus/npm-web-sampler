@@ -67,7 +67,7 @@ jobs:
   # FIXME: bower install doesn't work with percebus.semantic-release GH App
   verify:
     name: Verify
-    needs: repositories
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: create-github-app-token
