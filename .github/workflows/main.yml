@@ -161,8 +161,7 @@ jobs:
       - name: semantic-release
         id: semantic-release
         env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.github-app-token.outputs.token }}
         run: |
           npm run semantic-release
 
