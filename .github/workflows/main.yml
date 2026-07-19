@@ -30,11 +30,25 @@ permissions:
   security-events: write
 
 jobs:
-  VARIABLES:
-    name: VARIABLES
+  setup:
+    name: setup
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+
+      - name: bower install
+        run: npx bower install --allow-root
+
+      - name: repositories.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
+        with:
+          name: repositories
+          path: ./repositories
 
       - name: GITHUB_OUTPUT
         id: GITHUB_OUTPUT
@@ -49,33 +63,11 @@ jobs:
       STACK_ID: ${{ steps.GITHUB_OUTPUT.outputs.STACK_ID }}
       environment: ${{ steps.GITHUB_OUTPUT.outputs.environment }}
 
-  # XXX DELETE ME
-  repositories:
-    name: repositories
-    needs: VARIABLES
-    runs-on: ubuntu-latest
-    steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-python/.github/actions/setup@main
-      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-
-      - name: npm run bower:install
-        run: npm run bower:install
-
-      - name: repositories.zip
-        uses: percebus/github-actions-common/.github/actions/artifact-upload@main
-        with:
-          name: repositories
-          path: ./repositories
-
   #
   # FIXME: bower install doesn't work with percebus.semantic-release GH App
   verify:
     name: Verify
-    needs: repositories
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: create-github-app-token
@@ -161,8 +153,7 @@ jobs:
       - name: semantic-release
         id: semantic-release
         env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.github-app-token.outputs.token }}
         run: |
           npm run semantic-release
 
@@ -290,12 +281,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
+      - name: repositories.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-download@main
+        with:
+          name: repositories
+          path: ./repositories
 
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
+      - name: scripts/prepare.ba.sh
+        run: bash repositories/commons/scripts/prepare.ba.sh
 
       - uses: percebus/github-actions-docker/.github/actions/build@main
         id: docker_build
@@ -334,11 +327,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
-      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
+      - name: repositories.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-download@main
+        with:
+          name: repositories
+          path: ./repositories
+
+      - name: scripts/prepare.ba.sh
+        run: bash repositories/commons/scripts/prepare.ba.sh
 
       - uses: percebus/github-actions-docker/.github/actions/build@main
         id: docker_build
@@ -469,19 +465,19 @@ jobs:
   terraform_test:
     name: terraform
     needs:
-      - VARIABLES
+      - setup
       - verify
     uses: percebus/github-actions-terraform/.github/workflows/test.yml@main
     with:
       override: true
       tflint-version: latest
-      TF_CLI_ARGS_init: ${{ needs.VARIABLES.outputs.TF_CLI_ARGS_init }}
+      TF_CLI_ARGS_init: ${{ needs.setup.outputs.TF_CLI_ARGS_init }}
 
   #
   terraform_integration_tests:
     name: terraform @ test
     needs:
-      - VARIABLES
+      - setup
       - terraform_test
     uses: percebus/github-actions-terraform/.github/workflows/integration_tests.yml@main
     secrets:
@@ -489,29 +485,29 @@ jobs:
 
   #
   terraform_ci_apply:
-    name: "terraform @ ${{ needs.VARIABLES.outputs.environment }}"
+    name: "terraform @ ${{ needs.setup.outputs.environment }}"
     needs:
-      - VARIABLES
+      - setup
       - terraform_integration_tests
     uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      environment: ${{ needs.VARIABLES.outputs.environment }}
+      environment: ${{ needs.setup.outputs.environment }}
       features_directory: features
-      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.VARIABLES.outputs.STACK_ID }}"
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
 
   terraform_ci_destroy:
-    name: "terraform @ ${{ needs.VARIABLES.outputs.environment }}"
+    name: "terraform @ ${{ needs.setup.outputs.environment }}"
     if: always()
     needs:
-      - VARIABLES
+      - setup
       - terraform_ci_apply
     uses: percebus/github-actions-terraform/.github/workflows/apply.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
-      environment: ${{ needs.VARIABLES.outputs.environment }}
+      environment: ${{ needs.setup.outputs.environment }}
       destroy: true
 
   #
@@ -519,7 +515,7 @@ jobs:
     name: terraform @ dev
     if: ${{ github.ref_name == 'main' }}
     needs:
-      - VARIABLES
+      - setup
       - terraform_ci_apply
     permissions:
       contents: read
@@ -530,6 +526,6 @@ jobs:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
       environment: dev
-      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.VARIABLES.outputs.STACK_ID }}"
+      TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
 
   # TODO add helm
