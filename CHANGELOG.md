@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.0.4](https://github.com/percebus/npm-web-sampler/compare/v3.0.3...v3.0.4) (2026-09-07)
+
+### Bug Fixes
+
+- **`main.yml`:** pass `ref` ([7119e72](https://github.com/percebus/npm-web-sampler/commit/7119e7265abb8ff68d1aea2df62031d19ea150ec))
+
 ## [3.0.3](https://github.com/percebus/npm-web-sampler/compare/v3.0.2...v3.0.3) (2026-09-07)
 
 ### Bug Fixes
