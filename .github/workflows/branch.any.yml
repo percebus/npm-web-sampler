@@ -66,41 +66,6 @@ jobs:
           fi
 
   #
-  docker_build__matrix:
-    name: docker build --target
-    needs: verify
-    continue-on-error: true
-    strategy:
-      max-parallel: 10
-      matrix:
-        include:
-          # - base
-          # - project
-          - target: dev
-
-    runs-on: ubuntu-latest
-    steps:
-      - uses: percebus/github-actions-common/.github/actions/checkout@main
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
-
-      - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
-
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
-
-      - uses: percebus/github-actions-docker/.github/actions/build@main
-        id: docker_build
-        with:
-          target: ${{ matrix.target }}
-          scan-image: false
-
-      - name: docker run
-        run: docker run ${{ steps.docker_build.outputs.image_tag }}
-
-  #
   docker_compose:
     name: docker compose
     needs: verify

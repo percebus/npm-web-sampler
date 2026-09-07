@@ -20,13 +20,12 @@ permissions:
   contents: read
 
 jobs:
-  dependency-review:
-    uses: percebus/github-actions-compliance/.github/workflows/dependency-review.yml@main
-    name: github-actions-compliance
-
   github-actions-npm:
-    uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
-    name: npm
+    permissions:
+      contents: read
+      pull-requests: read
+    uses: percebus/github-actions-npm/.github/workflows/dependency-review.yml@main
+    name: github-actions-npm
     secrets:
       ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
