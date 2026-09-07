@@ -496,7 +496,7 @@ jobs:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     with:
       environment: ${{ needs.setup.outputs.environment }}
-      features_directory: features
+      # features_directory: features # FIXME something about version 1.15.1 VS 1.16.1
       TF_CLI_ARGS_plan: "-var STACK_ID=${{ needs.setup.outputs.STACK_ID }}"
 
   terraform_ci_destroy:
