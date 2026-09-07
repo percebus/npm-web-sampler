@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.0.3](https://github.com/percebus/npm-web-sampler/compare/v3.0.2...v3.0.3) (2026-09-07)
+
+### Bug Fixes
+
+- **`terra`:** `required_version` `>=` instead of `~>` ([#320](https://github.com/percebus/npm-web-sampler/issues/320)) ([a35128c](https://github.com/percebus/npm-web-sampler/commit/a35128cf551d593f8254276e5ce09f3b0d10642b))
+
 ## [3.0.2](https://github.com/percebus/npm-web-sampler/compare/v3.0.1...v3.0.2) (2026-07-19)
 
 ### Bug Fixes
