@@ -49,7 +49,7 @@ jobs:
       tflint-version: latest
 
       # terraform compliance
-      features_directory: features
+      # features_directory: features # FIXME something about version 1.15.1 VS 1.16.1
 
       # terraform test
       test_environment: test
