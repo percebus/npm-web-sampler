@@ -70,16 +70,18 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: create-github-app-token
+      # https://github.com/actions/create-github-app-token/releases/tag/v3.2.0
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1
+        name: create-github-app-token
         id: github-app-token
-        uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       # TODO? incorporate into `github-actions-common/.../checkout`?
-      - name: checkout
-        uses: actions/checkout@v7
+      # SRC: https://github.com/actions/checkout/releases/tag/v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        name: checkout
         with:
           token: ${{ steps.github-app-token.outputs.token }}
           persist-credentials: false
@@ -354,7 +356,7 @@ jobs:
     needs: docker_build__matrix
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
+      - uses: percebus/github-actions-common/.github/actions/ssh-agent/@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
@@ -397,15 +399,20 @@ jobs:
       - name: ls
         run: ls -la ./dist
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # SRC: https://github.com/actions/upload-pages-artifact/releases/tag/v5.0.0
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        name: Upload artifact
         with:
           path: ./dist
-      - name: Configure GitHub.IO Pages
-        uses: actions/configure-pages@v5
-      - name: https://percebus.GitHub.IO/npm-web-sampler
+      
+      # SRC: https://github.com/actions/configure-pages/releases/tag/v6.0.0
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+        name: Configure GitHub.IO Pages
+
+      # SRC: https://github.com/actions/deploy-pages/releases/tag/v5.0.1
+      - uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346
         id: deployment
-        uses: actions/deploy-pages@v4
+        name: https://percebus.GitHub.IO/npm-web-sampler
 
   #
   integration-tests:
