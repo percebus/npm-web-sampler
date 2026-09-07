@@ -21,6 +21,9 @@ permissions:
 
 jobs:
   github-actions-npm:
+    permissions:
+      contents: read
+      pull-requests: read
     uses: percebus/github-actions-npm/.github/workflows/dependency-review.yml@main
     name: github-actions-npm
     secrets:
