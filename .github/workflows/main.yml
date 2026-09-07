@@ -404,7 +404,7 @@ jobs:
         name: Upload artifact
         with:
           path: ./dist
-      
+
       # SRC: https://github.com/actions/configure-pages/releases/tag/v6.0.0
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
         name: Configure GitHub.IO Pages
