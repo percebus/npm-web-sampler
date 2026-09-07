@@ -228,23 +228,18 @@ jobs:
   #
   codeQL:
     needs: verify
+    name: CodeQL analyze
     permissions:
       actions: read
       contents: read
       security-events: write
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language:
-          - actions
-
-    name: CodeQL analyze
     uses: percebus/github-actions-compliance/.github/workflows/codeql_analyze.yml@main
-    secrets: # XXX? redundant?
-      SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }}
+    secrets:
+      # ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }} # FIXME
+      SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }} # XXX
     with:
-      language: ${{ matrix.language }}
+      language: actions
 
   #
   testem:
