@@ -52,8 +52,9 @@ jobs:
       - name: semantic-release
         id: semantic-release
         env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
+          # GITHUB_TOKEN: ${{ secrets.SSH_KEY_PRIVATE }} # TODO?
+          # GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           npm run semantic-release
 
