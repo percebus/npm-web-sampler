@@ -1,5 +1,15 @@
 # npm-web-sampler CHANGELOG
 
+## [3.0.5](https://github.com/percebus/npm-web-sampler/compare/v3.0.4...v3.0.5) (2026-11-03)
+
+### Bug Fixes
+
+- **`workflows/always`:** `3.14.5` cannot be found ([#323](https://github.com/percebus/npm-web-sampler/issues/323)) ([30852b5](https://github.com/percebus/npm-web-sampler/commit/30852b5420dd4064950d6399365f5b8d656c4116)), closes [#324](https://github.com/percebus/npm-web-sampler/issues/324)
+
+### Reverts
+
+- **`workflows`:** Re-enable `terraform_compliance` ([#322](https://github.com/percebus/npm-web-sampler/issues/322)) ([fd12549](https://github.com/percebus/npm-web-sampler/commit/fd125495ead6d9d229b69dc1880a6094fe621808)), closes [#321](https://github.com/percebus/npm-web-sampler/issues/321)
+
 ## [3.0.4](https://github.com/percebus/npm-web-sampler/compare/v3.0.3...v3.0.4) (2026-09-07)
 
 ### Bug Fixes
