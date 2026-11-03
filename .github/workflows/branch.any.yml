@@ -52,8 +52,7 @@ jobs:
       - name: semantic-release
         id: semantic-release
         env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # TODO?
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm run semantic-release
 
@@ -71,7 +70,7 @@ jobs:
     needs: verify
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
+      - uses: percebus/github-actions-common/.github/actions/ssh-agent/@main
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
