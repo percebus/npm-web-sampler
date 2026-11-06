@@ -1,0 +1,22 @@
+name: "Cron: npm update dependencies"
+
+on:
+  workflow_dispatch: # Allows you to trigger it manually from the Actions t
+  schedule:
+    # Runs every Sunday at 00:00 UTC
+    - cron: "0 0 * * 0"
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  npm_update:
+    name: npm
+    uses: percebus/github-actions-npm/.github/workflows/update.yml@main
+    permissions:
+      contents: write
+      pull-requests: write
