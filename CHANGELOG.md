@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [3.1.0](https://github.com/percebus/npm-web-sampler/compare/v3.0.5...v3.1.0) (2026-11-06)
+
+### Features
+
+- **`workflows`:** `npm update` ([#326](https://github.com/percebus/npm-web-sampler/issues/326)) ([29294dd](https://github.com/percebus/npm-web-sampler/commit/29294dd7b08449eaa0a0d9a3b0373ce611a345bb))
+
 ## [3.0.5](https://github.com/percebus/npm-web-sampler/compare/v3.0.4...v3.0.5) (2026-11-03)
 
 ### Bug Fixes
