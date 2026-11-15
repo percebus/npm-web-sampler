@@ -182,6 +182,7 @@ Alpine VS Debian
 | **Debian 9**  | **Stretch**  | The purple rubber toy octopus              | **Archived / EOL**. Deprecated across modern Docker builds.      |
 
 <!-- markdown-link-check-disable -->
+
 See [Linux Debian codenames](https://unix.stackexchange.com/questions/222394/linux-debian-codenames)
 <!-- markdown-link-check-enable -->
 
