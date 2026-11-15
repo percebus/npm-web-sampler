@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.2.2](https://github.com/percebus/npm-web-sampler/compare/v3.2.1...v3.2.2) (2026-11-15)
+
+### Bug Fixes
+
+- **`workflows/pull_request`:** try w/o `ssh-private-key` ([#337](https://github.com/percebus/npm-web-sampler/issues/337)) ([791c03a](https://github.com/percebus/npm-web-sampler/commit/791c03a15bccb0fc843d37bdf3a1397bac72b4b2))
+
 ## [3.2.1](https://github.com/percebus/npm-web-sampler/compare/v3.2.0...v3.2.1) (2026-11-15)
 
 ### Bug Fixes
