@@ -181,11 +181,9 @@ Alpine VS Debian
 | **Debian 10** | **Buster**   | Andy's real-life pet dachshund             | **Archived / EOL**. Avoid using for new builds.                  |
 | **Debian 9**  | **Stretch**  | The purple rubber toy octopus              | **Archived / EOL**. Deprecated across modern Docker builds.      |
 
-<!-- lychee-disable -->
 <!-- markdown-link-check-disable -->
 See [Linux Debian codenames](https://unix.stackexchange.com/questions/222394/linux-debian-codenames)
 <!-- markdown-link-check-enable -->
-<!-- lychee-enable -->
 
 ### Dockerfiles
 

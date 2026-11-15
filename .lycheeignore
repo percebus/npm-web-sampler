@@ -4,7 +4,7 @@ src/vendor/**
 http://127.0.0.1:8080
 https://www.patreon.com/feross
 https://bevry.me/fund
-https://aahil13.hashnode.dev/deploying-a-docker-container-to-kubernetes-using-helm-and-helm-charts
+https://*.hashnode.dev/
 https://www.npmjs.com/support
 https://medium.com/
 https://*.medium.com/
@@ -12,3 +12,5 @@ https://ignaciocicero.medium.com/docker-kubernetes-helm-a-comprehensive-step-by-
 https://lusbuab.medium.com/using-dotenv-with-jest-7e735b34e55f
 https://siweheee.medium.com/deploy-your-programs-onto-minikube-with-docker-and-helm-a68097e8d545
 https://opencollective.com/unrs-resolver
+https://*.stackexchange.com/
+https://unix.stackexchange.com/questions/222394/linux-debian-codenames
