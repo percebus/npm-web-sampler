@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.2.1](https://github.com/percebus/npm-web-sampler/compare/v3.2.0...v3.2.1) (2026-11-15)
+
+### Bug Fixes
+
+- **`terra/`:** Moved `dist/` to `out/` ([#335](https://github.com/percebus/npm-web-sampler/issues/335)) ([84ced22](https://github.com/percebus/npm-web-sampler/commit/84ced2238efb3b97e4386915ef3e6cc001d4c360))
+
 # [3.2.0](https://github.com/percebus/npm-web-sampler/compare/v3.1.0...v3.2.0) (2026-11-15)
 
 ### Features
