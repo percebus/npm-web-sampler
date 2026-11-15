@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.2.3](https://github.com/percebus/npm-web-sampler/compare/v3.2.2...v3.2.3) (2026-11-15)
+
+### Bug Fixes
+
+- **`README`:** `lychee` reporting "Dead link" ([#338](https://github.com/percebus/npm-web-sampler/issues/338)) ([576577c](https://github.com/percebus/npm-web-sampler/commit/576577ce13c9234428955b0a3677d5f321025a4b))
+
 ## [3.2.2](https://github.com/percebus/npm-web-sampler/compare/v3.2.1...v3.2.2) (2026-11-15)
 
 ### Bug Fixes
