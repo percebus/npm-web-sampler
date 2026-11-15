@@ -189,7 +189,7 @@
     "mega-linter-runner": "^8.8.0",
     "parcel": "~2.14.2",
     "posthtml-doctype": "^1.1.1",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "selenium-side-runner": "^4.0.13",
     "selenium-webdriver": "^4.52.0",
     "standardx": "^7.0.0",
