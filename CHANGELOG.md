@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+# [3.2.0](https://github.com/percebus/npm-web-sampler/compare/v3.1.0...v3.2.0) (2026-11-15)
+
+### Features
+
+- **`dependabot`:** Added other ecosystems ([b7b4a96](https://github.com/percebus/npm-web-sampler/commit/b7b4a9644de066cba247be6ef0d8f18e25db6453))
+
 # [3.1.0](https://github.com/percebus/npm-web-sampler/compare/v3.0.5...v3.1.0) (2026-11-06)
 
 ### Features
