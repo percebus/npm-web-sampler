@@ -8,7 +8,7 @@ on:
       - .github/workflows/**
       - .github/actions/**
   push:
-    branches: 
+    branches:
       - main
 
 concurrency:
