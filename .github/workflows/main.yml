@@ -344,12 +344,11 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-
-      - name: repositories.zip
-        uses: percebus/github-actions-common/.github/actions/artifact-download@main
-        with:
-          name: repositories
-          path: ./repositories
+      
+      - name: bower install
+        run: |
+          npm run npm:install:global:ci
+          npm run bower:install
 
       - name: docker compose build
         run: docker compose build --no-cache
