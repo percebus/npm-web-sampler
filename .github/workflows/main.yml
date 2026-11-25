@@ -107,10 +107,10 @@ jobs:
       - name: npm install
         run: npm clean-install
 
-      # FIXME SARIF upload is failing
-      # - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
-      #   with:
-      #     language: javascript
+      - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
+        if: false # FIXME upload SARIF fails
+        with:
+          language: javascript
 
       - uses: percebus/github-actions-helm/.github/actions/setup@main
       - uses: percebus/github-actions-terraform/.github/actions/setup@main
@@ -230,22 +230,6 @@ jobs:
         run: npm run dist
 
   #
-  codeQL:
-    needs: verify
-    name: CodeQL analyze
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    uses: percebus/github-actions-compliance/.github/workflows/codeql_analyze.yml@main
-    secrets:
-      # ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }} # FIXME
-      SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }} # XXX
-    with:
-      language: actions
-
-  #
   testem:
     if: false # FIXME not working
     name: "test'em"
@@ -361,7 +345,6 @@ jobs:
 
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      # XXX? run inside container
       - name: bower install
         run: |
           npm run npm:install:global:ci
