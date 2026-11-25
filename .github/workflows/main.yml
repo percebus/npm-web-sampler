@@ -230,22 +230,6 @@ jobs:
         run: npm run dist
 
   #
-  codeQL:
-    needs: verify
-    name: CodeQL analyze
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    uses: percebus/github-actions-compliance/.github/workflows/codeql_analyze.yml@main
-    secrets:
-      # ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }} # FIXME
-      SSH_KEY_PRIVATE: ${{ secrets.SSH_KEY_PRIVATE }} # XXX
-    with:
-      language: actions
-
-  #
   testem:
     if: false # FIXME not working
     name: "test'em"
@@ -360,12 +344,12 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-
-      # XXX? run inside container
-      - name: bower install
-        run: |
-          npm run npm:install:global:ci
-          npm run bower:install
+      
+      - name: repositories.zip
+        uses: percebus/github-actions-common/.github/actions/artifact-download@main
+        with:
+          name: repositories
+          path: ./repositories
 
       - name: docker compose build
         run: docker compose build --no-cache

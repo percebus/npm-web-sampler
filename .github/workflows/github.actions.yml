@@ -4,9 +4,12 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - .github/workflows/branch.github.yml
+      - .github/workflows/github.actions.yml
       - .github/workflows/**
       - .github/actions/**
+  push:
+    branches:
+      main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -17,6 +20,7 @@ permissions:
 
 jobs:
   codeQL:
+    if: false # FIXME SARIF upload not working
     permissions:
       actions: read
       contents: read
