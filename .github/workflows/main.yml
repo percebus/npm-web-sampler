@@ -11,7 +11,7 @@ on:
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 env:
   # Disable HUSKY in CI
@@ -89,6 +89,9 @@ jobs:
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-nvm/.github/actions/install_and_use@main
 
+      # This should fail to protect the job
+      - uses: percebus/github-actions-npm/.github/actions/audit@main
+
       # FIXME bower doesn't play nice w/ percebus.semantic-release GH App
       # - uses: percebus/github-actions-npm/.github/actions/install@main
 
@@ -104,9 +107,10 @@ jobs:
       - name: npm install
         run: npm clean-install
 
-      - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
-        with:
-          language: javascript
+      # FIXME SARIF upload is failing
+      # - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
+      #   with:
+      #     language: javascript
 
       - uses: percebus/github-actions-helm/.github/actions/setup@main
       - uses: percebus/github-actions-terraform/.github/actions/setup@main
