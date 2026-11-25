@@ -8,6 +8,7 @@ on:
       - src/**
       - __tests__/**
       # - features/** : @executionautomation/playwright
+      - "*"
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
