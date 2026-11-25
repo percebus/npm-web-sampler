@@ -344,7 +344,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      
+
       - name: bower install
         run: |
           npm run npm:install:global:ci
