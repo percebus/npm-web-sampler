@@ -107,10 +107,10 @@ jobs:
       - name: npm install
         run: npm clean-install
 
-      # FIXME SARIF upload is failing
-      # - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
-      #   with:
-      #     language: javascript
+      - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
+        if: false # FIXME upload SARIF fails
+        with:
+          language: javascript
 
       - uses: percebus/github-actions-helm/.github/actions/setup@main
       - uses: percebus/github-actions-terraform/.github/actions/setup@main
@@ -344,7 +344,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY_PRIVATE }}
 
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      
+
       - name: repositories.zip
         uses: percebus/github-actions-common/.github/actions/artifact-download@main
         with:
