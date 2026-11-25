@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.2.4](https://github.com/percebus/npm-web-sampler/compare/v3.2.3...v3.2.4) (2026-11-25)
+
+### Bug Fixes
+
+- **`workflows/main`:** Disable `codeql` (temp) ([#348](https://github.com/percebus/npm-web-sampler/issues/348)) ([1b15365](https://github.com/percebus/npm-web-sampler/commit/1b153658e36a17dbfa8e20a0fd7fdc59d4b9f717))
+
 ## [3.2.3](https://github.com/percebus/npm-web-sampler/compare/v3.2.2...v3.2.3) (2026-11-15)
 
 ### Bug Fixes
