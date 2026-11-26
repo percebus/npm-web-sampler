@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.2.5](https://github.com/percebus/npm-web-sampler/compare/v3.2.4...v3.2.5) (2026-11-26)
+
+### Bug Fixes
+
+- **`github/workflows`:** Manual `codeql` ([#351](https://github.com/percebus/npm-web-sampler/issues/351)) ([5939946](https://github.com/percebus/npm-web-sampler/commit/59399464d0814e6255abbfcd14da3a3f514575ca)), closes [#349](https://github.com/percebus/npm-web-sampler/issues/349)
+
 ## [3.2.4](https://github.com/percebus/npm-web-sampler/compare/v3.2.3...v3.2.4) (2026-11-25)
 
 ### Bug Fixes
