@@ -20,7 +20,6 @@ permissions:
 
 jobs:
   codeQL:
-    if: false # FIXME SARIF upload not working
     permissions:
       actions: read
       contents: read
@@ -30,3 +29,4 @@ jobs:
     uses: percebus/github-actions-compliance/.github/workflows/codeql_analyze.yml@main
     with:
       language: actions
+      config-file: ./.github/codeql/codeql-config.yml

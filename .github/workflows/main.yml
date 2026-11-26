@@ -108,9 +108,9 @@ jobs:
         run: npm clean-install
 
       - uses: percebus/github-actions-compliance/.github/actions/codeql_init_and_analyze@main
-        if: false # FIXME upload SARIF fails
         with:
           language: javascript
+          config-file: ./.github/codeql/codeql-config.yml
 
       - uses: percebus/github-actions-helm/.github/actions/setup@main
       - uses: percebus/github-actions-terraform/.github/actions/setup@main
