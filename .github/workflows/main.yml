@@ -472,7 +472,7 @@ jobs:
 
     concurrency:
       # NOTE: Cancelling an apply might corrupt the state.
-      group: ${{ github.ref }}-test
+      group: environment-test
       cancel-in-progress: false
 
     uses: percebus/github-actions-terraform/.github/workflows/integration_tests.yml@main
@@ -488,7 +488,7 @@ jobs:
 
     concurrency:
       # NOTE: Cancelling an apply might corrupt the state.
-      group: ${{ github.ref }}-${{ needs.setup.outputs.environment }}
+      group: environment-${{ needs.setup.outputs.environment }}
       cancel-in-progress: false
 
     uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
@@ -508,7 +508,7 @@ jobs:
 
     concurrency:
       # NOTE: Cancelling an apply might corrupt the state.
-      group: ${{ github.ref }}-${{ needs.setup.outputs.environment }}
+      group: environment-${{ needs.setup.outputs.environment }}
       cancel-in-progress: false
 
     uses: percebus/github-actions-terraform/.github/workflows/apply.yml@main
@@ -528,7 +528,7 @@ jobs:
 
     concurrency:
       # NOTE: Cancelling an apply might corrupt the state.
-      group: ${{ github.ref }}-dev
+      group: environment-dev
       cancel-in-progress: false
 
     permissions:

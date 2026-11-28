@@ -44,7 +44,7 @@ jobs:
 
     # NOTE: Cancelling an apply might corrupt the state.
     concurrency:
-      group: ${{ github.ref }}
+      group: environments
       cancel-in-progress: false
 
     uses: percebus/github-actions-terraform/.github/workflows/qa.yml@main

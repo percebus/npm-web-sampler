@@ -18,7 +18,7 @@ on:
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: ${{ github.ref_name != 'main' }}
+  cancel-in-progress: true
 
 env:
   TF_IN_AUTOMATION: true
@@ -52,7 +52,7 @@ jobs:
 
     concurrency:
       # NOTE: Cancelling an apply might corrupt the state.
-      group: ${{ github.ref }}-${{ needs.VARIABLES.outputs.environment }}
+      group: environment-${{ needs.VARIABLES.outputs.environment }}
       cancel-in-progress: false
 
     permissions:
