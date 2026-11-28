@@ -50,7 +50,7 @@ jobs:
   terraform_plan-destroy_then_apply:
     name: terraform
     needs: VARIABLES
-    
+
     concurrency:
       # NOTE: Cancelling an apply might corrupt the state.
       group: ${{ github.ref }}-${{ needs.VARIABLES.outputs.environment }}
