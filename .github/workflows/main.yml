@@ -1,4 +1,4 @@
-name: "[C]ontinuous [I]ntegration @ main"
+name: "[C]ontinuous [I]ntegration & [D]eployment"
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
@@ -469,6 +469,12 @@ jobs:
     needs:
       - setup
       - terraform_test
+
+    concurrency:
+      # NOTE: Cancelling an apply might corrupt the state.
+      group: ${{ github.ref }}-test
+      cancel-in-progress: false
+
     uses: percebus/github-actions-terraform/.github/workflows/integration_tests.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
@@ -479,6 +485,12 @@ jobs:
     needs:
       - setup
       - terraform_integration_tests
+
+    concurrency:
+      # NOTE: Cancelling an apply might corrupt the state.
+      group: ${{ github.ref }}-${{ needs.setup.outputs.environment }}
+      cancel-in-progress: false
+
     uses: percebus/github-actions-terraform/.github/workflows/plan_and_apply.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
@@ -493,6 +505,12 @@ jobs:
     needs:
       - setup
       - terraform_ci_apply
+
+    concurrency:
+      # NOTE: Cancelling an apply might corrupt the state.
+      group: ${{ github.ref }}-${{ needs.setup.outputs.environment }}
+      cancel-in-progress: false
+
     uses: percebus/github-actions-terraform/.github/workflows/apply.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
@@ -507,6 +525,12 @@ jobs:
     needs:
       - setup
       - terraform_ci_apply
+
+    concurrency:
+      # NOTE: Cancelling an apply might corrupt the state.
+      group: ${{ github.ref }}-dev
+      cancel-in-progress: false
+
     permissions:
       contents: read
       actions: read

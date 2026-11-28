@@ -17,9 +17,8 @@ on:
           - prod
 
 concurrency:
-  # NOTE: Cancelling an apply might corrupt the state.
-  group: ${{ github.ref }}
-  cancel-in-progress: false
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 env:
   TF_IN_AUTOMATION: true
@@ -50,6 +49,12 @@ jobs:
   terraform_plan_then_apply:
     name: terraform
     needs: VARIABLES
+
+    concurrency:
+      # NOTE: Cancelling an apply might corrupt the state.
+      group: ${{ github.ref }}-${{ needs.VARIABLES.outputs.environment }}
+      cancel-in-progress: false
+
     permissions:
       contents: read
       actions: read

@@ -1,12 +1,12 @@
-name: ".github actions"
+name: GitHub actions & workflows
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - .github/workflows/github.actions.yml
+      - .github/workflows/github.yml
       - .github/workflows/**
-      - .github/actions/**
+      - .github/actions/**/*
   push:
     branches:
       - main
