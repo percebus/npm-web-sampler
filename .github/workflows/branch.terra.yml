@@ -41,6 +41,12 @@ jobs:
       actions: read
       checks: write
       pull-requests: write
+
+    # NOTE: Cancelling an apply might corrupt the state.
+    concurrency:
+      group: environments
+      cancel-in-progress: false
+
     uses: percebus/github-actions-terraform/.github/workflows/qa.yml@main
     secrets:
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
