@@ -1,5 +1,11 @@
 # npm-web-sampler CHANGELOG
 
+## [3.2.6](https://github.com/percebus/npm-web-sampler/compare/v3.2.5...v3.2.6) (2026-11-28)
+
+### Bug Fixes
+
+- **`workflows`:** `cancel-in-progress` for `terra` environment ([#354](https://github.com/percebus/npm-web-sampler/issues/354)) ([18ad46f](https://github.com/percebus/npm-web-sampler/commit/18ad46f291d74483cae890318c75fbbaa85b3cf2)), closes [#325](https://github.com/percebus/npm-web-sampler/issues/325)
+
 ## [3.2.5](https://github.com/percebus/npm-web-sampler/compare/v3.2.4...v3.2.5) (2026-11-26)
 
 ### Bug Fixes
